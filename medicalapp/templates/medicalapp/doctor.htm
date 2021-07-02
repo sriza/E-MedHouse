@@ -1,0 +1,556 @@
+
+{% extends 'base.htm' %}
+{% load static %}
+
+{% block content %}
+    <!-- Start Top Header Bar -->
+    <section class="top-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-xs-12 col-sm-4">
+                    <div class="contact-number">
+                        <i class="tf-ion-ios-telephone"></i>
+                        <span>+977 9808826654</span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12 col-sm-4">
+                    <!-- Site Logo -->
+                    <div class="logo text-center">
+                        <a href="index.htm">
+                            <!-- replace logo here -->
+                            <svg width="135px" height="29px" viewBox="0 0 186 29" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-size="40"
+                                    font-family="AustinBold, Austin" font-weight="bold">
+                                    <g id="Group" transform="translate(-108.000000, -297.000000)" fill="#000000">
+                                        <text id="AVIATO">
+                                            <tspan x="108.94" y="325">MedHouse</tspan>
+                                        </text>
+                                    </g>
+                                </g>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12 col-sm-4">
+                    <!-- Cart -->
+                    <ul class="top-menu text-right list-inline">
+                        <li class="dropdown cart-nav dropdown-slide">
+                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
+                                    class="tf-ion-android-cart"></i>Cart</a>
+                            <div class="dropdown-menu cart-dropdown">
+                                <!-- Cart Item -->
+                                <div class="media">
+                                    <a class="pull-left" href="#!">
+                                        <img class="media-object" src={% static 'images/shop/cart/cart-1.jpg' %} alt="image" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
+                                        <div class="cart-price">
+                                            <span>1 x</span>
+                                            <span>1250.00</span>
+                                        </div>
+                                        <h5><strong>$1200</strong></h5>
+                                    </div>
+                                    <a href="#!" class="remove"><i class="tf-ion-close"></i></a>
+                                </div><!-- / Cart Item -->
+                                <!-- Cart Item -->
+                                <div class="media">
+                                    <a class="pull-left" href="#!">
+                                        <img class="media-object" src={% static 'images/shop/cart/cart-2.jpg' %} alt="image" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
+                                        <div class="cart-price">
+                                            <span>1 x</span>
+                                            <span>1250.00</span>
+                                        </div>
+                                        <h5><strong>$1200</strong></h5>
+                                    </div>
+                                    <a href="#!" class="remove"><i class="tf-ion-close"></i></a>
+                                </div><!-- / Cart Item -->
+
+                                <div class="cart-summary">
+                                    <span>Total</span>
+                                    <span class="total-price">$1799.00</span>
+                                </div>
+                                <ul class="text-center cart-buttons">
+                                    <li><a href="cart.htm" class="btn btn-small">View Cart</a></li>
+                                    <li><a href="checkout.htm" class="btn btn-small btn-solid-border">Checkout</a></li>
+                                </ul>
+                            </div>
+
+                        </li><!-- / Cart -->
+
+                        <!-- Search -->
+                        <li class="dropdown search dropdown-slide">
+                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                                <i class="tf-ion-ios-search-strong"></i> Search</a>
+                            <ul class="dropdown-menu search-dropdown">
+                                <li>
+                                    <form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
+                                </li>
+                            </ul>
+                        </li><!-- / Search -->
+
+                        <!-- account -->
+                        <li class="#">
+                            <a href="login.htm">
+                                <i class="tf-ion-android-person"></i> Account</a>
+                            </a>
+                        </li>
+                        <!-- / account -->
+
+                        <!-- Languages -->
+                        <!-- <li class="commonSelect">
+                            <select class="form-control">
+                                <option>EN</option>
+                                <option>DE</option>
+                                <option>FR</option>
+                                <option>ES</option>
+                            </select>
+                        </li> -->
+                        <!-- / Languages -->
+
+                    </ul><!-- / .nav .navbar-nav .navbar-right -->
+                </div>
+            </div>
+        </div>
+    </section><!-- End Top Header Bar -->
+
+
+    <!-- Main Menu Section -->
+    <section class="menu">
+        <nav class="navbar navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <h2 class="menu-title">Main Menu</h2>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div><!-- / .navbar-header -->
+
+                <!-- Navbar Links -->
+                <div id="navbar" class="navbar-collapse collapse text-center">
+                    <ul class="nav navbar-nav">
+
+                        <!-- Home -->
+                        <li class="dropdown ">
+                            <a href="index.htm">Home</a>
+                        </li><!-- / Home -->
+
+                        <li class="dropdown">
+                            <a href="doctor.htm">Doctor Consultation</a>
+                        </li>
+
+
+                        <!-- Elements -->
+                        <li class="dropdown dropdown-slide">
+                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
+                                role="button" aria-haspopup="true" aria-expanded="false">Shop <span
+                                    class="tf-ion-ios-arrow-down"></span></a>
+                            <div class="dropdown-menu">
+                                <div class="row">
+
+                                    <!-- Basic -->
+                                    <div class="col-lg-6 col-md-6 mb-sm-3">
+                                        <ul>
+                                            <li class="dropdown-header">Pages</li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="shop.htm">Shop</a></li>
+                                            <li><a href="checkout.htm">Checkout</a></li>
+                                            <li><a href="cart.htm">Cart</a></li>
+                                            <li><a href="pricing.htm">Pricing</a></li>
+                                            <li><a href="confirmation.htm">Confirmation</a></li>
+
+                                        </ul>
+                                    </div>
+
+                                    <!-- Layout -->
+                                    <div class="col-lg-6 col-md-6 mb-sm-3">
+                                        <ul>
+                                            <li class="dropdown-header">Layout</li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="product-single.htm">Product Details</a></li>
+                                            <li><a href="shop-sidebar.htm">Shop With Sidebar</a></li>
+
+                                        </ul>
+                                    </div>
+
+                                </div><!-- / .row -->
+                            </div><!-- / .dropdown-menu -->
+                        </li><!-- / Elements -->
+
+
+                        <!-- Pages -->
+                        <li class="dropdown full-width dropdown-slide">
+                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
+                                role="button" aria-haspopup="true" aria-expanded="false">Pages <span
+                                    class="tf-ion-ios-arrow-down"></span></a>
+                            <div class="dropdown-menu">
+                                <div class="row">
+
+                                    <!-- Introduction -->
+                                    <div class="col-sm-3 col-xs-12">
+                                        <ul>
+                                            <li class="dropdown-header">Introduction</li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="contact.htm">Contact Us</a></li>
+                                            <li><a href="about.htm">About Us</a></li>
+                                            <li><a href="404.htm">404 Page</a></li>
+                                            <li><a href="coming-soon.htm">Coming Soon</a></li>
+                                            <li><a href="faq.htm">FAQ</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Contact -->
+                                    <div class="col-sm-3 col-xs-12">
+                                        <ul>
+                                            <li class="dropdown-header">Dashboard</li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="dashboard.htm">User Interface</a></li>
+                                            <li><a href="order.htm">Orders</a></li>
+                                            <li><a href="address.htm">Address</a></li>
+                                            <li><a href="profile-details.htm">Profile Details</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Utility -->
+                                    <div class="col-sm-3 col-xs-12">
+                                        <ul>
+                                            <li class="dropdown-header">Utility</li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="login.htm">Login Page</a></li>
+                                            <li><a href="signin.htm">Signin Page</a></li>
+                                            <li><a href="forget-password.htm">Forget Password</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Mega Menu -->
+                                    <div class="col-sm-3 col-xs-12">
+                                        <a href="shop.htm">
+                                            <img class="img-responsive" src={% static 'images/shop/header-img.jpg' %} alt="menu image" />
+                                        </a>
+                                    </div>
+                                </div><!-- / .row -->
+                            </div><!-- / .dropdown-menu -->
+                        </li><!-- / Pages -->
+
+
+
+                        <!-- Blog -->
+                        <li class="dropdown dropdown-slide">
+                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
+                                role="button" aria-haspopup="true" aria-expanded="false">Blog <span
+                                    class="tf-ion-ios-arrow-down"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="blog-left-sidebar.htm">Blog Left Sidebar</a></li>
+                                <li><a href="blog-right-sidebar.htm">Blog Right Sidebar</a></li>
+                                <li><a href="blog-full-width.htm">Blog Full Width</a></li>
+                                <li><a href="blog-grid.htm">Blog 2 Columns</a></li>
+                                <li><a href="blog-single.htm">Blog Single</a></li>
+                            </ul>
+                        </li><!-- / Blog -->
+
+                        <!-- Shop -->
+                        <li class="dropdown dropdown-slide">
+                            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
+                                role="button" aria-haspopup="true" aria-expanded="false">Elements <span
+                                    class="tf-ion-ios-arrow-down"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="typography.htm">Typography</a></li>
+                                <li><a href="buttons.htm">Buttons</a></li>
+                                <li><a href="alerts.htm">Alerts</a></li>
+                            </ul>
+                        </li><!-- / Blog -->
+                    </ul><!-- / .nav .navbar-nav -->
+                </div>
+                <!--/.navbar-collapse -->
+
+                <!-- prescription Doctor -->
+                <span class="li" ><a href="#!" class="btn btn-main btn-small btn-round-full btn-pre" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></span>
+
+                            
+                <!-- .modal -->
+                <div class="modal fade" id="MySecondmodal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">×</button> 
+                                <h4 class="modal-title">Upload Prescription</h4>                                                             
+                                <hr>
+                                <div class="modal-body">
+                                    <div class="card-block">
+                                        <div class="text-center m-t-20">
+                                            <input type="file" id="fileupload" style="display:none"/> 
+                                            <button class="btn-css btn btn-primary" id="OpenfileUpload">click to upload</button>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="text-center">
+                                        OR
+                                    </div>
+                                    <hr>
+                                    <form>
+                                        <label for="subject">Text Prescription</label>
+                                        <textarea id="subject" name="subject" placeholder="Prescription with Description.." style="height:200px"></textarea>
+                                    
+                                        <label for="fname">Location</label>
+                                        <input type="text" id="location" name="location" placeholder="Your address.">
+
+                                        <label for="lname">Contact</label>
+                                        <input type="number" id="contact" name="contact" placeholder="Your contact..">
+                                    </form>
+                            
+                                    You need to register First.
+
+                                    <div class="text-center">
+                                        <button class="btn-css btn btn-primary">Submit</button>
+                                    </div> 
+                                </div>  
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn-css btn btn-default" data-dismiss="modal">Close</button>                               
+                            </div>
+                        </div> 
+                    </div>                                                                      
+                </div>  
+
+            </div><!-- / .container -->
+        </nav>
+    </section>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content">
+                        <h1 class="page-name">Online Doctor's Appointment Request</h1>
+                        <ol class="breadcrumb">
+                            <li><a href="index.htm">Home</a></li>
+                            <li class="active">Doctor Consultation</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- .modal -->
+    <div class="modal fade" id="Mydoctormodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button> 
+                    <h4 class="modal-title">
+                        Book An Appointment
+                    </h4>                                                             
+                    <hr>
+                    <dl class="dl-horizontal" style="margin: 0 94px;">
+                        <dt>Doctor Name:</dt>
+                        <dd>Dr.Hari parsad koirala</dd>
+                    </dl>
+                    <div class="modal-body">
+                        <div class="card-block">
+                            <div class="text-center m-t-20">
+                                <div class="form-group">
+                                    <label for="OpenfileUpload">Upload Prescription</label>
+                                    <input class="mt-20" style="padding-left: 154px;" type="file" id="OpenfileUpload">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <form>
+                            <label for="subject">Description for Appointment</label>
+                            <textarea id="subject" name="subject" placeholder="Add your Symptoms or any description.." style="height:200px"></textarea>
+                        
+                            <label for="fname">Payment Method</label>
+                            
+                            <div class="radio">
+                                <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                    E-Sewa
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                    Khalti
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+                                    Cash on Delivery
+                                </label>
+                            </div>
+                        </form>
+                    </div>  
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-css btn btn-primary">Book Appointment</button>
+                    <button type="button" class="btn-css btn btn-default" data-dismiss="modal">Close</button>                               
+                </div>
+            </div> 
+        </div>                                                                      
+    </div>  
+
+    <!-- doctor 1 -->
+    <hr>
+    <section class="about section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-md-4">
+                    <img class="img-responsive mt-50" src={% static 'images/doctors/doctor1.jpg' %}>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <h3>Dr. Joshi Shambhu, MD (NAMS), MBBS(KU), FAAD(USA)</h3>
+                    <p class="text-info">Specialization: Consultation for Skin and Hair(छाला र कपाल सामस्याको परामार्श),Consultation for Nails and STD(नड़ र यौन संक्रमित रोग)</p>
+                    <p>MBBS- KU</p>
+                    <p>FAM - Consultant Dermatologist, Sexologist and Cosmetic LASER Specialist</p>
+                    <a class="btn btn-main mt-20" data-target="#Mydoctormodal" data-toggle="modal">Login to Book Appointment</a>
+                    
+
+                </div>
+                <div class="col-xs-6 col-md-4 mt-40">
+                    <div class="text-center">
+                        <i class="tf-ion-android-calendar icon-max"></i> 
+                    </div>
+                    <dl class="text-center mt-10">
+                        <dt>Available Date:</dt>
+                        <dd>19 Apr 2020</dd>
+                        <dd>18:00:00 - 20:00:00</dd>
+                    </dl>
+        
+                    <dl class="text-center">
+                        <dt>NMC No</dt>
+                        <dd>07097</dd>
+
+                        <dt>Chharge: Rs</dt>
+                        <dd>500</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr>
+
+    <!-- doctor 2 -->
+    <section class="about section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-md-4">
+                    <img class="img-responsive mt-50" src={% static 'images/doctors/doctor2.jpg' %}>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <h3>Dr. Joshi Shambhu, MD (NAMS), MBBS(KU), FAAD(USA)</h3>
+                    <p class="text-info">Specialization: Consultation for Skin and Hair(छाला र कपाल सामस्याको परामार्श),Consultation for Nails and STD(नड़ र यौन संक्रमित रोग)</p>
+                    <p>MBBS- KU</p>
+                    <p>FAM - Consultant Dermatologist, Sexologist and Cosmetic LASER Specialist</p>
+                    <a class="btn btn-main mt-20" data-target="#Mydoctormodal" data-toggle="modal">Login to Book Appointment</a>
+
+                </div>
+                <div class="col-xs-6 col-md-4 mt-40">
+                    <div class="text-center">
+                        <i class="tf-ion-android-calendar icon-max"></i> 
+                    </div>
+                    <dl class="text-center mt-10">
+                        <dt>Available Date:</dt>
+                        <dd>19 Apr 2020</dd>
+                        <dd>18:00:00 - 20:00:00</dd>
+                    </dl>
+        
+                    <dl class="text-center">
+                        <dt>NMC No</dt>
+                        <dd>07097</dd>
+
+                        <dt>Chharge: Rs</dt>
+                        <dd>500</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr>
+    <!-- doctor 3 -->
+    <section class="about section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-md-4">
+                    <img class="img-responsive mt-50" src={% static 'images/doctors/doctor3.jpg' %}>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <h3>Dr. Joshi Shambhu, MD (NAMS), MBBS(KU), FAAD(USA)</h3>
+                    <p class="text-info">Specialization: Consultation for Skin and Hair(छाला र कपाल सामस्याको परामार्श),Consultation for Nails and STD(नड़ र यौन संक्रमित रोग)</p>
+                    <p>MBBS- KU</p>
+                    <p>FAM - Consultant Dermatologist, Sexologist and Cosmetic LASER Specialist</p>
+                    <a class="btn btn-main mt-20" data-target="#Mydoctormodal" data-toggle="modal">Login to Book Appointment</a>
+
+                </div>
+                <div class="col-xs-6 col-md-4 mt-40">
+                    <div class="text-center">
+                        <i class="tf-ion-android-calendar icon-max"></i> 
+                    </div>
+                    <dl class="text-center mt-10">
+                        <dt>Available Date:</dt>
+                        <dd>19 Apr 2020</dd>
+                        <dd>18:00:00 - 20:00:00</dd>
+                    </dl>
+        
+                    <dl class="text-center">
+                        <dt>NMC No</dt>
+                        <dd>07097</dd>
+
+                        <dt>Chharge: Rs</dt>
+                        <dd>500</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr>
+    <!--doctor 4 --><section class="about section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-md-4">
+                    <img class="img-responsive mt-50" src={% static 'images/doctors/doctor4.jpg' %}>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <h3>Dr. Joshi Shambhu, MD (NAMS), MBBS(KU), FAAD(USA)</h3>
+                    <p class="text-info">Specialization: Consultation for Skin and Hair(छाला र कपाल सामस्याको परामार्श),Consultation for Nails and STD(नड़ र यौन संक्रमित रोग)</p>
+                    <p>MBBS- KU</p>
+                    <p>FAM - Consultant Dermatologist, Sexologist and Cosmetic LASER Specialist</p>
+                    <a class="btn btn-main mt-20" data-target="#Mydoctormodal" data-toggle="modal">Login to Book Appointment</a>
+
+                </div>
+                <div class="col-xs-6 col-md-4 mt-40">
+                    <div class="text-center">
+                        <i class="tf-ion-android-calendar icon-max"></i> 
+                    </div>
+                    <dl class="text-center mt-10">
+                        <dt>Available Date:</dt>
+                        <dd>19 Apr 2020</dd>
+                        <dd>18:00:00 - 20:00:00</dd>
+                    </dl>
+        
+                    <dl class="text-center">
+                        <dt>NMC No</dt>
+                        <dd>07097</dd>
+
+                        <dt>Chharge: Rs</dt>
+                        <dd>500</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr>
+{% include 'medicalapp/snippets/footer1.htm'%}
+{% include 'medicalapp/snippets/footer2.htm'%}
+{% include 'medicalapp/snippets/chatpot.htm'%}
+
+{% endblock content %}
