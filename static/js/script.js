@@ -201,3 +201,17 @@ $(document).ready(function(){
 
 //upload file
 $('#OpenfileUpload').click(function(){ $('#fileupload').trigger('click'); });
+
+
+//picker
+$('#picker').datetimepicker({
+  timepicker: false,
+  datepicker: true,
+  format: 'Y-m-d',
+  value: '2021-0-1',
+  weeks: true,
+})
+
+$(function(){
+  $('#datepicker').datepicker()
+});

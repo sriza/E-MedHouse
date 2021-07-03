@@ -14,7 +14,7 @@
                     <h2 class="text-center">Create Your Account</h2>
                     <form class="text-left clearfix" action="/">
                         <div class="form-group">
-                            <input type="text" class="form-control"  placeholder="First Name">
+                            <input type="text" class="form-control"  placeholder="Full Name">
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control"  placeholder="Last Name">
@@ -24,6 +24,15 @@
                         </div>
                         <div class="form-group">
                             <input type="email" class="form-control"  placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control"  placeholder="phone no">
+                        </div>
+                        <div class="input-group date">
+                            <input type="input" class="form-control" id="datepicker">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control"  placeholder="Password">
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control"  placeholder="Password">
@@ -39,5 +48,13 @@
         </div>
     </div>
 </section>
+<!-- <script type="text/javascript">
 
+    $(document).ready(function () {
+        console.log('here');
+        $('#datepicker').datepicker({});   
+    });
+
+</script> -->
 {% endblock content %}
+

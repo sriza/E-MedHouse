@@ -10,27 +10,6 @@ def doctor(request):
 def shop(request):
     return render(request, 'medicalapp/shop.htm')
 
-def login(request):
-    return render(request, 'medicalapp/login.htm')
-
-def signin(request):
-    return render(request, 'medicalapp/signin.htm')
-
-def dashboard(request):
-    return render(request, 'customer/dashboard.htm')
-
-def order(request):
-    return render(request, 'medicalapp/order.htm')
-
-def address(request):
-    return render(request, 'medicalapp/address.htm')
-
-def profileDetails(request):
-    return render(request, 'medicalapp/profile-details.htm')
-
-def forgetPassword(request):
-    return render(request, 'medicalapp/forget-password.htm')
-
 def cart(request):
     return render(request, 'medicalapp/cart.htm')
 

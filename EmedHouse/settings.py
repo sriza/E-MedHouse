@@ -40,9 +40,9 @@ INSTALLED_APPS = [
     'medicalapp',
     'cart',
     'customer',
-    'product',
     'vendor',
     'order',
+    'product',
 ]
 
 MIDDLEWARE = [
