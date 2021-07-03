@@ -17,7 +17,7 @@ def signin(request):
     return render(request, 'medicalapp/signin.htm')
 
 def dashboard(request):
-    return render(request, 'medicalapp/dashboard.htm')
+    return render(request, 'customer/dashboard.htm')
 
 def order(request):
     return render(request, 'medicalapp/order.htm')
