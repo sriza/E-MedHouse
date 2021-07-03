@@ -15,3 +15,35 @@ def login(request):
 
 def signin(request):
     return render(request, 'medicalapp/signin.htm')
+
+def dashboard(request):
+    return render(request, 'medicalapp/dashboard.htm')
+
+def order(request):
+    return render(request, 'medicalapp/order.htm')
+
+def address(request):
+    return render(request, 'medicalapp/address.htm')
+
+def profileDetails(request):
+    return render(request, 'medicalapp/profile-details.htm')
+
+def forgetPassword(request):
+    return render(request, 'medicalapp/forget-password.htm')
+
+def cart(request):
+    return render(request, 'medicalapp/cart.htm')
+
+def checkout(request):
+    return render(request, 'medicalapp/checkout.htm')
+
+def confirmation(request):
+    return render(request, 'medicalapp/confirmation.htm')
+
+def contact(request):
+    return render(request, 'medicalapp/contact.htm')
+
+def shopslider(request):
+    return render(request, 'medicalapp/shop-sidebar.htm')
+    
+
