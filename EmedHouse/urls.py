@@ -7,6 +7,7 @@ from django.urls.conf import include
 urlpatterns = [
     path('',include('medicalapp.urls')),
     path('',include('customer.urls')),
+    path('vendor/',include('customer.urls')),
     path('admin/', admin.site.urls),
     
 ]
