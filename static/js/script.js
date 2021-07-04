@@ -21,39 +21,39 @@
     userFeed.run();
   }
 
-  setTimeout(function () {
-    $('.instagram-slider').slick({
-      dots: false,
-      speed: 300,
-      // autoplay: true,
-      arrows: false,
-      slidesToShow: 6,
-      slidesToScroll: 1,
-      responsive: [{
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 4
-          }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 3
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 2
-          }
-        }
-      ]
-    });
-  }, 1500);
+  // setTimeout(function () {
+  //   $('.instagram-slider').slick({
+  //     dots: false,
+  //     speed: 300,
+  //     // autoplay: true,
+  //     arrows: false,
+  //     slidesToShow: 6,
+  //     slidesToScroll: 1,
+  //     responsive: [{
+  //         breakpoint: 1024,
+  //         settings: {
+  //           slidesToShow: 4
+  //         }
+  //       },
+  //       {
+  //         breakpoint: 600,
+  //         settings: {
+  //           slidesToShow: 3
+  //         }
+  //       },
+  //       {
+  //         breakpoint: 480,
+  //         settings: {
+  //           slidesToShow: 2
+  //         }
+  //       }
+  //     ]
+  //   });
+  // }, 1500);
 
 
   // e-commerce touchspin
-  $('input[name=\'product-quantity\']').TouchSpin();
+  // $('input[name=\'product-quantity\']').TouchSpin();
 
 
   // Video Lightbox
@@ -64,30 +64,36 @@
 
 
   // Count Down JS
-  $('#simple-timer').syotimer({
-    year: 2022,
-    month: 5,
-    day: 9,
-    hour: 20,
-    minute: 30
-  });
+  // $('#simple-timer').syotimer({
+  //   year: 2022,
+  //   month: 5,
+  //   day: 9,
+  //   hour: 20,
+  //   minute: 30
+  // });
 
   //Hero Slider
-  $('.hero-slider').slick({
-    // autoplay: true,
-    infinite: true,
-    arrows: true,
-    prevArrow: '<button type=\'button\' class=\'heroSliderArrow prevArrow tf-ion-chevron-left\'></button>',
-    nextArrow: '<button type=\'button\' class=\'heroSliderArrow nextArrow tf-ion-chevron-right\'></button>',
-    dots: true,
-    autoplaySpeed: 7000,
-    pauseOnFocus: false,
-    pauseOnHover: false
-  });
-  $('.hero-slider').slickAnimation();
+  // $('.hero-slider').slick({
+  //   // autoplay: true,
+  //   infinite: true,
+  //   arrows: true,
+  //   prevArrow: '<button type=\'button\' class=\'heroSliderArrow prevArrow tf-ion-chevron-left\'></button>',
+  //   nextArrow: '<button type=\'button\' class=\'heroSliderArrow nextArrow tf-ion-chevron-right\'></button>',
+  //   dots: true,
+  //   autoplaySpeed: 7000,
+  //   pauseOnFocus: false,
+  //   pauseOnHover: false
+  // });
+  // $('.hero-slider').slickAnimation();
 
 
 })(jQuery);
+
+//picker
+$(function(){
+  console.log('here');
+  $('#datepicker-test').datepicker()
+});
 
 //chat bot
 
@@ -203,15 +209,3 @@ $(document).ready(function(){
 $('#OpenfileUpload').click(function(){ $('#fileupload').trigger('click'); });
 
 
-//picker
-$('#picker').datetimepicker({
-  timepicker: false,
-  datepicker: true,
-  format: 'Y-m-d',
-  value: '2021-0-1',
-  weeks: true,
-})
-
-$(function(){
-  $('#datepicker').datepicker()
-});
