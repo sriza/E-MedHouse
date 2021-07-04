@@ -72,19 +72,19 @@
   //   minute: 30
   // });
 
-  //Hero Slider
-  // $('.hero-slider').slick({
-  //   // autoplay: true,
-  //   infinite: true,
-  //   arrows: true,
-  //   prevArrow: '<button type=\'button\' class=\'heroSliderArrow prevArrow tf-ion-chevron-left\'></button>',
-  //   nextArrow: '<button type=\'button\' class=\'heroSliderArrow nextArrow tf-ion-chevron-right\'></button>',
-  //   dots: true,
-  //   autoplaySpeed: 7000,
-  //   pauseOnFocus: false,
-  //   pauseOnHover: false
-  // });
-  // $('.hero-slider').slickAnimation();
+  // Hero Slider
+  $('.hero-slider').slick({
+    autoplay: true,
+    infinite: true,
+    arrows: true,
+    prevArrow: '<button type=\'button\' class=\'heroSliderArrow prevArrow tf-ion-chevron-left\'></button>',
+    nextArrow: '<button type=\'button\' class=\'heroSliderArrow nextArrow tf-ion-chevron-right\'></button>',
+    dots: true,
+    autoplaySpeed: 7000,
+    pauseOnFocus: false,
+    pauseOnHover: false
+  });
+  $('.hero-slider').slickAnimation();
 
 
 })(jQuery);
@@ -93,109 +93,6 @@
 $(function(){
   console.log('here');
   $('#datepicker-test').datepicker()
-});
-
-//chat bot
-
-const messages = [
-  "you are not serious",
-  "kikiki so what?",
-  "where did you come from",
-  "lol are you kidding me",
-  "and so  what do u mean"
-];
-let counter = 0;
-const chatContainer = document.querySelector(".container");
-const chatArea = document.querySelector(".message-body");
-const text = document.querySelector("#text");
-const form = document.querySelector(".form");
-
-function isOverflown(element) {
-  return (
-    element.scrollHeight > element.clientHeight ||
-    element.scrollWidth > element.clientWidth
-  );
-}
-
-function scroll() {
-  chatArea.scroll(0,chatArea.scrollHeight);
-}
-
-function reply(msg) {
-  let li = document.createElement("li");
-  li.innerHTML = msg;
-  li.classList.add("chatbox");
-  li.classList.add("chatbox-incoming");
-  chatArea.append(li);
-  scroll();
-}
-
-
-//EVENT LISTENERS
-text.addEventListener("focus", () => {
-  chatContainer.scrollTop = chatArea.scrollHeight + 560;
-});
-
-
-
-form.addEventListener("submit", e => {
-  e.preventDefault();
-  msg = text.value;
-  let li = document.createElement("li");
-  li.innerHTML = msg;
-  li.classList.add("chatbox");
-  li.classList.add("chatbox-outgoing");
-  chatArea.append(li);
-  scroll();
-  text.value = "";
-  // chatContainer.scrollTop =chatContainer.scrollHeight;
-  text.focus();
-  setTimeout(reply, 1000, messages[counter]);
-  counter++;
-  if (counter == messages.length) {
-    counter = 0;
-  }
-});
-
-
-window.onload = ()=>{
-  reply("hi please type a message for me")
-}
-
-
-
-
-//buble body
-const body = document.querySelector('body');
-
-
-
-
-
-// chatpot
-function openChatBubble() {
-  var element = document.getElementById("chat-bubble");
-  element.classList.toggle("open")
-}
-
-form.addEventListener("keyup", function(event) {
-if (event.keyCode === 13) {
-  msg = text.value;
-  let li = document.createElement("li");
-  li.innerHTML = msg;
-  li.classList.add("chatbox");
-  li.classList.add("chatbox-outgoing");
-  chatArea.append(li);
-  scroll();
-  text.value = "";
-  // chatContainer.scrollTop =chatContainer.scrollHeight;
-  text.focus();
-  setTimeout(reply, 1000, messages[counter]);
-  counter++;
-  if (counter == messages.length) {
-    counter = 0;
-  }
-}
 });
 
 //prescription doctor
