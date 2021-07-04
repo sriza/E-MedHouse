@@ -1,7 +1,24 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.db.models.deletion import CASCADE
+
 
 # Create your models here.
+class User(AbstractUser):
+    VENDOR = 1
+    CUSTOMER = 2
+      
+    ROLE_CHOICES = (
+        (VENDOR, 'Vendor'),
+        (CUSTOMER, 'Customer')
+    )
+    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True)
+    email = models.EmailField(max_length=254)
+    password = models.CharField(max_length=25)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
 class Vendor(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=120)
     shop_name = models.CharField(max_length=200)
     business_name = models.CharField(max_length=200)
