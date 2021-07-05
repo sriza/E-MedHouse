@@ -64,3 +64,12 @@
        padding-left: 20px;
    }
 }
+
+#profile{
+    position: relative;
+    left: 40%;
+}
+.details-list{
+    margin: 0 10%;
+    padding: 0;
+}

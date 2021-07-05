@@ -92,7 +92,7 @@
 //picker
 $(function(){
   console.log('here');
-  $('#datepicker-test').datepicker()
+  $('.datepicker-test').datepicker()
 });
 
 //prescription doctor
