@@ -1,0 +1,66 @@
+
+#listOfAccount{
+    float: right;
+    position: relative;
+    bottom: 40px;
+}
+@media screen and (max-width: 760px){
+    #listOfAccount{
+        float: right;
+        position: relative;
+        bottom: 25px;
+    }
+}
+@media screen and (max-width: 480px){
+    #listOfAccount{
+        bottom: 20px;
+    }
+}
+.navbar-header
+{
+    height: 90px;
+}
+/* //doctor prescription */
+
+.li{
+    padding: 0;
+}
+.btn-pre{
+    position: absolute;
+    top: 18px;
+    right: 3px;
+    background-color: rgb(214, 75, 10);
+  }
+  
+@media screen and (max-width: 950px){
+    .btn-pre{
+        top: 40px;
+        right: 40%;
+      }     
+}
+@media screen and (max-width: 766px){
+    .btn-pre{
+        top: 70px;
+        right: 30%;
+      }
+}
+
+/* vender account styleing */
+.leftside{
+    padding-left: 0;
+}
+
+.rightside{
+    padding-right: 0;
+}
+.rightuploadside{
+    padding-left: 100px;
+}
+@media screen and (max-width: 987px){
+   .leftside, .rightside{
+       padding: 0;
+   }
+   .rightuploadside{
+       padding-left: 20px;
+   }
+}

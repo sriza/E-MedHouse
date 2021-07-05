@@ -683,7 +683,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
   position: relative;
 }
 .top-header{
-  height: 86px;
+  height: 104px;
 }
 
 .top-header .container {
@@ -3059,13 +3059,5 @@ input[type=text], select, textarea,input[type=number] {
 font-size: xx-large;
 }
 
-
-/* for product form */
-#medicine{
-  display: none;
-}
-#device{
-  display: none;
-}
 
 
