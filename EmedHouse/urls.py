@@ -8,5 +8,5 @@ urlpatterns = [
     path('',include('medicalapp.urls')),
     path('vendor/',include('vendor.urls')),
     path('admin/', admin.site.urls),
-    
+    path('product/',include('product.urls')),  
 ]

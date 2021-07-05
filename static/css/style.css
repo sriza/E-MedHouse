@@ -3060,4 +3060,12 @@ font-size: xx-large;
 }
 
 
+/* for product form */
+#medicine{
+  display: none;
+}
+#device{
+  display: none;
+}
+
 

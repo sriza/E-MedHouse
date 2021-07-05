@@ -1,0 +1,192 @@
+{% extends 'base.htm' %}
+{% load static %}
+{% block content %}
+<section class="signin-page account">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="block text-center">
+            <img alt="gravater" class="dp" src={% static '/images/favicon.png' %}>
+            <div class="detail-txt">
+              <span class="username">
+                Med-House
+              </span>
+            </div>
+            <h3 class="text-center">Add Product</h3>
+            <div id="mybutton">
+              <button type="submit" class="btn btn-main" value="button1" id="btn1" style="background-color: gray;">medicine</button>
+              <button type="submit" class="btn btn-main" value="button2" id="btn2">Device</button>
+              <button type="submit" class="btn btn-main"  value="button3" id="btn3">hygenic</button>
+            </div>
+            <!-- medicine form -->
+            <form class="text-left clearfix" action="index.htm" id="medicine">
+              <div class="form-group">
+                <label for="inputName">Name:</label>
+                <input type="text" class="form-control"  placeholder="medicine name(metatitle)" required>
+              </div>
+              <div class="form-group">
+                <label for="inputOfficialChemicalName">Official Chemical Name:</label>
+                <input type="text" class="form-control"  placeholder="Chemical Official name">
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6" style="padding-left: 0;">
+                  <label for="inputPrice">Price</label>
+                  <input type="text" class="form-control" id="inputPrice" placeholder="Price" required>
+                </div>
+                <div class="form-group col-md-6" style="padding-right: 0;">
+                  <label for="inputQuantity">Quantity</label>
+                  <input type="text" class="form-control" id="inputQuantity" placeholder="Quantity" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6" style="padding-left: 0;">
+                  <label for="inputManifactureDate">Manufacture Date</label>
+                  <input type="text" class="form-control" id="inputManifactureDate" placeholder="Manufacture Date" required>
+                </div>
+                <div class="form-group col-md-6" style="padding-right: 0;">
+                  <label for="inputExpiryDate">Expiry Date</label>
+                  <input type="text" class="form-control" id="inputExpiryDate" placeholder="Expiry Date" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputManufacture">Manufacture</label>
+                <input type="text" class="form-control" placeholder="Manufacture">
+              </div>
+              <div class="form-group">
+                <label for="InputDescription">Description</label>
+                <textarea class="form-control" id="InputDescription" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="OpenfileUpload">picture upload</label>
+								<input class="mt-20" type="file" id="OpenfileUpload" required>
+              </div>
+              <hr>
+              <div class="text-center">
+                <button type="submit" class="btn btn-main text-center" >Add Me</button>
+              </div>
+            </form>
+            <!-- device form -->
+            <form class="text-left clearfix" action="index.htm" id="device" style="display: none;">
+              <div class="form-group">
+                <label for="inputName">Name:</label>
+                <input type="text" class="form-control"  placeholder="device name(metatitle)" required>
+              </div>
+              <div class="form-group">
+                <label for="inputOfficialChemicalName">Official Chemical Name:</label>
+                <input type="text" class="form-control"  placeholder="Chemical Official name">
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6" style="padding-left: 0;">
+                  <label for="inputPrice">Price</label>
+                  <input type="text" class="form-control" id="inputPrice" placeholder="Price" required>
+                </div>
+                <div class="form-group col-md-6" style="padding-right: 0;">
+                  <label for="inputQuantity">Quantity</label>
+                  <input type="text" class="form-control" id="inputQuantity" placeholder="Quantity" required>
+                </div>
+              </div>
+             
+              <div class="form-group">
+                <label for="inputManufacture">Manufacture</label>
+                <input type="text" class="form-control" placeholder="Manufacture">
+              </div>
+              <div class="form-group">
+                <label for="InputDescription">Description</label>
+                <textarea class="form-control" id="InputDescription" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="OpenfileUpload">picture upload</label>
+								<input class="mt-20" type="file" id="OpenfileUpload" required>
+              </div>
+              <hr>
+              <div class="text-center">
+                <button type="submit" class="btn btn-main text-center" >Add Me</button>
+              </div>
+            </form>
+            <!-- hygenic form -->
+            <form class="text-left clearfix" action="index.htm" id="hygenic" style="display: none;">
+              <div class="form-group">
+                <label for="inputName">Name:</label>
+                <input type="text" class="form-control"  placeholder="hygenic name(metatitle)" required>
+              </div>
+              <div class="form-group">
+                <label for="inputOfficialChemicalName">Official Chemical Name:</label>
+                <input type="text" class="form-control"  placeholder="Chemical Official name">
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6" style="padding-left: 0;">
+                  <label for="inputPrice">Price</label>
+                  <input type="text" class="form-control" id="inputPrice" placeholder="Price" required>
+                </div>
+                <div class="form-group col-md-6" style="padding-right: 0;">
+                  <label for="inputQuantity">Quantity</label>
+                  <input type="text" class="form-control" id="inputQuantity" placeholder="Quantity" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6"  style="padding-left: 0;">
+                  <label for="inputManifactureDate">Manufacture Date</label>
+                  <input type="text" class="form-control" id="inputManifactureDate" placeholder="Manufacture Date" required>
+                </div>
+                <div class="form-group col-md-6" style="padding-right: 0;">
+                  <label for="inputExpiryDate">Expiry Date</label>
+                  <input type="text" class="form-control" id="inputExpiryDate" placeholder="Expiry Date" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputManufacture">Manufacture</label>
+                <input type="text" class="form-control" placeholder="Manufacture">
+              </div>
+              <div class="form-group">
+                <label for="InputDescription">Description</label>
+                <textarea class="form-control" id="InputDescription" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="OpenfileUpload">picture upload</label>
+								<input class="mt-20" type="file" id="OpenfileUpload" required>
+              </div>
+              <hr>
+              <div class="text-center">
+                <button type="submit" class="btn btn-main text-center" >Add Me</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $("#mybutton button").click(function (ev) {
+        ev.preventDefault() 
+        if ($(this).attr("value") == "button1") {
+          $("#medicine").css("display", "block");
+          $("#device").css("display", "none");
+          $("#hygenic").css("display", "none");
+          $("#btn1").css("background-color", "gray");
+          $("#btn2").css("background-color", "black");
+          $("#btn3").css("background-color", "black");
+        }
+        if ($(this).attr("value") == "button2") {
+          $("#medicine").css("display", "none");
+          $("#device").css("display", "block");
+          $("#hygenic").css("display", "none");
+          $("#btn2").css("background-color", "gray");
+          $("#btn1").css("background-color", "black");
+          $("#btn3").css("background-color", "black");
+
+        }
+        if ($(this).attr("value") == "button3") {
+          $("#medicine").css("display", "none");
+          $("#device").css("display", "none");
+          $("#hygenic").css("display", "block");
+          $("#btn3").css("background-color", "gray");
+          $("#btn1").css("background-color", "black");
+          $("#btn2").css("background-color", "black");
+
+        }
+    });
+  });
+</script>
+{% endblock content %}
