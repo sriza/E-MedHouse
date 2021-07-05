@@ -24,17 +24,27 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="list-inline dashboard-menu text-center">
-                    <li><a class="active" href="/vendor/dashboard/">Dashboard</a></li>
-                    <li><a href="/vendor/order/">Orders</a></li>
+                    <li><a href="/vendor/dashboard/">Dashboard</a></li>
+                    <li><a class="active" href="/vendor/order/">Orders</a></li>
                     <li><a href="/vendor/address/">Address</a></li>
                     <li><a href="/vendor/profile-details/">Profile Details</a></li>
+                    <li><a href="/vendor/product-details/">Product Details</a></li>
                 </ul>
+                <div style="margin-top: 20px;">
+                    <nav class="navbar navbar-light bg-light text-center">
+                        <form class="form-inline">
+                          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                      </nav>
+                </div>
                 <div class="dashboard-wrapper user-dashboard">
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th>Order ID</th>
+                                    <th>Product</th>
                                     <th>Date</th>
                                     <th>Items</th>
                                     <th>Total Price</th>
@@ -45,43 +55,48 @@
                             <tbody>
                                 <tr>
                                     <td>#451231</td>
+                                    <td>medicine</td>
                                     <td>Mar 25, 2016</td>
                                     <td>2</td>
                                     <td>$99.00</td>
                                     <td><span class="label label-primary">Processing</span></td>
-                                    <td><a href="order.htm" class="btn btn-default">View</a></td>
+                                    <td><a href="/vendor/view-product-details" class="btn btn-default">View</a></td>
                                 </tr>
                                 <tr>
                                     <td>#451231</td>
+                                    <td>device</td>
                                     <td>Mar 25, 2016</td>
                                     <td>3</td>
                                     <td>$150.00</td>
                                     <td><span class="label label-success">Completed</span></td>
-                                    <td><a href="order.htm" class="btn btn-default">View</a></td>
+                                    <td><a href="/vendor/view-product-details" class="btn btn-default">View</a></td>
                                 </tr>
                                 <tr>
                                     <td>#451231</td>
+                                    <td>hygenic</td>
                                     <td>Mar 25, 2016</td>
                                     <td>3</td>
                                     <td>$150.00</td>
                                     <td><span class="label label-danger">Canceled</span></td>
-                                    <td><a href="order.htm" class="btn btn-default">View</a></td>
+                                    <td><a href="/vendor/view-product-details" class="btn btn-default">View</a></td>
                                 </tr>
                                 <tr>
                                     <td>#451231</td>
+                                    <td>device</td>
                                     <td>Mar 25, 2016</td>
                                     <td>2</td>
                                     <td>$99.00</td>
                                     <td><span class="label label-info">On Hold</span></td>
-                                    <td><a href="order.htm" class="btn btn-default">View</a></td>
+                                    <td><a href="/vendor/view-product-details" class="btn btn-default">View</a></td>
                                 </tr>
                                 <tr>
                                     <td>#451231</td>
+                                    <td>medicine</td>
                                     <td>Mar 25, 2016</td>
                                     <td>3</td>
                                     <td>$150.00</td>
                                     <td><span class="label label-warning">Pending</span></td>
-                                    <td><a href="order.htm" class="btn btn-default">View</a></td>
+                                    <td><a href="/vendor/view-product-details" class="btn btn-default">View</a></td>
                                 </tr>
                             </tbody>
                         </table>

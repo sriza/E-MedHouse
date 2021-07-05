@@ -19,5 +19,11 @@ def address(request):
 def profileDetails(request):
     return render(request, 'vendor/profile-details.htm')
 
+def productDetails(request):
+    return render(request, 'vendor/product-details.htm')
+
+def viewProductDetails(request):
+    return render(request, 'vendor/view-product-details.htm')
+
 def forgetPassword(request):
     return render(request, 'vendor/forget-password.htm')
