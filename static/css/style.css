@@ -677,9 +677,9 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
   color: #fff;
   position: relative;
 }
-.top-header{
+/* .top-header{
   height: 104px;
-}
+} */
 
 .top-header .container {
   padding-top: 35px;

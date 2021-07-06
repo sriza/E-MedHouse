@@ -2,24 +2,8 @@
 {% load static %}
 
 {% block content %}
-{% include 'snippets/header.htm'%}
-
-<section class="page-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="content">
-                    <h1 class="page-name">Dashboard</h1>
-                    <ol class="breadcrumb">
-                        <li><a href="/">Home</a></li>
-                        <li class="active">my account</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
+{% include 'snippets/vender-dashboard-header.htm'%}
+{% include 'snippets/page-header.htm' %}
 <section class="user-dashboard page-wrapper">
     <div class="container">
         <div class="row">

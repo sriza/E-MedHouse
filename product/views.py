@@ -2,5 +2,5 @@ from django.shortcuts import render
 
 # Create your views here.
 def signup(request):
-    return render(request,'product\signup.htm')
+    return render(request,'product/signup.htm')
     

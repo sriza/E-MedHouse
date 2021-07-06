@@ -34,13 +34,12 @@
   
 @media screen and (max-width: 950px){
     .btn-pre{
-        top: 40px;
+        top: 50px;
         right: 40%;
       }     
 }
 @media screen and (max-width: 766px){
     .btn-pre{
-        top: 70px;
         right: 30%;
       }
 }
@@ -73,3 +72,17 @@
     margin: 0 10%;
     padding: 0;
 }
+/* vender header */
+#add-btn{
+    position: relative;
+    bottom: 72px;
+    float: right;
+    right: 10%;
+}
+#logout{
+    float: right;
+    position: relative;
+    bottom: 49px;
+    right: 5%;
+}
+ 

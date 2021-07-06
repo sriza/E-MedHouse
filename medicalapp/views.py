@@ -5,7 +5,12 @@ def index(request):
     return render(request, 'medicalapp/index.htm')
 
 def doctor(request):
-    return render(request, 'medicalapp/doctor.htm')
+    context={
+    'topic':'Online Doctors Appointment Request',
+    'account': 'Home',
+    'recent_page': 'Doctor Consultation',
+    }
+    return render(request, 'medicalapp/doctor.htm',context)
 
 def shop(request):
     return render(request, 'medicalapp/shop.htm')
