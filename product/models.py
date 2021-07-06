@@ -15,9 +15,9 @@ class Product(models.Model):
 
     vendor = models.ForeignKey(Vendor,on_delete=models.CASCADE)
     title = models.CharField(max_length=256)
-    meta_title = models.CharField(max_length=120)
-    medical_name = models.CharField(max_length=256)
-    slug = models.CharField(max_length=256)
+    meta_title = models.CharField(max_length=120,null=True)
+    medical_name = models.CharField(max_length=256, null= True)
+    slug = models.SlugField()
     price = models.FloatField()
     quantity = models.IntegerField()
     manufacture_date = models.DateField()
