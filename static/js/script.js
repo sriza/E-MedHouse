@@ -89,14 +89,12 @@
 
 })(jQuery);
 
-//picker
-$(function(){
-  console.log('here');
-  $('.datepicker-test').datepicker()
-});
+
+$(document).ready(function(){
+  //datepicker
+  $('#datepicker').datepicker({format: 'yy-mm-dd'});
 
 //prescription doctor
-$(document).ready(function(){
 	$('#MybtnModal').click(function(){
 		$('#Mymodal').modal('show')
 	});

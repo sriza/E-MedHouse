@@ -13,7 +13,7 @@ class Product(models.Model):
         (HYGIENE, 'Hygienic Product'),
     ]
 
-    vendor_id = models.ForeignKey(Vendor,on_delete=models.CASCADE)
+    vendor = models.ForeignKey(Vendor,on_delete=models.CASCADE)
     title = models.CharField(max_length=256)
     meta_title = models.CharField(max_length=120)
     medical_name = models.CharField(max_length=256)
@@ -27,8 +27,12 @@ class Product(models.Model):
     manufacturer = models.CharField(max_length=256)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+def get_upload_path(instance, filename):
+    print(instance.vendor)
+    return 'product/{0}/{1}'.format(instance.product.id, filename)
+
 class ProductImage(models.Model):
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    image_path = models.CharField(max_length=256)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to= get_upload_path ,blank=True)
     description = models.CharField(max_length=256)
     timestamp = models.DateTimeField(auto_now_add=True)

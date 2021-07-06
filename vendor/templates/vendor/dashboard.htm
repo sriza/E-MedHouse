@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-{% include 'snippets/vender-dashboard-header.htm'%}
+{% include 'snippets/vendor-dashboard-header.htm'%}
 {% include 'snippets/page-header.htm' %}
 <section class="user-dashboard page-wrapper">
     <div class="container">
@@ -18,10 +18,11 @@
                 <div class="dashboard-wrapper user-dashboard">
                     <div class="media">
                         <div class="pull-left">
-                            <img class="media-object user-img" src={% static 'images/avater.jpg' %} alt="Image">
+                            <!-- <img class="media-object user-img" src='/media/'.{{vendor_img.image}} alt="Image"> -->
+                            <img class="media-object user-img" src="/media/{{vendor_img.image}} " alt="Profile image of {{vendor.shop_name}}">
                         </div>
                         <div class="media-body">
-                            <h2 class="media-heading">Welcome Adam Smith</h2>
+                            <h2 class="media-heading">Welcome {{vendor.full_name}}</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, iure, est. Sit mollitia est maxime! Eos
                                 cupiditate tempore, tempora omnis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, nihil. </p>
                         </div>
