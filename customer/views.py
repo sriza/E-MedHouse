@@ -141,6 +141,9 @@ def forgetPassword(request):
 def order(request):
     return render(request,'customer/order.htm')
 
-def address(request):
-    return render(request, 'customer/address.htm')
+def doctor(request):
+    return render(request,'customer/doctor.htm')
+
+def vendors(request):
+    return render(request,'customer/vendors.htm')
     

@@ -1,6 +1,13 @@
 .ml-85{
     margin-left: 85px;
 }
+/* customer top side heade a tag */
+#top-side-account{
+position: relative;
+bottom: 25px;
+left: 246px;
+font-weight: bold;
+}
 #listOfAccount{
     float: right;
     position: relative;
@@ -81,9 +88,13 @@
 /* vender header */
 #add-btn{
     position: relative;
-    bottom: 72px;
-    float: right;
-    right: 10%;
+    bottom: 33px;
+}
+#add-btn li:hover{
+    background-color: black;
+}
+#add-btn li:hover>a{
+    color: white;
 }
 #logout{
     float: right;

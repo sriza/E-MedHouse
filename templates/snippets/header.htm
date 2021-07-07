@@ -28,6 +28,7 @@
                     </a>
                 </div>
             </div>
+            <a href="#" id="top-side-account">Account</a>
             <div class="col-md-9 col-xs-12 col-sm-4" id="listOfAccount">
                 <!-- Cart -->
                 <ul class="top-menu text-right list-inline">
@@ -93,12 +94,12 @@
                     <!-- account -->
                     <li class="#">
                         <a href="/customer/login">
-                            <i class="tf-ion-android-person"></i> Account</a>
+                            <i class="tf-ion-android-person"></i>User</a>
                         </a>
                     </li>
                     <li class="#">
                         <a href="/vendor/login">
-                            <i class="tf-ion-android-person"></i> Account</a>
+                            <i class="tf-ion-android-person"></i>Vender</a>
                         </a>
                     </li>
                     <!-- / account -->
@@ -183,7 +184,7 @@
                             <div class="row">
 
                                 <!-- Introduction -->
-                                <div class="col-sm-4 col-xs-12">
+                                <div class="col-sm-3 col-xs-12">
                                     <ul>
                                         <li class="dropdown-header">Introduction</li>
                                         <li role="separator" class="divider"></li>
@@ -191,19 +192,29 @@
                                         <li><a href="about.htm">About Us</a></li>
                                     </ul>
                                 </div>
+                                	<!-- Contact -->
+								<div class="col-sm-3 col-xs-12">
+									<ul>
+										<li class="dropdown-header">User Account</li>
+										<li role="separator" class="divider"></li>
+                                        <li><a href="/customer/login">Login Page</a></li>
+                                        <li><a href="/customer/sigin">Signin Page</a></li>
+                                        <li><a href="/customer/forget-password">Forget Password</a></li>
+									</ul>
+								</div>
                                 <!-- Utility -->
-                                <div class="col-sm-4 col-xs-12">
+                                <div class="col-sm-3 col-xs-12">
                                     <ul>
-                                        <li class="dropdown-header">Utility</li>
+                                        <li class="dropdown-header">Vender/doctor Account</li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="login.htm">Login Page</a></li>
-                                        <li><a href="signin.htm">Signin Page</a></li>
-                                        <li><a href="forget-password.htm">Forget Password</a></li>
+                                        <li><a href="/vendor/login">Login Page</a></li>
+                                        <li><a href="/vendor/signin">Signin Page</a></li>
+                                        <li><a href="/vendor/forget-password">Forget Password</a></li>
                                     </ul>
                                 </div>
 
                                 <!-- Mega Menu -->
-                                <div class="col-sm-4 col-xs-12">
+                                <div class="col-sm-3 col-xs-12">
                                     <a href="/shop">
                                         <img class="img-responsive" src= {% static 'images/shop/header-img.png' %} alt="menu image" />
                                     </a>
