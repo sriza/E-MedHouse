@@ -11,7 +11,6 @@
                 <ul class="list-inline dashboard-menu text-center">
                     <li><a class="active" href="/vendor/dashboard/">Dashboard</a></li>
                     <li><a href="/vendor/order/">Orders</a></li>
-                    <li><a href="/vendor/address/">Address</a></li>
                     <li><a href="/vendor/profile-details/">Profile Details</a></li>
                     <li><a href="/product/list/">Product Details</a></li>
                 </ul>
@@ -23,12 +22,11 @@
                         </div>
                         <div class="media-body">
                             <h2 class="media-heading">Welcome {{vendor.full_name}}</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, iure, est. Sit mollitia est maxime! Eos
-                                cupiditate tempore, tempora omnis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, nihil. </p>
+                            <p>{{vendor.description}}</p>
                         </div>
                     </div>
                     <div class="total-order mt-20">
-                        <h4>Total Orders</h4>
+                        <h4>Expiring items</h4>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>

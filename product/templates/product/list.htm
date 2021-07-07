@@ -23,21 +23,21 @@
                     </form>
                   </nav>
                 </div>
-            {% for product in products%}
+            {% for image in images%}
                 <div class="col-md-4">
                     <div class="product-item">
                         <div class="product-thumb">
-                            {% if product.img.image %}
+                            <!-- {% if image.product.i %}
                                 lkasjsdd
                                 <img class="img-responsive" src={% static 'images/shop/products/product-1.jpg' %} alt={{product.title}} />
                             {% else %}
-                                lsdkdj
+                                lsdkdj -->
                                 <img class="img-responsive" src={% static 'images/shop/products/product-1.jpg' %} alt={{product.title}} />
-                            {% endif %}
+                            <!-- {% endif %} -->
                             <div class="preview-meta">
                                 <ul>
                                     <li>
-                                        <a href="/product/detail/{{product.id}}">
+                                        <a href="/product/detail/{{image.product.id}}">
                                             <i class="tf-ion-ios-search-strong"></i>
                                         </a>
                                     </li>
@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="product-content">
-                            <h4><a href="product-single.htm">{{product.title}}</a></h4>
+                            <h4><a href="product-single.htm">{{image.product.title}}</a></h4>
                         </div>
                     </div>
                 </div>

@@ -21,7 +21,7 @@
             <p>Choose to add a product</p>
             <h4 class="mt-10">Hygenic</h4>
             <!-- hygenic form -->
-            <form enctype="multipart/form-data" class="text-left clearfix" action="/product/create/" method="POST" id="hygenic" style="display: none;">
+            <form enctype="multipart/form-data" class="text-left clearfix" action="/product/add/hygenic_product/" method="POST" id="hygenic">
               {% csrf_token %}
               <input type="hidden" name="product_type" value="medicine">
               <div class="form-group">

@@ -38,9 +38,9 @@ class RegisterForm(forms.ModelForm):
 
     full_name        = forms.CharField(label='Full Name', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your full name'}))
     email            = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your email'}))
-    address            = forms.CharField(label='Address', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your address'}))
+    address          = forms.CharField(label='Address', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your address'}))
     gender           = forms.CharField(label='Gender', widget=forms.Select(choices=GENDER_TYPES,attrs={'class':'form-control','placeholder': 'Enter your gender'}))
-    dob              = forms.CharField(label='Date Of Birth', widget=forms.TextInput(attrs={'class':'form-control', 'id':'datepicker' ,'placeholder': 'Enter your date of birth'}))
+    dob              = forms.DateField(label='Date Of Birth', widget=forms.TextInput(attrs={'class':'form-control datepicker' ,'placeholder': 'Enter your date of birth'}))
     contact_number   = forms.IntegerField(label='Contact Number', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your contact number'}))
     pan_number       = forms.CharField(label='PAN Number', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your PAN number'}))
     vat_number       = forms.CharField(label='VAT Number', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your VAT number'}))
