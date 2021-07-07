@@ -2,32 +2,19 @@
 {% load static %}
 
 {% block content %}
-{% include 'medicalapp/snippets/header.htm'%}
+{% include 'snippets/vendor-dashboard-header.htm'%}
+{% include 'snippets/page-header.htm'%}
 
-<section class="page-header">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="content">
-					<h1 class="page-name">Dashboard</h1>
-					<ol class="breadcrumb">
-						<li><a href="/">Home</a></li>
-						<li class="active">my account</li>
-					</ol>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
 <section class="user-dashboard page-wrapper">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <ul class="list-inline dashboard-menu text-center">
-          <li><a href="dashboard.htm">Dashboard</a></li>
-          <li><a href="order.htm">Orders</a></li>
-          <li><a class="active" href="address.htm">Address</a></li>
-          <li><a href="profile-details.htm">Profile Details</a></li>
+          <ul class="list-inline dashboard-menu text-center">
+            <li><a href="/vendor/dashboard/">Dashboard</a></li>
+            <li><a href="/vendor/order/">Orders</a></li>
+            <li><a class="active" href="/vendor/address/">Address</a></li>
+            <li><a href="/vendor/profile-details/">Profile Details</a></li>
+            <li><a href="/vendor/product-details/">Product Details</a></li>
         </ul>
         <div class="dashboard-wrapper user-dashboard">
           <div class="table-responsive">
@@ -90,5 +77,5 @@
     </div>
   </div>
 </section>
-{% include 'medicalapp/snippets/footer2.htm'%}
+{% include 'snippets/footer2.htm'%}
 {% endblock content%}

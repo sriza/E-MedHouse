@@ -16,7 +16,7 @@ class Order(models.Model):
         (COMPLETED, 'Completed'),
     ]
 
-    customer_id = models.ForeignKey(Customer,on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
     total = models.FloatField()
     tax = models.FloatField()
     shipping_cost = models.FloatField()
@@ -30,8 +30,8 @@ class Order(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
 class OrderItem(models.Model):
-    order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     unit_price = models.FloatField()
     quantity = models.IntegerField()
     content = models.CharField(max_length=256)

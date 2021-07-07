@@ -1,4 +1,4 @@
-{% load static%}
+{% load static %}
 <!-- Modal -->
 <div class="modal product-modal fade" id="product-modal">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -10,18 +10,29 @@
                 <div class="row">
                     <div class="col-md-8 col-sm-6 col-xs-12">
                         <div class="modal-image">
-                            <img class="img-responsive" src={% static '/images/shop/products/modal-product.jpg' %} alt="product-img" />
+                            <img class="img-responsive" src={% static 'images/shop/products/modal-product.jpg' %} alt="product-img" />
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="product-short-details">
-                            <h2 class="product-title">GM Pendant, Basalt Grey</h2>
-                            <p class="product-price">$200</p>
+                            <dl class="dl-horizontal" style="margin-left: -44px;">
+                                <dt>Name:</dt>
+                                <dd>GM Pendant</dd>
+                                <dt>Price:</dt>
+                                <dd>$200</dd>
+                                <dt>Quantity:</dt>
+                                <dd>7</dd>
+                                <dt>MFG Date:</dt>
+                                <dd>2016/07/17</dd>
+                                <dt>EXP Date:</dt>
+                                <dd>2020/09/18</dd>
+                            </dl>
                             <p class="product-short-description">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem iusto nihil cum. Illo laborum numquam rem aut officia dicta cumque.
                             </p>
-                            <a href="cart.htm" class="btn btn-main">Add To Cart</a>
-                            <a href="product-single.htm" class="btn btn-transparent">View Product Details</a>
+                            <a href="cart.htm" class="btn btn-danger">Delete</a>
+                            <a href="cart.htm" class="btn btn-primary">Cancel</a>
+                            <a href="/vendor/view-product-details" class="btn btn-transparent">View Product Details</a>
                         </div>
                     </div>
                 </div>

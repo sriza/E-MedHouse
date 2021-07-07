@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block content %}
-{% include 'medicalapp/snippets/header.htm'%}
-
-<section class="page-header">
+{% include 'snippets/header.htm'%}
+{% include 'snippets/page-header.htm'%}
+<!-- <section class="page-header">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- .modal -->
 <div class="modal fade" id="Mydoctormodal">
@@ -39,7 +39,7 @@
                         <div class="text-center m-t-20">
                             <div class="form-group">
                                 <label for="OpenfileUpload">Upload Prescription</label>
-                                <input class="mt-20" style="padding-left: 154px;" type="file" id="OpenfileUpload">
+                                <input class="mt-20" style="padding-left: 154px;" type="file" id="fileUpload">
                             </div>
                         </div>
                     </div>
@@ -233,8 +233,8 @@
 </section>
 <hr>
 
-{% include 'medicalapp/snippets/footer1.htm'%}
-{% include 'medicalapp/snippets/footer2.htm'%}
-{% include 'medicalapp/snippets/chatpot.htm'%}
+{% include 'snippets/footer1.htm'%}
+{% include 'snippets/footer2.htm'%}
+{% include 'snippets/chatbot.htm'%}
 
 {% endblock content %}

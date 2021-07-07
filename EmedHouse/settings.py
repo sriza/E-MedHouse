@@ -40,10 +40,16 @@ INSTALLED_APPS = [
     'medicalapp',
     'cart',
     'customer',
-    'product',
     'vendor',
     'order',
+    'product',
 ]
+
+AUTH_USER_MODEL = 'vendor.User'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -127,6 +133,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (     
 os.path.join(BASE_DIR, 'static'), 
 ) 
+
+MEDIA_URL = '/media/' 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Default primary key field type

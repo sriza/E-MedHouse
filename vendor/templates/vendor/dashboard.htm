@@ -2,41 +2,27 @@
 {% load static %}
 
 {% block content %}
-{% include 'medicalapp/snippets/header.htm'%}
-
-<section class="page-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="content">
-                    <h1 class="page-name">Dashboard</h1>
-                    <ol class="breadcrumb">
-                        <li><a href="/">Home</a></li>
-                        <li class="active">my account</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
+{% include 'snippets/vendor-dashboard-header.htm'%}
+{% include 'snippets/page-header.htm' %}
 <section class="user-dashboard page-wrapper">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <ul class="list-inline dashboard-menu text-center">
-                    <li><a class="active" href="dashboard.htm">Dashboard</a></li>
-                    <li><a href="order.htm">Orders</a></li>
-                    <li><a href="address.htm">Address</a></li>
-                    <li><a href="profile-details.htm">Profile Details</a></li>
+                    <li><a class="active" href="/vendor/dashboard/">Dashboard</a></li>
+                    <li><a href="/vendor/order/">Orders</a></li>
+                    <li><a href="/vendor/address/">Address</a></li>
+                    <li><a href="/vendor/profile-details/">Profile Details</a></li>
+                    <li><a href="/product/list/">Product Details</a></li>
                 </ul>
                 <div class="dashboard-wrapper user-dashboard">
                     <div class="media">
                         <div class="pull-left">
-                            <img class="media-object user-img" src={% static 'images/avater.jpg' %} alt="Image">
+                            <!-- <img class="media-object user-img" src='/media/'.{{vendor_img.image}} alt="Image"> -->
+                            <img class="media-object user-img" src="/media/{{vendor_img.image}} " alt="Profile image of {{vendor.shop_name}}">
                         </div>
                         <div class="media-body">
-                            <h2 class="media-heading">Welcome Adam Smith</h2>
+                            <h2 class="media-heading">Welcome {{vendor.full_name}}</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, iure, est. Sit mollitia est maxime! Eos
                                 cupiditate tempore, tempora omnis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, nihil. </p>
                         </div>
@@ -48,6 +34,7 @@
                                 <thead>
                                     <tr>
                                         <th>Order ID</th>
+                                        <th>Product</th>
                                         <th>Date</th>
                                         <th>Items</th>
                                         <th>Total Price</th>
@@ -57,18 +44,21 @@
                                 <tbody>
                                     <tr>
                                         <td><a href="#!">#252125</a></td>
+                                        <td>medicine</td>
                                         <td>Mar 25, 2016</td>
                                         <td>2</td>
                                         <td>$ 99.00</td>
                                     </tr>
                                     <tr>
                                         <td><a href="#!">#252125</a></td>
+                                        <td>hygenic</td>
                                         <td>Mar 25, 2016</td>
                                         <td>2</td>
                                         <td>$ 99.00</td>
                                     </tr>
                                     <tr>
                                         <td><a href="#!">#252125</a></td>
+                                        <td>device</td>
                                         <td>Mar 25, 2016</td>
                                         <td>2</td>
                                         <td>$ 99.00</td>
@@ -82,5 +72,5 @@
         </div>
     </div>
 </section>
-{% include 'medicalapp/snippets/footer2.htm'%}
+{% include 'snippets/footer2.htm'%}
 {% endblock content %}

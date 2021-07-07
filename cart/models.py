@@ -16,8 +16,8 @@ class Cart(models.Model):
     #     (PROCESSING, 'Processing'),
     #     (COMPLETED, 'Completed'),
     # ]
-    vendor_id = models.ForeignKey(Vendor,on_delete=models.CASCADE)
-    customer_id = models.ForeignKey(Customer,on_delete=models.CASCADE)
+    vendor = models.ForeignKey(Vendor,on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
     item_count = models.IntegerField()
     quantity = models.IntegerField()
     total = models.FloatField()
@@ -28,8 +28,8 @@ class Cart(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
 class CartItem(models.Model):
-    cart_id = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    cart= models.ForeignKey(Cart, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     unit_price = models.FloatField()
     quantity = models.IntegerField()
     item_description = models.CharField(max_length=256)

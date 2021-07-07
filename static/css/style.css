@@ -192,12 +192,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 .btn-round-full {
   border-radius: 50px;
 }
-.btn-pre{
-  position: absolute;
-  top: 18px;
-  right: 3px;
-  background-color: rgb(214, 75, 10);
-}
+
 
 .btn.active:focus, .btn:active:focus, .btn:focus {
   outline: 0;
@@ -682,9 +677,9 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
   color: #fff;
   position: relative;
 }
-.top-header{
-  height: 86px;
-}
+/* .top-header{
+  height: 104px;
+} */
 
 .top-header .container {
   padding-top: 35px;
@@ -1714,7 +1709,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 
 .dashboard-user-profile .user-profile-list {
   margin-top: 30px;
-  padding-left: 30px;
+  padding-left: 50px;
 }
 
 .dashboard-user-profile .user-profile-list li {

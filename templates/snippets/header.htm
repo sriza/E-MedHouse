@@ -28,7 +28,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-4 col-xs-12 col-sm-4">
+            <div class="col-md-9 col-xs-12 col-sm-4" id="listOfAccount">
                 <!-- Cart -->
                 <ul class="top-menu text-right list-inline">
                     <li class="dropdown cart-nav dropdown-slide">
@@ -87,11 +87,17 @@
                                 <form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
                             </li>
                         </ul>
-                    </li><!-- / Search -->
+                    </li><!--
+                         / Search -->
 
                     <!-- account -->
                     <li class="#">
-                        <a href="/login.htm">
+                        <a href="/customer/login">
+                            <i class="tf-ion-android-person"></i> Account</a>
+                        </a>
+                    </li>
+                    <li class="#">
+                        <a href="/vendor/login">
                             <i class="tf-ion-android-person"></i> Account</a>
                         </a>
                     </li>
@@ -154,30 +160,15 @@
                             <div class="row">
 
                                 <!-- Basic -->
-                                <div class="col-lg-6 col-md-6 mb-sm-3">
+                                <div class="col-lg-12 col-md-6 mb-sm-3">
                                     <ul>
                                         <li class="dropdown-header">Pages</li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="/shop.htm">Shop</a></li>
-                                        <li><a href="checkout.htm">Checkout</a></li>
-                                        <li><a href="cart.htm">Cart</a></li>
-                                        <li><a href="pricing.htm">Pricing</a></li>
-                                        <li><a href="confirmation.htm">Confirmation</a></li>
-
+                                        <li><a href="/shop.htm">Medicine</a></li>
+                                        <li><a href="checkout.htm">Device</a></li>
+                                        <li><a href="hygenic.htm">Hygenic</a></li>
                                     </ul>
                                 </div>
-
-                                <!-- Layout -->
-                                <div class="col-lg-6 col-md-6 mb-sm-3">
-                                    <ul>
-                                        <li class="dropdown-header">Layout</li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="product-single.htm">Product Details</a></li>
-                                        <li><a href="shop-sidebar.htm">Shop With Sidebar</a></li>
-
-                                    </ul>
-                                </div>
-
                             </div><!-- / .row -->
                         </div><!-- / .dropdown-menu -->
                     </li><!-- / Elements -->
@@ -192,32 +183,16 @@
                             <div class="row">
 
                                 <!-- Introduction -->
-                                <div class="col-sm-3 col-xs-12">
+                                <div class="col-sm-4 col-xs-12">
                                     <ul>
                                         <li class="dropdown-header">Introduction</li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="contact.htm">Contact Us</a></li>
                                         <li><a href="about.htm">About Us</a></li>
-                                        <li><a href="404.htm">404 Page</a></li>
-                                        <li><a href="coming-soon.htm">Coming Soon</a></li>
-                                        <li><a href="faq.htm">FAQ</a></li>
                                     </ul>
                                 </div>
-
-                                <!-- Contact -->
-                                <div class="col-sm-3 col-xs-12">
-                                    <ul>
-                                        <li class="dropdown-header">Dashboard</li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="dashboard.htm">User Interface</a></li>
-                                        <li><a href="order.htm">Orders</a></li>
-                                        <li><a href="address.htm">Address</a></li>
-                                        <li><a href="profile-details.htm">Profile Details</a></li>
-                                    </ul>
-                                </div>
-
                                 <!-- Utility -->
-                                <div class="col-sm-3 col-xs-12">
+                                <div class="col-sm-4 col-xs-12">
                                     <ul>
                                         <li class="dropdown-header">Utility</li>
                                         <li role="separator" class="divider"></li>
@@ -228,48 +203,34 @@
                                 </div>
 
                                 <!-- Mega Menu -->
-                                <div class="col-sm-3 col-xs-12">
-                                    <a href="shop.htm">
-                                        <img class="img-responsive" src= {% static 'images/shop/header-img.jpg' %}alt="menu image" />
+                                <div class="col-sm-4 col-xs-12">
+                                    <a href="/shop">
+                                        <img class="img-responsive" src= {% static 'images/shop/header-img.png' %} alt="menu image" />
                                     </a>
                                 </div>
                             </div><!-- / .row -->
                         </div><!-- / .dropdown-menu -->
                     </li><!-- / Pages -->
 
-
-
-                    <!-- Blog -->
-                    <li class="dropdown dropdown-slide">
-                        <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-                            role="button" aria-haspopup="true" aria-expanded="false">Blog <span
-                                class="tf-ion-ios-arrow-down"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="blog-left-sidebar.htm">Blog Left Sidebar</a></li>
-                            <li><a href="blog-right-sidebar.htm">Blog Right Sidebar</a></li>
-                            <li><a href="blog-full-width.htm">Blog Full Width</a></li>
-                            <li><a href="blog-grid.htm">Blog 2 Columns</a></li>
-                            <li><a href="blog-single.htm">Blog Single</a></li>
-                        </ul>
-                    </li><!-- / Blog -->
-
                     <!-- Shop -->
-                    <li class="dropdown dropdown-slide">
-                        <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-                            role="button" aria-haspopup="true" aria-expanded="false">Elements <span
-                                class="tf-ion-ios-arrow-down"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="typography.htm">Typography</a></li>
-                            <li><a href="buttons.htm">Buttons</a></li>
-                            <li><a href="alerts.htm">Alerts</a></li>
-                        </ul>
-                    </li><!-- / Blog -->
+                    	<!-- Languages -->
+					<li class="commonSelect">
+						<select class="form-control">
+							<option>EN</option>
+							<option>DE</option>
+							<option>FR</option>
+							<option>ES</option>
+						</select>
+					</li>
+					<!-- / Languages -->
+                    
                 </ul><!-- / .nav .navbar-nav -->
             </div>
             <!--/.navbar-collapse -->
 
             <!-- prescription Doctor -->
-            <span class="li" ><a href="#!" class="btn btn-main btn-small btn-round-full btn-pre" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></span>
+            <span class="li" ><a href="#!" class="btn btn-main btn-small btn-round-full btn-pre" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></button>
+            <span class="li" style="margin-top: 20px;"><a href="/product/signup" class="btn btn-secondary btn-small btn-round-full btn-pre" ><i class="tf-ion-android-add"></i> Add Product</a></span>
 
                         
             <!-- .modal -->
