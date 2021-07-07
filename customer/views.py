@@ -133,3 +133,14 @@ def order(request):
 def customerLogout(request):
     logout(request)
     return redirect('/')
+
+
+def forgetPassword(request):
+    return render(request,'customer/forget-password.htm')
+
+def order(request):
+    return render(request,'customer/order.htm')
+
+def address(request):
+    return render(request, 'customer/address.htm')
+    
