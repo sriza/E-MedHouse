@@ -20,15 +20,14 @@ class Product(models.Model):
     slug = models.SlugField()
     price = models.FloatField()
     quantity = models.IntegerField()
-    manufacture_date = models.DateField()
-    expiry_date = models.DateField()
+    manufacture_date = models.DateField(null=True)
+    expiry_date = models.DateField(null=True)
     product_type = models.CharField(max_length=20, choices=PRODUCT_TYPES, default=MEDICINE)
-    description = models.TextField(max_length=254)
+    description = models.TextField()
     manufacturer = models.CharField(max_length=256)
     timestamp = models.DateTimeField(auto_now_add=True)
 
 def get_upload_path(instance, filename):
-    print(instance.vendor)
     return 'product/{0}/{1}'.format(instance.product.id, filename)
 
 class ProductImage(models.Model):

@@ -21,14 +21,7 @@
           
             <form enctype="multipart/form-data" class="text-left clearfix" method="POST" action="/vendor/signin/">
               {% csrf_token %}
-
-              <!-- {% for field in form %}
-                <div class="form-group">
-                  <label for="exampleInputFullName">{{field.label}}</label>
-                  {{field}}
-                  {{errors}}
-                </div>
-              {% endfor %} -->
+              
               <div class="form-group">
                 <label for="exampleInputFullName">Full Name</label>
                 {{ register_form.full_name}}

@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 
 from django.db import transaction
 
@@ -21,7 +22,7 @@ def vendorLogin(request):
         user = authenticate(email=email, password=password)
         if user:
             login(request, user)
-            return render(request, 'vendor/dashboard.htm')
+            return HttpResponseRedirect('/vendor/dashboard/')
 
     return render(request, 'vendor/login.htm',{'form':form})
 
@@ -73,7 +74,7 @@ def signin(request):
             profile.img_type    = 'profile'
             profile.save()
     
-            return render(request, 'vendor/login.htm')
+            return HttpResponseRedirect('/vendor/login/')
     
         except e:
             print(e)
@@ -116,7 +117,7 @@ def profileDetails(request):
 
         edit_form  = RegisterForm(request.POST or None)
 
-        vendor     = Vendor.objects.get(user_id=request.user)
+        vendor     = Vendor.objects.get(user=request.user)
         vendor_img = VendorImage.objects.get(vendor=vendor, img_type='profile')
 
         return render(request, 'vendor/profile-details.htm',{'context':context, 'vendor': vendor, 'vendor_img': vendor_img})
@@ -134,10 +135,6 @@ def productDetails(request):
     return render(request, 'vendor/product-details.htm', context)
 
 @login_required
-def viewProductDetails(request):
-    return render(request, 'vendor/view-product-details.htm')
-
-@login_required
 def forgetPassword(request):
     return render(request, 'vendor/forget-password.htm')
 
@@ -145,9 +142,9 @@ def forgetPassword(request):
 def order(request):
     return render(request, 'vendor/order.htm')
 
-@login_required
-def address(request):
-    return render(request, 'vendor/address.htm')
+# @login_required
+# def address(request):
+#     return render(request, 'vendor/address.htm')
 
 @login_required
 def order(request):

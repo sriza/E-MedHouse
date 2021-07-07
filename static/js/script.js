@@ -92,7 +92,7 @@
 
 $(document).ready(function(){
   //datepicker
-  $('#datepicker').datepicker({format: 'yy-mm-dd'});
+  $('.datepicker').datepicker({format: 'yy-mm-dd'});
 
 //prescription doctor
 	$('#MybtnModal').click(function(){

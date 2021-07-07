@@ -17,7 +17,5 @@ urlpatterns = [
     path('address/', views.address, name ="address"),
     path('profile-details/', views.profileDetails, name="profile"),
     path('forget-password/', views.forgetPassword, name="forget-password"),
-    path('view-product-details/', views.viewProductDetails, name="view-product-details"),
-
 ]
 

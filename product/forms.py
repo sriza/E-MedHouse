@@ -1,9 +1,10 @@
 from django import forms
+from .models import Product, ProductImage
 
-class RegisterForm(forms.ModelForm):
+class ProductForm(forms.ModelForm):
     class Meta:
-        model = Vendor
-        fields = ('title', 'meta_title', 'gender', 'dob', 'contact_number', 'pan_number', 'vat_number', 'shop_name', 'business_name')
+        model = Product
+        fields = ('title', 'meta_title', 'medical_name', 'manufacture_date', 'expiry_date', 'price', 'quantity', 'description','manufacturer')
 
     MEDICINE = 'medicine'
     DEVICES = 'devices'
@@ -15,34 +16,38 @@ class RegisterForm(forms.ModelForm):
         (HYGIENE, 'Hygienic Product'),
     ]
 
-    full_name        = forms.CharField(label='Full Name', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your full name'}))
-    email            = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your email'}))
-    address            = forms.CharField(label='Address', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your address'}))
-    gender           = forms.CharField(label='Gender', widget=forms.Select(choices=GENDER_TYPES,attrs={'class':'form-control','placeholder': 'Enter your gender'}))
-    dob              = forms.CharField(label='Date Of Birth', widget=forms.TextInput(attrs={'class':'form-control', 'id':'datepicker' ,'placeholder': 'Enter your date of birth'}))
-    dob              = forms.CharField(label='Date Of Birth', widget=forms.TextInput(attrs={'class':'form-control', 'id':'datepicker' ,'placeholder': 'Enter your date of birth'}))
-    contact_number   = forms.IntegerField(label='Contact Number', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your contact number'}))
-    pan_number       = forms.CharField(label='PAN Number', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your PAN number'}))
-           = forms.CharField(label='VAT Number', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your VAT number'}))
-    description    = forms.CharField(label='Description', widget=forms.Textarea(attrs={'class':'form-control','placeholder': 'Enter your pharmacy name'}))
-    manufacturer   = forms.CharField(label='Product Manufacturer', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your registered business name'}))
+    title            = forms.CharField(label='Title', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter the name of the product'}))
+    meta_title       = forms.CharField(label='Meta Title', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter the meta title for the product'}))
+    medical_name     = forms.CharField(label='Generic Name', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter the generic name of medicine'}))
+    manufacture_date = forms.DateField(label='Manufacture Date', widget=forms.TextInput(attrs={'class':'form-control datepicker' ,'placeholder': 'Enter the date of manufacture'}))
+    expiry_date      = forms.DateField(label='Expiry Date',  widget=forms.TextInput(attrs={'class':'form-control datepicker' ,'placeholder': 'Enter expiry date'}))
+    price            = forms.FloatField(label='Price', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter the price'}))
+    quantity         = forms.IntegerField(label='Quantity', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter the quantity'}))
+    description      = forms.CharField(label='Description', widget=forms.Textarea(attrs={'rows':5, 'cols':20, 'class':'form-control','placeholder': 'Write about the product'}))
+    manufacturer     = forms.CharField(label='Product Manufacturer', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter the name of the manufacturer'}))
 
-    def clean_confirm_password(self):
-        password = self.cleaned_data.get("password")
-        confirm_password = self.cleaned_data.get("confirm_password")
-        if password and confirm_password and password != confirm_password:
-            raise forms.ValidationError("Passwords don't match")
-        return confirm_password
+    def clean_quantity(self):
+        quantity = self.cleaned_data.get("quantity")
+        if quantity < 1 :
+            raise forms.ValidationError("Products can't have quantity less than one.")
+        return quantity
     
-    def clean_email(self):
-          data = self.cleaned_data['email']
-          if User.objects.filter(email=data).count() > 0:
-              raise forms.ValidationError("We have a user with this user email-id")
-          return data
+    def clean_expiry_date(self):
+        manufacture_date = self.cleaned_data.get("manufacture_date")
+        expiry_date = self.cleaned_data.get("expiry_date")
+        if manufacture_date and expiry_date and expiry_date < manufacture_date:
+            raise forms.ValidationError("Expiry date can't be before manufacture date.")
+        return expiry_date
+    
+    # def clean_email(self):
+    #       data = self.cleaned_data['email']
+    #       if User.objects.filter(email=data).count() > 0:
+    #           raise forms.ValidationError("We have a user with this user email-id")
+    #       return data
 
 
-class RegistrationImageForm(forms.ModelForm):
+class ProductImageForm(forms.ModelForm):
     class Meta:
-        model = VendorImage
+        model = ProductImage
         fields = ('image',)
-    image = forms.ImageField(required=False)
+    image = forms.ImageField(required=True)
