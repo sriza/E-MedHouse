@@ -13,18 +13,21 @@ from django.shortcuts import render
 # Create your views here.
 
 def vendorLogin(request):
-    form = LoginForm(request.POST or None)
+    if request.user.is_authenticated and request.user.role==1:
+        return redirect('/vendor/dashboard/')
+    else:
+        form = LoginForm(request.POST or None)
 
-    if form.is_valid():
-        email = request.POST.get("email")
-        password = request.POST.get("password")
-        
-        user = authenticate(email=email, password=password)
-        if user:
-            login(request, user)
-            return HttpResponseRedirect('/vendor/dashboard/')
+        if form.is_valid():
+            email = request.POST.get("email")
+            password = request.POST.get("password")
+            
+            user = authenticate(email=email, password=password)
+            if user:
+                login(request, user)
+                return HttpResponseRedirect('/vendor/dashboard/')
 
-    return render(request, 'vendor/login.htm',{'form':form})
+        return render(request, 'vendor/login.htm',{'form':form})
 
 @transaction.atomic
 def signin(request):
@@ -163,3 +166,8 @@ def address(request):
     'recent_page': 'My Address',
 }
     return render(request, 'vendor/address.htm', {'context': context})
+
+@login_required
+def vendorLogout(request):
+    logout(request)
+    return redirect('/')

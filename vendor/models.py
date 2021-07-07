@@ -39,11 +39,11 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'email'
     objects = UserManager()
 
-
 class Vendor(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=120)
     shop_name = models.CharField(max_length=200)
+    description = models.TextField(null=True)
     business_name = models.CharField(max_length=200)
     address = models.CharField(max_length=200, null=True)
     email = models.EmailField(max_length=254)
@@ -55,7 +55,6 @@ class Vendor(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
 def get_upload_path(instance, filename):
-    print(instance.vendor)
     return 'vendor/{0}/{1}'.format(instance.vendor.id, filename)
 
 class VendorImage(models.Model):
