@@ -26,12 +26,16 @@
     padding: 0;
 }
 .btn-pre{
-    position: absolute;
-    top: 18px;
-    right: 3px;
-    background-color: rgb(214, 75, 10);
+    position: relative;
+    bottom: 76px;
+    float: right;
   }
-  
+#btn-add{
+    float: right;
+    position: relative;
+    bottom: 72px;
+    left: 194px;
+}
 @media screen and (max-width: 950px){
     .btn-pre{
         top: 50px;
@@ -85,4 +89,8 @@
     bottom: 49px;
     right: 5%;
 }
- 
+ /* login form */
+ .errorlist li{
+color: red;
+font-size: 12px;
+ }

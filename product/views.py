@@ -79,3 +79,9 @@ def detailProduct(request,id):
         print(e)
         return redirect('/vendor/dashboard/')
     
+def hygenic(request):
+    return render(request,'product/hygenic.htm')
+def medicine(request):
+    return render(request, 'product/medicine.htm')
+def device(request):
+    return render(request, 'product/device.htm')
