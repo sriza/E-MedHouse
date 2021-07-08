@@ -67,14 +67,14 @@
 							</div>
 						</div>	
 					{% endfor %}
-				</div>
-				{% for image in images %}		
-					{% include 'snippets/product-model.htm' %}
-				{% endfor %}
-			</div>
+
 		</div>
 	</div>
 </section>
+
+{% for image in images %}		
+{% include 'snippets/product-model.htm' %}
+{% endfor %}
 
 {% include 'snippets/footer2.htm'%}
 {% include 'snippets/chatbot.htm'%}
