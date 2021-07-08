@@ -89,6 +89,9 @@
 
 })(jQuery);
 
+  // e-commerce touchspin
+  $('input[name=\'product-quantity\']').TouchSpin();
+
 
 $(document).ready(function(){
   //datepicker

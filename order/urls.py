@@ -3,5 +3,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-      path('add/', views.createOrder, name="login"),
+      path('checkout/',views.checkout),
+       path('quantity/', views.quantity),
 ]

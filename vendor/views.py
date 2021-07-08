@@ -171,3 +171,7 @@ def address(request):
 def vendorLogout(request):
     logout(request)
     return redirect('/')
+
+def quantity(request):
+    return render(request,'vendor/quantity.htm')
+    

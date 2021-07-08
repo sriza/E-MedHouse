@@ -71,15 +71,13 @@
 							{{product.medical_name}}
 						</div>
 					{% endif %}
-					<div class="product-category">
+					<div class="product-quantity">
 						<span>Quantity:</span>
-						{{product.category}}
+						<div class="product-quantity-slider">
+							<input id="product-quantity" type="text" value="0" name="product-quantity">
+						</div>
 					</div>
 					{% if product.product_type|stringformat:"s" != "device" %}
-						<div class="product-category">
-							<span>Manufactured Date:</span>
-							{{product.manufacture_date}}
-						</div>
 						<div class="product-category">
 							<span>Expiry Date:</span>
 							{{product.expiry_date}}
@@ -91,7 +89,7 @@
 						{{product.manufacturer}}
 					</div>
 					
-					<a href="cart.htm" class="btn btn-main mt-20">update</a>
+					<a href="cart.htm" class="btn btn-main mt-20">add to Card</a>
 				</div>
 			</div>
 		</div>
