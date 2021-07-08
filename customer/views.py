@@ -146,4 +146,7 @@ def doctor(request):
 
 def vendors(request):
     return render(request,'customer/vendors.htm')
+
+def vendorDetails(request):
+    return render(request,'customer/vendor-details.htm')
     

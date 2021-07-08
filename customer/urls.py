@@ -12,5 +12,6 @@ urlpatterns = [
     path('forget-password/', views.forgetPassword),
     path('logout/', views.customerLogout),
     path('vendors/', views.vendors),
+     path('vendor-details/', views.vendorDetails),
 ]
 
