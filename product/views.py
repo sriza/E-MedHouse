@@ -145,18 +145,34 @@ def detailProduct(request,id):
                 'account': 'Home',
                 'recent_page': 'My Product',
                 }
-        print(id)
+
         product = Product.objects.get(id=id)
         product_img = ProductImage.objects.filter(product=product)
 
         return render(request,'product/detail.htm', {'context' : context,'product': product, 'product_img' : product_img})
-    except e:
-        print(e)
+    except:
+
+        return redirect('/vendor/dashboard/')
+
+@login_required
+def shopProduct(request):
+    try :
+        context={
+                'topic':'Dashboard',
+                'account': 'Home',
+                'recent_page': 'Shop',
+                }
+
+        images = ProductImage.objects.filter(main= True)
+
+        return render(request,'product/shop.htm',{'context': context, 'images' : images})
+    except:
+
         return redirect('/vendor/dashboard/')
     
-def hygenic(request):
-    return render(request,'product/hygenic.htm')
-def medicine(request):
-    return render(request, 'product/medicine.htm')
-def device(request):
-    return render(request, 'product/device.htm')
+# def hygenic(request):
+#     return render(request,'product/hygenic.htm')
+# def medicine(request):
+#     return render(request, 'product/medicine.htm')
+# def device(request):
+#     return render(request, 'product/device.htm')

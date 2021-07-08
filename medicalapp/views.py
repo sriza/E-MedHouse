@@ -10,7 +10,7 @@ def doctor(request):
     'account': 'Home',
     'recent_page': 'Doctor Consultation',
     }
-    return render(request, 'medicalapp/doctor.htm',context)
+    return render(request, 'medicalapp/doctor.htm',{'context' : context})
 
 def vendors(request):
     context={
@@ -18,7 +18,7 @@ def vendors(request):
     'account': 'Home',
     'recent_page': 'Doctor Consultation',
     }
-    return render(request, 'medicalapp/vendors.htm',context)
+    return render(request, 'medicalapp/vendors.htm',{'context' : context})
 
 def shop(request):
     return render(request, 'medicalapp/shop.htm')

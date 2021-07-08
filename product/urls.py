@@ -8,4 +8,5 @@ urlpatterns = [
     path('add/hygenic_product/', views.createHygenicProduct), 
     path('list/', views.listProduct), 
     path('detail/<int:id>', views.detailProduct), 
+    path('shop/', views.shopProduct), 
 ]

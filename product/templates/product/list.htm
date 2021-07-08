@@ -11,7 +11,6 @@
             <ul class="list-inline dashboard-menu text-center">
                 <li><a  href="/vendor/dashboard/">Dashboard</a></li>
                 <li><a href="/vendor/order/">Orders</a></li>
-                <li><a href="/vendor/address/">Address</a></li>
                 <li><a href="/vendor/profile-details/">Profile Details</a></li>
                 <li><a class="active" href="/vendor/product-details/">Product Details</a></li>
             </ul>
@@ -32,7 +31,7 @@
                                 <img class="img-responsive" src={% static 'images/shop/products/product-1.jpg' %} alt={{product.title}} />
                             {% else %}
                                 lsdkdj -->
-                                <img class="img-responsive" src={% static 'images/shop/products/product-1.jpg' %} alt={{product.title}} />
+                                <img class="img-responsive" src="/media/{{image.image}}" alt={{image.description}} />
                             <!-- {% endif %} -->
                             <div class="preview-meta">
                                 <ul>
@@ -52,6 +51,7 @@
                         </div>
                         <div class="product-content">
                             <h4><a href="product-single.htm">{{image.product.title}}</a></h4>
+                            <p class="price">Rs.{{image.product.price}}</p>
                         </div>
                     </div>
                 </div>
