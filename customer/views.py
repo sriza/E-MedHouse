@@ -1,3 +1,4 @@
+from product.models import Product, ProductImage
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -6,7 +7,7 @@ from django.db import transaction
 
 from django.shortcuts import render, redirect
 from .models import Customer, CustomerImage
-from vendor.models import User
+from vendor.models import User,VendorImage, Vendor
 from .forms import LoginForm, CustomerForm, CustomerImageForm
 
 from django.shortcuts import render
@@ -115,10 +116,7 @@ def forgetPassword(request):
 @login_required
 def order(request):
     return render(request, 'customer/order.htm')
-
-# @login_required
-# def address(request):
-#     return render(request, 'customer/address.htm')
+    
 
 @login_required
 def order(request):
@@ -145,8 +143,27 @@ def doctor(request):
     return render(request,'customer/doctor.htm')
 
 def vendors(request):
-    return render(request,'customer/vendors.htm')
+    try:
+        context = {
+                    'topic':'Vendors',
+                    'account': 'Vendor',
+                    'recent_page': 'Vendor List',
+                    }
 
-def vendorDetails(request):
-    return render(request,'customer/vendor-details.htm')
+        vendor_img = VendorImage.objects.filter(img_type="profile")
+
+        return render(request,'customer/vendors.htm',{'context' : context, 'vendor_img' : vendor_img})
+    except:
+        return render(request,'product/shop/')
+
+def vendorDetails(request,id):
+    try:
+        print(id)
+        vendor = Vendor.objects.get(id=id)
+        vendor_img = VendorImage.objects.get(img_type="profile", vendor=id)
+        products = ProductImage.objects.filter(vendor=id, main=True)
+
+        return render(request,'customer/vendor-details.htm',{'vendor':vendor, 'vendor_img': vendor_img , 'products' : products})
+    except:
+        return render(request,'product/shop/')
     

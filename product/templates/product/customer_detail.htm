@@ -2,8 +2,7 @@
 {% load static %}
 
 {% block content %}
-{% include 'snippets/vendor-dashboard-header.htm'%}
-{% include 'snippets/page-header.htm'%}
+{% include 'snippets/customer-header.htm'%}
 
 <section class="single-product">
 	<div class="container">
@@ -66,31 +65,30 @@
 						{{product.product_type}}
 					</div>
 					{% if product.product_type|stringformat:"s" == "medicine" %}
-						<div class="product-category">
+						<div class="product-quantity">
 							<span>Generic Name:</span>
 							{{product.medical_name}}
 						</div>
 					{% endif %}
-					<div class="product-category">
+					<div class="product-quantity">
 						<span>Quantity:</span>
-						{{product.category}}
+						{{product.quantity}}
 					</div>
 					{% if product.product_type|stringformat:"s" != "device" %}
-						<div class="product-category">
+						<div class="product-quantity">
 							<span>Manufactured Date:</span>
 							{{product.manufacture_date}}
 						</div>
-						<div class="product-category">
+						<div class="product-quantity">
 							<span>Expiry Date:</span>
 							{{product.expiry_date}}
 						</div>
 					{% endif %}
 				
-					<div class="product-category">
+					<div class="product-quantity">
 						<span>Manufacturer:</span>
 						{{product.manufacturer}}
 					</div>
-					<a href="cart.htm" class="btn btn-main mt-20">update</a>
 				</div>
 			</div>
 		</div>

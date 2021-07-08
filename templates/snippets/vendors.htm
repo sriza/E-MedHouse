@@ -2,115 +2,34 @@
 {%include 'snippets/prescription.htm' %}
 <!-- doctor 1 -->
 <hr>
-<section class="about section">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-4">
-                <img class="img-responsive mt-50" src={% static 'images/doctors/doctor1.jpg' %}>
-            </div>
-            <div class="col-xs-12 col-md-6 mt-30">
-                <h3><a href="/customer/vendor-details"> Hamro 24 hours Pharmacy</a></h3>
-                <p class="text-info">Specialization: Consultation for Skin and Hair(छाला र कपाल सामस्याको परामार्श),Consultation for Nails and STD(नड़ र यौन संक्रमित रोग)</p>
-                <dl class="dl-horizontal">
-                    <dt>Name:</dt>
-                    <dd>epharmacy</dd>
-                    <dt>Email:</dt>
-                    <dd>lovearts@gmail.com</dd>
-                    <dt>Phone No:</dt>
-                    <dd>8327483324</dd>
-                    <dt>Address:</dt>
-                    <dd>balkumari, ringrood</dd>
-                </dl>
-                <!-- prescription Doctor -->
-                <span class="li" ><a href="#!" class="btn btn-main btn-small btn-round-full mt-20 ml-85" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></button>
-                          
 
+{% for vendor in vendor_img %}
+    <section class="about section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-4">
+                    <img class="img-responsive mt-50" src="/media/{{vendor.image}}">
+                </div>
+                <div class="col-xs-12 col-md-6 mt-30">
+                    <h3><a href="/customer/vendor-detail/{{vendor.vendor.id}}"> {{vendor.vendor.shop_name}}</a></h3>
+                    <p class="text-info">{{vendor.vendor.description}}</p>
+                    <dl class="dl-horizontal">
+                        <dt>Name:</dt>
+                        <dd>{{vendor.vendor.full_name}}</dd>
+                        <dt>Email:</dt>
+                        <dd>{{vendor.vendor.email}}</dd>
+                        <dt>Phone No:</dt>
+                        <dd>{{vendor.vendor.contact_number}}</dd>
+                        <dt>Address:</dt>
+                        <dd>{{vendor.vendor.address}}</dd>
+                    </dl>
+                    <!-- prescription Doctor -->
+                    <span class="li" ><a href="#!" class="btn btn-main btn-small btn-round-full mt-20 ml-85" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></button>
+                            
+
+                </div>
             </div>
         </div>
-    </div>
-</section>
-<hr>
-
-<!-- doctor 2 -->
-<section class="about section">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-4">
-                <img class="img-responsive mt-50" src={% static 'images/doctors/doctor2.jpg' %}>
-            </div>
-            <div class="col-xs-12 col-md-6 mt-30">
-                <h3><a href="/customer/vendor-details"> Hamro 24 hours Pharmacy</a></h3>
-                <p class="text-info">Specialization: Consultation for Skin and Hair(छाला र कपाल सामस्याको परामार्श),Consultation for Nails and STD(नड़ र यौन संक्रमित रोग)</p>
-                <dl class="dl-horizontal">
-                    <dt>Name:</dt>
-                    <dd>epharmacy</dd>
-                    <dt>Email:</dt>
-                    <dd>lovearts@gmail.com</dd>
-                    <dt>Phone No:</dt>
-                    <dd>8327483324</dd>
-                    <dt>Address:</dt>
-                    <dd>balkumari, ringrood</dd>
-                </dl>
-                  <!-- prescription Doctor -->
-            <span class="li" ><a href="#!" class="btn btn-main btn-small btn-round-full mt-20 ml-85" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></button>
-          
-        </div>
-    </div>
-</section>
-<hr>
-
-<!-- doctor 3 -->
-<section class="about section">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-4">
-                <img class="img-responsive mt-50" src={% static 'images/doctors/doctor3.jpg' %}>
-            </div>
-            <div class="col-xs-12 col-md-6 mt-30">
-                <h3><a href="/customer/vendor-details"> Hamro 24 hours Pharmacy</a></h3>
-                <p class="text-info">Specialization: Consultation for Skin and Hair(छाला र कपाल सामस्याको परामार्श),Consultation for Nails and STD(नड़ र यौन संक्रमित रोग)</p>
-                <dl class="dl-horizontal">
-                    <dt>Name:</dt>
-                    <dd>epharmacy</dd>
-                    <dt>Email:</dt>
-                    <dd>lovearts@gmail.com</dd>
-                    <dt>Phone No:</dt>
-                    <dd>8327483324</dd>
-                    <dt>Address:</dt>
-                    <dd>balkumari, ringrood</dd>
-                </dl>
-                  <!-- prescription Doctor -->
-            <span class="li" ><a href="#!" class="btn btn-main btn-small btn-round-full mt-20 ml-85" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></button>
-          
-        </div>
-    </div>
-</section>
-<hr>
-
-<!--doctor 4 -->
-<section class="about section">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-4">
-                <img class="img-responsive mt-50" src={% static 'images/doctors/doctor4.jpg' %}>
-            </div>
-            <div class="col-xs-12 col-md-6 mt-30">
-                <h3><a href="/customer/vendor-details"> Hamro 24 hours Pharmacy</a></h3>
-                <p class="text-info">Specialization: Consultation for Skin and Hair(छाला र कपाल सामस्याको परामार्श),Consultation for Nails and STD(नड़ र यौन संक्रमित रोग)</p>
-                <dl class="dl-horizontal">
-                    <dt>Name:</dt>
-                    <dd>epharmacy</dd>
-                    <dt>Email:</dt>
-                    <dd>lovearts@gmail.com</dd>
-                    <dt>Phone No:</dt>
-                    <dd>8327483324</dd>
-                    <dt>Address:</dt>
-                    <dd>balkumari, ringrood</dd>
-                </dl>
-                  <!-- prescription Doctor -->
-            <span class="li" ><a href="#!" class="btn btn-main btn-small btn-round-full mt-20 ml-85" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></button>
-          
-        </div>
-    </div>
-</section>
-<hr>
+    </section>
+    <hr>
+{% endfor %}

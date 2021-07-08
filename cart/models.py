@@ -5,18 +5,6 @@ from product.models import Product
 
 # Create your models here.
 class Cart(models.Model):
-    # NEW         = 'new'
-    # CANCELLED   = 'cancelled'
-    # PROCESSING  = 'processing'
-    # COMPLETED   = 'completed'
-
-    # STATUS = [
-    #     (NEW, 'New'),
-    #     (CANCELLED, 'Cancelled'),
-    #     (PROCESSING, 'Processing'),
-    #     (COMPLETED, 'Completed'),
-    # ]
-    vendor = models.ForeignKey(Vendor,on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
     item_count = models.IntegerField()
     quantity = models.IntegerField()

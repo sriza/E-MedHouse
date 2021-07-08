@@ -11,17 +11,14 @@
 
         <div class="dashboard-wrapper dashboard-user-profile">
             <div class="col-xs-12 col-md-4 text-center">
-                <img class="img-responsive mt-20" src={% static 'images/doctors/doctor1.jpg' %}>
-                    <!-- prescription Doctor -->
-                 <span class="li" ><a href="#!" class="btn btn-main btn-small btn-round-full mt-40" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></button>
-                    
+                <img class="img-responsive mt-20" src="/media/{{vendor_img.image}}" alt="{{vendor_img.description}}">
+                    <!-- prescription Doctor -->   
+                    <span class="li" ><a href="#!" class="btn btn-main btn-small btn-round-full mt-40" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></button>                 
             </div>
                 <div class="media-body">
-                    <h3 class="font-weight-bold text-uppercase">Hamro 24 hours Pharmacy</h3>
-                    <p class="text-info mt-10">Specialization: Consultation for Skin and Hair(छाला र कपाल सामस्याको परामार्श),Consultation for Nails and STD(नड़ र यौन संक्रमित रोग)</p>
-
-                    <p class="mt-30">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque deleniti maxime adipisci dolorem non 
-                        quis impedit temporibus porro accusantium cumque incidunt distinctio omnis, laudantium aliquid laborum assumenda voluptate explicabo voluptatem!</p>
+                    <h3 class="font-weight-bold text-uppercase">{{vendor.shop_name}}</h3>
+                    <p class="text-info mt-10">{{vendor.business_name}}</p>
+                    <p class="mt-30">{{vendor.description}}</p>
                     <ul class="user-profile-list">
                         <li><span>Full Name:</span>{{vendor.full_name}}</li>
                         <li><span>Gender:</span>{{vendor.gender}}</li>

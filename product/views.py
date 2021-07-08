@@ -1,14 +1,12 @@
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-# from django.contrib.auth.decorators import permission_required
+from django.db.models import Q
 from django.db import transaction
- 
 
 from django.shortcuts import redirect, render
 from .forms import MedicineForm, DeviceForm, HygenicProductForm , ProductImageForm
 from .models import Product, ProductImage
 from vendor.models import Vendor
-# Create your views here.
 
 @login_required
 @transaction.atomic
@@ -36,8 +34,7 @@ def createMedicine(request):
                     )
                 main = False
             return redirect('/product/list/')
-        except e:
-            print(e);
+        except:
             return redirect('/product/list/')
 
     return render(request,'product/medicine.htm', {'form' : form, 'img_form' : img_form})
@@ -69,8 +66,8 @@ def createDevice(request):
                 main = False
 
             return redirect('/product/list/')
-        except e:
-            print(e);
+        except:
+
             return redirect('/product/list/')
 
     return render(request,'product/device.htm', {'form' : form, 'img_form' : img_form})
@@ -102,12 +99,10 @@ def createHygenicProduct(request):
                 main = False
 
             return redirect('/product/list/')
-        except e:
-            print(e);
+        except :
             return redirect('/product/list/')
 
     return render(request,'product/hygenic_product.htm', {'form' : form, 'img_form' : img_form})
-
 
 @login_required
 def listProduct(request):
@@ -118,19 +113,8 @@ def listProduct(request):
                 'recent_page': 'My Product',
                 }
 
-        productQuery = Product.objects.filter(vendor=Vendor.objects.filter(user=request.user).first())
-        # products  = []
         vendor = Vendor.objects.filter(user=request.user).first()
         images = ProductImage.objects.filter(vendor=vendor, main= True)
-
-
-        # for product in productQuery :
-        #     product.img = ProductImage.objects.filter(product=product)
-        #     products.append(product)
-
-            # print(product)
-            # product['image'] = ProductImage.objects.filter(product=product)
-        print(images)
 
         return render(request,'product/list.htm',{'context': context, 'images' : images})
     except:
@@ -163,9 +147,39 @@ def shopProduct(request):
                 'recent_page': 'Shop',
                 }
 
-        images = ProductImage.objects.filter(main= True)
+        if request.method == "POST" :
+            print(request.POST)
+            category = request.POST.get('product_type')
+            title = request.POST.get('title')
+            print(title)
+            
+            images = ProductImage.objects.filter(Q(product__product_type__exact = category)| 
+                                                 Q(product__title__contains = title)|
+                                                 Q(product__meta_title__contains = title)|
+                                                 Q(product__medical_name__contains = title)|
+                                                 Q(product__description__contains = title)
+                                                 ).order_by('product__expiry_date')
+        else :
+            images = ProductImage.objects.filter(main= True)
 
         return render(request,'product/shop.htm',{'context': context, 'images' : images})
+    except e:
+        print(e)
+        return redirect('/customer/dashboard/')
+
+@login_required
+def shopProductDetail(request,id):
+    try:
+        context={
+                'topic':'Dashboard',
+                'account': 'Home',
+                'recent_page': 'Product Detail',
+                }
+
+        product = Product.objects.get(id=id)
+        product_img = ProductImage.objects.filter(product=product)
+
+        return render(request,'product/customer_detail.htm', {'context' : context,'product': product, 'product_img' : product_img})
     except:
 
         return redirect('/vendor/dashboard/')
