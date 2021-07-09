@@ -6,39 +6,124 @@ from django.db import transaction
 from django.shortcuts import redirect, render
 # from .forms import MedicineForm
 from .models import Cart, CartItem
+from product.models import Product,ProductImage
 from vendor.models import Vendor
+from customer.models import Customer
 
 # Create your views here.
+@login_required
 def cart(request):
-    return render(request,'cart/cart.htm')
+    try:
+        cart_items = CartItem.objects.filter(cart__customer__user = request.user)
+
+        return render(request,'cart/cart.htm', {'cart_items' : cart_items })
+    except:
+        return render(request,'cart/cart.htm')
 
 @login_required
 @transaction.atomic
-def addToCart(request):
-    # form     = MedicineForm(request.POST or None)
-    # img_form = ProductImageForm(request.POST or None, request.FILES or None)
+def addToCart(request,id):
+    try:
+        context={
+                'topic':'Dashboard',
+                'account': 'Home',
+                'recent_page': 'My Product',
+                }
 
-    # if form.is_valid():
-    try : 
-        # main    = True
-        # product = form.save(commit=False)
-        # product.vendor = Vendor.objects.filter(user=request.user).first()
-        # product.product_type = request.POST.get('product_type')
-        # product.save()
+        quantity = 0
+        message =""
 
-        # images = request.FILES.getlist('image')
+        if request.method=="POST":
 
-        # for image in images:
-        #     img  = ProductImage.objects.create(
-        #             vendor      = Vendor.objects.filter(user=request.user).first(),
-        #             main        = main,
-        #             product     = product,
-        #             image       = image,
-        #             description = request.POST.get("title")
-        #         )
-        #     main = False
-        return redirect('/product/list/')
+            if(int(request.POST.get('product-quantity'))>0):
+                customer = Customer.objects.filter(user=request.user).first()
+                cart = Cart.objects.filter(customer=customer)
+                product = Product.objects.get(id=id)
+                quantity = int(request.POST.get('product-quantity'))
+
+                if cart:
+                    cart = Cart.objects.get(customer=customer)
+                    cart_update = Cart.objects.filter(customer=customer).update(
+                        item_count  = cart.item_count + 1,
+                        quantity    = cart.item_count+quantity,
+                        total       = cart.total + product.price * quantity,
+                        tax         = cart.tax + product.price * quantity * .13,
+                        grand_total = cart.grand_total+ product.price * quantity + product.price * quantity * .13
+                    )
+
+                    cart_item = CartItem.objects.create(
+                        cart = cart,
+                        image = ProductImage.objects.filter(main=True, product=product).first(),
+                        product = product,
+                        unit_price = product.price,
+                        quantity = quantity,
+                        item_description = product.description
+                    )
+
+                else :
+                    cart = Cart.objects.create (
+                        customer    = customer,
+                        item_count  = 1,
+                        quantity    = quantity,
+                        total       = product.price * quantity,
+                        tax         = product.price * quantity * .13 ,
+                        grand_total = product.price * quantity + product.price * quantity * .13,
+                    )
+                
+                    cart_item = CartItem.objects.create(
+                        cart = cart,
+                        image = ProductImage.objects.filter(main=True, product=product).first(),
+                        product = product,
+                        unit_price = product.price,
+                        quantity = quantity,
+                        item_description = product.description
+                    )
+
+                return redirect('/cart/list/')
+                
+            else:
+                message = "Quantity cannot be zero"
+
+
+        product = Product.objects.get(id=id)
+        product_img = ProductImage.objects.filter(product=product)
+
+        return render(request,'cart/cart-form.htm', {'context' : context,'product': product, 'product_img' : product_img, 'quantity':quantity,'message':message})
+    except e:
+        print(e)
+        return redirect('/product/shop/')
+
+@login_required
+@transaction.atomic
+def removeFromCart(request,id):
+    context={
+                'topic':'Dashboard',
+                'account': 'Home',
+                'recent_page': 'My Product',
+                }
+
+    message ="The item couldn't be deleted"
+
+    try:
+       
+        customer = Customer.objects.filter(user=request.user).first()
+        cart_item = CartItem.objects.get(id=id)
+        cart = Cart.objects.get(customer=customer)
+
+        cart_update = Cart.objects.filter(customer=customer).update(
+            item_count  = cart.item_count - 1,
+            quantity    = cart.item_count- cart_item.quantity,
+            total       = cart.total - cart_item.unit_price * cart_item.quantity,
+            tax         = cart.tax - cart_item.unit_price * cart_item.quantity * .13,
+            grand_total = cart.grand_total-(cart_item.unit_price * cart_item.quantity + cart_item.unit_price * cart_item.quantity * .13)
+        )
+
+        cart_item = CartItem.objects.filter(id=id).delete()       
+                
+        message = "The item was successfully removed from cart"
+
+        return redirect('/cart/list/')
     except:
-        return redirect('/product/list/')
+        return redirect('/product/shop/')
+    
 
-    # return render(request,'product/medicine.htm', {'form' : form, 'img_form' : img_form})

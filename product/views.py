@@ -163,8 +163,7 @@ def shopProduct(request):
             images = ProductImage.objects.filter(main= True)
 
         return render(request,'product/shop.htm',{'context': context, 'images' : images})
-    except e:
-        print(e)
+    except:
         return redirect('/customer/dashboard/')
 
 @login_required

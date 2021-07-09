@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-{% include 'snippets/vendor-dashboard-header.htm'%}
+{% include 'snippets/customer-header.htm'%}
 {% include 'snippets/page-header.htm'%}
 
 <section class="single-product">
@@ -54,42 +54,51 @@
 				</div>
 			</div>
 			<div class="col-md-7">
-				<div class="single-product-details">
-					<h2>{{product.title}}</h2>
-					<p class="product-price">Rs. {{product.price}}</p>
-					
-					<p class="product-description mt-20">
-						{{product.meta_title}}
-					</p>
-					<div class="product-category">
-						<span>Type:</span>
-						{{product.product_type}}
-					</div>
-					{% if product.product_type|stringformat:"s" == "medicine" %}
-						<div class="product-category">
-							<span>Generic Name:</span>
-							{{product.medical_name}}
-						</div>
-					{% endif %}
-					<div class="product-quantity">
-						<span>Quantity:</span>
-						<div class="product-quantity-slider">
-							<input id="product-quantity" type="text" value="0" name="product-quantity">
-						</div>
-					</div>
-					{% if product.product_type|stringformat:"s" != "device" %}
-						<div class="product-category">
-							<span>Expiry Date:</span>
-							{{product.expiry_date}}
-						</div>
-					{% endif %}
 				
-					<div class="product-category">
-						<span>Manufacturer:</span>
-						{{product.manufacturer}}
-					</div>
+				<div class="single-product-details">
+					<form action="/cart/add/{{product.id}}" method="POST">
+						{% csrf_token %}
+						<h2>{{product.title}}</h2>
+						<p class="product-price">Rs. {{product.price}}</p>
+						
+						<p class="product-description mt-20">
+							{{product.meta_title}}
+						</p>
+						<div class="product-category">
+							<span>Type:</span>
+							{{product.product_type}}
+						</div>
+						{% if product.product_type|stringformat:"s" == "medicine" %}
+							<div class="product-category">
+								<span>Generic Name:</span>
+								{{product.medical_name}}
+							</div>
+						{% endif %}
+						<div class="product-quantity">
+							<span>Quantity:</span>
+							<div class="product-quantity-slider">
+								<input id="product-quantity" type="text" value={{quantity}} name="product-quantity">
+								<p class="help">{{message}} </p>
+							</div>
+						</div>
+						{% if product.product_type|stringformat:"s" != "device" %}
+							<div class="product-category">
+								<span>Manufactured Date:</span>
+								{{product.manufacture_date}}
+							</div>
+							<div class="product-category">
+								<span>Expiry Date:</span>
+								{{product.expiry_date}}
+							</div>
+						{% endif %}
 					
-					<a href="cart.htm" class="btn btn-main mt-20">add to Card</a>
+						<div class="product-category">
+							<span>Manufacturer:</span>
+							{{product.manufacturer}}
+						</div>
+						
+						<button type="submit" class="btn btn-main mt-20">add to Cart</a>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -192,115 +201,7 @@
 		</div>
 	</div>
 </section>
-<!-- <section class="products related-products section">
-	<div class="container">
-		<div class="row">
-			<div class="title text-center">
-				<h2>Related Products</h2>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<div class="product-item">
-					<div class="product-thumb">
-						<img class="img-responsive" src={% static 'images/shop/products/product-5.jpg' %} alt="product-img" />
-						<div class="preview-meta">
-							<ul>
-								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-								</li>
-								<li>
-									<a href="#!" ><i class="tf-ion-edit"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-delete"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="product-content">
-						<h4><a href="product-single.htm">Reef Boardsport</a></h4>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="product-item">
-					<div class="product-thumb">
-						<img class="img-responsive" src={% static 'images/shop/products/product-1.jpg' %} alt="product-img" />
-						<div class="preview-meta">
-							<ul>
-								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-								</li>
-								<li>
-									<a href="#" ><i class="tf-ion-edit"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-delete"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="product-content">
-						<h4><a href="product-single.htm">Reef Boardsport</a></h4>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="product-item">
-					<div class="product-thumb">
-						<img class="img-responsive" src={% static 'images/shop/products/product-2.jpg' %} alt="product-img" />
-						<div class="preview-meta">
-							<ul>
-								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-								</li>
-								<li>
-									<a href="#" ><i class="tf-ion-edit"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-delete"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="product-content">
-						<h4><a href="product-single.htm">Strayhorn SP</a></h4>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="product-item">
-					<div class="product-thumb">
-						<img class="img-responsive" src={% static 'images/shop/products/product-3.jpg' %} alt="product-img" />
-						<div class="preview-meta">
-							<ul>
-								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-								</li>
-								<li>
-									<a href="#" ><i class="tf-ion-edit"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-delete"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="product-content">
-						<h4><a href="product-single.htm">Bradley Mid</a></h4>
-					</div>
-				</div>
-			</div>
-		</div> -->
+
 
 
 {% include 'snippets/vender-product-model.htm'%}
