@@ -92,250 +92,42 @@
 			</div>
 		</div>
 		<div class="row">
-			
-			<div class="col-md-4">
-				<div class="product-item">
-					<div class="product-thumb">
-						<span class="bage">Sale</span>
-						<img class="img-responsive" src= {% static 'images/shop/products/product-1.jpg' %} alt="product-img" />
-						<div class="preview-meta">
-							<ul>
-								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-								</li>
-								<li>
-									<a href="#!" ><i class="tf-ion-ios-heart"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-cart"></i></a>
-								</li>
-							</ul>
+			{% for image in images%}
+				<div class="col-md-4">
+					<div class="product-item">
+						<div class="product-thumb">
+							<span class="bage">Sale</span>
+							<img class="img-responsive" src= "/media/{{image.image}}"  alt={{image.description}} />
+							<div class="preview-meta">
+								<ul>
+									<li>
+										<span  data-toggle="modal" data-target="#product-modal_{{ forloop.counter0 }}">
+											<i class="tf-ion-ios-search-strong"></i>
+										</span>
+									</li>
+									<li>
+										<a href="/customer/login"><i class="tf-ion-android-cart"></i></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="product-content">
+							<h4><a href="/customer/login">{{image.product.title}}</a></h4>
+							<p class="price">Rs.{{image.product.price}}</p>
 						</div>
 					</div>
-					<div class="product-content">
-						<h4><a href="product-single.htm">Reef Boardsport</a></h4>
-						<p class="price">$200</p>
-					</div>
 				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="product-item">
-					<div class="product-thumb">
-						<img class="img-responsive" src= {% static 'images/shop/products/product-2.jpg' %} alt="product-img" />
-						<div class="preview-meta">
-							<ul>
-								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-								</li>
-								<li>
-									<a href="#" ><i class="tf-ion-ios-heart"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-cart"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="product-content">
-						<h4><a href="product-single.htm">Rainbow Shoes</a></h4>
-						<p class="price">$200</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="product-item">
-					<div class="product-thumb">
-						<img class="img-responsive" src= {% static 'images/shop/products/product-3.jpg' %} alt="product-img" />
-						<div class="preview-meta">
-							<ul>
-								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-								</li>
-								<li>
-									<a href="#" ><i class="tf-ion-ios-heart"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-cart"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="product-content">
-						<h4><a href="product-single.htm">Strayhorn SP</a></h4>
-						<p class="price">$230</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="product-item">
-					<div class="product-thumb">
-						<img class="img-responsive" src= {% static 'images/shop/products/product-4.jpg' %} alt="product-img" />
-						<div class="preview-meta">
-							<ul>
-								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-								</li>
-								<li>
-									<a href="#" ><i class="tf-ion-ios-heart"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-cart"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="product-content">
-						<h4><a href="product-single.htm">Bradley Mid</a></h4>
-						<p class="price">$200</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="product-item">
-					<div class="product-thumb">
-						<img class="img-responsive" src= {% static 'images/shop/products/product-5.jpg' %} alt="product-img" />
-						<div class="preview-meta">
-							<ul>
-								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-								</li>
-								<li>
-									<a href="#" ><i class="tf-ion-ios-heart"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-cart"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="product-content">
-						<h4><a href="product-single.htm">Rainbow Shoes</a></h4>
-						<p class="price">$200</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="product-item">
-					<div class="product-thumb">
-						<img class="img-responsive" src= {% static 'images/shop/products/product-6.jpg' %} alt="product-img" />
-						<div class="preview-meta">
-							<ul>
-								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-								</li>
-								<li>
-									<a href="#" ><i class="tf-ion-ios-heart"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-cart"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="product-content">
-						<h4><a href="product-single.htm">Rainbow Shoes</a></h4>
-						<p class="price">$200</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="product-item">
-					<div class="product-thumb">
-						<span class="bage">Sale</span>
-						<img class="img-responsive" src= {% static 'images/shop/products/product-7.jpg' %} alt="product-img" />
-						<div class="preview-meta">
-							<ul>
-								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-								</li>
-								<li>
-									<a href="#" ><i class="tf-ion-ios-heart"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-cart"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="product-content">
-						<h4><a href="product-single.htm">Rainbow Shoes</a></h4>
-						<p class="price">$200</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="product-item">
-					<div class="product-thumb">
-						<img class="img-responsive" src= {% static 'images/shop/products/product-8.jpg' %} alt="product-img" />
-						<div class="preview-meta">
-							<ul>
-								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-								</li>
-								<li>
-									<a href="#" ><i class="tf-ion-ios-heart"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-cart"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="product-content">
-						<h4><a href="product-single.htm">Rainbow Shoes</a></h4>
-						<p class="price">$200</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="product-item">
-					<div class="product-thumb">
-						<img class="img-responsive" src= {% static 'images/shop/products/product-9.jpg' %} alt="product-img" />
-						<div class="preview-meta">
-							<ul>
-								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-								</li>
-								<li>
-									<a href="#" ><i class="tf-ion-ios-heart"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-cart"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="product-content">
-						<h4><a href="product-single.htm">Rainbow Shoes</a></h4>
-						<p class="price">$200</p>
-					</div>
-				</div>
-			</div>
+			{% endfor %}
+	
 			{% include 'snippets/product-model.htm' %}
 
 		</div>
 	</div>
 </section>
 
-
+{% for image in images %}		
+{% include 'snippets/product-model.htm' %}
+{% endfor %}
 
 <!--
 Start Call To Action

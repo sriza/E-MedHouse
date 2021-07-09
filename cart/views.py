@@ -2,6 +2,8 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 # from django.contrib.auth.decorators import permission_required
 from django.db import transaction
+from django.db.models import Count
+
 
 from django.shortcuts import redirect, render
 # from .forms import MedicineForm
@@ -14,7 +16,7 @@ from customer.models import Customer
 @login_required
 def cart(request):
     try:
-        cart_items = CartItem.objects.filter(cart__customer__user = request.user)
+        cart_items = CartItem.objects.filter(cart__customer__user = request.user).order_by('product__vendor')
 
         return render(request,'cart/cart.htm', {'cart_items' : cart_items })
     except:

@@ -7,8 +7,10 @@ from django.db import transaction
 from django.shortcuts import render, redirect
 from .models import User,Vendor, VendorImage
 from .forms import LoginForm, RegisterForm, RegistrationImageForm
+from product.models import Product
 
 from django.shortcuts import render
+from datetime import date, datetime
 
 # Create your views here.
 
@@ -103,8 +105,12 @@ def dashboard(request):
         vendor = Vendor.objects.get(user=request.user)
         vendor_img = VendorImage.objects.get(vendor=vendor, img_type='profile')
 
-        return render(request, 'vendor/dashboard.htm', {'context':context, 'vendor': vendor, 'vendor_img' : vendor_img})
-    except:
+        expiry = Product.objects.filter(vendor=vendor, expiry_date__lt=datetime.today())
+        finishing = Product.objects.filter(vendor=vendor, quantity__lt = 5)
+
+        return render(request, 'vendor/dashboard.htm', {'context':context, 'vendor': vendor, 'vendor_img' : vendor_img, 'expiry' : expiry, 'finishing' : finishing})
+    except e:
+        print(e)
         return render(request,'medicalapp/index.htm')
 
 

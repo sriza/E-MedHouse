@@ -151,14 +151,16 @@ def shopProduct(request):
             print(request.POST)
             category = request.POST.get('product_type')
             title = request.POST.get('title')
-            print(title)
             
-            images = ProductImage.objects.filter(Q(product__product_type__exact = category)| 
-                                                 Q(product__title__contains = title)|
-                                                 Q(product__meta_title__contains = title)|
-                                                 Q(product__medical_name__contains = title)|
-                                                 Q(product__description__contains = title)
-                                                 ).order_by('product__expiry_date')
+            # images = ProductImage.objects.filter(Q(product__product_type__exact = category)| 
+            #                                      Q(product__title__contains = title)|
+            #                                      Q(product__meta_title__contains = title)|
+            #                                      Q(product__medical_name__contains = title)|
+            #                                      Q(product__description__contains = title)
+            #                                      ).order_by('product__expiry_date')
+            # images = ProductImage.objects.filter(main= True,product__product_type = category)
+            images = ProductImage.objects.filter(main= True)
+
         else :
             images = ProductImage.objects.filter(main= True)
 

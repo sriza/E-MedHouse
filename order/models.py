@@ -23,7 +23,7 @@ class Order(models.Model):
     grand_total = models.FloatField()
     shipping_location = models.CharField(max_length=120)
     full_name = models.CharField(max_length=256)
-    map_url = models.CharField(max_length=256)
+    map_url = models.CharField(max_length=256, null= True)
     contact_number = models.IntegerField()
     email = models.EmailField()
     status = models.CharField(max_length=20, choices=STATUS, default=NEW)

@@ -4,6 +4,22 @@
 {% block content %}
 {% include 'snippets/customer-header.htm'%}
 
+<section class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="content">
+					<h1 class="page-name">Shop</h1>
+					<ol class="breadcrumb">
+						<li><a href="#">Home</a></li>
+						<li class="active">Shop</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
 <section class="single-product">
 	<div class="container">
 		<div class="row">
@@ -89,6 +105,8 @@
 						<span>Manufacturer:</span>
 						{{product.manufacturer}}
 					</div>
+					<a href="/cart/add/{{product.id}}" class="btn btn-main mt-20">Add to cart</a>
+
 				</div>
 			</div>
 		</div>

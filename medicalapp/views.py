@@ -1,8 +1,11 @@
 from django.shortcuts import render
+from product.models import ProductImage
 
 # Create your views here.
 def index(request):
-    return render(request, 'medicalapp/index.htm')
+    images = ProductImage.objects.filter(main= True)[:9]
+
+    return render(request, 'medicalapp/index.htm', {'images' : images})
 
 def doctor(request):
     context={

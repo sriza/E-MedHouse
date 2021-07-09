@@ -27,35 +27,43 @@
         <div class="col-md-8 col-md-offset-2">
           <div class="block">
             <div class="product-list">
-              <form method="post">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th class="">Item Name</th>
-                      <th class="">Item Price</th>
-                      <th class="">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for item in cart_items %}
-                      <tr class="">
-                        <td class="">
-                          <div class="product-info">
-                            <img width="80" src="/media/{{item.image.image}}" alt="{{item.image.description}}" />
-                            <a href="#!">{{item.product.title}}</a>
-                          </div>
-                        </td>
-                        <td class="">{{item.unit_price}}</td>
-                        <td class="">
-                          <a class="product-remove" href="/cart/remove/{{item.id}}">Remove</a>
-                        </td>
-                      </tr>
-                    {% endfor %}
+              {% regroup cart_items by product.vendor as cart_item %}
+              {% for items in cart_item %}
+              <div>
+                <form method="post" class="mt-20">
+                  <h4 class="">{{items.grouper.shop_name}}</h4>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="">Item Name</th>
+                          <th class="">Unit Price</th>
+                          <th class="">Quantity</th>
+                          <th class="">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for item in items.list %}
+                          <tr class="">
+                            <td class="">
+                              <div class="product-info">
+                                <img width="80" src="/media/{{item.image.image}}" alt="{{item.image.description}}" />
+                                <a href="/shop">{{item.product.title}}</a>
+                              </div>
+                            </td>
+                            <td class="">{{item.unit_price}}</td>
+                            <td class="">{{item.quantity}}</td>
+                            <td class="">
+                              <a class="product-remove" href="/cart/remove/{{item.id}}">Remove</a>
+                            </td>
+                          </tr>
+                        {% endfor %}
 
-                  </tbody>
-                </table>
-                <a href="/order/checkout" class="btn btn-main pull-right">Checkout</a>
-              </form>
+                      </tbody>
+                    </table>
+                    <a href="/order/checkout" class="btn btn-main pull-right">Checkout</a>
+                  </form>
+                  </div>
+                {% endfor %}
             </div>
           </div>
         </div>

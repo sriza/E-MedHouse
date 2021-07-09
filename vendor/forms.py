@@ -24,7 +24,7 @@ class LoginForm(forms.Form):
 class RegisterForm(forms.ModelForm):
     class Meta:
         model = Vendor
-        fields = ('full_name', 'email', 'gender', 'dob', 'description','contact_number', 'pan_number', 'vat_number', 'shop_name', 'business_name')
+        fields = ('full_name', 'email', 'gender', 'address', 'dob', 'description','contact_number', 'pan_number', 'vat_number', 'shop_name', 'business_name')
 
     MALE = 'male'
     FEMALE = 'female'
