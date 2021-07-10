@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="noBig">
 <head>
 
   <!-- Basic Page Needs
@@ -19,6 +19,10 @@
   
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href={% static 'images/favicon.png' %} />
+
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
   <!-- Themefisher Icon font -->
   <link rel="stylesheet" href={% static '/plugins/themefisher-font/style.css' %} >
   <!-- bootstrap.min css -->
@@ -28,8 +32,8 @@
   <!-- Slick Carousel -->
   <link rel="stylesheet" href={% static '/plugins/slick/slick.css' %}>
   <link rel="stylesheet" href={% static '/plugins/slick/slick-theme.css' %}>
-  
-  
+
+ 
   <!---hand.css-->
   <link rel="stylesheet" href={% static '/css/hand.css' %}>
 
@@ -37,8 +41,7 @@
   <link rel="stylesheet" href={% static '/css/style.css' %}>
 </head>
 
-<body id="body">
-
+<body id="body" class="noBig cursor">
 {% block content %}
 
 {% endblock content %}
@@ -57,6 +60,7 @@
     <script src={% static '/plugins/ekko-lightbox/dist/ekko-lightbox.min.js' %}></script>
     <!-- Count Down Js -->
     <script src={% static '/plugins/syo-timer/build/jquery.syotimer.min.js' %}></script>
+  
 
     <!-- slick Carousel -->
     <script src={% static '/plugins/slick/slick.min.js' %}></script>
@@ -68,8 +72,16 @@
 
     <!-- Datepicker -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+      <!-- jQuery -->
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+
+  <!-- XDSoft DateTimePicker -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script> -->
 
     <!-- Main Js File -->
     <script src={% static '/js/script.js' %}></script>

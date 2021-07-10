@@ -1,0 +1,52 @@
+{% extends 'base.htm' %}
+{% load static %}
+
+{% block content %}
+{% include 'snippets/header.htm'%}
+{% include 'snippets/page-header.htm' %}
+
+<section class="about section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<img class="img-responsive" src={% static 'images/about/about.jpg' %}>
+			</div>
+			<div class="col-md-6">
+				<h2 class="mt-40">About Our Shop</h2>
+				<p>“E-Medhouse” is an E-commerce that solely exists with an aim to provide business-to-customer
+                    and business-to-business transactions of medicine, medical machinery, and equipment so that it
+                    is accessible when needed.</p>
+				<p>“E-Medhouse” also provides the users with the ability to book
+                    doctor and lab appointments online as well as a neat SEO-friendly user interface to ensure accessibility even
+                    for differently-abled people.</p>
+				<p>It intends to provide an amicable platform for the digitization of the health facilities and
+                    connect the related business groups too in order to provide the necessary services to the
+                    end-user.</p>
+				<a href="/contact" class="btn btn-main btn-medium btn-round-full  btn-icon mt-10">Download Company Profile</a>
+			</div>
+		</div>
+		<div class="container mt-50">
+			<div class="row">
+				<div class="col-md-4">
+					<div>
+						<img class="img-responsive img-height" src={% static 'images/about/f-kid.jpg' %} alt="product-img" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div>
+						<img class="img-responsive img-height" src={% static 'images/about/devices.jpg' %} alt="product-img" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div>
+						<img class="img-responsive img-height" src={% static 'images/about/lab.jpg' %} alt="product-img" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+</section>
+
+{% include 'snippets/footer2.htm'%}
+{% endblock content %}

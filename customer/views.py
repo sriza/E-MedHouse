@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 from .models import Customer, CustomerImage
 from vendor.models import User,VendorImage, Vendor
 from lab.models import Lab, LabImage
+from doctor.models import User,DoctorImage, Doctor
 from .forms import LoginForm, CustomerForm, CustomerImageForm
 from order.models import Order,OrderItem
 
@@ -143,12 +144,18 @@ def customerLogout(request):
     logout(request)
     return redirect('/')
 
-
-def forgetPassword(request):
-    return render(request,'customer/forget-password.htm')
-
 def doctor(request):
-    return render(request,'customer/doctor.htm')
+    try:
+        context = {
+                    'topic': 
+                    'Online Doctor Consultation',
+                    'account': 'Home',
+                    'recent_page': 'Doctor Consultation',
+                    }
+        doctor_img = DoctorImage.objects.filter()
+        return render(request,'customer/doctor.htm',{'context' : context, 'doctor_img' : doctor_img})
+    except:
+        return render(request,'product/shop/')
 
 def vendors(request):
     try:

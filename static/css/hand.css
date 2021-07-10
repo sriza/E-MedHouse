@@ -1,6 +1,9 @@
 .ml-85{
     margin-left: 85px;
 }
+.clear-both{
+    clear: both;
+}
 /* customer top side heade a tag */
 #top-side-account{
 position: relative;
@@ -90,10 +93,13 @@ font-weight: bold;
     position: relative;
     bottom: 33px;
 }
-#add-btn li:hover{
+.hover-color li{
+    padding: 7px 48px;
+}
+.hover-color li:hover{
     background-color: black;
 }
-#add-btn li:hover>a{
+.hover-color li:hover>a{
     color: white;
 }
 #logout{
@@ -107,3 +113,128 @@ font-weight: bold;
 color: red;
 font-size: 12px;
  }
+
+ /* circle icon */
+ #my-circle-btn{
+    float: right;
+    position: relative;
+    bottom: 79px;
+    right: 47px;
+    font-size: 55px;
+    cursor: pointer;
+}
+#body-ace .btn-css{
+    width: 145px;
+    text-decoration: none;
+    height: 140px;
+    vertical-align: middle;
+    border: none;
+
+}
+#btn-reset{
+    width: 80% !important;
+    height: 80px !important;
+}
+
+/* dialog box */
+.modal-right-dialog {
+    position: relative;
+    z-index: 2 !important;
+    float: right;
+    width: 400px;
+    overflow-y: scroll !important;
+
+}
+
+#body-ace{
+    padding: 0;
+    margin: 0;
+}
+.modal-right-content {
+    height: 100%;
+}
+/* image-height */
+.img-height{
+    height: 241px;
+    width: fit-content;
+}
+/* //accesibility/ */
+.highlight{
+    background-color: black;
+    text-decoration: underline !important;
+    color: rgb(255, 255, 0) !important;
+}
+
+#tick{
+    position: relative;
+    left: 48px;
+    color: blue;
+    visibility: hidden;
+}
+#one , #two, #big1, #big2, #height1, #height2, #contrast1, #contrast2{
+    visibility: hidden;
+    color: blue;
+}
+#check-space, #check-big, #check-height, #check-font,#check-cursor{
+    position: relative;
+    color: blue;
+}
+#check-ace{
+    position: absolute;
+    color: green;
+    right: 44px;
+    top: 45px;
+    z-index: 2;
+    visibility: hidden;
+}
+#check-contrast{
+    position: relative;
+    color: blue;
+    left: 49px;
+    visibility: hidden; 
+}
+#check-space, #check-height, #check-font{  
+    left: 45px;
+    visibility: hidden;
+}
+#check-big, #check-cursor{
+    left: 45px;
+    visibility: hidden;
+}
+.sticky{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+}
+.invert-yellow{
+    background-image: linear-gradient(to right,#c59800,#eacb45);
+}
+.invert{
+    background-color: #F0EDDE !important;
+}
+.button-invert{
+    background-color: rgb(222, 180, 0);
+}
+.invert-black{
+    background-color: black !important; 
+    color: white !important;
+}
+@font-face {
+    font-family: 'dyslexia';
+    src: url("/static/fonts/OpenDyslexicMono-Regular.otf");
+}
+
+@font-face {
+    font-family: 'lexical';
+    src: url("/static/fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf");
+}
+.dyslexia{
+    font-family: dyslexia !important;
+}
+
+.lexical{
+    font-family: lexical !important;
+}
+/* cursor */
+

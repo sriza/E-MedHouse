@@ -23,10 +23,12 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     VENDOR = 1
     CUSTOMER = 2
+    DOCTOR =3
       
     ROLE_CHOICES = (
         (VENDOR, 'Vendor'),
-        (CUSTOMER, 'Customer')
+        (CUSTOMER, 'Customer'),
+        (DOCTOR, 'Doctor')
     )
     
     first_name = None
@@ -61,6 +63,7 @@ class VendorImage(models.Model):
     PROFILE = 'profile'
     PAN = 'pan'
     VAT = 'vat'
+
     CITIZENSHIP = 'citizenship'
     LICENSE = 'license'
 
