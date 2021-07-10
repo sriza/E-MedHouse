@@ -1,0 +1,76 @@
+{% extends 'base.htm' %}
+{% load static %}
+
+{% block content %}
+{% include 'snippets/customer-header.htm'%}
+
+<section class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="content">
+					<h1 class="page-name">Cart</h1>
+					<ol class="breadcrumb">
+						<li><a href="/">Home</a></li>
+						<li class="active">cart</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="page-wrapper">
+  <div class="cart shopping">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="block">
+            <div class="product-list">
+              {% regroup cart_items by product.vendor as cart_item %}
+              {% for items in cart_item %}
+              <div>
+                <form method="post" class="mt-20">
+                  <h4 class="">{{items.grouper.shop_name}}</h4>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="">Item Name</th>
+                          <th class="">Unit Price</th>
+                          <th class="">Quantity</th>
+                          <th class="">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for item in items.list %}
+                          <tr class="">
+                            <td class="">
+                              <div class="product-info">
+                                <img width="80" src="/media/{{item.image.image}}" alt="{{item.image.description}}" />
+                                <a href="/shop">{{item.product.title}}</a>
+                              </div>
+                            </td>
+                            <td class="">{{item.unit_price}}</td>
+                            <td class="">{{item.quantity}}</td>
+                            <td class="">
+                              <a class="product-remove" href="/cart/remove/{{item.id}}">Remove</a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+
+                      </tbody>
+                    </table>
+                    <a href="/order/checkout" class="btn btn-main pull-right">Checkout</a>
+                  </form>
+                  </div>
+                {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include 'snippets/copyright-footer.htm'%}
+{% endblock content %}

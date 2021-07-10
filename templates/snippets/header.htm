@@ -28,56 +28,10 @@
                     </a>
                 </div>
             </div>
+            <a href="#" id="top-side-account">Account</a>
             <div class="col-md-9 col-xs-12 col-sm-4" id="listOfAccount">
                 <!-- Cart -->
                 <ul class="top-menu text-right list-inline">
-                    <li class="dropdown cart-nav dropdown-slide">
-                        <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
-                                class="tf-ion-android-cart"></i>Cart</a>
-                        <div class="dropdown-menu cart-dropdown">
-                            <!-- Cart Item -->
-                            <div class="media">
-                                <a class="pull-left" href="#!">
-                                    <img class="media-object" src= {% static '/images/shop/cart/cart-1.jpg' %} alt="image" />
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
-                                    <div class="cart-price">
-                                        <span>1 x</span>
-                                        <span>1250.00</span>
-                                    </div>
-                                    <h5><strong>$1200</strong></h5>
-                                </div>
-                                <a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-                            </div><!-- / Cart Item -->
-                            <!-- Cart Item -->
-                            <div class="media">
-                                <a class="pull-left" href="#!">
-                                    <img class="media-object" src= {% static '/images/shop/cart/cart-2.jpg' %} alt="image" />
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
-                                    <div class="cart-price">
-                                        <span>1 x</span>
-                                        <span>1250.00</span>
-                                    </div>
-                                    <h5><strong>$1200</strong></h5>
-                                </div>
-                                <a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-                            </div><!-- / Cart Item -->
-
-                            <div class="cart-summary">
-                                <span>Total</span>
-                                <span class="total-price">$1799.00</span>
-                            </div>
-                            <ul class="text-center cart-buttons">
-                                <li><a href="/cart.htm" class="btn btn-small">View Cart</a></li>
-                                <li><a href="checkout.htm" class="btn btn-small btn-solid-border">Checkout</a></li>
-                            </ul>
-                        </div>
-
-                    </li><!-- / Cart -->
-
                     <!-- Search -->
                     <li class="dropdown search dropdown-slide">
                         <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
@@ -93,26 +47,15 @@
                     <!-- account -->
                     <li class="#">
                         <a href="/customer/login">
-                            <i class="tf-ion-android-person"></i> Account</a>
+                            <i class="tf-ion-android-person"></i>User</a>
                         </a>
                     </li>
                     <li class="#">
                         <a href="/vendor/login">
-                            <i class="tf-ion-android-person"></i> Account</a>
+                            <i class="tf-ion-android-person"></i>Vendor</a>
                         </a>
                     </li>
                     <!-- / account -->
-
-                    <!-- Languages -->
-                    <!-- <li class="commonSelect">
-                        <select class="form-control">
-                            <option>EN</option>
-                            <option>DE</option>
-                            <option>FR</option>
-                            <option>ES</option>
-                        </select>
-                    </li> -->
-                    <!-- / Languages -->
 
                 </ul><!-- / .nav .navbar-nav .navbar-right -->
             </div>
@@ -183,7 +126,7 @@
                             <div class="row">
 
                                 <!-- Introduction -->
-                                <div class="col-sm-4 col-xs-12">
+                                <div class="col-sm-3 col-xs-12">
                                     <ul>
                                         <li class="dropdown-header">Introduction</li>
                                         <li role="separator" class="divider"></li>
@@ -191,19 +134,29 @@
                                         <li><a href="about.htm">About Us</a></li>
                                     </ul>
                                 </div>
+                                	<!-- Contact -->
+								<div class="col-sm-3 col-xs-12">
+									<ul>
+										<li class="dropdown-header">User Account</li>
+										<li role="separator" class="divider"></li>
+                                        <li><a href="/customer/login">Login Page</a></li>
+                                        <li><a href="/customer/sigin">Signin Page</a></li>
+                                        <li><a href="/customer/forget-password">Forget Password</a></li>
+									</ul>
+								</div>
                                 <!-- Utility -->
-                                <div class="col-sm-4 col-xs-12">
+                                <div class="col-sm-3 col-xs-12">
                                     <ul>
-                                        <li class="dropdown-header">Utility</li>
+                                        <li class="dropdown-header">Vender/doctor Account</li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="login.htm">Login Page</a></li>
-                                        <li><a href="signin.htm">Signin Page</a></li>
-                                        <li><a href="forget-password.htm">Forget Password</a></li>
+                                        <li><a href="/vendor/login">Login Page</a></li>
+                                        <li><a href="/vendor/signin">Signin Page</a></li>
+                                        <li><a href="/vendor/forget-password">Forget Password</a></li>
                                     </ul>
                                 </div>
 
                                 <!-- Mega Menu -->
-                                <div class="col-sm-4 col-xs-12">
+                                <div class="col-sm-3 col-xs-12">
                                     <a href="/shop">
                                         <img class="img-responsive" src= {% static 'images/shop/header-img.png' %} alt="menu image" />
                                     </a>
@@ -212,72 +165,18 @@
                         </div><!-- / .dropdown-menu -->
                     </li><!-- / Pages -->
 
-                    <!-- Shop -->
-                    	<!-- Languages -->
-					<li class="commonSelect">
-						<select class="form-control">
-							<option>EN</option>
-							<option>DE</option>
-							<option>FR</option>
-							<option>ES</option>
-						</select>
-					</li>
-					<!-- / Languages -->
+          
                     
                 </ul><!-- / .nav .navbar-nav -->
             </div>
             <!--/.navbar-collapse -->
 
             <!-- prescription Doctor -->
-            <span class="li" ><a href="#!" class="btn btn-main btn-small btn-round-full btn-pre" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></button>
-            <span class="li" style="margin-top: 20px;"><a href="/product/signup" class="btn btn-secondary btn-small btn-round-full btn-pre" ><i class="tf-ion-android-add"></i> Add Product</a></span>
-
-                        
-            <!-- .modal -->
-            <div class="modal fade" id="MySecondmodal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">×</button> 
-                            <h4 class="modal-title">Upload Prescription</h4>                                                             
-                            <hr>
-                            <div class="modal-body">
-                                <div class="card-block">
-                                    <div class="text-center m-t-20">
-                                        <input type="file" id="fileupload" style="display:none"/> 
-                                        <button class="btn-css btn btn-primary" id="OpenfileUpload">click to upload</button>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="text-center">
-                                    OR
-                                </div>
-                                <hr>
-                                <form>
-                                    <label for="subject">Text Prescription</label>
-                                    <textarea id="subject" name="subject" placeholder="Prescription with Description.." style="height:200px"></textarea>
-                                
-                                    <label for="fname">Location</label>
-                                    <input type="text" id="location" name="location" placeholder="Your address.">
-
-                                    <label for="lname">Contact</label>
-                                    <input type="number" id="contact" name="contact" placeholder="Your contact..">
-                                </form>
-                        
-                                You need to register First.
-
-                                <div class="text-center">
-                                    <button class="btn-css btn btn-primary">Submit</button>
-                                </div> 
-                            </div>  
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn-css btn btn-default" data-dismiss="modal">Close</button>                               
-                        </div>
-                    </div> 
-                </div>                                                                      
-            </div>  
-
+            <!-- <span class="li" ><a href="#!" class="btn btn-main btn-small btn-round-full btn-pre" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></button> -->
+            <!-- <span class="li dropdown dropdown-slide" style="margin-top: 20px;">
+                <a href="/product/signup" class="btn btn-secondary btn-small btn-round-full btn-pre" ><i class="></i> Add Product</a>
+            </span> -->
+<!-- / Elements -->
         </div><!-- / .container -->
     </nav>
 </section>

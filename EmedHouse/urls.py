@@ -11,6 +11,9 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('',include('medicalapp.urls')),
     path('vendor/',include('vendor.urls')),
+    path('customer/',include('customer.urls')),
+    path('order/',include('order.urls')),  
+    path('cart/',include('cart.urls')),  
     path('product/',include('product.urls')),  
     path('admin/', admin.site.urls),
 ]

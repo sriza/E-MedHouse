@@ -1,0 +1,90 @@
+{% extends 'base.htm' %}
+{% load static %}
+
+{% block content %}
+<section class="signin-page account">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="block text-center">
+            <a href="/">
+              <img alt="gravater" class="dp" src={% static '/images/favicon.png' %}>
+           </a>
+            <div class="detail-txt">
+              <a href="/">
+                <span class="username">
+                   Med-House
+               </span>
+             </a>
+           </div>
+            <h3 class="text-center">Create Your Account</h3>
+          
+            <form enctype="multipart/form-data" class="text-left clearfix" method="POST" action="/customer/signin/">
+              {% csrf_token %}
+              
+              <div class="form-group">
+                <label for="exampleInputFullName">Full Name</label>
+                {{ form.full_name}}
+                <p class="help">{{ form.full_name.errors }}</p>
+              </div>
+              <div class="form-group">
+                <div class="form-group">
+                  <label for="exampleInputFullName">User Name</label>
+                  {{ form.user_name}}
+                  <p class="help">{{ form.user_name.errors }}</p>
+                </div>
+                <div class="form-group">
+                <label for="exampleInputEmail">Email</label>
+                {{ form.email}}
+                <p class="help">{{ form.email.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail">Address</label>
+                {{ form.address}}
+                <p class="help">{{ form.address.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputContactNumber">Contact Number</label>
+                {{ form.contact_number}}
+                <p class="help">{{ form.contact_number.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputGender">Gender</label>
+               {{ form.gender}}
+               <p class="help">{{ form.gender.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                {{ form.password}}
+                <p class="help">{{ form.password.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                {{ form.confirm_password}}
+                <p class="help">{{ form.confirm_password.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="imageUploadField">Upload a profile picture</label>
+                {{ img_form.image }}
+                <p class="help">{{ img_form.image.errors }}</p>
+              </div>
+              <hr>
+              <div class="form-check text-center">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+                <label class="form-check-label" for="exampleCheck1">Accept all terms and condition</label>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-main text-center">Register Now</button>
+              </div>
+            </form>
+            <div class="text-center">
+              <p class="mt-20">Already have an account ?<a href="/customer/login/"> Login</a></p>
+              <p><a href="forget-password.htm"> Forgot your password?</a></p>
+            </div>
+
+          </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+

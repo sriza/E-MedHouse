@@ -11,7 +11,6 @@
                 <ul class="list-inline dashboard-menu text-center">
                     <li><a class="active" href="/vendor/dashboard/">Dashboard</a></li>
                     <li><a href="/vendor/order/">Orders</a></li>
-                    <li><a href="/vendor/address/">Address</a></li>
                     <li><a href="/vendor/profile-details/">Profile Details</a></li>
                     <li><a href="/product/list/">Product Details</a></li>
                 </ul>
@@ -23,49 +22,64 @@
                         </div>
                         <div class="media-body">
                             <h2 class="media-heading">Welcome {{vendor.full_name}}</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, iure, est. Sit mollitia est maxime! Eos
-                                cupiditate tempore, tempora omnis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, nihil. </p>
+                            <p>{{vendor.description}}</p>
                         </div>
                     </div>
                     <div class="total-order mt-20">
-                        <h4>Total Orders</h4>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Order ID</th>
-                                        <th>Product</th>
-                                        <th>Date</th>
-                                        <th>Items</th>
-                                        <th>Total Price</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><a href="#!">#252125</a></td>
-                                        <td>medicine</td>
-                                        <td>Mar 25, 2016</td>
-                                        <td>2</td>
-                                        <td>$ 99.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#!">#252125</a></td>
-                                        <td>hygenic</td>
-                                        <td>Mar 25, 2016</td>
-                                        <td>2</td>
-                                        <td>$ 99.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#!">#252125</a></td>
-                                        <td>device</td>
-                                        <td>Mar 25, 2016</td>
-                                        <td>2</td>
-                                        <td>$ 99.00</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <h4>Expiring items</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Manufactured Date</th>
+                                            <th> Expiry Date</th>
+                                            <th>Items</th>
+                                            <th>Price</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for product in expiry %}
+                                        <tr>
+                                            <td><a href="/product/detail/{{product.id}}">{{product.title}}</a></td>
+                                            <td>{{product.manufacture_date}}</td>
+                                            <td>{{product.expiry_date}}</td>
+                                            <td>{{product.quantity}}</td>
+                                            <td>{{product.price}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                    </div>
+                    <div class="total-order mt-20">
+                        <h4>Items that needs to be added</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Manufactured Date</th>
+                                            <th> Expiry Date</th>
+                                            <th>Items</th>
+                                            <th>Price</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for product in finishing %}
+                                        <tr>
+                                            <td><a href="/product/detail/{{product.id}}">{{product.title}}</a></td>
+                                            <td>{{product.manufacture_date}}</td>
+                                            <td>{{product.expiry_date}}</td>
+                                            <td>{{product.quantity}}</td>
+                                            <td>{{product.price}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
                     </div>
                 </div>
             </div>

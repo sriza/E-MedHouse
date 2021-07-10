@@ -1,4 +1,13 @@
-
+.ml-85{
+    margin-left: 85px;
+}
+/* customer top side heade a tag */
+#top-side-account{
+position: relative;
+bottom: 25px;
+left: 246px;
+font-weight: bold;
+}
 #listOfAccount{
     float: right;
     position: relative;
@@ -26,12 +35,16 @@
     padding: 0;
 }
 .btn-pre{
-    position: absolute;
-    top: 18px;
-    right: 3px;
-    background-color: rgb(214, 75, 10);
+    position: relative;
+    bottom: 76px;
+    float: right;
   }
-  
+#btn-add{
+    float: right;
+    position: relative;
+    bottom: 72px;
+    left: 194px;
+}
 @media screen and (max-width: 950px){
     .btn-pre{
         top: 50px;
@@ -75,9 +88,13 @@
 /* vender header */
 #add-btn{
     position: relative;
-    bottom: 72px;
-    float: right;
-    right: 10%;
+    bottom: 33px;
+}
+#add-btn li:hover{
+    background-color: black;
+}
+#add-btn li:hover>a{
+    color: white;
 }
 #logout{
     float: right;
@@ -85,4 +102,8 @@
     bottom: 49px;
     right: 5%;
 }
- 
+ /* login form */
+ .errorlist li{
+color: red;
+font-size: 12px;
+ }

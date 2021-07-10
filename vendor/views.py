@@ -7,24 +7,29 @@ from django.db import transaction
 from django.shortcuts import render, redirect
 from .models import User,Vendor, VendorImage
 from .forms import LoginForm, RegisterForm, RegistrationImageForm
+from product.models import Product
 
 from django.shortcuts import render
+from datetime import date, datetime
 
 # Create your views here.
 
 def vendorLogin(request):
-    form = LoginForm(request.POST or None)
+    if request.user.is_authenticated and request.user.role==1:
+        return redirect('/vendor/dashboard/')
+    else:
+        form = LoginForm(request.POST or None)
 
-    if form.is_valid():
-        email = request.POST.get("email")
-        password = request.POST.get("password")
-        
-        user = authenticate(email=email, password=password)
-        if user:
-            login(request, user)
-            return HttpResponseRedirect('/vendor/dashboard/')
+        if form.is_valid():
+            email = request.POST.get("email")
+            password = request.POST.get("password")
+            
+            user = authenticate(email=email, password=password)
+            if user:
+                login(request, user)
+                return HttpResponseRedirect('/vendor/dashboard/')
 
-    return render(request, 'vendor/login.htm',{'form':form})
+        return render(request, 'vendor/login.htm',{'form':form})
 
 @transaction.atomic
 def signin(request):
@@ -100,8 +105,12 @@ def dashboard(request):
         vendor = Vendor.objects.get(user=request.user)
         vendor_img = VendorImage.objects.get(vendor=vendor, img_type='profile')
 
-        return render(request, 'vendor/dashboard.htm', {'context':context, 'vendor': vendor, 'vendor_img' : vendor_img})
-    except:
+        expiry = Product.objects.filter(vendor=vendor, expiry_date__lt=datetime.today())
+        finishing = Product.objects.filter(vendor=vendor, quantity__lt = 5)
+
+        return render(request, 'vendor/dashboard.htm', {'context':context, 'vendor': vendor, 'vendor_img' : vendor_img, 'expiry' : expiry, 'finishing' : finishing})
+    except e:
+        print(e)
         return render(request,'medicalapp/index.htm')
 
 
@@ -163,3 +172,12 @@ def address(request):
     'recent_page': 'My Address',
 }
     return render(request, 'vendor/address.htm', {'context': context})
+
+@login_required
+def vendorLogout(request):
+    logout(request)
+    return redirect('/')
+
+def quantity(request):
+    return render(request,'vendor/quantity.htm')
+    

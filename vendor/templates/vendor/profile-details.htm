@@ -3,7 +3,7 @@
 
 {% block content %}
 {% include 'snippets/vendor-dashboard-header.htm'%}
-{% include 'snippets/page-header.htm'%}
+{% include 'snippets/page-header.htm' %}
 
 <section class="user-dashboard page-wrapper">
     <div class="container">
@@ -12,9 +12,8 @@
                 <ul class="list-inline dashboard-menu text-center">
                     <li><a href="/vendor/dashboard/">Dashboard</a></li>
                     <li><a href="/vendor/order/">Orders</a></li>
-                    <li><a href="/vendor/address/">Address</a></li>
                     <li><a class="active" href="/vendor/profile-details/">Profile Details</a></li>
-                    <li><a href="/vendor/product-details/">Product Details</a></li>
+                    <li><a href="/product/list/">Product Details</a></li>
                 </ul>
                 <div class="dashboard-wrapper dashboard-user-profile">
                     <div class="media">
@@ -24,7 +23,7 @@
                         </div>
                         <div class="media-body">
                             <ul class="user-profile-list">
-                                <li>Vendor Details</li>
+                                <h3 class="font-weight-bold text-uppercase">Vendor Details</h3>
                                 <li><span>Full Name:</span>{{vendor.full_name}}</li>
                                 <li><span>Gender:</span>{{vendor.gender}}</li>
                                 <li><span>Email:</span>{{vendor.email}}</li>
@@ -34,7 +33,7 @@
                             </ul>
                             <hr>
                             <ul class="user-profile-list">
-                                <li>Pharmacy Details</li>
+                                <h3 class="font-weight-bold text-uppercase">Pharmacy Details</h3>
                                 <li><span>Shop Name:</span>{{vendor.shop_name}}</li>
                                 <li><span>Registered Business Name:</span>{{vendor.business_name}}</li>
                                 <li><span>PAN Number:</span>{{vendor.pan_number}}</li>

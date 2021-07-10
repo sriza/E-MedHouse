@@ -32,6 +32,8 @@ def get_upload_path(instance, filename):
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    vendor = models.ForeignKey(Vendor,on_delete=models.CASCADE)
+    main = models.BooleanField(default=False)
     image = models.ImageField(upload_to= get_upload_path ,blank=True)
     description = models.CharField(max_length=256)
     timestamp = models.DateTimeField(auto_now_add=True)

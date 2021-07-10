@@ -1,6 +1,6 @@
 <section class="top-header">
     <div class="container">
-        <div class="col-md-12">
+        <div class="col-md-12 col-xs-12 col-sm-4">
             <!-- Site Logo -->
             <div class="logo text-center">
                 <a href="/">
@@ -19,7 +19,24 @@
                 </a>
             </div>
         </div>
+        
+        <span class="dropdown dropdown-slide" id="add-btn">
+            <a href="#!" class="dropdown-toggle  btn-small" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
+                role="button" aria-haspopup="true" aria-expanded="false">Add Product <span
+                    class="tf-ion-android-add"></span></a>
+            <div class="dropdown-menu">
+                <div class="row">
+                    <!-- Basic -->
+                    <div class="col-lg-12 col-md-6 mb-sm-3">
+                        <ul>
+                            <li><a href="/product/add/medicine/">Medicine</a></li>
+                            <li><a href="/product/add/device/">Device</a></li>
+                            <li><a href="/product/add/hygenic_product/">Hygenic Product</a></li>
+                        </ul>
+                    </div>
+                </div><!-- / .row -->
+            </div><!-- / .dropdown-menu -->
+        </span>
+        <a href="/vendor/logout/" class="btn btn-transparent mt-20" id="logout">Log Out</a>
     </div>
 </section>
-<span class="li" style="margin-top: 20px;"><a href="/product/create/" class="btn btn-secondary btn-small btn-round-full" id="add-btn" ><i class="tf-ion-android-add"></i> Product</a></span>
-<a href="/vendor/logout/" class="btn btn-transparent mt-20" id="logout">Log Out</a>

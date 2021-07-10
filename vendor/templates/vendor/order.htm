@@ -3,7 +3,7 @@
 
 {% block content %}
 {% include 'snippets/vendor-dashboard-header.htm'%}
-{% include 'snippets/page-header.htm'%}
+{% include 'snippets/page-header.htm' %}
 <section class="user-dashboard page-wrapper">
     <div class="container">
         <div class="row">
@@ -11,9 +11,8 @@
                 <ul class="list-inline dashboard-menu text-center">
                     <li><a href="/vendor/dashboard/">Dashboard</a></li>
                     <li><a class="active" href="/vendor/order/">Orders</a></li>
-                    <li><a href="/vendor/address/">Address</a></li>
                     <li><a href="/vendor/profile-details/">Profile Details</a></li>
-                    <li><a href="/vendor/product-details/">Product Details</a></li>
+                    <li><a href="/product/list/">Product Details</a></li>
                 </ul>
                 <div style="margin-top: 20px;">
                     <nav class="navbar navbar-light bg-light text-center">
@@ -125,7 +124,7 @@
                                 </div><!-- / Elements -->
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn-css btn btn-primary" data-dismiss="modal">update</button>                               
+                <button type="button" class="btn-css btn btn-secondory" data-dismiss="modal">Cancel</button>                               
             </div>
         </div> 
     </div>                                                                      

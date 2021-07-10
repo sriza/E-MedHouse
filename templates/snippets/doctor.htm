@@ -1,0 +1,213 @@
+{% load static %}
+<!-- .modal -->
+<div class="modal fade" id="Mydoctormodal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button> 
+                <h4 class="modal-title">
+                    Book An Appointment
+                </h4>                                                             
+                <hr>
+                <dl class="dl-horizontal" style="margin: 0 94px;">
+                    <dt>Doctor Name:</dt>
+                    <dd>Dr.Hari parsad koirala</dd>
+                </dl>
+                <div class="modal-body">
+                    <div class="card-block">
+                        <div class="text-center m-t-20">
+                            <div class="form-group">
+                                <label for="OpenfileUpload">Upload Prescription</label>
+                                <input class="mt-20" style="padding-left: 154px;" type="file" id="fileUpload">
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <form>
+                        <label for="subject">Description for Appointment</label>
+                        <textarea id="subject" name="subject" placeholder="Add your Symptoms or any description.." style="height:200px"></textarea>
+                    
+                        <label for="fname">Payment Method</label>
+                        
+                        <div class="radio">
+                            <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                E-Sewa
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                Khalti
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+                                Cash on Delivery
+                            </label>
+                        </div>
+                    </form>
+                </div>  
+            </div>
+            <div class="modal-footer">
+                <button class="btn-css btn btn-primary">Book Appointment</button>
+                <button type="button" class="btn-css btn btn-default" data-dismiss="modal">Close</button>                               
+            </div>
+        </div> 
+    </div>                                                                      
+</div>  
+
+<!-- doctor 1 -->
+<hr>
+<section class="about section">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-md-4">
+                <img class="img-responsive mt-50" src={% static 'images/doctors/doctor1.jpg' %}>
+            </div>
+            <div class="col-xs-6 col-md-4 mt-10">
+                <h3>Dr. Joshi Shambhu, MD (NAMS), MBBS(KU), FAAD(USA)</h3>
+                <p class="text-info">Specialization: Consultation for Skin and Hair(छाला र कपाल सामस्याको परामार्श),Consultation for Nails and STD(नड़ र यौन संक्रमित रोग)</p>
+                <p>MBBS- KU</p>
+                <p>FAM - Consultant Dermatologist, Sexologist and Cosmetic LASER Specialist</p>
+                <a class="btn btn-main mt-20" data-target="#Mydoctormodal" data-toggle="modal">Login to Book Appointment</a>
+                
+
+            </div>
+            <div class="col-xs-6 col-md-4 mt-40">
+                <div class="text-center">
+                    <i class="tf-ion-android-calendar icon-max"></i> 
+                </div>
+                <dl class="text-center mt-10">
+                    <dt>Available Date:</dt>
+                    <dd>19 Apr 2020</dd>
+                    <dd>18:00:00 - 20:00:00</dd>
+                </dl>
+    
+                <dl class="text-center">
+                    <dt>NMC No</dt>
+                    <dd>07097</dd>
+
+                    <dt>Chharge: Rs</dt>
+                    <dd>500</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</section>
+<hr>
+
+<!-- doctor 2 -->
+<section class="about section">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-md-4">
+                <img class="img-responsive mt-50" src={% static 'images/doctors/doctor2.jpg' %}>
+            </div>
+            <div class="col-xs-6 col-md-4 mt-10">
+                <h3>Dr. Joshi Shambhu, MD (NAMS), MBBS(KU), FAAD(USA)</h3>
+                <p class="text-info">Specialization: Consultation for Skin and Hair(छाला र कपाल सामस्याको परामार्श),Consultation for Nails and STD(नड़ र यौन संक्रमित रोग)</p>
+                <p>MBBS- KU</p>
+                <p>FAM - Consultant Dermatologist, Sexologist and Cosmetic LASER Specialist</p>
+                <a class="btn btn-main mt-20" data-target="#Mydoctormodal" data-toggle="modal">Login to Book Appointment</a>
+
+            </div>
+            <div class="col-xs-6 col-md-4 mt-40">
+                <div class="text-center">
+                    <i class="tf-ion-android-calendar icon-max"></i> 
+                </div>
+                <dl class="text-center">
+                    <dt>Available Date:</dt>
+                    <dd>19 Apr 2020</dd>
+                    <dd>18:00:00 - 20:00:00</dd>
+                </dl>
+    
+                <dl class="text-center">
+                    <dt>NMC No</dt>
+                    <dd>07097</dd>
+
+                    <dt>Chharge: Rs</dt>
+                    <dd>500</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</section>
+<hr>
+
+<!-- doctor 3 -->
+<section class="about section">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-md-4">
+                <img class="img-responsive mt-50" src={% static 'images/doctors/doctor3.jpg' %}>
+            </div>
+            <div class="col-xs-6 col-md-4 mt-10">
+                <h3>Dr. Joshi Shambhu, MD (NAMS), MBBS(KU), FAAD(USA)</h3>
+                <p class="text-info">Specialization: Consultation for Skin and Hair(छाला र कपाल सामस्याको परामार्श),Consultation for Nails and STD(नड़ र यौन संक्रमित रोग)</p>
+                <p>MBBS- KU</p>
+                <p>FAM - Consultant Dermatologist, Sexologist and Cosmetic LASER Specialist</p>
+                <a class="btn btn-main mt-20" data-target="#Mydoctormodal" data-toggle="modal">Login to Book Appointment</a>
+
+            </div>
+            <div class="col-xs-6 col-md-4 mt-40">
+                <div class="text-center">
+                    <i class="tf-ion-android-calendar icon-max"></i> 
+                </div>
+                <dl class="text-center mt-10">
+                    <dt>Available Date:</dt>
+                    <dd>19 Apr 2020</dd>
+                    <dd>18:00:00 - 20:00:00</dd>
+                </dl>
+    
+                <dl class="text-center">
+                    <dt>NMC No</dt>
+                    <dd>07097</dd>
+
+                    <dt>Chharge: Rs</dt>
+                    <dd>500</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</section>
+<hr>
+
+<!--doctor 4 -->
+<section class="about section">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-md-4">
+                <img class="img-responsive mt-50" src={% static 'images/doctors/doctor4.jpg' %}>
+            </div>
+            <div class="col-xs-6 col-md-4 mt-10">
+                <h3>Dr. Joshi Shambhu, MD (NAMS), MBBS(KU), FAAD(USA)</h3>
+                <p class="text-info">Specialization: Consultation for Skin and Hair(छाला र कपाल सामस्याको परामार्श),Consultation for Nails and STD(नड़ र यौन संक्रमित रोग)</p>
+                <p>MBBS- KU</p>
+                <p>FAM - Consultant Dermatologist, Sexologist and Cosmetic LASER Specialist</p>
+                <a class="btn btn-main mt-20" data-target="#Mydoctormodal" data-toggle="modal">Login to Book Appointment</a>
+
+            </div>
+            <div class="col-xs-6 col-md-4 mt-40">
+                <div class="text-center">
+                    <i class="tf-ion-android-calendar icon-max"></i> 
+                </div>
+                <dl class="text-center mt-10">
+                    <dt>Available Date:</dt>
+                    <dd>19 Apr 2020</dd>
+                    <dd>18:00:00 - 20:00:00</dd>
+                </dl>
+    
+                <dl class="text-center">
+                    <dt>NMC No</dt>
+                    <dd>07097</dd>
+
+                    <dt>Chharge: Rs</dt>
+                    <dd>500</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</section>
+<hr>

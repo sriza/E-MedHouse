@@ -8,19 +8,6 @@
 <section class="single-product">
 	<div class="container">
 		<div class="row">
-			<!-- <div class="col-md-6">
-				<ol class="breadcrumb">
-					<li><a href="index.htm">Home</a></li>
-					<li><a href="shop.htm">Shop</a></li>
-					<li class="active">Single Product</li>
-				</ol>
-			</div> -->
-			<!-- <div class="col-md-6">
-				<ol class="product-pagination text-right">
-					<li><a href="blog-left-sidebar.htm"><i class="tf-ion-ios-arrow-left"></i> Next </a></li>
-					<li><a href="blog-left-sidebar.htm">Preview <i class="tf-ion-ios-arrow-right"></i></a></li>
-				</ol>
-			</div> -->
 		</div>
 		<div class="row mt-20">
 			<div class="col-md-5">
@@ -29,25 +16,15 @@
 						<div class='carousel-outer'>
 							<!-- me art lab slider -->
 							<div class='carousel-inner '>
-								<div class='item active'>
-									<img src="/media/{{product_img.image}}""  alt={{product_img.description}} data-zoom-image="/media/{{product_img.image}}"  />
-								</div>
-								<!-- <div class='item'>
-									<img src={% static 'images/shop/single-products/product-2.jpg' %} alt='' data-zoom-image={% static "images/shop/single-products/product-2.jpg" %} />
-								</div>
-								
-								<div class='item'>
-									<img src={% static 'images/shop/single-products/product-3.jpg' %} alt='' data-zoom-image={% static "images/shop/single-products/product-3.jpg" %} />
-								</div>
-								<div class='item'>
-									<img src={% static 'images/shop/single-products/product-4.jpg' %} alt='' data-zoom-image={% static "images/shop/single-products/product-4.jpg" %} />
-								</div>
-								<div class='item'>
-									<img src={% static 'images/shop/single-products/product-5.jpg' %} alt='' data-zoom-image={% static "images/shop/single-products/product-5.jpg" %} />
-								</div>
-								<div class='item'>
-									<img src={% static 'images/shop/single-products/product-6.jpg' %} alt='' data-zoom-image={% static "images/shop/single-products/product-6.jpg" %} />
-								</div> -->
+								{% for img in product_img %}
+									{% if img.main %}
+										<div class='item active'>
+									{% else %}
+										<div class='item'>
+									{% endif %}
+										<img src="/media/{{img.image}}"  alt="{{img.description}}" data-zoom-image="/media/{(img.image}}"  />
+									</div>
+								{% endfor %}							
 								
 							</div>
 							
@@ -61,29 +38,18 @@
 						</div>
 						
 						<!-- thumb -->
-						<!-- <ol class='carousel-indicators mCustomScrollbar meartlab'>
-							<li data-target='#carousel-custom' data-slide-to='0' class='active'>
-								<img src={% static 'images/shop/single-products/product-1.jpg' %} alt='' />
-							</li>
-							<li data-target='#carousel-custom' data-slide-to='1'>
-								<img src={% static 'images/shop/single-products/product-2.jpg' %} alt='' />
-							</li>
-							<li data-target='#carousel-custom' data-slide-to='2'>
-								<img src={% static 'images/shop/single-products/product-3.jpg' %} alt='' />
-							</li>
-							<li data-target='#carousel-custom' data-slide-to='3'>
-								<img src={% static 'images/shop/single-products/product-4.jpg' %} alt='' />
-							</li>
-							<li data-target='#carousel-custom' data-slide-to='4'>
-								<img src={% static 'images/shop/single-products/product-5.jpg' %} alt='' />
-							</li>
-							<li data-target='#carousel-custom' data-slide-to='5'>
-								<img src={% static 'images/shop/single-products/product-6.jpg' %} alt='' />
-							</li>
-							<li data-target='#carousel-custom' data-slide-to='6'>
-								<img src={% static 'images/shop/single-products/product-7.jpg' %} alt='' />
-							</li>
-						</ol> -->
+						<ol class='carousel-indicators mCustomScrollbar meartlab'>
+							{% for img in product_img %}
+								{% if img.main %}
+									<li data-target='#carousel-custom' data-slide-to='{{ forloop.counter0 }}' class='active'>
+								{% else %}
+									<li data-target='#carousel-custom' data-slide-to='{{ forloop.counter0 }}' >
+								{% endif %}
+									<img src="/media/{{img.image}}" alt="{{img.description}}" />
+								</li>
+							{% endfor %}
+
+						</ol>
 					</div>
 				</div>
 			</div>
@@ -100,32 +66,31 @@
 						{{product.product_type}}
 					</div>
 					{% if product.product_type|stringformat:"s" == "medicine" %}
-						<div class="product-quantity">
+						<div class="product-category">
 							<span>Generic Name:</span>
 							{{product.medical_name}}
 						</div>
 					{% endif %}
-					<div class="product-quantity">
+					<div class="product-category">
 						<span>Quantity:</span>
 						{{product.quantity}}
 					</div>
 					{% if product.product_type|stringformat:"s" != "device" %}
-						<div class="product-quantity">
+						<div class="product-category">
 							<span>Manufactured Date:</span>
 							{{product.manufacture_date}}
 						</div>
-						<div class="product-quantity">
+						<div class="product-category">
 							<span>Expiry Date:</span>
 							{{product.expiry_date}}
 						</div>
 					{% endif %}
 				
-					<div class="product-quantity">
+					<div class="product-category">
 						<span>Manufacturer:</span>
 						{{product.manufacturer}}
 					</div>
-					
-					<a href="cart.htm" class="btn btn-main mt-20">update</a>
+					<a href="#" class="btn btn-main mt-20">update</a>
 				</div>
 			</div>
 		</div>
@@ -228,116 +193,6 @@
 		</div>
 	</div>
 </section>
-<!-- <section class="products related-products section">
-	<div class="container">
-		<div class="row">
-			<div class="title text-center">
-				<h2>Related Products</h2>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<div class="product-item">
-					<div class="product-thumb">
-						<img class="img-responsive" src={% static 'images/shop/products/product-5.jpg' %} alt="product-img" />
-						<div class="preview-meta">
-							<ul>
-								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-								</li>
-								<li>
-									<a href="#!" ><i class="tf-ion-edit"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-delete"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="product-content">
-						<h4><a href="product-single.htm">Reef Boardsport</a></h4>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="product-item">
-					<div class="product-thumb">
-						<img class="img-responsive" src={% static 'images/shop/products/product-1.jpg' %} alt="product-img" />
-						<div class="preview-meta">
-							<ul>
-								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-								</li>
-								<li>
-									<a href="#" ><i class="tf-ion-edit"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-delete"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="product-content">
-						<h4><a href="product-single.htm">Reef Boardsport</a></h4>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="product-item">
-					<div class="product-thumb">
-						<img class="img-responsive" src={% static 'images/shop/products/product-2.jpg' %} alt="product-img" />
-						<div class="preview-meta">
-							<ul>
-								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-								</li>
-								<li>
-									<a href="#" ><i class="tf-ion-edit"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-delete"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="product-content">
-						<h4><a href="product-single.htm">Strayhorn SP</a></h4>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="product-item">
-					<div class="product-thumb">
-						<img class="img-responsive" src={% static 'images/shop/products/product-3.jpg' %} alt="product-img" />
-						<div class="preview-meta">
-							<ul>
-								<li>
-									<span  data-toggle="modal" data-target="#product-modal">
-										<i class="tf-ion-ios-search-strong"></i>
-									</span>
-								</li>
-								<li>
-									<a href="#" ><i class="tf-ion-edit"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="tf-ion-android-delete"></i></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="product-content">
-						<h4><a href="product-single.htm">Bradley Mid</a></h4>
-					</div>
-				</div>
-			</div>
-		</div> -->
-
 
 {% include 'snippets/vender-product-model.htm'%}
 {% include 'snippets/footer2.htm'%}

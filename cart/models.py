@@ -1,22 +1,10 @@
 from django.db import models
 from vendor.models import Vendor
 from customer.models import Customer
-from product.models import Product
+from product.models import Product,ProductImage
 
 # Create your models here.
 class Cart(models.Model):
-    # NEW         = 'new'
-    # CANCELLED   = 'cancelled'
-    # PROCESSING  = 'processing'
-    # COMPLETED   = 'completed'
-
-    # STATUS = [
-    #     (NEW, 'New'),
-    #     (CANCELLED, 'Cancelled'),
-    #     (PROCESSING, 'Processing'),
-    #     (COMPLETED, 'Completed'),
-    # ]
-    vendor = models.ForeignKey(Vendor,on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
     item_count = models.IntegerField()
     quantity = models.IntegerField()
@@ -30,6 +18,7 @@ class Cart(models.Model):
 class CartItem(models.Model):
     cart= models.ForeignKey(Cart, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image = models.ForeignKey(ProductImage, on_delete=models.CASCADE)
     unit_price = models.FloatField()
     quantity = models.IntegerField()
     item_description = models.CharField(max_length=256)

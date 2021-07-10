@@ -1,0 +1,76 @@
+{% extends 'base.htm' %}
+{% load static %}
+{% block content %}
+<section class="signin-page account">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="block text-center">
+            <a href="/">
+              <img alt="gravater" class="dp" src={% static '/images/favicon.png' %}>
+            </a>
+            <div class="detail-txt">
+              <a href="/">
+                <span class="username">
+                  Med-House
+                </span>
+              </a>
+            </div>
+            
+            <h3 class="text-center"><i class="tf-ion-android-add"></i> Add Product</h3>
+            <p>Choose to add a product</p>
+            <h4 class="mt-10">Device</h4>
+            <!-- device form -->
+            <form enctype="multipart/form-data" class="text-left clearfix" action="/product/add/device/" method="POST" id="device" >
+              {% csrf_token %}
+              <input type="hidden" name="product_type" value="device">
+              <div class="form-group">
+                <label for="inputName">Name:</label>
+                {{form.title}}
+                <p class="help">{{form.title.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputOfficialChemicalName">Meta Title</label>
+                {{form.meta_title}}
+                <p class="help">{{form.meta_title.errors }}</p>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6 leftside">
+                  <label for="inputPrice">Price</label>
+                  {{form.price}}
+                  <p class="help">{{form.price.errors }}</p>
+                </div>
+                <div class="form-group col-md-6 rightside">
+                  <label for="inputQuantity">Quantity</label>
+                  {{form.quantity}}
+                  <p class="help">{{form.quantity.errors }}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputManufacture">Manufactured by</label>
+                {{form.manufacturer}}
+                <p class="help">{{form.manufacturer.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="InputDescription">Description</label>
+                {{form.description}}
+                <p class="help">{{form.description.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="OpenfileUpload">Upload the picture of the product</label>
+                {{img_form.image}}
+                {{img_form.image.errors}}   
+              <!-- <input class="mt-20" type="file" id="image" multiple required> -->
+              </div>
+              <hr>
+              <div class="text-center">
+                <button type="submit" class="btn btn-main text-center" >Add Product</button>
+              </div>
+            </form>
+            <!-- hygenic form -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

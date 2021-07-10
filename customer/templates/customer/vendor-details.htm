@@ -1,0 +1,77 @@
+{% extends 'base.htm' %}
+{% load static %}
+
+{% block content %}
+{% include 'snippets/customer-header.htm'%}
+{% include 'snippets/page-header.htm' %}
+
+{%include 'snippets/prescription.htm' %}
+<section class="user-dashboard page-wrapper">
+    <div class="container">
+
+        <div class="dashboard-wrapper dashboard-user-profile">
+            <div class="col-xs-12 col-md-4 text-center">
+                <img class="img-responsive mt-20" src="/media/{{vendor_img.image}}" alt="{{vendor_img.description}}">
+                    <!-- prescription Doctor -->   
+                    <span class="li" ><a href="#!" class="btn btn-main btn-small btn-round-full mt-40" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></button>                 
+            </div>
+                <div class="media-body">
+                    <h3 class="font-weight-bold text-uppercase">{{vendor.shop_name}}</h3>
+                    <p class="text-info mt-10">{{vendor.business_name}}</p>
+                    <p class="mt-30">{{vendor.description}}</p>
+                    <ul class="user-profile-list">
+                        <li><span>Full Name:</span>{{vendor.full_name}}</li>
+                        <li><span>Gender:</span>{{vendor.gender}}</li>
+                        <li><span>Email:</span>{{vendor.email}}</li>
+                        <li><span>Phone:</span>{{vendor.contact_number}}</li>
+                        <li><span>Address:</span>{{vendor.address}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            
+        <div class="products">
+            <div class="container">
+                <h3>Products</h3>
+                <div class="row">
+                    {% for image in products %}
+                        <div class="col-md-4">
+                            <div class="product-item">
+                                <div class="product-thumb">
+                                    <img class="img-responsive" src="/media/{{image.image}}" alt={{image.description}} />
+                                    <div class="preview-meta">
+                                        <ul>
+                                            <li>
+												<span  data-toggle="modal" data-target="#product-modal_{{ forloop.counter0 }}">
+													<i class="tf-ion-ios-search-strong"></i>
+												</span>
+											</li>
+                                            <li>
+                                                <a href="/cart/add/{{image.product.id}}"><i class="tf-ion-android-cart"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="product-content">
+                                    <h4><a href="/product/shop/detail/{{image.product.id}}">{{image.product.title}}</a></h4>
+                                    <p class="price">Rs.{{image.product.price}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div><!--end of product-->>
+
+    </div>
+</section>
+
+{% for image in products %}		
+{% include 'snippets/product-model.htm' %}
+{% endfor %}
+
+{% include 'snippets/copyright-footer.htm'%}
+{% include 'snippets/chatbot.htm'%}
+
+{% endblock content %}

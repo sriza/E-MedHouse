@@ -1,7 +1,7 @@
 {% load static%}
 
 <!-- Modal -->
-<div class="modal product-modal fade" id="product-modal">
+<div class="modal product-modal fade" id="product-modal_{{ forloop.counter0 }}">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <i class="tf-ion-close"></i>
     </button>
@@ -11,22 +11,23 @@
                 <div class="row">
                     <div class="col-md-8 col-sm-6 col-xs-12">
                         <div class="modal-image">
-                            <img class="img-responsive" src={% static '/images/shop/products/modal-product.jpg' %} alt="product-img" />
+                            <img class="img-responsive" src="/media/{{image.image}}" alt="product-img" />
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="product-short-details">
-                            <h2 class="product-title">GM Pendant, Basalt Grey</h2>
-                            <p class="product-price">$200</p>
+                            <h2 class="product-title">{{image.product.title}}</h2>
+                            <p class="product-price">Rs. {{image.product.price}}</p>
                             <p class="product-short-description">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem iusto nihil cum. Illo laborum numquam rem aut officia dicta cumque.
+                                {{image.product.description}}
                             </p>
-                            <a href="cart.htm" class="btn btn-main">Add To Cart</a>
-                            <a href="product-single.htm" class="btn btn-transparent">View Product Details</a>
+                            <a href="/cart/add/{{image.product.id}}" class="btn btn-main">Add To Cart</a>
+                            <a href="/product/shop/detail/{{image.product.id}}" class="btn btn-transparent">View Product Details</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div><!-- /.modal -->
+</div>
+<!-- /.modal -->
