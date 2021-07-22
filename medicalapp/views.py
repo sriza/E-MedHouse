@@ -23,6 +23,14 @@ def vendors(request):
     }
     return render(request, 'medicalapp/vendors.htm',{'context' : context})
 
+def lab(request):
+    context={
+    'topic':'Available laboratories',
+    'account': 'Home',
+    'recent_page': 'Lab',
+    }
+    return render(request, 'medicalapp/lab.htm',{'context' : context})
+
 def shop(request):
     return render(request, 'medicalapp/shop.htm')
 

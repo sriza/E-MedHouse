@@ -1,0 +1,42 @@
+{% extends 'base.htm' %}
+{% load static %}
+
+{% block content %}
+<section class="signin-page account">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="block text-center">
+                    <a href="/">
+                        <img alt="gravater" class="dp" src={% static '/images/favicon.png' %}>
+                     </a>
+                      <div class="detail-txt">
+                        <a href="/">
+                          <span class="username">
+                             Med-House
+                         </span>
+                       </a>
+                     </div>
+                    <h2 class="text-center">Welcome Back</h2>
+                    <form class="text-left clearfix" id="login-form" method="POST" action="/lab/login/" >
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{form.email}}
+                            <p class="error">{{form.email.errors}}</p>
+                        </div>
+                        <div class="form-group">
+                            {{form.password}}
+                            <p class="error">{{form.password.errors}}</p>
+                        </div>
+                        <p class="error">{{ form.non_field_errors }}</p>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-main text-center" >Login</button>
+                        </div>
+                    </form>
+                    <p class="mt-20">New in this site ?<a href="/lab/signin/"> Create New Account</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

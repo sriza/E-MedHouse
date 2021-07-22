@@ -1,0 +1,35 @@
+{% load static %}
+{%include 'snippets/prescription.htm' %}
+<!-- doctor 1 -->
+<hr>
+
+{% for lab in lab %}
+    <section class="about section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-4">
+                    <img class="img-responsive mt-50" src="/media/{{lab.image}}">
+                </div>
+                <div class="col-xs-12 col-md-6 mt-30">
+                    <h3><a href="/customer/lab-detail/{{lab.lab.id}}"> {{lab.lab.shop_name}}</a></h3>
+                    <p class="text-info">{{lab.lab.description}}</p>
+                    <dl class="dl-horizontal">
+                        <dt>Name:</dt>
+                        <dd>{{lab.lab.full_name}}</dd>
+                        <dt>Email:</dt>
+                        <dd>{{lab.lab.email}}</dd>
+                        <dt>Phone No:</dt>
+                        <dd>{{lab.lab.contact_number}}</dd>
+                        <dt>Address:</dt>
+                        <dd>{{lab.lab.address}}</dd>
+                    </dl>
+                    <!-- prescription Doctor -->
+                    <span class="li" ><a href="#!" class="btn btn-main btn-small btn-round-full mt-20 ml-85" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></button>
+                            
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr>
+{% endfor %}

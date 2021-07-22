@@ -9,7 +9,6 @@ from .models import User,Vendor, VendorImage
 from .forms import LoginForm, RegisterForm, RegistrationImageForm
 from product.models import Product
 
-from django.shortcuts import render
 from datetime import date, datetime
 
 # Create your views here.
@@ -103,10 +102,14 @@ def dashboard(request):
                     'recent_page': 'My Account',
                 }
         vendor = Vendor.objects.get(user=request.user)
+        print(vendor)
         vendor_img = VendorImage.objects.get(vendor=vendor, img_type='profile')
+        print(vendor_img)
 
         expiry = Product.objects.filter(vendor=vendor, expiry_date__lt=datetime.today())
+        print(expiry)
         finishing = Product.objects.filter(vendor=vendor, quantity__lt = 5)
+        print(finishing)
 
         return render(request, 'vendor/dashboard.htm', {'context':context, 'vendor': vendor, 'vendor_img' : vendor_img, 'expiry' : expiry, 'finishing' : finishing})
     except e:
