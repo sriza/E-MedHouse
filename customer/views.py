@@ -8,6 +8,7 @@ from django.db import transaction
 from django.shortcuts import render, redirect
 from .models import Customer, CustomerImage
 from vendor.models import User,VendorImage, Vendor
+from lab.models import Lab, LabImage
 from .forms import LoginForm, CustomerForm, CustomerImageForm
 
 from django.shortcuts import render
@@ -128,6 +129,15 @@ def order(request):
     return render(request, 'customer/order.htm', {'context' : context})
 
 @login_required
+def appointment(request):
+    context={
+    'topic':'Dashboard',
+    'account': 'Home',
+    'recent_page': 'Lab appointment List',
+}
+    return render(request, 'customer/appointment.htm', {'context' : context})    
+
+@login_required
 def customerLogout(request):
     logout(request)
     return redirect('/')
@@ -166,4 +176,29 @@ def vendorDetails(request,id):
         return render(request,'customer/vendor-details.htm',{'vendor':vendor, 'vendor_img': vendor_img , 'products' : products})
     except:
         return render(request,'product/shop/')
+
+def lab(request):
+    try:
+        context = {
+                    'topic':'Lab',
+                    'account': 'lab',
+                    'recent_page': 'Lab List',
+                    }
+
+        lab_img = LabImage.objects.filter(img_type="profile")
+
+        return render(request,'customer/lab.htm',{'context' : context, 'lab_img' : lab_img})
+    except:
+        return render(request,'service/shop/')
+
+def labDetails(request,id):
+    try:
+        print(id)
+        lab = Lab.objects.get(id=id)
+        lab_img = LabImage.objects.get(img_type="profile", lab=id)
+        # products = ProductImage.objects.filter(lab=id, main=True)
+
+        return render(request,'customer/lab-details.htm',{'lab':lab, 'lab_img': lab_img})
+    except:
+        return render(request,'service/shop/')        
     

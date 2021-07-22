@@ -1,0 +1,63 @@
+{% extends 'base.htm' %}
+{% load static %}
+
+{% block content %}
+{% include 'snippets/lab-dashboard-header.htm'%}
+{% include 'snippets/page-header.htm' %}
+<section class="user-dashboard page-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="list-inline dashboard-menu text-center">
+                    <li><a class="active" href="/lab/dashboard/">Dashboard</a></li>
+                    <li><a href="/lab/appointment/">Appointments</a></li>
+                    <li><a href="/lab/profile-details/">Profile Details</a></li>
+                    <li><a href="/service/list/">Service Details</a></li>
+                </ul>
+                <div class="dashboard-wrapper user-dashboard">
+                    <div class="media">
+                        <div class="pull-left">
+                            <!-- <img class="media-object user-img" src='/media/'.{{lab_img.image}} alt="Image"> -->
+                            <img class="media-object user-img" src="/media/{{lab_img.image}} " alt="Profile image of {{lab.lab_name}}">
+                        </div>
+                        <div class="media-body">
+                            <h2 class="media-heading">Welcome {{lab.lab_name}}</h2>
+                            <p>{{lab.description}}</p>
+                        </div>
+                    </div>
+                    <div class="total-order mt-20">
+                        <h4>Services Available</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Services-Test Type</th>
+                                            <th>Specialty Areas</th>                                      
+                                            <th> Appointment time</th> 
+                                            <th>Description</th>
+                                            <th>Cost</th>
+                                            <th>Result Duration</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for service in finishing %}
+                                        <tr>
+                                            <td><a href="/service/detail/{{service.id}}">{{service.title}}</a></td>
+                                            <td>{{service.service_type}}</td>
+                                            <td>{{service.appointment}}</td>
+                                            <td>{{service.description}}</td>
+                                            <td>{{service.price}}</td>
+                                            <td>{{service.duration}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% include 'snippets/footer3.htm'%}
+{% endblock content %}

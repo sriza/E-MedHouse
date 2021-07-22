@@ -1,0 +1,45 @@
+    lab = models.ForeignKey(Lab,on_delete=models.CASCADE)
+    title = models.CharField(max_length=256)
+    meta_title = models.CharField(max_length=120,null=True)
+    service_name = models.CharField(max_length=256, null= True)
+    slug = models.SlugField()
+    price = models.FloatField()
+    appointment = models.DateField()
+    duration = models.CharField(max_length=50)
+    description = models.TextField()
+    lab_name = models.CharField(max_length=256)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+
+
+    CLINICAL_MICROBIOLOGY = 'clinical microbiology'
+    CLINICAL_CHEMISTRY = 'clinical chemistry'
+    HEMATOLOGY = 'hematology'
+    BLOOD_BANK = 'blood bank'
+    MOLECULAR_DIAGNOTICS = 'molecular diagnotics'
+    REPRODUCTIVE_BIOLOGY = 'reproductive biology'
+
+     path('add/medicine/', views.createMedicine), 
+    path('add/device/', views.createDevice), 
+    path('add/hygenic_product/', views.createHygenicProduct), 
+    path('list/', views.listProduct), 
+    path('detail/<int:id>', views.detailProduct), 
+    
+    path('shop/', views.shopProduct), 
+    path('shop/detail/<int:id>', views.shopProductDetail),
+
+    title            = forms.CharField(label='Title', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter the name of the service/test type'}))
+    meta_title       = forms.CharField(label='Meta Title', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter the meta title of the service'}))
+    appointment      = forms.DateField(label='Appointment Time', widget=forms.TextInput(attrs={'class':'form-control datepicker' ,'placeholder': 'Enter the available appointment time'}))
+    duration         = forms.CharField(label='Result Duration',  widget=forms.TextInput(attrs={'class':'form-control' ,'placeholder': 'Enter result duration'}))
+    price            = forms.FloatField(label='Price', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter the price'}))
+    description      = forms.CharField(label='Description', widget=forms.Textarea(attrs={'rows':5, 'cols':20, 'class':'form-control','placeholder': 'Write about the service'}))
+    
+    title            = forms.CharField(label='Title', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter the name of the service/test type'}))
+    meta_title       = forms.CharField(label='Meta Title', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter the meta title of the service'}))
+    packed_date      = forms.DateField(label='Packed Date', widget=forms.TextInput(attrs={'class':'form-control datepicker' ,'placeholder': 'Enter the available appointment time'}))
+    expiry_date      = forms.DateField(label='Expiry Date', widget=forms.TextInput(attrs={'class':'form-control datepicker' ,'placeholder': 'Enter the available appointment time'}))
+    blood_type       = forms.CharField(label='Result Duration',  widget=forms.TextInput(attrs={'class':'form-control' ,'placeholder': 'Enter result duration'}))
+    price            = forms.FloatField(label='Price', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter the price'}))
+    description      = forms.CharField(label='Description', widget=forms.Textarea(attrs={'rows':5, 'cols':20, 'class':'form-control','placeholder': 'Write about the service'}))
+    

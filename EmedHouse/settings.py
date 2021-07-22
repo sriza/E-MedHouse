@@ -41,8 +41,10 @@ INSTALLED_APPS = [
     'cart',
     'customer',
     'vendor',
+    'lab',
     'order',
     'product',
+    'service',
 ]
 
 AUTH_USER_MODEL = 'vendor.User'

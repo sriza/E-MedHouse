@@ -1,0 +1,234 @@
+{% extends 'base.htm' %}
+{% load static %}
+{% block content %}
+<section class="signin-page account">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="block text-center">
+            <a href="/">
+              <img alt="gravater" class="dp" src={% static '/images/favicon.png' %}>
+            </a>
+            <div class="detail-txt">
+              <a href="/">
+                <span class="username">
+                  Med-House
+                </span>
+              </a>
+            </div>
+            
+            <h3 class="text-center"><i class="tf-ion-android-add"></i> Add Product</h3>
+            <p>Choose to add a product</p>
+            <div id="mybutton">
+              <button type="submit" class="btn btn-main" value="button1" id="btn1" style="background-color: gray;">medicine</button>
+              <button type="submit" class="btn btn-main" value="button2" id="btn2">Device</button>
+              <button type="submit" class="btn btn-main"  value="button3" id="btn3">hygenic</button>
+            </div>
+            <!-- medicine form -->
+            <form enctype="multipart/form-data" class="text-left clearfix" action="/product/create/" method="POST" id="medicine" style="display: block;">
+              {% csrf_token %}
+              <input type="hidden" name="product_type" value="medicine">
+              <div class="form-group">
+                <label for="inputName">Name:</label>
+                {{form.title}}
+                <p class="help">{{form.title.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputOfficialChemicalName">Meta Title</label>
+                {{form.meta_title}}
+                <p class="help">{{form.meta_title.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputOfficialChemicalName">Generic Name</label>
+                {{form.medical_name}}
+                <p class="help">{{form.medical_name.errors }}</p>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6 leftside">
+                  <label for="inputPrice">Price</label>
+                  {{form.price}}
+                  <p class="help">{{form.price.errors }}</p>
+                </div>
+                <div class="form-group col-md-6 rightside">
+                  <label for="inputQuantity">Quantity</label>
+                  {{form.quantity}}
+                  <p class="help">{{form.quantity.errors }}</p>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6 leftside">
+                  <label for="inputManifactureDate">Manufactured Date</label>
+                  {{form.manufacture_date}}
+                  <p class="help">{{form.manufacture_date.errors }}</p>
+                </div>
+                <div class="form-group col-md-6 rightside">
+                  <label for="inputExpiryDate">Expiry Date</label>
+                  {{form.expiry_date}}
+                  <p class="help">{{form.expiry_date.errors }}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputManufacture">Manufactured by</label>
+                {{form.manufacturer}}
+                <p class="help">{{form.manufacturer.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="InputDescription">Description</label>
+                {{form.description}}
+                <p class="help">{{form.description.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="OpenfileUpload">Upload the picture of the product</label>
+                {{img_form.image}}
+                {{img_form.image.errors}}   
+              </div>
+              <hr>
+              <div class="text-center">
+                <button type="submit" class="btn btn-main text-center" >Add Product</button>
+              </div>
+            </form>
+            <!-- device form -->
+            <form enctype="multipart/form-data" class="text-left clearfix" action="/product/create/" method="POST" id="device" style="display: none;">
+              {% csrf_token %}
+              <input type="hidden" name="product_type" value="medicine">
+              <div class="form-group">
+                <label for="inputName">Name:</label>
+                {{form.title}}
+                <p class="help">{{form.title.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputOfficialChemicalName">Meta Title</label>
+                {{form.meta_title}}
+                <p class="help">{{form.meta_title.errors }}</p>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6 leftside">
+                  <label for="inputPrice">Price</label>
+                  {{form.price}}
+                  <p class="help">{{form.price.errors }}</p>
+                </div>
+                <div class="form-group col-md-6 rightside">
+                  <label for="inputQuantity">Quantity</label>
+                  {{form.quantity}}
+                  <p class="help">{{form.quantity.errors }}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputManufacture">Manufactured by</label>
+                {{form.manufacturer}}
+                <p class="help">{{form.manufacturer.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="InputDescription">Description</label>
+                {{form.description}}
+                <p class="help">{{form.description.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="OpenfileUpload">Upload the picture of the product</label>
+                {{img_form.image}}
+                {{img_form.image.errors}}   
+              <!-- <input class="mt-20" type="file" id="image" multiple required> -->
+              </div>
+              <hr>
+              <div class="text-center">
+                <button type="submit" class="btn btn-main text-center" >Add Product</button>
+              </div>
+            </form>
+            <!-- hygenic form -->
+            <form enctype="multipart/form-data" class="text-left clearfix" action="/product/create/" method="POST" id="hygenic" style="display: none;">
+              {% csrf_token %}
+              <input type="hidden" name="product_type" value="medicine">
+              <div class="form-group">
+                <label for="inputName">Name:</label>
+                {{form.title}}
+                <p class="help">{{form.title.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputOfficialChemicalName">Meta Title</label>
+                {{form.meta_title}}
+                <p class="help">{{form.meta_title.errors }}</p>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6 leftside">
+                  <label for="inputPrice">Price</label>
+                  {{form.price}}
+                  <p class="help">{{form.price.errors }}</p>
+                </div>
+                <div class="form-group col-md-6 rightside">
+                  <label for="inputQuantity">Quantity</label>
+                  {{form.quantity}}
+                  <p class="help">{{form.quantity.errors }}</p>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6 leftside">
+                  <label for="inputManifactureDate">Manufactured Date</label>
+                  {{form.manufacture_date}}
+                  <p class="help">{{form.manufacture_date.errors }}</p>
+                </div>
+                <div class="form-group col-md-6 rightside">
+                  <label for="inputExpiryDate">Expiry Date</label>
+                  {{form.expiry_date}}
+                  <p class="help">{{form.expiry_date.errors }}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputManufacture">Manufactured by</label>
+                {{form.manufacturer}}
+                <p class="help">{{form.manufacturer.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="InputDescription">Description</label>
+                {{form.description}}
+                <p class="help">{{form.description.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="OpenfileUpload">Upload the picture of the product</label>
+                {{img_form.image}}
+                {{img_form.image.errors}}   
+              </div>
+              <hr>
+              <div class="text-center">
+                <button type="submit" class="btn btn-main text-center" >Add Product</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $("#mybutton button").click(function (ev) {
+        ev.preventDefault() 
+        if ($(this).attr("value") == "button2") {
+          $("#medicine").css("display", "none");
+          $("#device").css("display", "block");
+          $("#hygenic").css("display", "none");
+          $("#btn2").css("background-color", "gray");
+          $("#btn1").css("background-color", "black");
+          $("#btn3").css("background-color", "black");
+
+        }
+        if ($(this).attr("value") == "button3") {
+          $("#medicine").css("display", "none");
+          $("#device").css("display", "none");
+          $("#hygenic").css("display", "block");
+          $("#btn3").css("background-color", "gray");
+          $("#btn1").css("background-color", "black");
+          $("#btn2").css("background-color", "black");
+
+        }
+        if ($(this).attr("value") == "button1") {
+          $("#medicine").css("display", "block");
+          $("#device").css("display", "none");
+          $("#hygenic").css("display", "none");
+          $("#btn1").css("background-color", "gray");
+          $("#btn2").css("background-color", "black");
+          $("#btn3").css("background-color", "black");
+        }
+    });
+  });
+</script>
+{% endblock content %}
