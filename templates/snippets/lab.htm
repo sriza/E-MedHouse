@@ -1,9 +1,9 @@
 {% load static %}
 {%include 'snippets/prescription.htm' %}
-<!-- doctor 1 -->
+<!-- lab list in customer -->
 <hr>
 
-{% for lab in lab %}
+{% for lab in lab_img %}
     <section class="about section">
         <div class="container">
             <div class="row">
@@ -11,7 +11,7 @@
                     <img class="img-responsive mt-50" src="/media/{{lab.image}}">
                 </div>
                 <div class="col-xs-12 col-md-6 mt-30">
-                    <h3><a href="/customer/lab-detail/{{lab.lab.id}}"> {{lab.lab.shop_name}}</a></h3>
+                    <h3><a href="/customer/lab-detail/{{lab.lab.id}}"> {{lab.lab.lab_name}}</a></h3>
                     <p class="text-info">{{lab.lab.description}}</p>
                     <dl class="dl-horizontal">
                         <dt>Name:</dt>
@@ -22,14 +22,18 @@
                         <dd>{{lab.lab.contact_number}}</dd>
                         <dt>Address:</dt>
                         <dd>{{lab.lab.address}}</dd>
+                        <dt>Services:</dt>
+                        <dd>{{lab.lab.services}}</dd>
                     </dl>
-                    <!-- prescription Doctor -->
-                    <span class="li" ><a href="#!" class="btn btn-main btn-small btn-round-full mt-20 ml-85" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></button>
-                            
-
+                    <!-- book appointment -->
+                    <span class="btn" ><a href="/customer/lab-detail/{{lab.lab.id}}" class="btn btn-main btn-small btn-round-full mt-20 ml-85" data-target="#" data-toggle="" id=""><i class="tf-ion-ios-upload-outline"></i> Book appointment</a></button>
                 </div>
+               
             </div>
+            
         </div>
     </section>
     <hr>
 {% endfor %}
+
+

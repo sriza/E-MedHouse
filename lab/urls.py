@@ -13,5 +13,7 @@ urlpatterns = [
     path('service-details/', views.serviceDetails, name="serviceDetails"),
     path('forget-password/', views.forgetPassword, name="forgetPassword"),
     path('logout/', views.labLogout, name="logout"),
+    path('labupdate/<int:id>/', views.updateLab, name="updateLab"),    
+
 
 ]

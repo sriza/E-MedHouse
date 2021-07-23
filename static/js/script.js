@@ -98,6 +98,18 @@ $(document).ready(function(){
   $('.datepicker').datepicker({format: "MM/dd/yyyy hh:mm:ss"});
   
 
+  //datetimepicker
+  $('.form_datetime').datetimepicker({
+    //language:  'fr',
+    weekStart: 1,
+    todayBtn:  1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 2,
+    forceParse: 0,
+    showMeridian: 1
+  });
+
 //prescription doctor
 	$('#MybtnModal').click(function(){
 		$('#Mymodal').modal('show')

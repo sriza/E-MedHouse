@@ -17,22 +17,26 @@
               </a>
             </div>
             
-            <h3 class="text-center"><i class="tf-ion-android-add"></i> Add Product</h3>
-            <p>Choose to add a product</p>
-            <h4 class="mt-10">Device</h4>
-            <!-- device form -->
-            <form enctype="multipart/form-data" class="text-left clearfix" action="/product/add/device/" method="POST" id="device" >
+            <h3 class="text-center"><i class="tf-ion-android-add"></i> Update Service</h3>
+            <h4 class="mt-10">Hematology</h4>
+            <!-- Clinical hematology form -->
+            <form enctype="multipart/form-data" class="text-left clearfix" action="/service/update/hematology/{{service.id}}" method="POST" id="hematology" style="display: block;">
               {% csrf_token %}
-              <input type="hidden" name="product_type" value="device">
+              <input type="hidden" name="service_type" value="hematology">
               <div class="form-group">
-                <label for="inputName">Name:</label>
+                <label for="inputName">Name of test:</label>
                 {{form.title}}
                 <p class="help">{{form.title.errors }}</p>
               </div>
               <div class="form-group">
-                <label for="inputOfficialChemicalName">Meta Title</label>
+                <label for="inputMetaTitle">Meta Title</label>
                 {{form.meta_title}}
                 <p class="help">{{form.meta_title.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputAppointmentTime">Appointment Time</label>
+                {{form.appointment_date}}
+                <p class="help">{{form.appointment_date.errors }}</p>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6 leftside">
@@ -41,36 +45,25 @@
                   <p class="help">{{form.price.errors }}</p>
                 </div>
                 <div class="form-group col-md-6 rightside">
-                  <label for="inputQuantity">Quantity</label>
-                  {{form.quantity}}
-                  <p class="help">{{form.quantity.errors }}</p>
+                  <label for="inputDuration">Result Duration</label>
+                  {{form.duration}}
+                  <p class="help">{{form.duration.errors }}</p>
                 </div>
               </div>
               <div class="form-group">
-                <label for="inputManufacture">Manufactured by</label>
-                {{form.manufacturer}}
-                <p class="help">{{form.manufacturer.errors }}</p>
-              </div>
-              <div class="form-group">
-                <label for="InputDescription">Description</label>
+                <label for="InputDescription">Description of Test</label>
                 {{form.description}}
                 <p class="help">{{form.description.errors }}</p>
               </div>
-              <div class="form-group">
-                <label for="OpenfileUpload">Upload the picture of the product</label>
-                {{img_form.image}}
-                {{img_form.image.errors}}   
-              <!-- <input class="mt-20" type="file" id="image" multiple required> -->
-              </div>
               <hr>
               <div class="text-center">
-                <button type="submit" class="btn btn-main text-center" >Add Product</button>
+                <button type="submit" class="btn btn-main text-center" >Update Service</button>
               </div>
             </form>
-            <!-- hygenic form -->
           </div>
         </div>
       </div>
     </div>
   </section>
+
 {% endblock content %}

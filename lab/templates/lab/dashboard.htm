@@ -12,7 +12,7 @@
                     <li><a class="active" href="/lab/dashboard/">Dashboard</a></li>
                     <li><a href="/lab/appointment/">Appointments</a></li>
                     <li><a href="/lab/profile-details/">Profile Details</a></li>
-                    <li><a href="/service/list/">Service Details</a></li>
+                    <!-- <li><a href="/service/list/">Service Details</a></li> -->
                 </ul>
                 <div class="dashboard-wrapper user-dashboard">
                     <div class="media">
@@ -34,20 +34,20 @@
                                             <th>Services-Test Type</th>
                                             <th>Specialty Areas</th>                                      
                                             <th> Appointment time</th> 
-                                            <th>Description</th>
+                                            <th style="width: 35%;">Description</th>
                                             <th>Cost</th>
-                                            <th>Result Duration</th>
+                                            <th>Result(Days)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    {% for service in finishing %}
+                                    {% for service in services %}
                                         <tr>
                                             <td><a href="/service/detail/{{service.id}}">{{service.title}}</a></td>
                                             <td>{{service.service_type}}</td>
-                                            <td>{{service.appointment}}</td>
+                                            <td>{{service.appointment_date}}</td>
                                             <td>{{service.description}}</td>
-                                            <td>{{service.price}}</td>
-                                            <td>{{service.duration}}</td>
+                                            <td>${{service.price}}</td>
+                                            <td style="padding-left: 50px;">{{service.duration}}</td> 
                                         </tr>
                                     {% endfor %}
                                     </tbody>

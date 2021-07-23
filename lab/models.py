@@ -1,13 +1,14 @@
+from django.db.models.manager import ManagerDescriptor
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core import validators
 from vendor.models import User
+# from service.models import Service
 # Create your models here.
-
-
 
 class Lab(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # service = models.ForeignKey(Service, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=120)
     lab_name = models.CharField(max_length=200)
     description = models.TextField(null=True)
@@ -47,3 +48,5 @@ class LabImage(models.Model):
     image = models.ImageField(upload_to= get_upload_path ,blank=True)
     img_type = models.CharField(max_length=12, choices=IMAGE_TYPES, default=LICENSE)
     timestamp = models.DateTimeField(auto_now_add=True)
+
+

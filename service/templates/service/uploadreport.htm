@@ -1,0 +1,75 @@
+{% extends 'base.htm' %}
+{% load static %}
+{% block content %}
+<section class="signin-page account">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="block text-center">
+            <a href="/">
+              <img alt="gravater" class="dp" src={% static '/images/favicon.png' %}>
+            </a>
+            <div class="detail-txt">
+              <a href="/">
+                <span class="username">
+                  Med-House
+                </span>
+              </a>
+            </div>
+            
+            <h3 class="text-center"><i class=""></i>Book Appointment</h3>
+           
+            <h4 class="mt-10"></h4>
+            <!-- appointment form -->
+            <form enctype="multipart/form-data" class="text-left clearfix" action="/service/upload/report/{{id}}/" method="POST" id="appointment" >
+              {% csrf_token %}
+              <input type="hidden" name="appointment" value="appointment">
+              <div class="form-group">
+                <label for="inputName">Name:</label>
+                {{form.full_name}}
+                <p class="help">{{form.full_name.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputAddress">Address:</label>
+                {{form.address}}
+                <p class="help">{{form.address.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputAger">Date of Birth:</label>
+                {{form.dob}}
+                <p class="help">{{form.dob.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputContact">Contact:</label>
+                {{form.contact}}
+                <p class="help">{{form.contact.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail">Email:</label>
+                {{form.email}}
+                <p class="help">{{form.email.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputAppointmentTime">Appointment Date:</label>
+                {{form.appointment}}
+                <p class="help">{{form.appointment.errors }}</p>
+              </div>
+              <div class="form-group clear-both">
+                <label for="FileUploadField" >Upload the report</label>
+                {{report_file.file}}
+                <p class="help">{{ report_file.file.errors }}</p>
+              </div>
+              <!-- <input type="file" name="document"> -->
+              
+              <hr>
+              <div class="text-center">
+                <button type="submit" class="btn btn-main text-center" >Upload Report</button>
+              </div>
+            </form>
+            <!-- hematology form -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

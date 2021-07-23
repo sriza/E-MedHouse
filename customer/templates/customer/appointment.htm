@@ -10,10 +10,11 @@
         <div class="row noBig">
             <div class="col-md-12 noBig">
                 <ul class="list-inline dashboard-menu text-center noBig">
-                    <li class="noBig" class="noBig"><a href="/customer/dashboard/">Dashboard</a></li>
-                    <li class="noBig" class="noBig"><a href="/customer/order/">Orders</a></li>
+                    <li class="noBig"><a href="/customer/dashboard/">Dashboard</a></li>
+                    <li class="noBig"><a href="/customer/order/">Orders</a></li>
                     <li class="noBig"><a href="/customer/doctor-appointment/">Doctor Appointments</a></li>
-                    <li class="noBig " class="noBig"><a class="active" href="/customer/appointment/">Lab Appointments</a></li>
+                    <li class="noBig "><a class="active" href="/customer/appointment/">Lab Appointments</a></li>
+                    <li class="noBig "><a href="/customer/completeappointment/">Completed Lab Appointments</a></li>
                 </ul>
                 <div class="mt-10 noBig">
                     <nav class="navbar navbar-light bg-light text-center noBig">
@@ -25,39 +26,31 @@
                 </div>
                 <div class="dashboard-wrapper user-dashboard noBig">
                     <div class="table-responsive noBig">
+                        <h3>All Appointments</h3>
                         <table class="table noBig">
                             <thead class="noBig">
                                 <tr class="noBig">
                                     <th>Appointments ID</th>
                                     <th>Test</th>
+                                    <th>Service Type</th>
                                     <th>Lab Name</th>
                                     <th>Date</th>
                                     <th>Total Price</th>
-                                    <th>Result Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody class="noBig">
-                                <tr class="noBig">
-                                    <td>#451231</td>
-                                    <td>Virology Blood Test</td>
-                                    <td>Safal Pharmacy</td>
-                                    <td>Mar 25, 2016</td>
-                                    <td>$99.00</td>
-                                    <td id="lol"><span class="label label-info">Processing</span></td>
-                                    <td><span class="btn btn-default" data-target="#changeStatus" data-toggle="modal">Change</span></td>
-                                </tr>
-                                <tr class="noBig">
-                                    <td>#451231</td>
-                                    <td>Serology</td>
-                                    <td>Sujita Labs</td>
-                                    <td>Mar 25, 2016</td>
-                                    <td>$150.00</td>
-                                    <td id="lol"><span class="label label-success">Completed</span></td>
-                                    <!-- <td><span class="label label-success">Completed</span></td> -->
-                                    <td><span class="btn btn-default" data-target="#changeStatus" data-toggle="modal">Change</span></td>
-                                </tr>
-                            </tbody>
+                            <tbody>
+                                {% for appointment in appointments %}
+                                    <tr>
+                                        <td>{{appointment.id}}</td>
+                                        <td>{{appointment.service.title}}</td>
+                                        <td>{{appointment.service.service_type}}</a></td>
+                                        <td>{{appointment.lab.lab_name}}</td>
+                                        <td>{{appointment.appointment}}</td>
+                                        <td>${{appointment.service.price}}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>   
                         </table>
                     </div>
                 </div>

@@ -21,7 +21,7 @@
             <p>Choose to add a service</p>
             <h4 class="mt-10">Molecular Diagnotics</h4>
             <!-- molecular diagnotics form -->
-            <form enctype="multipart/form-data" class="text-left clearfix" action="/lab/add/diagnotics/" method="POST" id="diagnotics" >
+            <form enctype="multipart/form-data" class="text-left clearfix" action="/service/add/diagnotics/" method="POST" id="diagnotics" >
               {% csrf_token %}
               <input type="hidden" name="service_type" value="moleculardiagnotics">
               <div class="form-group">
@@ -36,8 +36,8 @@
               </div>
               <div class="form-group">
                 <label for="inputAppointmentTime">Appointment Time</label>
-                {{form.appointment}}
-                <p class="help">{{form.appointment.errors }}</p>
+                {{form.appointment_date}}
+                <p class="help">{{form.appointment_date.errors }}</p>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6 leftside">

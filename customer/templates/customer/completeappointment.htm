@@ -1,0 +1,130 @@
+{% extends 'base.htm' %}
+{% load static %}
+
+{% block content %}
+{% include 'snippets/customer-header.htm'%}
+{% include 'snippets/page-header.htm' %}
+
+<section class="user-dashboard page-wrapper noBig">
+    <div class="container noBig">
+        <div class="row noBig">
+            <div class="col-md-12 noBig">
+                <ul class="list-inline dashboard-menu text-center noBig">
+                    <li class="noBig"><a href="/customer/dashboard/">Dashboard</a></li>
+                    <li class="noBig"><a href="/customer/order/">Orders</a></li>
+                    <li class="noBig"><a href="/customer/doctor-appointment/">Doctor Appointments</a></li>
+                    <li class="noBig"><a href="/customer/appointment/">Lab Appointments</a></li>
+                    <li class="noBig "><a class="active" href="/customer/completeappointment/">Completed Lab Appointments</a></li>
+                </ul>
+                <div class="mt-10 noBig">
+                    <nav class="navbar navbar-light bg-light text-center noBig">
+                        <form class="form-inline noBig">
+                          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                      </nav>
+                </div>
+                <div class="dashboard-wrapper user-dashboard noBig">
+                    <div class="table-responsive noBig">
+                        <h3>Completed Test Appointments</h3>
+                        <table class="table noBig">
+                            <thead class="noBig">
+                                <tr class="noBig">
+                                    <th>Appointments ID</th>
+                                    <th>Test</th>
+                                    <th>Service Type</th>
+                                    <th>Lab Name</th>
+                                    <th>Date</th>
+                                    <th>Total Price</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for file in files %}
+                                    <tr>
+                                        <td>{{file.appointment.id}}</td>
+                                        <td>{{file.appointment.service.title}}</td>
+                                        <td>{{file.appointment.service.service_type}}</a></td>
+                                        <td>{{file.appointment.lab.lab_name}}</td>
+                                        <td>{{file.appointment.appointment}}</td>
+                                        <td>${{file.appointment.service.price}}</td>
+                                        <td>
+                                            <a href="{{file.file.url}}" class="btn btn-default">Download Report</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>   
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- .modal -->
+<div class="modal fade noBig" id="changeStatus">
+    <div class="modal-dialog noBig">
+        <div class="modal-content noBig">
+            <div class="modal-header noBig">
+                <button type="button" class="close" data-dismiss="modal">×</button> 
+                <h4 class="modal-title">Change Status</h4>   
+                <p class="btn btn-transparent mt-20" id="chooseMe">choose one of the status</p>                                                          
+                <hr>
+                                 <!-- Elements -->
+                                 <div class="dropdown dropdown-slide noBig">
+                                    <button class="dropdown-toggle btn btn-secondary" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
+                                        role="button" aria-haspopup="true" aria-expanded="false">Shop</button>
+                                    <div class="dropdown-menu noBig">
+                                        <div class="row noBig">
+                                            <div class="col-lg-12 col-md-6 mb-sm-3 noBig">
+                                                <ul class="noBig">
+                                                    <li class="noBig"><a href="#">Processing</a></li>
+                                                    <li class="noBig"><a href="#">Completed</a></li>
+                                                    <li class="noBig"><a href="#">Canceled</a></li>
+                                                    <li class="noBig"><a href="#">Hold On</a></li>
+                                                    <li class="noBig"><a href="#">Pending</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- / Elements -->
+            </div>
+            <div class="modal-footer noBig">
+                <button type="button" class="btn-css btn btn-secondory" data-dismiss="modal">close</button>                               
+            </div>
+        </div> 
+    </div>                                                                      
+</div>  
+{% include 'snippets/copyright-footer.htm'%}
+<!-- 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+
+$(document).ready(function(){
+    $("#processing").click(function(){
+        $('#lol').empty();
+        $("#lol").prepend('<span class="label label-primary">Processing</span>');
+    });
+    $("#completed").click(function(){
+        $('#lol').empty();
+        $("#lol").prepend('<span class="label label-success">Completed</span>');
+    });
+    $("#canceled").click(function(){
+        $('#lol').empty();
+        $("#lol").prepend('<span class="label label-danger">Canceled</span>');
+    });
+    $("#hold").click(function(){
+        $('#lol').empty();
+        $("#lol").prepend('<span class="label label-info">On Hold</span>');
+    });
+    $("#pending").click(function(){
+        $('#lol').empty();
+        $("#lol").prepend('<span class="label label-warning">Pending</span>');
+    });
+
+  });
+</script> -->
+
+{% endblock content %}
+    

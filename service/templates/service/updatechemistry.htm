@@ -1,0 +1,69 @@
+{% extends 'base.htm' %}
+{% load static %}
+{% block content %}
+<section class="signin-page account">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="block text-center">
+            <a href="/">
+              <img alt="gravater" class="dp" src={% static '/images/favicon.png' %}>
+            </a>
+            <div class="detail-txt">
+              <a href="/">
+                <span class="username">
+                  Med-House
+                </span>
+              </a>
+            </div>
+            
+            <h3 class="text-center"><i class="tf-ion-android-add"></i> Update Service</h3>
+            <h4 class="mt-10">Clinical Chemistry</h4>
+            <!-- Clinical Chemistry form -->
+            <form enctype="multipart/form-data" class="text-left clearfix" action="/service/update/chemistry/{{service.id}}" method="POST" id="chemistry" style="display: block;">
+              {% csrf_token %}
+              <input type="hidden" name="service_type" value="chemistry">
+              <div class="form-group">
+                <label for="inputName">Name of test:</label>
+                {{form.title}}
+                <p class="help">{{form.title.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputMetaTitle">Meta Title</label>
+                {{form.meta_title}}
+                <p class="help">{{form.meta_title.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputAppointmentTime">Appointment Time</label>
+                {{form.appointment_date}}
+                <p class="help">{{form.appointment_date.errors }}</p>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6 leftside">
+                  <label for="inputPrice">Price</label>
+                  {{form.price}}
+                  <p class="help">{{form.price.errors }}</p>
+                </div>
+                <div class="form-group col-md-6 rightside">
+                  <label for="inputDuration">Result Duration</label>
+                  {{form.duration}}
+                  <p class="help">{{form.duration.errors }}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="InputDescription">Description of Test</label>
+                {{form.description}}
+                <p class="help">{{form.description.errors }}</p>
+              </div>
+              <hr>
+              <div class="text-center">
+                <button type="submit" class="btn btn-main text-center" >Update Service</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}

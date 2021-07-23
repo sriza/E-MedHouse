@@ -4,15 +4,15 @@
 {% block content %}
 {% include 'snippets/lab-dashboard-header.htm'%}
 {% include 'snippets/page-header.htm' %}
-<section class="user-dashboard page-wrapper noBig">
-    <div class="container noBig">
-        <div class="row noBig">
-            <div class="col-md-12 noBig">
-                <ul class="list-inline dashboard-menu text-center noBig">
-                    <li class="noBig"><a href="/lab/dashboard/">Dashboard</a></li>
-                    <li class="noBig"><a class="active" href="/lab/appointment/">Appointments</a></li>
-                    <li class="noBig"><a href="/lab/profile-details/">Profile Details</a></li>
-                    <li class="noBig"><a href="/service/list/">Product Details</a></li>
+<section class="user-dashboard page-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="list-inline dashboard-menu text-center">
+                    <li><a href="/lab/dashboard/">Dashboard</a></li>
+                    <li><a class="active" href="/lab/appointment/">Appointments</a></li>
+                    <li><a href="/lab/profile-details/">Profile Details</a></li>
+                    <!-- <li><a href="/service/list/">Service Details</a></li> -->
                 </ul>
                 <div class="mt-10 noBig">
                     <nav class="navbar navbar-light bg-light text-center noBig">
@@ -27,26 +27,34 @@
                         <table class="table noBig">
                             <thead class="noBig">
                                 <tr class="noBig">
-                                    <th>Appointment ID</th>
-                                    <th>Service</th>
-                                    <th>Test Type</th>
+                                    <th>Appointments ID</th>  
+                                    <th>Customer Name</th>
+                                    <th>Contact</td>
+                                    <th>Test</th>
+                                    <th>Service Type</th>
                                     <th>Date</th>
                                     <th>Total Price</th>
-                                    <th>Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody class="noBig">
-                                <tr class="noBig">
-                                    <td>#451231</td>
-                                    <td>clinical microbiology</td>
-                                    <td>Nasal swab</td>
-                                    <td>Mar 25, 2016</td>
-                                    <td>$99.00</td>
-                                    <td id="lol"><span class="label label-info">Processing</span></td>
-                                    <td><span class="btn btn-default" data-target="#changeStatus" data-toggle="modal">Change</span></td>
+                            <tbody>
+                                {% for appointment in appointments %}
+                                <tr>
+                                    <td>{{appointment.id}}</td>
+                                    <td>{{appointment.customer.full_name}}</a></td>
+                                    <td>{{appointment.customer.contact_number}}</td>
+                                    <td>{{appointment.service.title}}</td>
+                                    <td>{{appointment.service.service_type}}</a></td>
+                                    <td>{{appointment.appointment}}</td>
+                                    <td>${{appointment.service.price}}</td>
+                                    <td><a href="/service/upload/report/{{appointment.id}}/" class ="btn btn-default">Upload Report</a></td>
+                                    {% for file in files %}
+                                    <td>
+                                        <a href="{{file.file.url}}" class="btn btn-default">Download Report</a>
+                                    </td>
+                                    {% endfor %}
                                 </tr>
-                                
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

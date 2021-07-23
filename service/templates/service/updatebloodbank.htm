@@ -17,27 +17,21 @@
               </a>
             </div>
             
-            <h3 class="text-center"><i class="tf-ion-android-add"></i> Add Product</h3>
-            <p>Choose to add a product</p>
-            <h4 class="mt-10">Medicine</h4>
-            <!-- medicine form -->
-            <form enctype="multipart/form-data" class="text-left clearfix" action="/product/add/medicine/" method="POST" id="medicine" style="display: block;">
+            <h3 class="text-center"><i class="tf-ion-android-add"></i> Update Service</h3>
+            <h4 class="mt-10">Blood Bank</h4>
+            <!-- Blood Bank form -->
+            <form enctype="multipart/form-data" class="text-left clearfix" action="/service/update/bank/{{service.id}}" method="POST" id="bank" style="display: block;">
               {% csrf_token %}
-              <input type="hidden" name="product_type" value="medicine">
+              <input type="hidden" name="service_type" value="bloodbank">
               <div class="form-group">
-                <label for="inputName">Name:</label>
+                <label for="inputName">Group Name:</label>
                 {{form.title}}
                 <p class="help">{{form.title.errors }}</p>
               </div>
               <div class="form-group">
-                <label for="inputOfficialChemicalName">Meta Title</label>
-                {{form.meta_title}}
-                <p class="help">{{form.meta_title.errors }}</p>
-              </div>
-              <div class="form-group">
-                <label for="inputOfficialChemicalName">Generic Name</label>
-                {{form.medical_name}}
-                <p class="help">{{form.medical_name.errors }}</p>
+                <label for="inputGenericName">Generic Name</label>
+                {{form.blood_type}}
+                <p class="help">{{form.blood_type.errors }}</p>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6 leftside">
@@ -53,9 +47,9 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6 leftside">
-                  <label for="inputManifactureDate">Manufactured Date</label>
-                  {{form.manufacture_date}}
-                  <p class="help">{{form.manufacture_date.errors }}</p>
+                  <label for="inputPackedDate">Packed Date</label>
+                  {{form.packed_date}}
+                  <p class="help">{{form.packed_date.errors }}</p>
                 </div>
                 <div class="form-group col-md-6 rightside">
                   <label for="inputExpiryDate">Expiry Date</label>
@@ -64,23 +58,13 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="inputManufacture">Manufactured by</label>
-                {{form.manufacturer}}
-                <p class="help">{{form.manufacturer.errors }}</p>
-              </div>
-              <div class="form-group">
                 <label for="InputDescription">Description</label>
                 {{form.description}}
                 <p class="help">{{form.description.errors }}</p>
               </div>
-              <div class="form-group">
-                <label for="OpenfileUpload">Upload the picture of the product</label>
-                {{img_form.image}}
-                {{img_form.image.errors}}   
-              </div>
               <hr>
               <div class="text-center">
-                <button type="submit" class="btn btn-main text-center" >Add Product</button>
+                <button type="submit" class="btn btn-main text-center" >Update Service</button>
               </div>
             </form>
           </div>
