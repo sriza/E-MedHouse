@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'paypal.standard.ipn',
     'medicalapp',
     'cart',
     'customer',
@@ -146,3 +147,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'vendor.User'
+
+# PAYPAL settings
+
+PAYPAL_RECEIVER_EMAIL = 'sriza054@gmail.com'
+
+PAYPAL_TEST = True

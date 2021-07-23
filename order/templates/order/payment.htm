@@ -1,0 +1,79 @@
+{% extends 'base.htm' %}
+{% load static %}
+
+{% block content %}
+{% include 'snippets/customer-header.htm'%}
+{% include 'snippets/page-header.htm' %}
+
+<div class="page-wrapper">
+   <div class="checkout shopping">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-8">
+               <div class="block billing-details">
+                  <h4 class="widget-title">PayPal Payment</h4>
+                  <script src="https://www.paypal.com/sdk/js?client-id=AeA5WW_9SWTOqVniAjtCuBTGwE_Vx6HLerZAjmFDVzTPDU-yigjgoAaULM_f5-bb4g7FO_X93mTi9nNY"></script>
+
+                     <div id="paypal-button-container"></div>
+
+                    <script>
+                       let total = "{{total}}";
+                       let id = "{{id}}";
+                       
+                       paypal.Buttons({
+
+                            createOrder: function (data, actions) {
+                                return actions.order.create({
+                                    purchase_units: [{
+                                        amount: {
+                                            value: total
+                                        }
+                                    }]
+                                });
+                            },
+
+                            onApprove: function (data, actions) {
+                                return actions.order.capture().then(function (details) {
+                                    // Show a success message to the buyer
+                                    alert('Transaction completed!');
+                                    window.location.href = `/order/paymentMade/${id}`;
+                                });
+                            }
+
+                        }).render('#paypal-button-container');
+
+                  </script>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="product-checkout-details">
+                  <div class="block">
+                     <h4 class="widget-title">Order Summary</h4>
+
+                     {% for item in items %}
+                        <div class="media product-card">
+                           <a class="pull-left" href="product-single.htm">
+                              <img class="media-object" src="/media/{{item.image.image}}" alt="Image" />
+                           </a>
+                           <div class="media-body">
+                              <h4 class="media-heading"><a href="product-single.htm">{{item.product.title}}</a></h4>
+                              <p class="price">{{item.quantity}} x $ {{item.unit_price}}</p>
+                           </div>
+                        </div>
+                     {% endfor %}
+
+                     <ul class="summary-prices">
+                     </ul>
+                     <div class="summary-total">
+                        <span>Total</span>
+                        <span>$ {{total}}</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% include 'snippets/copyright-footer.htm'%}
+{% endblock content %}

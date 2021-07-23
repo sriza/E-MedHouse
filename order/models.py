@@ -1,6 +1,7 @@
+from vendor.models import Vendor
 from django.db import models
 from customer.models import Customer
-from product.models import Product
+from product.models import Product, ProductImage
 
 # Create your models here.
 class Order(models.Model):
@@ -17,9 +18,11 @@ class Order(models.Model):
     ]
 
     customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
+    vendor = models.ForeignKey(Vendor,on_delete=models.CASCADE)
     total = models.FloatField()
-    tax = models.FloatField()
-    shipping_cost = models.FloatField()
+    items = models.IntegerField()
+    payment = models.BooleanField(default=False)
+    shipping_cost = models.FloatField(null=True)
     grand_total = models.FloatField()
     shipping_location = models.CharField(max_length=120)
     full_name = models.CharField(max_length=256)
@@ -32,6 +35,7 @@ class Order(models.Model):
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image = models.ForeignKey(ProductImage, on_delete=models.CASCADE)
     unit_price = models.FloatField()
     quantity = models.IntegerField()
     content = models.CharField(max_length=256)

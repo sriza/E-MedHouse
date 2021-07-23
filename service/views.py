@@ -21,7 +21,8 @@ def createMicrobiology(request):
             service.service_type = request.POST.get('service_type')
             service.save()
             return redirect('/service/list/')
-        except:
+        except e:
+            print(e)
             return redirect('/service/list/')
     return render(request,'service/microbiology.htm', {'form' : form})
 

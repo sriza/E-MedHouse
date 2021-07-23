@@ -56,7 +56,7 @@
 			<div class="col-md-7">
 				<div class="single-product-details">
 					<h2>{{product.title}}</h2>
-					<p class="product-price">Rs. {{product.price}}</p>
+					<p class="product-price">$ {{product.price}}</p>
 					
 					<p class="product-description mt-20">
 						{{product.meta_title}}
@@ -90,7 +90,7 @@
 						<span>Manufacturer:</span>
 						{{product.manufacturer}}
 					</div>
-					<a href="#" class="btn btn-main mt-20">update</a>
+					<a href="/product/update/{{product.product_type}}/{{product.id}}" class="btn btn-main mt-20">update</a>
 				</div>
 			</div>
 		</div>

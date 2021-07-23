@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db import transaction
 
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from .forms import MedicineForm, DeviceForm, HygenicProductForm , ProductImageForm
 from .models import Product, ProductImage
 from vendor.models import Vendor
@@ -105,6 +105,97 @@ def createHygenicProduct(request):
     return render(request,'product/hygenic_product.htm', {'form' : form, 'img_form' : img_form})
 
 @login_required
+@transaction.atomic
+def updateMedicine(request,id):
+    print(id)
+    object   = Product.objects.get(id=id) 
+    form     = MedicineForm(instance=object, data=request.POST or None)
+    img_form = ProductImageForm(request.POST or None, request.FILES or None)
+
+    if form.is_valid():
+        try : 
+            # main    = True
+            form.save()
+
+            images = request.FILES.getlist('image')
+
+            # for image in images:
+            #     img  = ProductImage.objects.create(
+            #             vendor      = Vendor.objects.filter(user=request.user).first(),
+            #             main        = main,
+            #             product     = product,
+            #             image       = image,
+            #             description = request.POST.get("title")
+            #         )
+            #     main = False
+            return redirect('/product/list/')
+        except:
+            return redirect('/product/list/')
+
+    return render(request,'product/updatemedicine.htm', {'form' : form, 'product':object})
+
+@login_required
+@transaction.atomic
+def updateDevice(request,id):
+    object   = Product.objects.get(id=id) 
+    form     = DeviceForm(instance=object,data=request.POST or None)
+    img_form = ProductImageForm(request.POST or None, request.FILES or None)
+
+    if form.is_valid():
+        try : 
+            main    = True
+            form.save()
+
+            # images = request.FILES.getlist('image')
+
+            # for image in images:
+            #     img  = ProductImage.objects.create(
+            #             vendor      = Vendor.objects.filter(user=request.user).first(),
+            #             main        = main,
+            #             product     = product,
+            #             image       = image,
+            #             description = request.POST.get("title")
+            #         )
+            #     main = False
+
+            return redirect('/product/list/')
+        except:
+
+            return redirect('/product/list/')
+
+    return render(request,'product/updatedevice.htm', {'form' : form, 'product':object})
+
+@login_required
+@transaction.atomic
+def updateHygenicProduct(request,id):
+    object   = Product.objects.get(id=id) 
+    form     = HygenicProductForm(instance = object, data=request.POST or None)
+    img_form = ProductImageForm(request.POST or None, request.FILES or None)
+
+    if form.is_valid():
+        try : 
+            main    = True
+            form.save()
+          
+            images = request.FILES.getlist('image')
+
+            # for image in images:
+            #     img  = ProductImage.objects.create(
+            #             vendor      = Vendor.objects.filter(user=request.user).first(),
+            #             main        = main,
+            #             product     = product,
+            #             image       = image,
+            #             description = request.POST.get("title")
+            #         )
+            #     main = False
+
+            return redirect('/product/list/')
+        except :
+            return redirect('/product/list/')
+
+    return render(request,'product/updatehygenic_product.htm', {'form' : form, 'product':object})
+
+@login_required
 def listProduct(request):
     try :
         context={
@@ -182,12 +273,13 @@ def shopProductDetail(request,id):
 
         return render(request,'product/customer_detail.htm', {'context' : context,'product': product, 'product_img' : product_img})
     except:
-
         return redirect('/vendor/dashboard/')
-    
-# def hygenic(request):
-#     return render(request,'product/hygenic.htm')
-# def medicine(request):
-#     return render(request, 'product/medicine.htm')
-# def device(request):
-#     return render(request, 'product/device.htm')
+
+@login_required  
+def deleteProduct(request,id):
+    try : 
+        Product.objects.filter(id=id).delete()
+
+        return redirect('/product/list/')
+    except:
+        return redirect('/vendor/dashboard/')

@@ -17,13 +17,12 @@
               </a>
             </div>
             
-            <h3 class="text-center"><i class="tf-ion-android-add"></i> Add Product</h3>
-            <p>Choose to add a product</p>
-            <h4 class="mt-10">Hygenic</h4>
-            <!-- hygenic form -->
-            <form enctype="multipart/form-data" class="text-left clearfix" action="/product/add/hygenic_product/" method="POST" id="hygenic">
+            <h3 class="text-center"><i class="tf-ion-android-add"></i> Update Product</h3>
+            <h4 class="mt-10">Medicine</h4>
+            <!-- medicine form -->
+            <form enctype="multipart/form-data" class="text-left clearfix" action="/product/update/medicine/{{product.id}}" method="POST" id="medicine" style="display: block;">
               {% csrf_token %}
-              <input type="hidden" name="product_type" value="hygenic_product">
+              <input type="hidden" name="product_type" value="medicine">
               <div class="form-group">
                 <label for="inputName">Name:</label>
                 {{form.title}}
@@ -33,6 +32,11 @@
                 <label for="inputOfficialChemicalName">Meta Title</label>
                 {{form.meta_title}}
                 <p class="help">{{form.meta_title.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputOfficialChemicalName">Generic Name</label>
+                {{form.medical_name}}
+                <p class="help">{{form.medical_name.errors }}</p>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6 leftside">
@@ -75,7 +79,7 @@
               </div>
               <hr>
               <div class="text-center">
-                <button type="submit" class="btn btn-main text-center" >Add Product</button>
+                <button type="submit" class="btn btn-main text-center" >Update Product</button>
               </div>
             </form>
           </div>
@@ -83,4 +87,5 @@
       </div>
     </div>
   </section>
+
 {% endblock content %}

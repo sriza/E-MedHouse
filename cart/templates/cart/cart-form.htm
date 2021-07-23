@@ -59,7 +59,7 @@
 					<form action="/cart/add/{{product.id}}" method="POST">
 						{% csrf_token %}
 						<h2>{{product.title}}</h2>
-						<p class="product-price">Rs. {{product.price}}</p>
+						<p class="product-price">$ {{product.price}}</p>
 						
 						<p class="product-description mt-20">
 							{{product.meta_title}}

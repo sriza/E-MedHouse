@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect
 from .models import User,Vendor, VendorImage
 from .forms import LoginForm, RegisterForm, RegistrationImageForm
 from product.models import Product
+from order.models import Order,OrderItem
 
 from datetime import date, datetime
 
@@ -92,6 +93,35 @@ def signin(request):
                 'pancard_form':pancard_form,
                 'license_form':license_form,
                 'profile_form':profile_form})
+# @transaction.atomic
+# def signin(request):
+#     object           = Vendor.objects.get(user=request.user) 
+#     register_form    = RegisterForm(instance=object , data=request.POST or None)
+#     citizenship_form = RegistrationImageForm(request.POST or None, request.FILES or None)
+
+#     if register_form.is_valid() and citizenship_form.is_valid() and pancard_form.is_valid() and license_form.is_valid() and profile_form.is_valid():
+#         try :
+#             e = request.POST.get("email")
+#             p = request.POST.get("password")
+
+#             user = User.objects.create(
+#                 email=e, password=p, role=1
+#             )
+
+#             user.set_password(p)
+#             user.save()
+
+#             vendor = register_form.save(commit=False)
+#             vendor.user = user
+#             vendor.save()    
+#             return HttpResponseRedirect('/vendor/login/')
+    
+#         except e:
+#             print(e)
+#             return render(request,'medicalapp/index.htm')
+
+#     return render(request, 
+#                 'vendor/signin.htm',)
 
 @transaction.atomic
 def dashboard(request):
@@ -152,20 +182,16 @@ def forgetPassword(request):
 
 @login_required
 def order(request):
-    return render(request, 'vendor/order.htm')
-
-# @login_required
-# def address(request):
-#     return render(request, 'vendor/address.htm')
-
-@login_required
-def order(request):
     context={
     'topic':'Dashboard',
     'account': 'Home',
     'recent_page': 'Order List',
-}
-    return render(request, 'vendor/order.htm', {'context' : context})
+    }
+ 
+    orders = Order.objects.filter(vendor=Vendor.objects.get(user=request.user), payment=True) 
+    orders_objects = OrderItem.objects.filter(order__vendor=Vendor.objects.get(user=request.user)) 
+
+    return render(request, 'vendor/order.htm', {'context' : context, 'orders': orders, 'order_items' : orders_objects})
 
 @login_required
 def address(request):
@@ -173,14 +199,13 @@ def address(request):
     'topic':'Dashboard',
     'account': 'Home',
     'recent_page': 'My Address',
-}
+    }
+
+
     return render(request, 'vendor/address.htm', {'context': context})
 
 @login_required
 def vendorLogout(request):
     logout(request)
     return redirect('/')
-
-def quantity(request):
-    return render(request,'vendor/quantity.htm')
     
