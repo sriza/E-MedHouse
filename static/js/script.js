@@ -314,7 +314,7 @@ $('#cursor').on('click', function() {
    
 // line-height
 $('#lineHeight').on('click', function() {
-  var text_height = $(this).attr('text-height');
+  var text_height = parseInt($(this).attr('text-height'));
   console.log(text_height);
   var height = parseInt($(this).css('line-height'));
 
@@ -429,7 +429,8 @@ $(document).ready(function(){
     }else{
       window.localStorage.setItem('contrast', 0);
     }
-  //font-size
+    
+  //text-size
         var text_size = window.localStorage.getItem('text-size');
         if(!Number.isNaN(parseInt(text_size))){
             $(':not(.noBig)').each(function() {
@@ -532,23 +533,23 @@ $(document).ready(function(){
     var text_height = window.localStorage.getItem('text-height');
     if(!Number.isNaN(parseInt(text_height))){
       $(':not(.noBig, .noHeight)').each(function() {
-        
         var lineHeight = parseInt($(this).css('line-height'));
         
         newlineHeight = (lineHeight + (text_height) * 6) + 'px';
         $(this).css('line-height', newlineHeight);  
       });
   
-      $('#lineHeight').attr('text-height', lineHeight);
+      $('#lineHeight').attr('text-height', text_height);
   
-  
-      if(lineHeight == 1){
-        $("#height1, #check-space").css("visibility","visible");
-      }
-      else if(text_space == 2){
-        $("#height1, #height2, #check-space").css("visibility","visible");
-      }
-    }else{
+
+       $("#check-height").css("visibility","visible");
+        if(text_height == 1){
+          $("#height1").css("visibility","visible");
+        }
+        else if(text_height == 2){
+          $("#height2, #height1").css("visibility","visible");
+        }
+      }else{
       window.localStorage.setItem('text-height', 0);
 
     }
