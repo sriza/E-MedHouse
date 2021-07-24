@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block content %}
-{% include 'snippets/header.htm'%}
+{% include 'snippets/customer-header.htm'%}
+{% include 'snippets/page-header.htm' %}
 
 <!-- Page Wrapper -->
 <section class="page-wrapper success-msg">
@@ -12,8 +13,8 @@
                 <div class="block text-center">
                     <i class="tf-ion-android-checkmark-circle"></i>
                     <h2 class="text-center">Thank you! For your payment</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, sed.</p>
-                    <a href="shop.htm" class="btn btn-main mt-20">Continue Shopping</a>
+                    <p>Your order has been successfully placed.</p>
+                    <a href="/product/shop" class="btn btn-main mt-20">Continue Shopping</a>
                 </div>
             </div>
         </div>
@@ -21,5 +22,5 @@
 </section>
 <!-- /.page-warpper -->
   
-{% include 'snippets/footer2.htm'%}
+{% include 'snippets/copyright-footer.htm'%}
 {% endblock content %}

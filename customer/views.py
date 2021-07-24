@@ -10,6 +10,7 @@ from .models import Customer, CustomerImage
 from vendor.models import User,VendorImage, Vendor
 from lab.models import Lab, LabImage
 from .forms import LoginForm, CustomerForm, CustomerImageForm
+from order.models import Order,OrderItem
 
 from django.shortcuts import render
 
@@ -112,29 +113,29 @@ def productDetails(request):
 
 @login_required
 def forgetPassword(request):
-    return render(request, 'customer/forget-password.htm')
+    return render(request, 'customer/forget-password.htm')    
 
 @login_required
 def order(request):
-    return render(request, 'customer/order.htm')
-    
-
-@login_required
-def order(request):
+    print('here')
     context={
     'topic':'Dashboard',
     'account': 'Home',
     'recent_page': 'Order List',
-}
-    return render(request, 'customer/order.htm', {'context' : context})
+    }
+
+    orders = Order.objects.filter(customer=Customer.objects.get(user=request.user)) 
+    orders_objects = OrderItem.objects.filter(order__customer=Customer.objects.get(user=request.user)) 
+
+    return render(request, 'customer/order.htm', {'context' : context, 'orders': orders, 'order_items' : orders_objects})
 
 @login_required
 def appointment(request):
     context={
-    'topic':'Dashboard',
-    'account': 'Home',
-    'recent_page': 'Lab appointment List',
-}
+                'topic':'Dashboard',
+                'account': 'Home',
+                'recent_page': 'Lab appointment List',
+                }
     return render(request, 'customer/appointment.htm', {'context' : context})    
 
 @login_required
@@ -145,9 +146,6 @@ def customerLogout(request):
 
 def forgetPassword(request):
     return render(request,'customer/forget-password.htm')
-
-def order(request):
-    return render(request,'customer/order.htm')
 
 def doctor(request):
     return render(request,'customer/doctor.htm')

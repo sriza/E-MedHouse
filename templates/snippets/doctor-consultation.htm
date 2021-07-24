@@ -1,0 +1,115 @@
+{% load static %}
+{% for doctor in doctor_img %}
+<!-- .modal -->
+<div class="modal fade" id="Mydoctormodal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button> 
+                <h4 class="modal-title">
+                    Book An Appointment
+                </h4>                                                             
+                <hr>
+                <dl class="dl-horizontal" style="margin: 0 94px;">
+                    <dt>Doctor Name:</dt>
+                    <dd>{{doctor.doctor.full_name}}</dd>
+                </dl>
+                <div class="modal-body">
+                    <div class="card-block">
+                        <div class="text-center m-t-20">
+                            <div class="form-group">
+                                <label for="subject">Choose Date for Appointment</label>
+                                <input class="form-control datepicker" placeholder="enter the date">
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <form>
+                        {% csrf_token %}
+                        <label for="subject">Description for Appointment</label>
+                        <textarea id="subject" name="subject" placeholder="Add your Symptoms or any description.." style="height:200px" required></textarea>
+                    
+                        <label for="fname">Payment Method</label>
+                        <script src="https://www.paypal.com/sdk/js?client-id=AeA5WW_9SWTOqVniAjtCuBTGwE_Vx6HLerZAjmFDVzTPDU-yigjgoAaULM_f5-bb4g7FO_X93mTi9nNY"></script>
+
+                     <div id="paypal-button-container"></div>
+
+                    <script>
+                       let total = "{{doctor.doctor.charge}}";
+                       console.log(total);
+
+                       paypal.Buttons({
+
+                            createOrder: function (data, actions) {
+                                return actions.order.create({
+                                    purchase_units: [{
+                                        amount: {
+                                            value: total
+                                        }
+                                    }]
+                                });
+                            },
+
+                            onApprove: function (data, actions) {
+
+
+                            }
+
+
+                        }).render('#paypal-button-container');
+
+                    </script> 
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-main text-center" >Add Product</button>
+                    </div>
+                        
+                    </form>
+                </div>  
+            </div>
+            <div class="modal-footer">
+                <button class="btn-css btn btn-primary">Book Appointment</button>
+                <button type="button" class="btn-css btn btn-default" data-dismiss="modal">Close</button>                               
+            </div>
+        </div> 
+    </div>                                                                      
+</div>  
+
+<!-- doctor -->
+<section class="about section">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-md-4">
+                <img class="img-responsive mt-50" src="/media/{{doctor.image}}">
+            </div>
+            <div class="col-xs-6 col-md-4 mt-10">
+                <h3><a href="/customerdoctor-detail/{{doctor.doctor.id}}"> {{doctor.doctor.full_name}}</a></h3>
+                <p class="text-info">{{doctor.doctor.Specialist}}</p>
+                <p>{{doctor.doctor.degree}}</p>
+                <p>{{doctor.doctor.description}}</p>
+                <a class="btn btn-main mt-20" data-target="#Mydoctormodal" data-toggle="modal"> Book Appointment</a>
+                
+
+            </div>
+            <div class="col-xs-6 col-md-4 mt-40">
+                <div class="text-center">
+                    <i class="tf-ion-android-calendar icon-max"></i> 
+                </div>
+                <dl class="text-center mt-10">
+                    <dt>Available Date:</dt>
+                    <dd>{{doctor.doctor.available_date}}</dd>
+                </dl>
+    
+                <dl class="text-center">
+                    <dt>NMC No</dt>
+                    <dd>{{doctor.doctor.nmc_number}}</dd>
+
+                    <dt>Charge: Rs</dt>
+                    <dd>{{doctor.doctor.charge}}</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</section>
+<hr>
+{% endfor %}

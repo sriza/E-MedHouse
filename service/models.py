@@ -26,7 +26,7 @@ class Service(models.Model):
     price = models.FloatField()
     appointment = models.CharField(max_length=100)
     duration = models.CharField(max_length=50)
-    quantity = models.IntegerField()
+    # quantity = models.IntegerField()
     expiry_date = models.DateField(null=True)
     packed_date = models.DateField(null=True)
     blood_type = models.CharField(max_length=256)
