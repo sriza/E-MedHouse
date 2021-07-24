@@ -4,29 +4,29 @@
 {% block content %}
 {% include 'snippets/lab-dashboard-header.htm'%}
 {% include 'snippets/page-header.htm' %}
-<section class="user-dashboard page-wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="list-inline dashboard-menu text-center">
-                    <li><a href="/lab/dashboard/">Dashboard</a></li>
-                    <li><a class="active" href="/lab/appointment/">Appointments</a></li>
-                    <li><a href="/lab/profile-details/">Profile Details</a></li>
-                    <li><a href="/service/list/">Product Details</a></li>
+<section class="user-dashboard page-wrapper noBig">
+    <div class="container noBig">
+        <div class="row noBig">
+            <div class="col-md-12 noBig">
+                <ul class="list-inline dashboard-menu text-center noBig">
+                    <li class="noBig"><a href="/lab/dashboard/">Dashboard</a></li>
+                    <li class="noBig"><a class="active" href="/lab/appointment/">Appointments</a></li>
+                    <li class="noBig"><a href="/lab/profile-details/">Profile Details</a></li>
+                    <li class="noBig"><a href="/service/list/">Product Details</a></li>
                 </ul>
-                <div style="margin-top: 20px;">
-                    <nav class="navbar navbar-light bg-light text-center">
-                        <form class="form-inline">
+                <div class="mt-10 noBig">
+                    <nav class="navbar navbar-light bg-light text-center noBig">
+                        <form class="form-inline noBig">
                           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                       </nav>
                 </div>
-                <div class="dashboard-wrapper user-dashboard">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
+                <div class="dashboard-wrapper user-dashboard noBig">
+                    <div class="table-responsive noBig">
+                        <table class="table noBig">
+                            <thead class="noBig">
+                                <tr class="noBig">
                                     <th>Appointment ID</th>
                                     <th>Service</th>
                                     <th>Test Type</th>
@@ -36,8 +36,8 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody class="noBig">
+                                <tr class="noBig">
                                     <td>#451231</td>
                                     <td>clinical microbiology</td>
                                     <td>Nasal swab</td>
@@ -56,27 +56,27 @@
     </div>
 </section>
 <!-- .modal -->
-<div class="modal fade" id="changeStatus">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
+<div class="modal fade noBig" id="changeStatus">
+    <div class="modal-dialog noBig">
+        <div class="modal-content noBig">
+            <div class="modal-header noBig">
                 <button type="button" class="close" data-dismiss="modal">×</button> 
                 <h4 class="modal-title">Change Status</h4>   
                 <p class="btn btn-transparent mt-20" id="chooseMe">choose one of the status</p>                                                          
                 <hr>
                                  <!-- Elements -->
-                                 <div class="dropdown dropdown-slide">
+                                 <div class="dropdown dropdown-slide noBig">
                                     <button class="dropdown-toggle btn btn-secondary" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
                                         role="button" aria-haspopup="true" aria-expanded="false">Shop</button>
-                                    <div class="dropdown-menu">
+                                    <div class="dropdown-menu noBig">
                                         <div class="row">
-                                            <div class="col-lg-12 col-md-6 mb-sm-3">
+                                            <div class="col-lg-12 col-md-6 mb-sm-3 noBig">
                                                 <ul>
-                                                    <li><a href="#">Processing</a></li>
-                                                    <li><a href="#">Completed</a></li>
-                                                    <li><a href="#">Canceled</a></li>
-                                                    <li><a href="#">Hold On</a></li>
-                                                    <li><a href="#">Pending</a></li>
+                                                    <li class="noBig"><a href="#">Processing</a></li>
+                                                    <li class="noBig"><a href="#">Completed</a></li>
+                                                    <li class="noBig"><a href="#">Canceled</a></li>
+                                                    <li class="noBig"><a href="#">Hold On</a></li>
+                                                    <li class="noBig"><a href="#">Pending</a></li>
 
                                                 </ul>
                                             </div>
@@ -84,7 +84,7 @@
                                     </div>
                                 </div><!-- / Elements -->
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer noBig">
                 <button type="button" class="btn-css btn btn-secondory" data-dismiss="modal">Cancel</button>                               
             </div>
         </div> 

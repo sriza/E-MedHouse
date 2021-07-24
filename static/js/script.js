@@ -436,7 +436,7 @@ $(document).ready(function(){
             $(':not(.noBig)').each(function() {
               var fontsize = parseInt($(this).css('font-size'));
 
-              newFontsize = (fontsize + (text_size) * 5) + 'px';
+              newFontsize = (fontsize + (parseInt(text_size) * 5)) + 'px';
               $(this).css('font-size', newFontsize);
 
             });
@@ -489,7 +489,7 @@ $(document).ready(function(){
       $(':not(.noBig)').each(function() {
         var fontSpace = parseInt($(this).css('letter-spacing'));
   
-        newFontSpace = (fontSpace + (text_space) * 2) + 'px';
+        newFontSpace = (fontSpace + (parseInt(text_space) * 1)) + 'px';
         $(this).css('letter-spacing', newFontSpace);
   
       });
@@ -542,12 +542,11 @@ $(document).ready(function(){
       $('#lineHeight').attr('text-height', text_height);
   
 
-       $("#check-height").css("visibility","visible");
         if(text_height == 1){
-          $("#height1").css("visibility","visible");
+          $("#height1,#check-height").css("visibility","visible");
         }
         else if(text_height == 2){
-          $("#height2, #height1").css("visibility","visible");
+          $("#height2, #height1,#check-height").css("visibility","visible");
         }
       }else{
       window.localStorage.setItem('text-height', 0);
