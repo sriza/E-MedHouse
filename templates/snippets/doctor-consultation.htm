@@ -1,7 +1,7 @@
 {% load static %}
 {% for doctor in doctor_img %}
 <!-- .modal -->
-<div class="modal fade noBig" id="Mydoctormodal">
+<!-- <div class="modal fade noBig" id="Mydoctormodal">
     <div class="modal-dialog noBig">
         <div class="modal-content noBig">
             <div class="modal-header noBig">
@@ -73,7 +73,7 @@
             </div>
         </div> 
     </div>                                                                      
-</div>  
+</div>    -->
 
 <!-- doctor -->
 <section class="about section noBig">
@@ -87,7 +87,7 @@
                 <p class="text-info">{{doctor.doctor.Specialist}}</p>
                 <p>{{doctor.doctor.degree}}</p>
                 <p>{{doctor.doctor.description}}</p>
-                <a class="btn btn-main mt-20" data-target="#Mydoctormodal" data-toggle="modal"> Book Appointment</a>
+                <a class="btn btn-main mt-20" href="/doctor/appointment/{{doctor.doctor.id}}/"> Book Appointment</a>
                 
 
             </div>
@@ -95,9 +95,9 @@
                 <div class="text-center noBig">
                     <i class="tf-ion-android-calendar icon-max"></i> 
                 </div>
-                <dl class="text-center noBig mt-10">
-                    <dt>Available Date:</dt>
-                    <dd>{{doctor.doctor.available_date}}</dd>
+                <dl class="text-center mt-10">
+                    <dt>Available Day:</dt>
+                    <dd>{{doctor.doctor.available_day}}</dd>
                 </dl>
     
                 <dl class="text-center noBig">

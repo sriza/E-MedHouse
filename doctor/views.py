@@ -6,9 +6,10 @@ from django.http import HttpResponseRedirect
 from django.db import transaction
 
 from django.shortcuts import render, redirect
-from .models import Doctor, DoctorImage
+from .models import Doctor, DoctorAppointment, DoctorImage
+from customer.models import Customer
 from vendor.models import User,VendorImage, Vendor
-from .forms import LoginForm, doctorForm, DoctorImageForm
+from .forms import LoginForm, doctorForm, DoctorImageForm, DoctorAppointment, DoctorAppointmentEditForm
 
 from django.shortcuts import render
 
@@ -79,8 +80,6 @@ def dashboard(request):
     except:
         return render(request,'medicalapp/index.htm')
 
-
-
 @login_required
 def profileDetails(request):
     try:
@@ -89,8 +88,6 @@ def profileDetails(request):
                     'account': 'Home',
                     'recent_page': 'My Profile',
                     }
-
-        # edit_form  = RegisterForm(request.POST or None)
 
         doctor = Doctor.objects.get(user=request.user)
         doctor_img = DoctorImage.objects.get(doctor=doctor)
@@ -103,10 +100,10 @@ def profileDetails(request):
 @login_required
 def order(request):
     context={
-    'topic':'Dashboard',
-    'account': 'Home',
-    'recent_page': 'Order List',
-}
+                'topic':'Dashboard',
+                'account': 'Home',
+                'recent_page': 'Order List',
+            }
     return render(request, 'doctor/order.htm', {'context' : context})
 
 @login_required
@@ -118,7 +115,100 @@ def doctorLogout(request):
 def forgetPassword(request):
     return render(request,'doctor/forget-password.htm')
 
+@login_required
+def appointment(request,id):
+    context={
+                'topic':'Dashboard',
+                'account': 'Home',
+                'recent_page': 'Appointment Booking Form',
+                }
 
+    form = DoctorAppointmentForm(request.POST or None)
+    doctor_image = DoctorImage.objects.get(doctor__id=id)
+
+    if form.is_valid() :
+        try :
+            appointment = form.save(commit=False)
+            appointment.customer = Customer.objects.filter(user=request.user).first()
+            appointment.doctor = Doctor.objects.get(id=id)
+            appointment.save()
+
+            return redirect('/doctor/payment/{0}/'.format(appointment.id))
+    
+        except e:
+            return render(request,'customer/index.htm')    
+
+    
+    return render(request, 'doctor/doctor-appointment.htm', {'context' : context, 'form':form, 'doc_image':doctor_image}) 
+
+@login_required
+@transaction.atomic
+def payment(request,id):
+    appointment = DoctorAppointment.objects.get(id=id)
+    doctor_image = DoctorImage.objects.get(doctor__id=appointment.doctor.id)
+
+    return render(request,'doctor/payment.htm', {'doc_image':doctor_image, 'id':id} )
+
+
+@login_required
+@transaction.atomic
+def paymentMade(request,id):
+    try:
+        DoctorAppointment.objects.filter(id=id).update(
+            payment=True
+        )
+        
+        return render(request,'medicalapp/appointment-confirmation.htm' )
+    except:
+        return redirect('/order/payment/'.id)
+
+@login_required
+@transaction.atomic
+def cancelAppointment(request,id) :
+    try :
+        DoctorAppointment.objects.filter(id=id).delete()
+
+        return redirect('/customer/doctor-appointment')
+    except:
+        return render(request,'customer/index.htm')  
+
+@login_required
+def appointmentList(request):
+    context={
+    'topic':'Dashboard',
+    'account': 'Home',
+    'recent_page': 'Appointment List',
+    }
+ 
+    appointments = DoctorAppointment.objects.filter(doctor=Doctor.objects.get(user=request.user), payment=True) 
+
+    return render(request, 'doctor/order.htm', {'context' : context, 'appointments': appointments })
+
+@login_required
+def updateAppointment(request,id):
+    context={
+                'topic':'Dashboard',
+                'account': 'Home',
+                'recent_page': 'Appointment Booking Form',
+                }
+
+    form = DoctorAppointmentEditForm(request.POST or None)
+    doctor_image = DoctorImage.objects.get(doctor__id=id)
+
+    if form.is_valid() :
+        try :
+            appointment = form.save(commit=False)
+            appointment.customer = Customer.objects.filter(user=request.user).first()
+            appointment.doctor = Doctor.objects.get(id=id)
+            appointment.save()
+
+            return redirect('/doctor/payment/{0}/'.format(appointment.id))
+    
+        except e:
+            return render(request,'customer/index.htm')    
+
+    
+    return render(request, 'doctor/doctor-appointment-update.htm', {'context' : context, 'form':form, 'doc_image':doctor_image})
 
 
 

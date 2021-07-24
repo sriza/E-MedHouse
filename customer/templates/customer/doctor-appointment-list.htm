@@ -4,14 +4,15 @@
 {% block content %}
 {% include 'snippets/customer-header.htm'%}
 {% include 'snippets/page-header.htm' %}
+
 <section class="user-dashboard page-wrapper">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <ul class="list-inline dashboard-menu text-center">
                     <li><a href="/customer/dashboard/">Dashboard</a></li>
-                    <li><a class="active" href="/customer/order/">Orders</a></li>
-                    <li><a href="/customer/doctor-appointment/">Doctor Appointments</a></li>
+                    <li><a href="/customer/order/">Orders</a></li>
+                    <li><a class="active" href="/customer/doctor-appointment/">Doctor Appointments</a></li>
                     <li><a href="/customer/appointment/">Lab Appointments</a></li>
                 </ul>
                 <div style="margin-top: 20px;">
@@ -27,31 +28,31 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Order ID</th>
-                                    <th>Vendor</th>
-                                    <th>Date</th>
-                                    <th>Items</th>
+                                    <th>Appointment ID</th>
+                                    <th>Doctor </th>
+                                    <th>Booked Date</th>
+                                    <th>Appointment Fixed Date</th>
                                     <th>Total Price</th>
                                     <th>Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for order in orders%}
+                                {% for appointment in appointments%}
                                     <tr>
-                                        <td>#{{order.id}}</td>
-                                        <td>{{order.vendor.full_name}}</td>
-                                        <td>{{order.timestamp}}</td>
-                                        <td>{{order.items}}</td>
-                                        <td>${{order.total}}</td>
-                                        <td id="lol"><span class="label label-info">{{order.status}}</span></td>
+                                        <td>#{{appointment.id}}</td>
+                                        <td>{{appointment.doctor.full_name}}</td>
+                                        <td>{{appointment.timestamp}}</td>
+                                        <td>{{appointment.fixed_on }}</td>
+                                        <td>${{appointment.doctor.charge}}</td>
+                                        <td id="lol"><span class="label label-info">{{appointment.status}}</span></td>
                                         <td>
-                                            <!-- {{order.payment}} -->
-                                            {% if order.payment != True %}
-                                                <a class="btn btn-default" href="/order/cancel/{{order.id}}" > Cancel </a>
-                                                <a class="btn btn-default" href="/order/payment/{{order.id}}" > Make Payment </a>
+                                            <!-- {{appointment.payment}} -->
+                                            {% if appointment.payment != True %}
+                                                <a class="btn btn-default" href="/doctor/appointment/cancel/{{appointment.id}}" > Cancel </a>
+                                                <a class="btn btn-default" href="/doctor/payment/{{appointment.id}}" > Make Payment </a>
                                             {% endif %}
-                                            <span class="btn btn-default" data-target="#changeStatus_{{ order.id }}" data-toggle="modal">Details</span>
+                                            <span class="btn btn-default" data-target="#changeStatus_{{ forloop.counter0 }}" data-toggle="modal">Details</span>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -64,27 +65,40 @@
     </div>
 </section>
 <!-- .modal -->
-{% regroup order_items by order as o_items %}
 
-{% for items in o_items%}
-<div class="modal fade" id="changeStatus_{{ items.grouper.id }}">
+{% for appointment in appointments%}
+<div class="modal fade" id="changeStatus_{{ forloop.counter0 }}">
     <div class="modal-dialog">
         <div class="modal-content product-checkout-details">
             <div class="modal-header block">
                 <button type="button" class="close" data-dismiss="modal">×</button> 
-                <h4 class="widget-title">Detail of order</h4>   
-                {% for item in items.list%}
+                <h4 class="widget-title">Detail of appointment</h4> 
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="product-single.htm">{{appointment.doctor.full_name}}</a></h4>
+                        <p class="price"> {{appointment.doctor.specialist}}</p>
+                        <p class="price"> {{appointment.doctor.contact_number}}</p>
+                    </div>
                 <hr>
                 <div class="media product-card">
                     <a class="pull-left" href="product-single.htm">
-                       <img class="media-object" src="/media/{{item.image.image}}" alt="Image" />
                     </a>
                     <div class="media-body">
-                       <h4 class="media-heading"><a href="product-single.htm">{{item.product.title}}</a></h4>
-                       <p class="price">{{item.quantity}} x $ {{item.unit_price}}</p>
+                        <h4 class="media-heading"><a>Patient's Name :</a></h4>
+                       <p class="price">{{appointment.patient_name}}</p>
+
+                       <h4 class="media-heading"><a> Number :</a></h4>
+                       <p class="price">{{appointment.contact_number}}</p>
+
+                       <h4 class="media-heading"> <a> Email :</a></h4>
+                       <p class="price">{{appointment.email}}</p>
+
+                       <h4 class="media-heading"> <a> Address :</a></h4>
+                       <p class="price">{{appointment.address}}</p>
+
+                       <h4 class="media-heading"> <a> Description :</a></h4>
+                       <p class="price">{{appointment.description}}</p>
                     </div>
                  </div>
-                {% endfor %}    
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn-css btn btn-secondory" data-dismiss="modal">close</button>                               
@@ -124,4 +138,4 @@ $(document).ready(function(){
 </script> -->
 
 {% endblock content %}
-    
+

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import authenticate, get_user_model
-from .models import Doctor, User, DoctorImage
+from .models import Doctor, DoctorAppointment, User, DoctorImage
 
 user = get_user_model()
 
@@ -24,7 +24,7 @@ class LoginForm(forms.Form):
 class doctorForm(forms.ModelForm):
     class Meta:
         model = Doctor
-        fields = ('full_name', 'user_name', 'address' , 'email', 'description', 'available_date', 'specialist', 'gender', 'nmc_number', 'charge', 'contact_number', 'degree')
+        fields = ('full_name', 'user_name', 'address' , 'email', 'description', 'available_day', 'specialist', 'gender', 'nmc_number', 'charge', 'contact_number', 'degree')
 
     MALE = 'male'
     FEMALE = 'female'
@@ -41,8 +41,8 @@ class doctorForm(forms.ModelForm):
     address          = forms.CharField(label='Address', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your address'}))
     email            = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your email'}))
     description      = forms.CharField(label='Description', widget=forms.Textarea(attrs={'rows':5, 'cols':20, 'class':'form-control','placeholder': 'Write about yourself'}))
-    available_date   = forms.DateField(label='Available Date', widget=forms.TextInput(attrs={'class':'form-control datepicker' ,'placeholder': 'Enter your available date'}))
-    specialist        = forms.CharField(label='Specialist On', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your specialized on'}))
+    available_day    = forms.CharField(label='Available Day', widget=forms.Textarea(attrs={'class':'form-control' ,'placeholder': 'Enter your available days separated by commas'}))
+    specialist       = forms.CharField(label='Specialist On', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your specialized on'}))
     gender           = forms.CharField(label='Gender', widget=forms.Select(choices=GENDER_TYPES,attrs={'class':'form-control','placeholder': 'Enter your gender'}))
     nmc_number       = forms.CharField(label='NMC Number', widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Enter your NMC Number'}))
     charge           = forms.FloatField(label='Charge', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your charge fee'}))
@@ -75,3 +75,27 @@ class DoctorImageForm(forms.ModelForm):
         model = DoctorImage
         fields = ('image',)
     image = forms.ImageField(required=False)
+
+
+class DoctorAppointmentForm(forms.ModelForm):
+    class Meta:
+        model = DoctorAppointment
+        fields = ('patient_name', 'contact_number','address', 'email','description')
+
+    patient_name     = forms.CharField(label='User Name', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your user name'}))
+    address          = forms.CharField(label='Address', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your address'}))
+    contact_number   = forms.IntegerField(label='Contact Number', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your contact number'}))
+    email            = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your email'}))
+    description      = forms.CharField(label='Description', widget=forms.Textarea(attrs={'rows':5, 'cols':20, 'class':'form-control','placeholder': 'Write about your health issue'}))
+
+class DoctorAppointmentEditForm(forms.ModelForm):
+    class Meta:
+        model = DoctorAppointment
+        fields = ('fixed_on',)
+
+    patient_name     = forms.CharField(label='User Name', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your user name'}))
+    address          = forms.CharField(label='Address', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your address'}))
+    contact_number   = forms.IntegerField(label='Contact Number', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your contact number'}))
+    email            = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your email'}))
+    description      = forms.CharField(label='Description', widget=forms.Textarea(attrs={'rows':5, 'cols':20, 'class':'form-control','placeholder': 'Write about your health issue'}))
+    fixed_on         = forms.DateTimeField(label='Description', widget=forms.SplitDateTimeField)

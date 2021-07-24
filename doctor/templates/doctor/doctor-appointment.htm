@@ -1,0 +1,78 @@
+{% extends 'base.htm' %}
+{% load static %}
+
+{% block content %}
+{% include 'snippets/customer-header.htm'%}
+{% include 'snippets/page-header.htm' %}
+
+<div class="page-wrapper">
+   <div class="checkout shopping">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-8">
+               <div class="block ">
+                  <h4 class="widget-title">Appointment Form</h4>
+                  <form class="checkout-form" method="POST" action="/doctor/appointment/{{doc_image.doctor.id}}/">
+                     {% csrf_token %}
+                     <div class="form-group">
+                        <label for="user_address">Patient Name</label>
+                        {{form.patient_name}}
+                        <p class="help">{{form.patient_name.errors }}</p>
+                     </div>
+                        <div class="form-group">
+                           <label for="user_address">Address</label>
+                           {{form.address}}
+                           <p class="help">{{form.address.errors }}</p>
+                        </div>
+                        <div class="checkout-country-code clearfix">
+                           <div class="form-group">
+                              <label for="user_post_code">Email</label>
+                              {{form.email}}
+                              <p class="help">{{form.email.errors }}</p>
+                           </div>
+                           <div class="form-group" >
+                              <label for="user_city">Contact Number</label>
+                              {{form.contact_number}}
+                              <p class="help">{{form.contact_number.errors }}</p>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <!-- <label for="user_address">Write about your health issue</label> -->
+                           {{form.description}}
+                           <p class="help">{{form.description.errors }}</p>
+                        </div>
+                     
+                        <button type="submit" class="btn btn-main text-center" >Book appointment</button>
+                  </form>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="product-checkout-details">
+                  <div class="block">
+                     <h4 class="widget-title">Appointment Summary</h4>
+                        <div class="media product-card">
+                           <a class="pull-left" href="product-single.htm">
+                              <img class="media-object" src="/media/{{doc_image.image}}" alt="doc_image.doctor.full_name" />
+                           </a>
+                           <div class="media-body">
+                              <h4 class="media-heading"><a href="product-single.htm">{{doc_image.doctor.full_name}}</a></h4>
+                              <p class="price"> {{doc_image.doctor.specialist}}</p>
+                              <p class="price"> $ {{doc_image.doctor.charge}}</p>
+                           </div>
+                        </div>
+
+                     <ul class="summary-prices">
+                     </ul>
+                     <div class="summary-total">
+                        <span>Total</span>
+                        <span>$ {{doc_image.doctor.charge}}</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% include 'snippets/copyright-footer.htm'%}
+{% endblock content %}

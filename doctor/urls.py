@@ -9,6 +9,11 @@ urlpatterns = [
   path('login/',views.doctorLogin),
   path('signin/',views.signin),
   path('dashboard/',views.dashboard),
-  path('order/',views.order),
+  path('appointmentList/',views.appointmentList),
   path('profile-details/',views.profileDetails),
+  path('appointment/<int:id>/',views.appointment),
+  path('appointment/update/<int:id>/',views.updateAppointment),
+  path('payment/<int:id>/',views.payment),
+  path('paymentMade/<int:id>/',views.paymentMade),
+  path('appointment/cancel/<int:id>/',views.cancelAppointment),
 ]
