@@ -222,11 +222,11 @@ $(document).ready(function() {
   var font_count = $(this).attr('font-family');
 
 
-    $('h1,h2,h3,li,a,p,span,button').each(function() {
+    $('*').each(function() {
         if(font_count == 1){
-          $(this).removeClass('dyslexia');
+          $('h1,h2,h3,li,a,p,span,button').removeClass('dyslexia');
         }else{
-          $(this).addClass('dyslexia');
+          $('h1,h2,h3,li,a,p,span,button').addClass('dyslexia');
         }
 
     });
@@ -247,19 +247,7 @@ $(document).ready(function() {
 //curser
 $('#cursor').on('click', function() {
   var count = $(this).attr('cursor-count');
-
-    $('*').each(function() {
-        if(count == 1){
-          $(document).ready(function(){
-            $('*').changeCursor('/static/images/cursor.png',32,0);
-          });
-        }else{
-          $(document).ready(function(){
-          });
-        }
-
-    });
-
+ 
     if(count == 1){
       $('#cursor').attr('cursor-count', 0);
       window.localStorage.setItem('cursor', 0);
@@ -269,7 +257,7 @@ $('#cursor').on('click', function() {
       window.localStorage.setItem('cursor', parseInt(count) + 1);
       $("#check-cursor").css("visibility","visible");
     }
-
+    location.reload();
     checkAccessible();
 });
   
@@ -456,8 +444,9 @@ $(document).ready(function(){
        
     //font-family
     var font_fam = window.localStorage.getItem('font-family');
-    if(!Number.isNaN(parseInt())){
+    if(!Number.isNaN(parseInt(font_fam))){
       $('#fonts').attr('font-family', font_fam);
+
       if(font_fam == 0){
         $('h1,h2,h3,li,a,p,span, button').removeClass('dyslexia');
         $("#check-font").css("visibility","hidden");
@@ -471,11 +460,14 @@ $(document).ready(function(){
 
     //curser
     var cursor = window.localStorage.getItem('cursor');
-    if(!Number.isNaN(parseInt(font_fam))){
+    if(!Number.isNaN(parseInt(cursor))){
       $('#cursor').attr('cursor-count', cursor);
       if(cursor == 0){
         $("#check-cursor").css("visibility","hidden");
       }else{
+        $(document).ready(function(){
+        $('*').changeCursor('/static/images/cursor.png',32,0);
+        });
         $("#check-cursor").css("visibility","visible");
       }
     }else{
@@ -512,9 +504,7 @@ $(document).ready(function(){
     var highlight = window.localStorage.getItem('high-light');
 
     if(!Number.isNaN(parseInt(highlight))){
-      check = true;
       $('#highlight').attr('text-high', highlight);
-  
   
       if(highlight == 0){
         $('a:not(.noBig)').removeClass('highlight');

@@ -1,10 +1,11 @@
 {% load static %}
+{% include 'snippets/accessibility_modal.htm'%}
 <!-- Start Top Header Bar -->
 <section class="top-header noBig sticky">
     <div class="container noBig">
         <div class="row noBig">
-            <div class="col-md-4 col-xs-12 col-sm-4">
-                <div class="contact-number">
+            <div class="col-md-4 col-xs-12 col-sm-4 noBig">
+                <div class="contact-number noBig">
                     <i class="tf-ion-ios-telephone"></i>
                     <span>+977 9808826654</span>
                 </div>
@@ -29,15 +30,15 @@
                 </div>
             </div>
             <a href="#" id="top-side-account">Account</a>
-            <div class="col-md-9 col-xs-12 col-sm-4" id="listOfAccount">
+            <div class="col-md-9 col-xs-12 col-sm-4 noBig" id="listOfAccount">
                 <!-- Cart -->
-                <ul class="top-menu text-right list-inline">
+                <ul class="top-menu text-right list-inline noBig">
                     <!-- Search -->
-                    <li class="dropdown search dropdown-slide">
+                    <li class="dropdown search dropdown-slide noBig">
                         <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
                             <i class="tf-ion-ios-search-strong"></i> Search</a>
-                        <ul class="dropdown-menu search-dropdown">
-                            <li>
+                        <ul class="dropdown-menu search-dropdown noBig">
+                            <li class="noBig">
                                 <form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
                             </li>
                         </ul>
@@ -45,28 +46,28 @@
                          / Search -->
 
                     <!-- account -->
-                    <li class="#">
+                    <li class="# noBig">
                         <a href="/customer/login">
-                            <i class="tf-ion-android-person"></i>User</a>
+                            <i class="tf-ion-android-person noBig"></i>User</a>
                         </a>
                     </li>
 
 
 
                     <!-- Elements -->
-                    <li class="dropdown dropdown-slide hover-color">
+                    <li class="dropdown dropdown-slide hover-color noBig">
                         <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
                             role="button" aria-haspopup="true" aria-expanded="false"><i class="tf-ion-android-person"></i>Business</a>
-                        <div class="dropdown-menu">
-                            <div class="row">
+                        <div class="dropdown-menu noBig">
+                            <div class="row noBig">
                                 <!-- Basic -->
-                                <div class="col-lg-12 col-md-6 mb-sm-3 text-center">
-                                    <ul>
+                                <div class="col-lg-12 col-md-6 mb-sm-3 text-center noBig">
+                                    <ul class="noBig">
                                         <span class="dropdown-header">Account</span>
                                         <p role="separator" class="divider"></p>
-                                        <li><a href="/doctor/login">Doctor</a></li>
-                                        <li><a href="/vendor/login">Vendor</a></li>
-                                        <li><a href="/lab/login">Lab</a></li>
+                                        <li class="noBig"><a href="/doctor/login">Doctor</a></li>
+                                        <li class="noBig"><a href="/vendor/login">Vendor</a></li>
+                                        <li class="noBig"><a href="/lab/login">Lab</a></li>
                                     </ul>
                                 </div>
                             </div><!-- / .row -->
@@ -84,104 +85,13 @@
     <a type="button" class="noBig" check-ace="0" id="ace-btn"><i class="fa fa-universal-access" aria-hidden="true" data-target="#My-right-side-modal" data-toggle="modal" id="my-circle-btn"></i>
     </a>
 </section>
-<!-- .modal -->
-<div class="modal fade noBig cursor" id="My-right-side-modal">
-    <div class="modal-dialog modal-right-dialog noBig">
-        <div class="modal-content modal-right-content noBig">
-            <div class="modal-header noBig">
-                <button type="button" class="close" data-dismiss="modal">×</button> 
-                <h4 class="modal-title noBig">Accessibility Menu</h4>                                                             
-                <hr>
-                <div class="modal-body noBig" id="body-ace">
-                    <div class="text-center noBig">
-                        <button type="button" class="btn-css btn-secondary noBig" id="contrast" contrast-count="0">
-                            <span id="check-contrast" class="noBig"><i class="fa fa-check-circle fa-lg noBig" aria-hidden="true"></i></span>
-                            <div class="text-center mt-10 noBig"><i class="fa fa-desktop fa-2x noBig" aria-hidden="true"></i></div>
-                            <div class="text-center noBig">
-                                contrast +
-                            </div>
-                            <span id="contrast1" class="noBig"><i class="fa fa-minus fa-lg mt-10 noBig" aria-hidden="true"></i> </span><span id="contrast2" class="noBig"><i class="fa fa-minus fa-lg mt-10 noBig" aria-hidden="true"></i> </span>
-                        </button>
-                        <button type="button" class="btn-css btn-secondary noBig" id="highlight" text-highlight='0'>
-                            <span id="tick" class="noBig"><i class="fa fa-check-circle fa-lg noBig" aria-hidden="true"></i></span>
-                            <div class="text-center  noBig"><i class="fa fa-link fa-2x noBig" aria-hidden="true"></i></div>
-                            <div class="text-center noBig">
-                                Highlight Link
-                            </div>
-                        </button>
-                        <br class="noBig">
-                        <button type="button" class="btn-css btn-secondary mt-10 noBig" id="text-spacing" text-space="0">
-                            <i id="check-space" class="fa fa-check-circle fa-lg noBig" aria-hidden="true"></i>
-                            <div class="text-center mt-10 noBig"><i class="fa fa-long-arrow-left noBig" aria-hidden="true"></i> <i class="fa fa-minus noBig" aria-hidden="true"></i> <i class="fa fa-long-arrow-right noBig" aria-hidden="true"></i></div>
-                            <div class="text-center noBig">
-                                Text Spacing
-                            </div>
-                            <span id="one" class="noBig"><i class="fa fa-minus fa-lg mt-10 noBig" aria-hidden="true"></i> </span><span id="two" class="noBig"><i class="fa fa-minus fa-lg mt-10 noBig" aria-hidden="true"></i> </span>
-                        </button>
-                        <button type="button" class="btn-css btn-secondary mt-10 noBig" text-size="0" id="text-size">
-                           <i id="check-big" class="fa fa-check-circle fa-lg noBig" aria-hidden="true"></i>
-                            <div class="text-center mt-10 noBig"><i class="fa fa-text-height noBig" aria-hidden="true"></i> <i class="fa fa-text-height fa-lg noBig" aria-hidden="true"></i></div>
-                            <div class="text-center noBig">
-                                Bigger Test
-                            </div>
-                            <span id="big1" class="noBig"><i class="fa fa-minus fa-lg mt-10 noBig" aria-hidden="true"></i> </span><span id="big2" class="noBig"><i class="fa fa-minus fa-lg mt-10 noBig" aria-hidden="true"></i> </span>
-
-                        </button>
-                        <br class="noBig">
-                        <button class="btn-css btn-secondary mt-10 noBig" id="lineHeight" text-height="0">
-                            <i id="check-height" class="fa fa-check-circle fa-lg noBig" aria-hidden="true"></i>
-                            <div class="text-center mt-10 noBig"><i class="fa fa-bars fa-lg noBig" aria-hidden="true"></i> <i class="fa fa-long-arrow-up noBig" aria-hidden="true"></i></div>
-                            <div class="text-center noBig">
-                                Line Height
-                            </div>
-                            <span id="height1" class="noBig"><i class="fa fa-minus fa-lg mt-10 noBig" aria-hidden="true"></i> </span><span id="height2" class="noBig"><i class="fa fa-minus fa-lg mt-10 noBig" aria-hidden="true"></i> </span>
-
-                        </button>
-                        <button class="btn-css btn-secondary mt-10 noBig">
-                             <div class="text-center mt-10 noBig"><i class="fa fa-align-left fa-lg noBig" aria-hidden="true"></i></div>
-                            <div class="text-center noBig">
-                                Text Align
-                            </div>
-                        </button>
-                        <br class="noBig">
-                        <button class="btn-css btn-secondary mt-10 noBig" id="fonts" font-family="0">
-                            <i id="check-font" class="fa fa-check-circle fa-lg noBig" aria-hidden="true"></i>
-                            <div class="text-center mt-10 noBig"><i class="fa fa-font fa-2x noBig" aria-hidden="true"></i> <i class="fa fa-font noBig" aria-hidden="true"></i></div>
-                            <div class="text-center noBig">
-                                Dyslexia Font
-                            </div>
-                        </button>
-                        <button class="btn-css btn-secondary mt-10 noBig" id="cursor" cursor-count="0">
-                            <i id="check-cursor" class="fa fa-check-circle fa-lg noBig" aria-hidden="true"></i>
-                            <div class="text-center mt-10 noBig"><i class="fa fa-hand-o-up fa-2x" aria-hidden="true"></i></div>
-                            <div class="text-center noBig">
-                                Cursor
-                            </div>
-                        </button>
-                        <br class="noBig">
-                        <button id="btn-reset" class="btn-css btn-secondary mt-10 noBig" reset="0">
-                             <div class="text-center mt-10 noBig">
-                            <div class="text-center noBig">
-                                <i class="fa fa-refresh fa-lg noBig" aria-hidden="true"></i>  Reset All
-                            </div>
-                        </button>
-                    </div>
-                </div>  
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn-css btn btn-default" data-dismiss="modal">Close</button>                               
-            </div>
-        </div> 
-    </div>                                                                      
-</div>  
-
 <!-- End Top Header Bar -->
 
 <!-- Main Menu Section -->
-<section class="menu">
-    <nav class="navbar navigation">
-        <div class="container">
-            <div class="navbar-header">
+<section class="menu noBig">
+    <nav class="navbar navigation noBig">
+        <div class="container noBig">
+            <div class="navbar-header noBig">
                 <h2 class="menu-title">Main Menu</h2>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                     aria-expanded="false" aria-controls="navbar">
@@ -194,35 +104,35 @@
             </div><!-- / .navbar-header -->
 
             <!-- Navbar Links -->
-            <div id="navbar" class="navbar-collapse collapse text-center">
-                <ul class="nav navbar-nav">
+            <div id="navbar" class="navbar-collapse collapse text-center noBig">
+                <ul class="nav navbar-nav noBig">
 
                     <!-- Home -->
-                    <li class="dropdown ">
+                    <li class="dropdown noBig">
                         <a href="/">Home</a>
                     </li><!-- / Home -->
 
-                    <li class="dropdown">
+                    <li class="dropdown noBig">
                         <a href="/doctor">Doctor Consultation</a>
                     </li>
 
 
                     <!-- Elements -->
-                    <li class="dropdown dropdown-slide">
+                    <li class="dropdown dropdown-slide noBig">
                         <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
                             role="button" aria-haspopup="true" aria-expanded="false">Shop <span
-                                class="tf-ion-ios-arrow-down"></span></a>
-                        <div class="dropdown-menu">
-                            <div class="row">
+                                class="tf-ion-ios-arrow-down noBig"></span></a>
+                        <div class="dropdown-menu noBig">
+                            <div class="row noBig">
 
                                 <!-- Basic -->
-                                <div class="col-lg-12 col-md-6 mb-sm-3">
-                                    <ul>
+                                <div class="col-lg-12 col-md-6 mb-sm-3 noBig">
+                                    <ul class="noBig">
                                         <li class="dropdown-header">Pages</li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="/shop.htm">Medicine</a></li>
-                                        <li><a href="checkout.htm">Device</a></li>
-                                        <li><a href="hygenic.htm">Hygenic</a></li>
+                                        <li class="noBig"><a href="/shop.htm">Medicine</a></li>
+                                        <li class="noBig"><a href="checkout.htm">Device</a></li>
+                                        <li class="noBig"><a href="hygenic.htm">Hygenic</a></li>
                                     </ul>
                                 </div>
                             </div><!-- / .row -->
@@ -231,45 +141,45 @@
 
 
                     <!-- Pages -->
-                    <li class="dropdown full-width dropdown-slide">
+                    <li class="dropdown full-width dropdown-slide noBig">
                         <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
                             role="button" aria-haspopup="true" aria-expanded="false">Pages <span
                                 class="tf-ion-ios-arrow-down"></span></a>
-                        <div class="dropdown-menu">
-                            <div class="row">
+                        <div class="dropdown-menu noBig">
+                            <div class="row noBig">
 
                                 <!-- Introduction -->
-                                <div class="col-sm-3 col-xs-12">
-                                    <ul>
+                                <div class="col-sm-3 col-xs-12 noBig">
+                                    <ul class="noBig">
                                         <li class="dropdown-header">Introduction</li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="/contact">Contact Us</a></li>
-                                        <li><a href="/about">About Us</a></li>
+                                        <li class="noBig"><a href="/contact">Contact Us</a></li>
+                                        <li class="noBig"><a href="/about">About Us</a></li>
                                     </ul>
                                 </div>
                                 	<!-- Contact -->
-								<div class="col-sm-3 col-xs-12">
-									<ul>
+								<div class="col-sm-3 col-xs-12 noBig">
+									<ul class="noBig">
 										<li class="dropdown-header">User Account</li>
 										<li role="separator" class="divider"></li>
-                                        <li><a href="/customer/login">Login Page</a></li>
-                                        <li><a href="/customer/sigin">Signin Page</a></li>
-                                        <li><a href="/customer/forget-password">Forget Password</a></li>
+                                        <li class="noBig"><a href="/customer/login">Login Page</a></li>
+                                        <li class="noBig"><a href="/customer/sigin">Signin Page</a></li>
+                                        <li class="noBig"><a href="/customer/forget-password">Forget Password</a></li>
 									</ul>
 								</div>
                                 <!-- Utility -->
-                                <div class="col-sm-3 col-xs-12">
-                                    <ul>
+                                <div class="col-sm-3 col-xs-12 noBig">
+                                    <ul class="noBig">
                                         <li class="dropdown-header">Business Account</li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="/doctor/login">Doctor Account</a></li>
-                                        <li><a href="/vendor/login">Vender Account</a></li>
-                                        <li><a href="#">Lab Account</a></li>
+                                        <li class="noBig"><a href="/doctor/login">Doctor Account</a></li>
+                                        <li class="noBig"><a href="/vendor/login">Vender Account</a></li>
+                                        <li class="noBig"><a href="#">Lab Account</a></li>
                                     </ul>
                                 </div>
 
                                 <!-- Mega Menu -->
-                                <div class="col-sm-3 col-xs-12">
+                                <div class="col-sm-3 col-xs-12 ">
                                     <a href="/shop">
                                         <img class="img-responsive" src= {% static 'images/shop/header-img.png' %} alt="menu image" />
                                     </a>
