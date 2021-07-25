@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 from .models import Customer, CustomerImage
 from vendor.models import User,VendorImage, Vendor
 from lab.models import Lab, LabImage
+from doctor.models import DoctorImage, Doctor, DoctorAppointment
 from .forms import LoginForm, CustomerForm, CustomerImageForm
 from order.models import Order,OrderItem
 
@@ -84,21 +85,18 @@ def dashboard(request):
 
 
 @login_required
-def profileDetails(request):
+def doctorAppointmentList(request):
     try:
         context = {
                     'topic':'Dashboard',
                     'account': 'Home',
-                    'recent_page': 'My Profile',
+                    'recent_page': 'Appointment List',
                     }
 
-        # edit_form  = RegisterForm(request.POST or None)
+        appointment = DoctorAppointment.objects.filter(customer=Customer.objects.get(user=request.user)) 
 
-        customer = Customer.objects.get(user=request.user)
-        customer_img = CustomerImage.objects.get(customer=customer)
-
-        return render(request, 'customer/profile-details.htm',{'context':context, 'customer': customer, 'customer_img' :customer_img})
-    except:
+        return render(request, 'customer/doctor-appointment-list.htm',{'context':context, 'appointments': appointment})
+    except e:
         return render(request,'medicalapp/index.htm')
 
     
@@ -143,12 +141,18 @@ def customerLogout(request):
     logout(request)
     return redirect('/')
 
-
-def forgetPassword(request):
-    return render(request,'customer/forget-password.htm')
-
 def doctor(request):
-    return render(request,'customer/doctor.htm')
+    try:
+        context = {
+                    'topic': 
+                    'Online Doctor Consultation',
+                    'account': 'Home',
+                    'recent_page': 'Doctor Consultation',
+                    }
+        doctor_img = DoctorImage.objects.filter()
+        return render(request,'customer/doctor.htm',{'context' : context, 'doctor_img' : doctor_img})
+    except:
+        return render(request,'product/shop/')
 
 def vendors(request):
     try:
@@ -198,5 +202,6 @@ def labDetails(request,id):
 
         return render(request,'customer/lab-details.htm',{'lab':lab, 'lab_img': lab_img})
     except:
-        return render(request,'service/shop/')        
-    
+        return render(request,'service/shop/') 
+
+   

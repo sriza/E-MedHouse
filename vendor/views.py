@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
 from django.db import transaction
-
+from product.models import Product, ProductImage
 from django.shortcuts import render, redirect
 from .models import User,Vendor, VendorImage
 from .forms import LoginForm, RegisterForm, RegistrationImageForm

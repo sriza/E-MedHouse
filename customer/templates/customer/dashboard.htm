@@ -4,66 +4,36 @@
 {% block content %}
 {% include 'snippets/customer-header.htm'%}
 {% include 'snippets/page-header.htm' %}
-<section class="user-dashboard page-wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="list-inline dashboard-menu text-center">
-                    <li><a class="active" href="/customer/dashboard/">Dashboard</a></li>
-                    <li><a href="/customer/order/">Orders</a></li>
-                    <li><a href="/customer/profile-details/">Profile Details</a></li>
-                    <li><a href="/customer/appointment/">Lab Appointments</a></li>
+<section class="user-dashboard page-wrapper noBig">
+    <div class="container noBig">
+        <div class="row noBig">
+            <div class="col-md-12 noBig">
+                <ul class="list-inline dashboard-menu text-center noBig">
+                    <li class="noBig"><a class="active" href="/customer/dashboard/">Dashboard</a></li>
+                    <li class="noBig"><a href="/customer/order/">Orders</a></li>
+                    <li class="noBig"><a href="/customer/doctor-appointment/">Doctor Appointments</a></li>
+                    <li class="noBig"><a href="/customer/appointment/">Lab Appointments</a></li>
                 </ul>
-                <div class="dashboard-wrapper user-dashboard">
-                    <div class="media">
-                        <div class="pull-left">
+                <div class="dashboard-wrapper dashboard-user-profile noBig">
+                    <div class="media noBig">
+                        <div class="pull-left noBig">
                             <!-- <img class="media-object user-img" src='/media/'.{{customer_img.image}} alt="Image"> -->
                             <img class="media-object user-img" src="/media/{{customer_img.image}} " alt="Profile image of {{customer.shop_name}}">
                         </div>
-                        <div class="media-body">
+                        <div class="media-body noBig">
                             <h2 class="media-heading">Welcome {{customer.full_name}}</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, iure, est. Sit mollitia est maxime! Eos
-                                cupiditate tempore, tempora omnis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, nihil. </p>
                         </div>
                     </div>
-                    <div class="total-order mt-20">
-                        <h4>Total Orders</h4>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Order ID</th>
-                                        <th>Product</th>
-                                        <th>Date</th>
-                                        <th>Items</th>
-                                        <th>Total Price</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><a href="#!">#252125</a></td>
-                                        <td>medicine</td>
-                                        <td>Mar 25, 2016</td>
-                                        <td>2</td>
-                                        <td>$ 99.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#!">#252125</a></td>
-                                        <td>hygenic</td>
-                                        <td>Mar 25, 2016</td>
-                                        <td>2</td>
-                                        <td>$ 99.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#!">#252125</a></td>
-                                        <td>device</td>
-                                        <td>Mar 25, 2016</td>
-                                        <td>2</td>
-                                        <td>$ 99.00</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="media-body">
+                            <ul class="user-profile-list">
+                                <h3 class="font-weight-bold ">Customer Details</h3>
+                                <li><span>Full Name:</span>{{customer.full_name}}</li>
+                                <li><span>Gender:</span>{{customer.gender}}</li>
+                                <li><span>Email:</span>{{customer.email}}</li>
+                                <li><span>Phone:</span>{{customer.contact_number}}</li>
+                                <li><span>Address:</span>{{customer.address}}</li>
+                            </ul>
+                            <hr>
                         </div>
                     </div>
                 </div>
@@ -72,4 +42,47 @@
     </div>
 </section>
 {% include 'snippets/copyright-footer.htm'%}
+<!-- .modal -->
+<div class="modal fade" id="MyProfileModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button> 
+                <h4 class="modal-title">
+                    Edit your profile
+                </h4>                                                             
+                <hr>
+                <div class="media dashboard-wrapper">
+                    <div class="text-center" href="#!">
+                        <img class="media-object user-img" id="profile" src="/media/{{customer_img.image}}"  alt="Profile image of {{customer.shop_name}}">
+                        <a href="#x" class="btn btn-transparent mt-20">Change Image</a>
+                    </div>
+                <dl class="dl-horizontal details-list">
+                    <dt class="mt-10">Full Name:</dt>
+                    <dd><input type="text" class="form-control"  placeholder="hari lal yadhab"></dd>
+                    <dt class="mt-10">Pharmacy Name:</dt>
+                    <dd><input type="text" class="form-control"  placeholder="epharmacy"></dd>
+                    <dt class="mt-10">Email:</dt>
+                    <dd><input type="email" class="form-control"  placeholder="hari.yadhab1234@gmail.com"></dd>
+                    <dt class="mt-10">Address:</dt>
+                    <dd><input type="text" class="form-control"  placeholder="balkumari"></dd>
+                    <dt class="mt-10">Contact No:</dt>
+                    <dd><input type="text" class="form-control"  placeholder="9803678422"></dd>
+                    <dt class="mt-10">Birth of date:</dt>
+                    <dd><input type="text" class="form-control datepicker-test"  placeholder="07/18/1988"></dd>
+                    <dt>Registered Name:</dt>
+                    <dd>{{customer.business_name}}</dd>
+                    <dt>PAN NO</dt>
+                    <dd>{{customer.pan_number}}</dd>
+                    <dt>VAT NO</dt>
+                    <dd>{{customer.vat_number}}</dd> 
+                </dl>
+            </div>                         
+            <div class="modal-footer">
+                <button class="btn-css btn btn-primary">Update</button>
+                <button type="button" class="btn-css btn btn-default" data-dismiss="modal">Close</button>                               
+            </div>
+        </div> 
+    </div>                                                                      
+</div> 
 {% endblock content %}

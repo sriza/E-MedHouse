@@ -1,0 +1,141 @@
+{% extends 'base.htm' %}
+{% load static %}
+
+{% block content %}
+{% include 'snippets/customer-header.htm'%}
+{% include 'snippets/page-header.htm' %}
+
+<section class="user-dashboard page-wrapper noBig">
+    <div class="container noBig">
+        <div class="row noBig">
+            <div class="col-md-12 noBig">
+                <ul class="list-inline dashboard-menu text-center noBig">
+                    <li class="noBig"><a href="/customer/dashboard/">Dashboard</a></li>
+                    <li class="noBig"><a href="/customer/order/">Orders</a></li>
+                    <li class="noBig"><a class="active" href="/customer/doctor-appointment/">Doctor Appointments</a></li>
+                    <li class="noBig"><a href="/customer/appointment/">Lab Appointments</a></li>
+                </ul>
+                <div class="mt-10 noBig">
+                    <nav class="navbar navbar-light bg-light text-center noBig">
+                        <form class="form-inline noBig">
+                          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                      </nav>
+                </div>
+                <div class="dashboard-wrapper user-dashboard noBig">
+                    <div class="table-responsive noBig">
+                        <table class="table noBig">
+                            <thead class="noBig">
+                                <tr class="noBig">
+                                    <th>Appointment ID</th>
+                                    <th>Doctor </th>
+                                    <th>Booked Date</th>
+                                    <th>Appointment Fixed Date</th>
+                                    <th>Total Price</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="noBig">
+                                {% for appointment in appointments%}
+                                    <tr class="noBig">
+                                        <td>#{{appointment.id}}</td>
+                                        <td>{{appointment.doctor.full_name}}</td>
+                                        <td>{{appointment.timestamp}}</td>
+                                        <td>{{appointment.fixed_on }}</td>
+                                        <td>${{appointment.doctor.charge}}</td>
+                                        <td id="lol"><span class="label label-info">{{appointment.status}}</span></td>
+                                        <td>
+                                            <!-- {{appointment.payment}} -->
+                                            {% if appointment.payment != True %}
+                                                <a class="btn btn-default" href="/doctor/appointment/cancel/{{appointment.id}}" > Cancel </a>
+                                                <a class="btn btn-default" href="/doctor/payment/{{appointment.id}}" > Make Payment </a>
+                                            {% endif %}
+                                            <span class="btn btn-default" data-target="#changeStatus_{{ forloop.counter0 }}" data-toggle="modal">Details</span>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- .modal -->
+
+{% for appointment in appointments%}
+<div class="modal fade noBig" id="changeStatus_{{ forloop.counter0 }}">
+    <div class="modal-dialog noBig">
+        <div class="modal-content product-checkout-details noBig">
+            <div class="modal-header block noBig">
+                <button type="button" class="close" data-dismiss="modal">×</button> 
+                <h4 class="widget-title">Detail of appointment</h4> 
+                    <div class="media-body noBig">
+                        <h4 class="media-heading"><a href="product-single.htm">{{appointment.doctor.full_name}}</a></h4>
+                        <p class="price"> {{appointment.doctor.specialist}}</p>
+                        <p class="price"> {{appointment.doctor.contact_number}}</p>
+                    </div>
+                <hr>
+                <div class="media product-card noBig">
+                    <a class="pull-left" href="product-single.htm">
+                    </a>
+                    <div class="media-body noBig">
+                        <h4 class="media-heading"><a>Patient's Name :</a></h4>
+                       <p class="price">{{appointment.patient_name}}</p>
+
+                       <h4 class="media-heading"><a> Number :</a></h4>
+                       <p class="price">{{appointment.contact_number}}</p>
+
+                       <h4 class="media-heading"> <a> Email :</a></h4>
+                       <p class="price">{{appointment.email}}</p>
+
+                       <h4 class="media-heading"> <a> Address :</a></h4>
+                       <p class="price">{{appointment.address}}</p>
+
+                       <h4 class="media-heading"> <a> Description :</a></h4>
+                       <p class="price">{{appointment.description}}</p>
+                    </div>
+                 </div>
+            </div>
+            <div class="modal-footer noBig">
+                <button type="button" class="btn-css btn btn-secondory" data-dismiss="modal">close</button>                               
+            </div>
+        </div> 
+    </div>                                                                      
+</div>  
+{% endfor %}
+{% include 'snippets/copyright-footer.htm'%}
+<!-- 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+
+$(document).ready(function(){
+    $("#processing").click(function(){
+        $('#lol').empty();
+        $("#lol").prepend('<span class="label label-primary">Processing</span>');
+    });
+    $("#completed").click(function(){
+        $('#lol').empty();
+        $("#lol").prepend('<span class="label label-success">Completed</span>');
+    });
+    $("#canceled").click(function(){
+        $('#lol').empty();
+        $("#lol").prepend('<span class="label label-danger">Canceled</span>');
+    });
+    $("#hold").click(function(){
+        $('#lol').empty();
+        $("#lol").prepend('<span class="label label-info">On Hold</span>');
+    });
+    $("#pending").click(function(){
+        $('#lol').empty();
+        $("#lol").prepend('<span class="label label-warning">Pending</span>');
+    });
+
+  });
+</script> -->
+
+{% endblock content %}
+

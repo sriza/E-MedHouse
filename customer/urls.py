@@ -8,12 +8,13 @@ urlpatterns = [
     path('doctor/', views.doctor),
     path('dashboard/', views.dashboard),
     path('order/', views.order),
-    path('profile-details/', views.profileDetails),
+    path('doctor-appointment/', views.doctorAppointmentList),
     path('forget-password/', views.forgetPassword),
     path('logout/', views.customerLogout),
     path('vendors/', views.vendors),
     path('lab/', views.lab),
     path('lab-detail/<int:id>/', views.labDetails),
     path('appointment/', views.appointment),
+    path('vendor-detail/<int:id>/', views.vendorDetails)
 ]
 

@@ -13,4 +13,5 @@ urlpatterns = [
     path('confirmation/', views.confirmation),
     path('contact/', views.contact),
     path('shop-sidebar/', views.shopslider),
+    path('about/',views.about),
 ]

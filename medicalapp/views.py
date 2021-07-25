@@ -44,8 +44,21 @@ def confirmation(request):
     return render(request, 'medicalapp/confirmation.htm')
 
 def contact(request):
-    return render(request, 'medicalapp/contact.htm')
+    context={
+    'topic':'Contact Us',
+    'account': 'Home',
+    'recent_page': 'contact',
+    }
+    return render(request, 'medicalapp/contact.htm',{'context' : context})
 
+def about(request):
+    context={
+    'topic':'About Us',
+    'account': 'Home',
+    'recent_page': 'About Us',
+    }
+    return render(request, 'medicalapp/about-us.htm',{'context' : context})
+    
 def shopslider(request):
     return render(request, 'medicalapp/shop-sidebar.htm')
     

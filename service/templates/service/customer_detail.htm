@@ -1,14 +1,14 @@
 {% extends 'base.htm' %}
 {% load static %}
 
-{% block content %}
+{% block content noBig %}
 {% include 'snippets/customer-header.htm'%}
 
-<section class="page-header">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="content">
+<section class="page-header noBig">
+	<div class="container noBig">
+		<div class="row noBig">
+			<div class="col-md-12 noBig">
+				<div class="content noBig">
 					<h1 class="page-name">Shop</h1>
 					<ol class="breadcrumb">
 						<li><a href="#">Home</a></li>
@@ -20,17 +20,17 @@
 	</div>
 </section>
 
-<section class="single-product">
-	<div class="container">
-		<div class="row">
+<section class="single-product noBig">
+	<div class="container noBig">
+		<div class="row noBig">
 		</div>
-		<div class="row mt-20">
-			<div class="col-md-5">
-				<div class="single-product-slider">
-					<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
-						<div class='carousel-outer'>
+		<div class="row noBig mt-20">
+			<div class="col-md-5 noBig">
+				<div class="single-product-slider noBig">
+					<div id='carousel-custom' class='carousel slide noBig' data-ride='carousel'>
+						<div class='carousel-outer noBig'>
 							<!-- me art lab slider -->
-							<div class='carousel-inner '>
+							<div class='carousel-inner noBig'>
 								{% for img in product_img %}
 									{% if img.main %}
 										<div class='item active'>
@@ -44,16 +44,16 @@
 							</div>
 							
 							<!-- sag sol -->
-							<a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
-								<i class="tf-ion-ios-arrow-left"></i>
+							<a class='left carousel-control noBig' href='#carousel-custom' data-slide='prev'>
+								<i class="tf-ion-ios-arrow noBig-left"></i>
 							</a>
-							<a class='right carousel-control' href='#carousel-custom' data-slide='next'>
-								<i class="tf-ion-ios-arrow-right"></i>
+							<a class='right carousel-control noBig' href='#carousel-custom' data-slide='next'>
+								<i class="tf-ion-ios-arrow noBig-right"></i>
 							</a>
 						</div>
 						
 						<!-- thumb -->
-						<ol class='carousel-indicators mCustomScrollbar meartlab'>
+						<ol class='carousel-indicators mCustomScrollbar meartlab noBig'>
 							{% for img in product_img %}
 								{% if img.main %}
 									<li data-target='#carousel-custom' data-slide-to='{{ forloop.counter0 }}' class='active'>
@@ -68,40 +68,40 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-7">
-				<div class="single-product-details">
+			<div class="col-md-7 noBig">
+				<div class="single-product-details noBig">
 					<h2>{{product.title}}</h2>
 					<p class="product-price">$ {{product.price}}</p>
 					
 					<p class="product-description mt-20">
 						{{product.meta_title}}
 					</p>
-					<div class="product-category">
+					<div class="product-category noBig">
 						<span>Type:</span>
 						{{product.product_type}}
 					</div>
 					{% if product.product_type|stringformat:"s" == "medicine" %}
-						<div class="product-quantity">
+						<div class="product-quantity noBig">
 							<span>Generic Name:</span>
 							{{product.medical_name}}
 						</div>
 					{% endif %}
-					<div class="product-quantity">
+					<div class="product-quantity noBig">
 						<span>Quantity:</span>
 						{{product.quantity}}
 					</div>
 					{% if product.product_type|stringformat:"s" != "device" %}
-						<div class="product-quantity">
+						<div class="product-quantity noBig">
 							<span>Manufactured Date:</span>
 							{{product.manufacture_date}}
 						</div>
-						<div class="product-quantity">
+						<div class="product-quantity noBig">
 							<span>Expiry Date:</span>
 							{{product.expiry_date}}
 						</div>
 					{% endif %}
 				
-					<div class="product-quantity">
+					<div class="product-quantity noBig">
 						<span>Manufacturer:</span>
 						{{product.manufacturer}}
 					</div>
@@ -110,30 +110,30 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="tabCommon mt-20">
-					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#details" aria-expanded="true">Details</a></li>
-						<li class=""><a data-toggle="tab" href="#reviews" aria-expanded="false">Reviews (3)</a></li>
+		<div class="row noBig">
+			<div class="col-xs-12 noBig">
+				<div class="tabCommon mt-20 noBig">
+					<ul class="nav nav-tabs noBig">
+						<li class="active noBig"><a data-toggle="tab" href="#details" aria-expanded="true">Details</a></li>
+						<li class="noBig"><a data-toggle="tab" href="#reviews" aria-expanded="false">Reviews (3)</a></li>
 					</ul>
-					<div class="tab-content patternbg">
-						<div id="details" class="tab-pane fade active in">
+					<div class="tab-content noBig patternbg">
+						<div id="details" class="tab-pane fade active in noBig">
 							<h4>Product Description</h4>
 							<p>{{product.description}}</p>
 						</div>
 						<div id="reviews" class="tab-pane fade">
-							<div class="post-comments">
-						    	<ul class="media-list comments-list m-bot-50 clearlist">
+							<div class="post-comment noBigs">
+						    	<ul class="media-list comments-list m-bot-50 clearlist noBig">
 								    <!-- Comment Item start-->
-								    <li class="media">
+								    <li class="media noBig">
 
-								        <a class="pull-left" href="#!">
+								        <a class="pull-left noBig" href="#!">
 								            <img class="media-object comment-avatar" src={% static 'images/blog/avater-1.jpg' %} alt="" width="50" height="50" />
 								        </a>
 
-								        <div class="media-body">
-								            <div class="comment-info">
+								        <div class="media-body noBig">
+								            <div class="comment-info noBig">
 								                <h4 class="comment-author">
 								                    <a href="#!">Jonathon Andrew</a>
 								                	
@@ -151,16 +151,16 @@
 								    <!-- End Comment Item -->
 
 								    <!-- Comment Item start-->
-								    <li class="media">
+								    <li class="media noBig">
 
-								        <a class="pull-left" href="#!">
+								        <a class="pull-left noBig" href="#!">
 								            <img class="media-object comment-avatar" src={% static 'images/blog/avater-4.jpg' %} alt="" width="50" height="50" />
 								        </a>
 
-								        <div class="media-body">
+								        <div class="media-body noBig">
 
-								            <div class="comment-info">
-								                <div class="comment-author">
+								            <div class="comment-info noBig">
+								                <div class="comment-author noBig">
 								                    <a href="#!">Jonathon Andrew</a>
 								                </div>
 								                <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
@@ -177,16 +177,16 @@
 								    <!-- End Comment Item -->
 
 								    <!-- Comment Item start-->
-								    <li class="media">
+								    <li class="media noBig">
 
 								        <a class="pull-left" href="#!">
 								            <img class="media-object comment-avatar" src={% static 'images/blog/avater-1.jpg' %} alt="" width="50" height="50">
 								        </a>
 
-								        <div class="media-body">
+								        <div class="media-body noBig">
 
-								            <div class="comment-info">
-								                <div class="comment-author">
+								            <div class="comment-info noBig">
+								                <div class="comment-author noBig">
 								                    <a href="#!">Jonathon Andrew</a>
 								                </div>
 								                <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
@@ -212,4 +212,4 @@
 
 {% include 'snippets/vender-product-model.htm'%}
 {% include 'snippets/footer2.htm'%}
-{% endblock content %}
+{% endblock content noBig %}

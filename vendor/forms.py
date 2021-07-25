@@ -67,5 +67,6 @@ class RegisterForm(forms.ModelForm):
 class RegistrationImageForm(forms.ModelForm):
     class Meta:
         model = VendorImage
+        
         fields = ('image',)
-    image = forms.ImageField(required=False)
+    image = forms.ImageField(required=True)

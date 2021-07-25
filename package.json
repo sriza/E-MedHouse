@@ -1,0 +1,22 @@
+{
+  "name": "med-house",
+  "version": "1.0.0",
+  "description": "** E-MedHouse, a Medical E-commerce Website\r Complaint with WCAG and ADA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sunilstha23/MedHouse.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sunilstha23/MedHouse/issues"
+  },
+  "homepage": "https://github.com/Sunilstha23/MedHouse#readme",
+  "dependencies": {
+    "jquery-datetimepicker": "^2.5.21"
+  }
+}
