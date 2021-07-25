@@ -237,4 +237,33 @@ font-size: 12px;
     font-family: lexical !important;
 }
 /* cursor */
-
+#current, #previous, #first{
+    position: relative;
+    color: #F0EDDE;
+    background-color: #000000;
+    padding: 14px 16px;
+    font-weight: bold;
+}
+#previous a, #first a{
+    color: #F0EDDE;
+}
+#previous{    
+    left: 48vw;
+}
+#first{
+    left: 40vw;
+}
+#current{
+    left: 34vw;
+}
+.flex-pagination{
+    display: flex;
+    justify-content: center;
+}
+.pagination-btn{
+    color: #F0EDDE;
+    background-color: #000000;
+    padding: 14px 16px;
+    font-weight: bold;
+    margin: 2px;
+}
