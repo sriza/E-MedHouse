@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from .forms import MedicineForm, DeviceForm, HygenicProductForm , ProductImageForm
 from .models import Product, ProductImage
 from vendor.models import Vendor
+from customer.models import Review
 
 @login_required
 @transaction.atomic
@@ -237,26 +238,33 @@ def shopProduct(request):
                 'account': 'Home',
                 'recent_page': 'Shop',
                 }
+        category = ''
+        title = ''
 
         if request.method == "POST" :
             print(request.POST)
             category = request.POST.get('product_type')
             title = request.POST.get('title')
+            category_arr = {
+                'Medicine' : 'medicine',
+                'Hygenic Product' : 'hygenic_product',
+                'Device'      : 'device'
+            }
             
-            # images = ProductImage.objects.filter(Q(product__product_type__exact = category)| 
-            #                                      Q(product__title__contains = title)|
-            #                                      Q(product__meta_title__contains = title)|
-            #                                      Q(product__medical_name__contains = title)|
-            #                                      Q(product__description__contains = title)
-            #                                      ).order_by('product__expiry_date')
-            # images = ProductImage.objects.filter(main= True,product__product_type = category)
-            images = ProductImage.objects.filter(main= True)
+            if category and title=='':
+                images = ProductImage.objects.filter(product__product_type__exact = category_arr[category], main=True).order_by('product__expiry_date')
+            elif title and category=="Search by category":
+                images = ProductImage.objects.filter((Q(product__title__contains = title)| Q(product__meta_title__contains = title)| Q(product__medical_name__contains = title)| Q(product__description__contains = title)) & Q(main=True) ).order_by('product__expiry_date')
+            elif category!="Search by category" and title :
+                images = ProductImage.objects.filter((Q(product__product_type__exact = category_arr[category])| Q(product__title__contains = title)| Q(product__meta_title__contains = title)| Q(product__medical_name__contains = title)| Q(product__description__contains = title)) & Q(main=True) ).order_by('product__expiry_date')
+            else :
+                images = ProductImage.objects.filter(main= True)
 
         else :
             images = ProductImage.objects.filter(main= True)
 
-        return render(request,'product/shop.htm',{'context': context, 'images' : images})
-    except:
+        return render(request,'product/shop.htm',{'context': context, 'images' : images, 'category' : category, 'title' : title })
+    except e:
         return redirect('/customer/dashboard/')
 
 @login_required
@@ -270,10 +278,12 @@ def shopProductDetail(request,id):
 
         product = Product.objects.get(id=id)
         product_img = ProductImage.objects.filter(product=product)
+        reviews = Review.objects.filter(product=product)
 
-        return render(request,'product/customer_detail.htm', {'context' : context,'product': product, 'product_img' : product_img})
-    except:
-        return redirect('/vendor/dashboard/')
+        return render(request,'product/customer_detail.htm', {'context' : context,'product': product, 'product_img' : product_img, 'reviews' : reviews})
+    except e:
+        print(e)
+        return redirect('/customer/dashboard/')
 
 @login_required  
 def deleteProduct(request,id):

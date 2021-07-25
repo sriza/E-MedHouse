@@ -2,11 +2,12 @@ from product.models import Product, ProductImage
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator
 
 from django.db import transaction
 
 from django.shortcuts import render, redirect
-from .models import Customer, CustomerImage
+from .models import Customer, CustomerImage, Review
 from vendor.models import User,VendorImage, Vendor
 from lab.models import Lab, LabImage
 from doctor.models import DoctorImage, Doctor, DoctorAppointment
@@ -67,6 +68,7 @@ def signin(request):
     return render(request,'customer/signin.htm',{'form':form, 'img_form':img_form })
 
 @transaction.atomic
+@login_required
 def dashboard(request):
     try :
         context = {
@@ -93,9 +95,12 @@ def doctorAppointmentList(request):
                     'recent_page': 'Appointment List',
                     }
 
-        appointment = DoctorAppointment.objects.filter(customer=Customer.objects.get(user=request.user)) 
+        appointment_list = DoctorAppointment.objects.filter(customer=Customer.objects.get(user=request.user)) 
+        paginator = Paginator(appointment_list, 1)
 
-        return render(request, 'customer/doctor-appointment-list.htm',{'context':context, 'appointments': appointment})
+        page_number = request.GET.get('page')
+        appointments = paginator.get_page(page_number)
+        return render(request, 'customer/doctor-appointment-list.htm',{'context':context, 'appointments': appointments})
     except e:
         return render(request,'medicalapp/index.htm')
 
@@ -141,6 +146,7 @@ def customerLogout(request):
     logout(request)
     return redirect('/')
 
+@login_required
 def doctor(request):
     try:
         context = {
@@ -154,6 +160,7 @@ def doctor(request):
     except:
         return render(request,'product/shop/')
 
+@login_required
 def vendors(request):
     try:
         context = {
@@ -168,6 +175,7 @@ def vendors(request):
     except:
         return render(request,'product/shop/')
 
+@login_required
 def vendorDetails(request,id):
     try:
         print(id)
@@ -179,6 +187,7 @@ def vendorDetails(request,id):
     except:
         return render(request,'product/shop/')
 
+@login_required
 def lab(request):
     try:
         context = {
@@ -193,6 +202,7 @@ def lab(request):
     except:
         return render(request,'service/shop/')
 
+@login_required
 def labDetails(request,id):
     try:
         print(id)
@@ -203,5 +213,47 @@ def labDetails(request,id):
         return render(request,'customer/lab-details.htm',{'lab':lab, 'lab_img': lab_img})
     except:
         return render(request,'service/shop/') 
+
+@login_required
+@transaction.atomic
+def addReview(request,id):
+    try:
+        context={
+                'topic':'Dashboard',
+                'account': 'Home',
+                'recent_page': 'My Product',
+                }
+
+        message =""
+
+        if request.method=="POST":
+            print(request.POST)
+            if(request.POST.get('review')!=""):
+                customer = Customer.objects.filter(user=request.user).first()
+                customerImage = CustomerImage.objects.get(customer=customer)
+                product = Product.objects.get(id=id)
+               
+                Review.objects.create(
+                    customer = customer,
+                    image = customerImage,
+                    product = product,
+                    description = request.POST.get('review'),
+                )
+
+                return redirect('/product/shop/detail/{0}'.format(id))
+                
+            else:
+                message = "Review cannot be empty."
+
+
+        product = Product.objects.get(id=id)
+        product_img = ProductImage.objects.filter(product=product)
+        reviews = Review.objects.filter(product=product)
+
+        return render(request,'product/customer_detail.htm', {'context' : context,'product': product, 'product_img' : product_img, 'message':message, 'reviews':reviews})
+    except e:
+        print(e)
+        return redirect('/product/shop/')
+
 
    
