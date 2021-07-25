@@ -3,34 +3,19 @@
 
 {% block content %}
 {% include 'snippets/customer-header.htm'%}
+{% include 'snippets/page-header.htm' %}
 
-<section class="page-header">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="content">
-					<h1 class="page-name">Shop</h1>
-					<ol class="breadcrumb">
-						<li><a href="#">Home</a></li>
-						<li class="active">Shop</li>
-					</ol>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="products section">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-3">
-				<div class="widget">
+<section class="products section noBig" role="main">
+	<div class="container noBig">
+		<div class="row noBig">
+			<div class="col-md-3 noBig">
+				<div class="widget noBig">
 					<form method="post" action="/product/shop/">
 						{% csrf_token %}
-						<h4 class="widget-title">Category</h4>
-							<select class="form-control" name='product_type'>
-								<option key=''> Search by category </option>
-								<option key='medicine'  > Medicine</option>
+						<p class="widget-title ">Category</p>
+							<select class="form-control" name='product_type' aria-label="category">
+								<option key='search'> Search by category </option>
+								<option key='medicine'> Medicine</option>
 								<option key='device'>Device</option>
 								<option key='hygenic_product'>Hygenic Product </option>
 							</select>
@@ -43,29 +28,28 @@
 					</div>
 	            </div>
 			</div>
-			<div class="col-md-9">
+			<div class="col-md-9 noBig">
 				<!-- <div class="row"> -->
 					{% for image in images %}		
-						<div class="col-md-4">
-							<div class="product-item">
-								<div class="product-thumb">
-									<span class="bage">Sale</span>
+						<div class="col-md-4 noBig">
+							<div class="product-item noBig">
+								<div class="product-thumb noBig">
 									<img class="img-responsive" src="/media/{{image.image}}" alt={{image.description}} />
-									<div class="preview-meta">
-										<ul>
-											<li>
-												<span  data-toggle="modal" data-target="#product-modal_{{ image.product.id }}">
+									<div class="preview-meta noBig">
+										<ul class="noBig">
+											<li class="noBig">
+												<span  data-toggle="modal" data-target="#product-modal_{{  image.product.id  }}">
 													<i class="tf-ion-ios-search-strong"></i>
 												</span>
 											</li>
-											<li>
-												<a href="/cart/add/{{image.product.id}}"><i class="tf-ion-android-cart"></i></a>
+											<li class="noBig">
+												<a href="/cart/add/{{image.product.id}}" role="button" aria-label="add to cart"><i class="tf-ion-android-cart"></i></a>
 											</li>
 										</ul>
 									</div>
 								</div>
-								<div class="product-content">
-									<h4><a href="/product/shop/detail/{{image.product.id}}">{{image.product.title}}</a></h4>
+								<div class="product-content noBig">
+									<p class="title-text"><a href="/product/shop/detail/{{image.product.id}}">{{image.product.title}}</a></p>
 									<p class="price">$ {{image.product.price}}</p>
 								</div>
 							</div>
@@ -99,5 +83,4 @@
 {% endfor %}
 
 {% include 'snippets/footer2.htm'%}
-{% include 'snippets/chatbot.htm'%}
 {% endblock content %}

@@ -5,39 +5,39 @@
 {% include 'snippets/customer-header.htm'%}
 {% include 'snippets/page-header.htm' %}
 
-<div class="page-wrapper">
-   <div class="checkout shopping">
-      <div class="container">
-         <div class="row">
-            <div class="col-md-8">
-               <div class="block billing-details">
-                  <h4 class="widget-title">Billing Details</h4>
-                  <form class="checkout-form" method="POST" action="/order/checkout/{{id}}/">
+<div class="page-wrapper noBig" role="main">
+   <div class="checkout shopping noBig">
+      <div class="container noBig">
+         <div class="row noBig">
+            <div class="col-md-8 noBig">
+               <div class="block billing-details noBig">
+                  <h2 class="widget-title">Billing Details</h2>
+                  <form class="checkout-form noBig" method="POST" action="/order/checkout/{{id}}/">
                      {% csrf_token %}
-                     <div class="form-group">
+                     <div class="form-group noBig">
                         <label for="user_address">Full Name</label>
                         {{form.full_name}}
                         <p class="help">{{form.full_name.errors }}</p>
                      </div>
                      <!-- <div class="checkout-country-code clearfix"> -->
-                        <div class="form-group">
+                        <div class="form-group noBig">
                            <label for="user_address">Shipping Location</label>
                            {{form.shipping_location}}
                            <p class="help">{{form.shipping_location.errors }}</p>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group noBig">
                            <label for="user_address">Google Map URL</label>
                            {{form.map_url}}
                            <p class="help">{{form.map_url.errors }}</p>
                         </div>
                      <!-- </div> -->
                      <div class="checkout-country-code clearfix">
-                        <div class="form-group">
+                        <div class="form-group noBig">
                            <label for="user_post_code">Email</label>
                            {{form.email}}
                            <p class="help">{{form.email.errors }}</p>
                         </div>
-                        <div class="form-group" >
+                        <div class="form-group noBig" >
                            <label for="user_city">Contact Number</label>
                            {{form.contact_number}}
                            <p class="help">{{form.contact_number.errors }}</p>
@@ -50,17 +50,17 @@
                   </form>
                </div>
             </div>
-            <div class="col-md-4">
-               <div class="product-checkout-details">
-                  <div class="block">
-                     <h4 class="widget-title">Order Summary</h4>
+            <div class="col-md-4 noBig">
+               <div class="product-checkout-details noBig">
+                  <div class="block noBig">
+                     <h3 class="widget-title">Order Summary</h3>
 
                      {% for item in items %}
-                        <div class="media product-card">
-                           <a class="pull-left" href="product-single.htm">
+                        <div class="media product-card noBig">
+                           <a class="pull-left noBig" href="product-single.htm">
                               <img class="media-object" src="/media/{{item.image.image}}" alt="Image" />
                            </a>
-                           <div class="media-body">
+                           <div class="media-body noBig">
                               <h4 class="media-heading"><a href="product-single.htm">{{item.product.title}}</a></h4>
                               <p class="price">{{item.quantity}} x $ {{item.unit_price}}</p>
                               <span class="remove" >Remove</span>
@@ -68,9 +68,9 @@
                         </div>
                      {% endfor %}
 
-                     <ul class="summary-prices">
+                     <ul class="summary-prices noBig">
                      </ul>
-                     <div class="summary-total">
+                     <div class="summary-total noBig">
                         <span>Total</span>
                         <span>$ {{total}}</span>
                      </div>

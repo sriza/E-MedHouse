@@ -1,15 +1,66 @@
+/* no padding and margin */
+.no{
+    padding: 0;
+    margin: 0;
+}
+.mr > span{
+    margin-right: 38px !important;
+}
+.bttn{
+    font-weight: 700;
+    color: black;
+    font-size: 30px;
+    background-color: #949494;
+}
+.dom{
+    font-weight: 900;
+    font-family: cursive;
+    font-size: 38px;
+    letter-spacing: 2px;
+}
+/* order */
+.info-text{
+    font-size: 17px;
+    line-height: 20px;
+    padding: 2px 16px;
+    font-weight: 500;
+    border-radius: 12px;
+}
+/* /close dialog / */
+.modal-header .close{
+    opacity: 1 !important;
+}
+#medhouse{
+    color: black !important;
+}
+.title-text{
+    font-weight: 400;
+    font-size: 21px !important;
+}
+.black-bg{
+    color: black !important;
+}
+.white-bg{
+    color: white;
+    font-weight: bolder;
+    background-color: black;
+}
 .ml-85{
     margin-left: 85px;
+}
+.mr-20{
+    margin-right: 20px;
 }
 .clear-both{
     clear: both;
 }
 /* customer top side heade a tag */
 #top-side-account{
-position: relative;
-bottom: 25px;
-left: 246px;
-font-weight: bold;
+    position: relative;
+    float: right;
+    right: 173px;
+    bottom: 23px;
+    font-weight: bold;
 }
 #listOfAccount{
     float: right;
@@ -31,6 +82,10 @@ font-weight: bold;
 .navbar-header
 {
     height: 90px;
+}
+.text-f div label{
+    font-size: 15px;
+    font-weight: 800;
 }
 /* //doctor prescription */
 
@@ -165,17 +220,18 @@ font-size: 12px;
     color: rgb(255, 255, 0) !important;
 }
 
-#tick{
-    position: relative;
-    left: 48px;
-    color: blue;
+#tick{ 
+    position: fixed;
+    color: green;
+    right: 51px;
+    top: 61px;
     visibility: hidden;
 }
 #one , #two, #big1, #big2, #height1, #height2, #contrast1, #contrast2{
     visibility: hidden;
     color: blue;
 }
-#check-space, #check-big, #check-height, #check-font,#check-cursor{
+#check-space, #check-big, #check-height, #check-font,#check-cursor,#check-highlight{
     position: relative;
     color: blue;
 }
@@ -197,7 +253,7 @@ font-size: 12px;
     left: 45px;
     visibility: hidden;
 }
-#check-big, #check-cursor{
+#check-big, #check-cursor, #check-highlight{
     left: 45px;
     visibility: hidden;
 }
@@ -267,3 +323,5 @@ font-size: 12px;
     font-weight: bold;
     margin: 2px;
 }
+
+/* override css */

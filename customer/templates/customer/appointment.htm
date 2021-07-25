@@ -5,7 +5,7 @@
 {% include 'snippets/customer-header.htm'%}
 {% include 'snippets/page-header.htm' %}
 
-<section class="user-dashboard page-wrapper noBig">
+<section class="user-dashboard page-wrapper noBig" role="main">
     <div class="container noBig">
         <div class="row noBig">
             <div class="col-md-12 noBig">
@@ -16,14 +16,6 @@
                     <li class="noBig "><a class="active" href="/customer/appointment/">Lab Appointments</a></li>
                     <li class="noBig "><a href="/customer/completeappointment/">Completed Lab Appointments</a></li>
                 </ul>
-                <div class="mt-10 noBig">
-                    <nav class="navbar navbar-light bg-light text-center noBig">
-                        <form class="form-inline noBig">
-                          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                      </nav>
-                </div>
                 <div class="dashboard-wrapper user-dashboard noBig">
                     <div class="table-responsive noBig">
                         <h3>All Appointments</h3>
@@ -59,12 +51,12 @@
     </div>
 </section>
 <!-- .modal -->
-<div class="modal fade noBig" id="changeStatus">
+<div class="modal fade noBig" id="changeStatus" role="complementary" aria-label="status change">
     <div class="modal-dialog noBig">
         <div class="modal-content noBig">
             <div class="modal-header noBig">
                 <button type="button" class="close" data-dismiss="modal">×</button> 
-                <h4 class="modal-title">Change Status</h4>   
+                <h2 class="modal-title">Change Status</h2>   
                 <p class="btn btn-transparent mt-20" id="chooseMe">choose one of the status</p>                                                          
                 <hr>
                                  <!-- Elements -->

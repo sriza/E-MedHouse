@@ -1,6 +1,6 @@
 {% load static %}
 {%include 'snippets/prescription.htm' %}
-<!-- doctor 1 -->
+<!-- vender -->
 <hr>
 
 {% for vendor in vendor_img %}
@@ -8,10 +8,10 @@
         <div class="container noBig">
             <div class="row noBig">
                 <div class="col-xs-12 col-md-4 noBig">
-                    <img class="img-responsive mt-50" src="/media/{{vendor.image}}">
+                    <img class="img-responsive mt-50" src="/media/{{vendor.image}}" alt="vendor profile img">
                 </div>
                 <div class="col-xs-12 col-md-6 mt-30 noBig">
-                    <h3><a href="/customer/vendor-detail/{{vendor.vendor.id}}"> {{vendor.vendor.shop_name}}</a></h3>
+                    <h2><a href="/customer/vendor-detail/{{vendor.vendor.id}}"> {{vendor.vendor.shop_name}}</a></h2>
                     <p class="text-info">{{vendor.vendor.description}}</p>
                     <dl class="dl-horizontal noBig">
                         <dt>Name:</dt>

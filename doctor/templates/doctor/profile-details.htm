@@ -6,22 +6,22 @@
 {% include 'snippets/page-header.htm' %}
 
 <section class="user-dashboard page-wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+    <div class="container noBig">
+        <div class="row noBig">
+            <div class="col-md-12 noBig">
                 <ul class="list-inline dashboard-menu text-center">
-                    <li><a href="/doctor/dashboard/">Dashboard</a></li>
-                    <li><a href="/doctor/order/">Appointments</a></li>
-                    <li><a class="active" href="/doctor/profile-details/">Profile Details</a></li>
+                    <li class="noBig"><a href="/doctor/dashboard/">Dashboard</a></li>
+                    <li class="noBig"><a href="/doctor/order/">Appointments</a></li>
+                    <li class="noBig"><a class="active" href="/doctor/profile-details/">Profile Details</a></li>
                 </ul>
-                <div class="dashboard-wrapper dashboard-user-profile">
-                    <div class="media">
-                        <div class="pull-left text-center" href="#!">
+                <div class="dashboard-wrapper dashboard-user-profile noBig">
+                    <div class="media noBig">
+                        <div class="pull-left text-center noBig" href="#!">
                             <img class="media-object user-img" src="/media/{{doctor_img.image}}" alt="Profile image of {{doctor.shop_name}}">
                             <a href="/doctor/doctorupdate/{{doctor.id}}" class="btn btn-main mt-20" > Edit <i class="tf-ion-edit"></i></a>
                         </div>
-                        <div class="media-body">
-                            <ul class="user-profile-list">
+                        <div class="media-body noBig">
+                            <ul class="user-profile-list noBig">
                                 <h3 class="font-weight-bold ">doctor Details</h3>
                                 <li><span>Full Name:</span>{{doctor.full_name}}</li>
                                 <li><span>Gender:</span>{{doctor.gender}}</li>
@@ -38,4 +38,40 @@
     </div>
 </section>
 {% include 'snippets/copyright-footer.htm'%}
+
+<!-- .modal -->
+<div class="modal fade noBig" id="MyProfileModal">
+    <div class="modal-dialog noBig">
+        <div class="modal-content noBig">
+            <div class="modal-header noBig">
+                <button type="button" class="close" data-dismiss="modal">×</button> 
+                <h4 class="modal-title">
+                    Edit your profile
+                </h4>                                                             
+                <hr>
+                <div class="media dashboard-wrapper noBig">
+                    <div class="text-center noBig" href="#!">
+                        <img class="media-object user-img" id="profile" src="/media/{{doctor_img.image}}"  alt="Profile image of {{doctor.shop_name}}">
+                        <a href="#x" class="btn btn-transparent mt-20">Change Image</a>
+                    </div>
+                <dl class="dl-horizontal details-list noBig">
+                    <dt class="mt-10">Full Name:</dt>
+                    <dd><input type="text" class="form-control"  placeholder="hari lal yadhab"></dd>
+                    <dt class="mt-10">user Name:</dt>
+                    <dd><input type="text" class="form-control"  placeholder="epharmacy"></dd>
+                    <dt class="mt-10">Email:</dt>
+                    <dd><input type="email" class="form-control"  placeholder="hari.yadhab1234@gmail.com"></dd>
+                    <dt class="mt-10">Address:</dt>
+                    <dd><input type="text" class="form-control"  placeholder="balkumari"></dd>
+                    <dt class="mt-10">Contact No:</dt>
+                    <dd><input type="text" class="form-control"  placeholder="9803678422"></dd>
+                </dl>
+            </div>                         
+            <div class="modal-footer noBig">
+                <button class="btn-css btn btn-primary">Update</button>
+                <button type="button" class="btn-css btn btn-default" data-dismiss="modal">Close</button>                               
+            </div>
+        </div> 
+    </div>                                                                      
+</div>  
 {% endblock content %}

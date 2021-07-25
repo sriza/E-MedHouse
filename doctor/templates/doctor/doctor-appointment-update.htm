@@ -5,14 +5,14 @@
 {% include 'snippets/customer-header.htm'%}
 {% include 'snippets/page-header.htm' %}
 
-<div class="page-wrapper">
-   <div class="checkout shopping">
-      <div class="container">
-         <div class="row">
-            <div class="col-md-8">
-               <div class="block ">
+<div class="page-wrapper noBig">
+   <div class="checkout shopping noBig">
+      <div class="container noBig">
+         <div class="row noBig">
+            <div class="col-md-8 noBig">
+               <div class="block noBig">
                   <h4 class="widget-title">Appointment Form</h4>
-                  <form class="checkout-form" method="POST" action="/doctor/appointment/update/{{doc_image.doctor.id}}/">
+                  <form class="checkout-form noBig" method="POST" action="/doctor/appointment/update/{{doc_image.doctor.id}}/">
                      {% csrf_token %}
                      <div class="form-group">
                         <label for="user_address">Patient Name</label>
@@ -24,7 +24,7 @@
                            {{form.address}}
                            <p class="help">{{form.address.errors }}</p>
                         </div>
-                        <div class="checkout-country-code clearfix">
+                        <div class="checkout-country-code clearfix noBig">
                            <div class="form-group">
                               <label for="user_post_code">Email</label>
                               {{form.email}}
@@ -51,24 +51,24 @@
                   </form>
                </div>
             </div>
-            <div class="col-md-4">
-               <div class="product-checkout-details">
-                  <div class="block">
+            <div class="col-md-4 noBig">
+               <div class="product-checkout-details noBig">
+                  <div class="block noBig">
                      <h4 class="widget-title">Appointment Summary</h4>
-                        <div class="media product-card">
+                        <div class="media product-card noBig">
                            <a class="pull-left" href="product-single.htm">
                               <img class="media-object" src="/media/{{doc_image.image}}" alt="doc_image.doctor.full_name" />
                            </a>
-                           <div class="media-body">
+                           <div class="media-body noBig">
                               <h4 class="media-heading"><a href="product-single.htm">{{doc_image.doctor.full_name}}</a></h4>
                               <p class="price"> {{doc_image.doctor.specialist}}</p>
                               <p class="price"> $ {{doc_image.doctor.charge}}</p>
                            </div>
                         </div>
 
-                     <ul class="summary-prices">
+                     <ul class="summary-prices noBig">
                      </ul>
-                     <div class="summary-total">
+                     <div class="summary-total noBig">
                         <span>Total</span>
                         <span>$ {{doc_image.doctor.charge}}</span>
                      </div>

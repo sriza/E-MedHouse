@@ -44,7 +44,7 @@ class DoctorForm(forms.ModelForm):
     description      = forms.CharField(label='Description', widget=forms.Textarea(attrs={'rows':5, 'cols':20, 'class':'form-control','placeholder': 'Write about yourself'}))
     available_day    = forms.CharField(label='Available Day', widget=forms.Textarea(attrs={'class':'form-control' ,'placeholder': 'Enter your available days separated by commas'}))
     specialist       = forms.CharField(label='Specialist On', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your specialized on'}))
-    gender           = forms.CharField(label='Gender', widget=forms.Select(choices=GENDER_TYPES,attrs={'class':'form-control','placeholder': 'Enter your gender'}))
+    gender           = forms.CharField(label='Gender', widget=forms.Select(choices=GENDER_TYPES,attrs={'class':'form-control','placeholder': 'Enter your gender','aria-labelledby' :'state'}))
     nmc_number       = forms.CharField(label='NMC Number', widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Enter your NMC Number'}))
     charge           = forms.FloatField(label='Charge', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your charge fee'}))
     contact_number   = forms.IntegerField(label='Contact Number', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your contact number'}))
@@ -101,7 +101,7 @@ class DoctorImageForm(forms.ModelForm):
     class Meta:
         model = DoctorImage
         fields = ('image',)
-    image = forms.ImageField(required=False)
+        image = forms.ImageField(required=False)
 
 class DoctorImageEditForm(forms.ModelForm):
     class Meta:

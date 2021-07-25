@@ -5,7 +5,7 @@
 {% include 'snippets/customer-header.htm'%}
 {% include 'snippets/page-header.htm' %}
 
-<section class="user-dashboard page-wrapper noBig">
+<section class="user-dashboard page-wrapper noBig" role="main">
     <div class="container noBig">
         <div class="row noBig">
             <div class="col-md-12 noBig">
@@ -16,14 +16,6 @@
                     <li class="noBig"><a href="/customer/appointment/">Lab Appointments</a></li>
                     <li class="noBig "><a href="/customer/completeappointment/">Completed Lab Appointments</a></li>
                 </ul>
-                <div class="mt-10 noBig">
-                    <nav class="navbar navbar-light bg-light text-center noBig">
-                        <form class="form-inline noBig">
-                          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                      </nav>
-                </div>
                 <div class="dashboard-wrapper user-dashboard noBig">
                     <div class="table-responsive noBig">
                         <table class="table noBig">
@@ -35,7 +27,7 @@
                                     <th>Appointment Fixed Date</th>
                                     <th>Total Price</th>
                                     <th>Status</th>
-                                    <th></th>
+                                    <th>Edit</th>
                                 </tr>
                             </thead>
                             <tbody class="noBig">
@@ -46,12 +38,14 @@
                                         <td>{{appointment.timestamp}}</td>
                                         <td>{{appointment.fixed_on }}</td>
                                         <td>${{appointment.doctor.charge}}</td>
-                                        <td id="lol"><span class="label label-info">{{appointment.status}}</span></td>
+                                        <td class="lol text-center noBig">
+                                            <span class="label-info info-text noBig">{{appointment.status}}</span>
+                                        </td>
                                         <td>
                                             <!-- {{appointment.payment}} -->
                                             {% if appointment.payment != True %}
-                                                <a class="btn btn-default" href="/doctor/appointment/cancel/{{appointment.id}}" > Cancel </a>
-                                                <a class="btn btn-default" href="/doctor/payment/{{appointment.id}}" > Make Payment </a>
+                                                <a href="/doctor/appointment/cancel/{{appointment.id}}" class="btn btn-default" role="button" aria-label="cancel">Cancel </a> <br/>
+                                                <a href="/doctor/payment/{{appointment.id}}" class="btn btn-default" role="button" aria-label="payment">Make Payment </a>
                                             {% endif %}
                                             <span class="btn btn-default" data-target="#changeStatus_{{ appointment.id }}" data-toggle="modal">Details</span>
                                         </td>
@@ -86,21 +80,19 @@
 <!-- .modal -->
 
 {% for appointment in appointments%}
-<div class="modal fade noBig" id="changeStatus_{{ appointment.id }}">
+<div  role="complementary" aria-label="appointment" class="modal fade noBig" id="changeStatus_{{ appointment.id }}">
     <div class="modal-dialog noBig">
         <div class="modal-content product-checkout-details noBig">
             <div class="modal-header block noBig">
                 <button type="button" class="close" data-dismiss="modal">×</button> 
-                <h4 class="widget-title">Detail of appointment</h4> 
+                <h2 class="widget-title">Detail of appointment</h2> 
                     <div class="media-body noBig">
-                        <h4 class="media-heading"><a href="product-single.htm">{{appointment.doctor.full_name}}</a></h4>
+                        <h3 class="media-heading"><a href="product-single.htm">{{appointment.doctor.full_name}}</a></h3>
                         <p class="price"> {{appointment.doctor.specialist}}</p>
                         <p class="price"> {{appointment.doctor.contact_number}}</p>
                     </div>
                 <hr>
                 <div class="media product-card noBig">
-                    <a class="pull-left" href="product-single.htm">
-                    </a>
                     <div class="media-body noBig">
                         <h4 class="media-heading"><a>Patient's Name :</a></h4>
                        <p class="price">{{appointment.patient_name}}</p>

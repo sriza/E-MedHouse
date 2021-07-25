@@ -7,7 +7,7 @@
 
             <div class="chat-header" onclick="openChatBubble()">
                 <div class="user-details">
-                    <img alt="gravater" class="dp" src={% static '/images/favicon.png' %}>
+                    <img alt="logo" class="dp" src={% static '/images/favicon.png' %}>
                     <div class="detail-txt">
                         <span class="username">
                             MedHouse
@@ -23,7 +23,7 @@
             </div>
 
             <div class="chat-screen">
-            <div class="chat">
+            <div class="chat" role="log">
                 <!-- BEGINING OF MESSAGE-->
                 <div class="container1 fixed rev">
                 <ul class="message-body">
@@ -38,10 +38,10 @@
                 <div class="bottom">
                     <form class="form">
                     <div class="sendMess">
-                        <button class="attachment" aria-label="user-icon"><i class="tf-ion-person"></i></button>
-                        <textarea id="text" name="" cols="20" rows="3" placeholder="enter your message">
+                        <button role="button" class="attachment" aria-label="user-icon"><i class="tf-ion-person"></i></button>
+                        <textarea role="textbox" id="text" name="" cols="20" rows="3" placeholder="enter your message">
                         </textarea>
-                        <button class="send" aria-label="send button"><i class="tf-ion-android-send"></i></button>
+                        <button role="button" class="send" aria-label="send button"><i class="tf-ion-android-send"></i></button>
                     </div>
                     </form>
                 </div>

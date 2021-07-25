@@ -2,15 +2,15 @@
 {% load static %}
 
 {% block content %}
-<section class="signin-page account">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-          <div class="block text-center">
-            <a href="/">
+<section class="signin-page account noBig">
+    <div class="container noBig">
+      <div class="row noBig">
+        <div class="col-md-10 col-md-offset-1 noBig">
+          <div class="block text-center noBig">
+            <a href="/" class="noBig">
               <img alt="gravater" class="dp" src={% static '/images/favicon.png' %}>
            </a>
-            <div class="detail-txt">
+            <div class="detail-txt noBig">
               <a href="/">
                 <span class="username">
                    Med-House
@@ -19,7 +19,7 @@
            </div>
             <h3 class="text-center">Create Your Account</h3>
           
-            <form enctype="multipart/form-data" class="text-left clearfix" method="POST" action="/doctor/signin/">
+            <form enctype="multipart/form-data" class="text-left clearfix noBig" method="POST" action="/doctor/signin/">
               {% csrf_token %}
               
               <div class="form-group">
@@ -62,7 +62,7 @@
                 {{ form.description}}
                 <p class="help">{{ form.description.errors }}</p>
               </div>
-              <div class="form-row clear-both">
+              <div class="form-row clear-both noBig">
                 <div class="form-group col-md-6 leftside">
                   <label for="exampleInputContactNumber">Contact Number</label>
                   {{ form.contact_number}}
@@ -74,7 +74,7 @@
                   <p class="help">{{ form.nmc_number.errors }}</p>
                 </div>
               </div>
-              <div class="form-row clear-both">
+              <div class="form-row clear-both noBig">
                 <div class="form-group col-md-6 leftside">
                   <label for="exampleInputAddress">Address</label>
                   {{ form.address}}
@@ -86,7 +86,7 @@
                   <p class="help">{{ form.charge.errors }}</p>
                 </div>
               </div>
-              <div class="form-row clear-both">
+              <div class="form-row clear-both noBig">
                 <div class="form-group col-md-6 leftside">
                   <label for="exampleInputPassword1">Password</label>
                   {{ form.password}}
@@ -104,16 +104,18 @@
                 <p class="help">{{ img_form.image.errors }}</p>
               </div>
               <hr>
-              <div class="form-check text-center">
+              <div class="form-check text-center noBig">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
                 <label class="form-check-label" for="exampleCheck1">Accept all terms and condition</label>
               </div>
-              <div class="text-center">
+              <div class="text-center noBig">
                 <button type="submit" class="btn btn-main text-center">Register Now</button>
               </div>
             </form>
-            <div class="text-center">
-              <p class="mt-20">Already have an account ?<a href="/doctor/login/"> Login</a></p>
+            <div class="text-center noBig">
+              <p class="mt-20 noBig"><span> Already have an account ?</span><a href="/doctor/login/"> Login</a></p>
+              <br/>
+              <br/>
               <p><a href="forget-password.htm"> Forgot your password?</a></p>
             </div>
 

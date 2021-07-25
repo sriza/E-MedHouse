@@ -6,25 +6,26 @@
 {% include 'snippets/page-header.htm' %}
 
 {%include 'snippets/prescription.htm' %}
-<section class="user-dashboard page-wrapper" style="padding: 0px" >
-    <div class="container">
+<section class="user-dashboard page-wrapper noBig"  style="padding: 0px">
+    <div class="container noBig">
 
-        <div class="dashboard-wrapper dashboard-user-profile">
-            <div class="col-xs-12 col-md-4 text-center">
+        <div class="dashboard-wrapper dashboard-user-profile noBig">
+            <div class="col-xs-12 col-md-4 text-center noBig">
                 <img class="img-responsive mt-20" src="/media/{{lab_img.image}}" alt="{{lab_img.description}}">
                     <!-- prescription Doctor -->   
-                    <!-- <span class="btn" ><a href="/service/appointment/" class="btn btn-main btn-small btn-round-full mt-20 ml-85" data-target="#" data-toggle="" id=""><i class="tf-ion-ios-upload-outline"></i> Book appointment</a></button> -->
+                    <span class="li noBig" ><a href="#!" class="btn btn-main btn-small btn-round-full mt-40" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></button>                 
             </div>
-                <div class="media-body">
-                    <h3 class="font-weight-bold text-uppercase">{{labs.lab_name}}</h3>
-                    <p class="text-info mt-10">{{labs.business_name}}</p>
-                    <p class="mt-30">{{labs.description}}</p>
-                    <ul class="user-profile-list">
-                        <li><span>Full Name:</span>{{labs.full_name}}</li>
-                        <li><span>Email:</span>{{labs.email}}</li>
-                        <li><span>Phone:</span>{{labs.contact_number}}</li>
-                        <li><span>Address:</span>{{labs.address}}</li>
-                        <li><span>No. of Branches:</span>{{labs.branches}}</li>
+                <div class="media-body noBig">
+                    <h3 class="font-weight-bold text-uppercase">{{lab.lab_name}}</h3>
+                    <p class="text-info mt-10">{{lab.business_name}}</p>
+                    <p class="mt-30">{{lab.description}}</p>
+                    <ul class="user-profile-list noBig">
+                        <li><span>Full Name:</span>{{lab.full_name}}</li>
+                        <li><span>services:</span>{{lab.services}}</li>
+                        <li><span>Email:</span>{{lab.email}}</li>
+                        <li><span>Phone:</span>{{lab.contact_number}}</li>
+                        <li><span>Address:</span>{{lab.address}}</li>
+                        <li><span>No. of Branches:</span>{{lab.branches}}</li>
                     </ul>
                 </div>
             </div>
@@ -67,10 +68,6 @@
 
     </div>
 </section>
-
-{% for service in services %}		
-
-{% endfor %}
 
 {% include 'snippets/copyright-footer.htm'%}
 {% include 'snippets/chatbot.htm'%}

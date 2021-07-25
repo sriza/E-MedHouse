@@ -5,14 +5,13 @@
 {% include 'snippets/header.htm'%}
 {%include 'snippets/prescription.htm' %}
 <!-- slider -->
-<div class="hero-slider noBig">
+<div class="hero-slider noBig" role="figure">
 	<div class="slider-item th-fullpage hero-area noBig" style="background-image: url('static/images/slider/slider-1.jpg');">
 		<div class="container noBig">
 			<div class="row noBig">
 				<div class="col-lg-8 text-center noBig">
-					<p class="noHeight" data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">SHOP</p>
+					<span class="noHeight white-bg higher-contrast" data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">SHOP</span>
 					<h1 class="noHeight" data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Get experience of your <br> online Pharmacy.</h1>
-					<a class="noHeight" data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn noBig" href="/customer/login">Shop Now</a>
 				</div>
 			</div>
 		</div>
@@ -21,9 +20,8 @@
 		<div class="container noBig">
 			<div class="row noBig">
 				<div class="col-lg-8 text-left noBig">
-					<p class="noHeight" data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">DOCTOR</p>
+					<span class="noHeight white-bg higher-contrast" data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">DOCTOR</span>
 					<h1 class="noHeight" data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Book for doctor Consultation<br> with just one click.</h1>
-					<a class="noHeight" data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn noBig" href="/doctor">Doctor Consultation</a>
 				</div>
 			</div>
 		</div>
@@ -32,16 +30,15 @@
 		<div class="container noBig">
 			<div class="row noBig">
 				<div class="col-lg-8 text-right noBig">
-					<p class="noHeight"data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">LAB</p>
+					<span class="noHeight white-bg"data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">LAB</span>
 					<h1 class="noHeight"data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">lab reports and booking are <br> just a form away.</h1>
-					<a class="noHeight"data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn noBig" href="#">lab test</a>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<section class="product-category section">
+<section role="main" class="product-category section">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -51,7 +48,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="category-box">
-					<a href="#!">
+					<a aria-label="device category" href="#!">
 						<img src= {% static 'images/shop/category/category-1.jpg' %} alt="" />
 						<div class="content">
 							<h3>Device</h3>
@@ -60,7 +57,7 @@
 					</a>	
 				</div>
 				<div class="category-box">
-					<a href="#!">
+					<a aria-label="hygenic category" href="#!">
 						<img src= {% static 'images/shop/category/category-2.jpg' %} alt="" />
 						<div class="content">
 							<h3>Hygenic</h3>
@@ -71,7 +68,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="category-box category-box-2">
-					<a href="#!">
+					<a aria-label="medicine category" href="#!">
 						<img src= {% static 'images/shop/category/category-3.jpg' %} alt="" />
 						<div class="content">
 							<h3>Medicine</h3>
@@ -84,7 +81,7 @@
 	</div>
 </section>
 
-<section class="products section bg-gray">
+<section role="complementary" class="products section bg-gray">
 	<div class="container">
 		<div class="row">
 			<div class="title text-center">
@@ -93,26 +90,25 @@
 		</div>
 		<div class="row">
 			{% for image in images%}
-				<div class="col-md-4">
-					<div class="product-item">
-						<div class="product-thumb">
-							<span class="bage">Sale</span>
+				<div class="col-md-4 noBig" role="document">
+					<div class="product-item noBig">
+						<div class="product-thumb noBig">
 							<img class="img-responsive" src= "/media/{{image.image}}"  alt={{image.description}} />
-							<div class="preview-meta">
-								<ul>
+							<div class="preview-meta noBig">
+								<ul role="list">
 									<li>
 										<span  data-toggle="modal" data-target="#product-modal_{{ forloop.counter0 }}">
 											<i class="tf-ion-ios-search-strong"></i>
 										</span>
 									</li>
 									<li>
-										<a href="/customer/login"><i class="tf-ion-android-cart"></i></a>
+										<a aria-label="shop cart" href="/customer/login"><i class="tf-ion-android-cart"></i></a>
 									</li>
 								</ul>
 							</div>
 						</div>
-						<div class="product-content">
-							<h4><a href="/customer/login">{{image.product.title}}</a></h4>
+						<div class="product-content noBig">
+							<h3><a aria-label="added cart product" href="/customer/login">{{image.product.title}}</a></h3>
 							<p class="price">$ {{image.product.price}}</p>
 						</div>
 					</div>
@@ -137,7 +133,7 @@ Start Call To Action
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<div class="title">
-					<h2>SUBSCRIBE TO NEWSLETTER</h2>
+					<h3>SUBSCRIBE TO NEWSLETTER</h3>
 					<p>Get weekly newsletter from E-MedHouse, <br> its carry different updates on application and sales</p>
 				</div>
 				<div class="col-lg-6 col-md-offset-3">

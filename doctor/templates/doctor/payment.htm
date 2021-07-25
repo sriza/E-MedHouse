@@ -5,13 +5,13 @@
 {% include 'snippets/customer-header.htm'%}
 {% include 'snippets/page-header.htm' %}
 
-<div class="page-wrapper">
-   <div class="checkout shopping">
-      <div class="container">
-         <div class="row">
-            <div class="col-md-8">
-               <div class="block ">
-                  <h4 class="widget-title">PayPal Payment</h4>
+<div class="page-wrapper noBig" role="main">
+   <div class="checkout shopping noBig">
+      <div class="container noBig">
+         <div class="row noBig">
+            <div class="col-md-8 noBig">
+               <div class="block noBig">
+                  <h2 class="widget-title">PayPal Payment</h2>
                   <script src="https://www.paypal.com/sdk/js?client-id=AeA5WW_9SWTOqVniAjtCuBTGwE_Vx6HLerZAjmFDVzTPDU-yigjgoAaULM_f5-bb4g7FO_X93mTi9nNY"></script>
 
                      <div id="paypal-button-container"></div>
@@ -45,24 +45,24 @@
                   </script>
                </div>
             </div>
-            <div class="col-md-4">
-               <div class="product-checkout-details">
-                  <div class="block">
-                     <h4 class="widget-title">Appointment Summary</h4>
-                        <div class="media product-card">
+            <div class="col-md-4 noBig">
+               <div class="product-checkout-details" noBig>
+                  <div class="block noBig">
+                     <h3 class="widget-title">Appointment Summary</h3>
+                        <div class="media product-card noBig">
                            <a class="pull-left" href="product-single.htm">
                               <img class="media-object" src="/media/{{doc_image.image}}" alt="doc_image.doctor.full_name" />
                            </a>
-                           <div class="media-body">
+                           <div class="media-body noBig">
                               <h4 class="media-heading"><a href="product-single.htm">{{doc_image.doctor.full_name}}</a></h4>
                               <p class="price"> {{doc_image.doctor.specialist}}</p>
                               <p class="price"> $ {{doc_image.doctor.charge}}</p>
                            </div>
                         </div>
 
-                     <ul class="summary-prices">
+                     <ul class="summary-prices noBig">
                      </ul>
-                     <div class="summary-total">
+                     <div class="summary-total noBig">
                         <span>Total</span>
                         <span>$ {{doc_image.doctor.charge}}</span>
                      </div>
