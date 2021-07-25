@@ -63,6 +63,25 @@
         </div>
     </div>
 </section>
+
+<div class="flex-pagination mb-3">
+    <div class="step-links">
+        {% if orders.has_previous %}
+            <span id="first1"><a href="?page=1">&laquo; first</a></span>
+           <span id="previous1"><a href="?page={{ orders.previous_page_number }}">previous</a></span>
+        {% endif %}
+    
+        <span id="current1">
+            Page {{ orders.number }} of {{ orders.paginator.num_pages }}.
+        </span>
+     
+        {% if orders.has_next %}
+            <a href="?page={{ orders.next_page_number }}">next</a>
+            <a href="?page={{ orders.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </div>
+</div>
+
 <!-- .modal -->
 {% regroup order_items by order as o_items %}
 

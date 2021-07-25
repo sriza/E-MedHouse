@@ -77,6 +77,20 @@
                 {{img_form.image}}
                 {{img_form.image.errors}}   
               </div>
+              <div class="form-group">
+                <label for="CurrentImages">Current Images</label>
+                <br>
+                {% for image in images %}		
+                  <div class="col-md-10">
+                    <div class="product-item">
+                      <div class="product-thumb">
+                        <img class="img-responsive" src="/media/{{image.image}}" alt={{image.description}} />
+                      </div>
+                    </div>
+                  </div>	
+              {% endfor %}
+                  
+              </div>
               <hr>
               <div class="text-center">
                 <button type="submit" class="btn btn-main text-center" >Update Product</button>

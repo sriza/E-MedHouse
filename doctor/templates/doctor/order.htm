@@ -73,6 +73,24 @@
     </div>
 </section>
 
+<div class="flex-pagination mb-3">
+    <div class="step-links">
+        {% if appointments.has_previous %}
+            <span id="first1"><a href="?page=1">&laquo; first</a></span>
+           <span id="previous1"><a href="?page={{ appointments.previous_page_number }}">previous</a></span>
+        {% endif %}
+    
+        <span id="current1">
+            Page {{ appointments.number }} of {{ appointments.paginator.num_pages }}.
+        </span>
+     
+        {% if appointments.has_next %}
+            <a href="?page={{ appointments.next_page_number }}">next</a>
+            <a href="?page={{ appointments.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </div>
+</div>
+
 {% for appointment in appointments%}
 <div class="modal fade" id="changeStatus_{{ forloop.counter0 }}">
     <div class="modal-dialog">

@@ -16,8 +16,9 @@
                 </ul>
                 <div style="margin-top: 20px;">
                     <nav class="navbar navbar-light bg-light text-center">
-                        <form class="form-inline">
-                          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <form class="form-inline" method="POST" action="/vendor/order/">
+                            {% csrf_token %}
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search by name or contact number" name="title" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                       </nav>
@@ -29,6 +30,7 @@
                                 <tr>
                                     <th>Order ID</th>
                                     <th>Customer</th>
+                                    <th>Contact Number</th>
                                     <th>Date</th>
                                     <th>Items</th>
                                     <th>Total Price</th>
@@ -41,6 +43,7 @@
                                     <tr>
                                         <td>#{{order.id}}</td>
                                         <td>{{order.customer.full_name}}</td>
+                                        <td>{{order.customer.contact_number}}</td>
                                         <td>{{order.timestamp}}</td>
                                         <td>{{order.items}}</td>
                                         <td>${{order.total}}</td>
@@ -64,6 +67,25 @@
         </div>
     </div>
 </section>
+
+<div class="flex-pagination mb-3">
+    <div class="step-links">
+        {% if orders.has_previous %}
+            <span id="first1"><a href="?page=1">&laquo; first</a></span>
+           <span id="previous1"><a href="?page={{ orders.previous_page_number }}">previous</a></span>
+        {% endif %}
+    
+        <span id="current1">
+            Page {{ orders.number }} of {{ orders.paginator.num_pages }}.
+        </span>
+     
+        {% if orders.has_next %}
+            <a href="?page={{ orders.next_page_number }}">next</a>
+            <a href="?page={{ orders.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </div>
+</div>
+
 <!-- .modal -->
 {% regroup order_items by order as o_items %}
 

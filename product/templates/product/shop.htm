@@ -37,6 +37,10 @@
 							<input class="form-control mr-sm-2" type="search" placeholder="Search by name of product" aria-label="Search" name="title">
 							<button class="btn btn-outline-success my-2 my-sm-0 mt-10" type="submit">Search</button>
                     </form>
+					<div>
+						<h4 class="widget-title">Searched by:</h4>
+						{{title}}<br> {{category}}
+					</div>
 	            </div>
 			</div>
 			<div class="col-md-9">
@@ -50,7 +54,7 @@
 									<div class="preview-meta">
 										<ul>
 											<li>
-												<span  data-toggle="modal" data-target="#product-modal_{{ forloop.counter0 }}">
+												<span  data-toggle="modal" data-target="#product-modal_{{ image.product.id }}">
 													<i class="tf-ion-ios-search-strong"></i>
 												</span>
 											</li>
@@ -71,6 +75,24 @@
 		</div>
 	</div>
 </section>
+
+<div class="flex-pagination mb-3">
+    <div class="step-links">
+        {% if images.has_previous %}
+            <span id="first1"><a href="?page=1">&laquo; first</a></span>
+           <span id="previous1"><a href="?page={{ images.previous_page_number }}">previous</a></span>
+        {% endif %}
+    
+        <span id="current1">
+            Page {{ images.number }} of {{ images.paginator.num_pages }}.
+        </span>
+     
+        {% if images.has_next %}
+            <a href="?page={{ images.next_page_number }}">next</a>
+            <a href="?page={{ images.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </div>
+</div>
 
 {% for image in images %}		
 {% include 'snippets/product-model.htm' %}

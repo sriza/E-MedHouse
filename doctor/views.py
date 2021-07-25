@@ -5,14 +5,13 @@ from django.http import HttpResponseRedirect
 from django.utils import timezone
 from django.db import transaction
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 
 from .models import Doctor, DoctorAppointment, DoctorImage
 from customer.models import Customer
 from vendor.models import User,VendorImage, Vendor
 from .forms import LoginForm, doctorForm, DoctorImageForm, DoctorAppointmentForm, DoctorAppointmentEditForm
 
-
-# Create your views here.
 
 def doctorLogin(request):
     if request.user.is_authenticated and request.user.role==3:
@@ -51,7 +50,7 @@ def signin(request):
             doctor.save()
 
             img             = img_form.save(commit=False)
-            img.doctor    = doctor
+            img.doctor      = doctor
             img.description = request.POST.get("full_name")
             img.save()
     
@@ -95,16 +94,6 @@ def profileDetails(request):
     except:
         return render(request,'medicalapp/index.htm')
 
-
-@login_required
-def order(request):
-    context={
-                'topic':'Dashboard',
-                'account': 'Home',
-                'recent_page': 'Order List',
-            }
-    return render(request, 'doctor/order.htm', {'context' : context})
-
 @login_required
 def doctorLogout(request):
     logout(request)
@@ -137,7 +126,6 @@ def appointment(request,id):
         except e:
             return render(request,'customer/index.htm')    
 
-    
     return render(request, 'doctor/doctor-appointment.htm', {'context' : context, 'form':form, 'doc_image':doctor_image}) 
 
 @login_required
@@ -179,7 +167,11 @@ def appointmentList(request):
     'recent_page': 'Appointment List',
     }
  
-    appointments = DoctorAppointment.objects.filter(doctor=Doctor.objects.get(user=request.user), payment=True) 
+    appointment_list = DoctorAppointment.objects.filter(doctor=Doctor.objects.get(user=request.user), payment=True) 
+    paginator = Paginator(appointment_list, 10)
+
+    page_number = request.GET.get('page')
+    appointments = paginator.get_page(page_number)
 
     return render(request, 'doctor/order.htm', {'context' : context, 'appointments': appointments,'today' :timezone.now() })
 
@@ -190,8 +182,7 @@ def updateAppointment(request,id):
                 'account': 'Home',
                 'recent_page': 'Appointment Booking Form',
                 }
-    object = DoctorAppointment.objects.get(id=id)   
-    print(object)         
+    object = DoctorAppointment.objects.get(id=id)        
 
     form = DoctorAppointmentEditForm(instance=object, data=request.POST or None)
     doctor_image = DoctorImage.objects.get(doctor__id=id)
@@ -208,7 +199,6 @@ def updateAppointment(request,id):
         except e:
             return render(request,'customer/index.htm')    
 
-    
     return render(request, 'doctor/doctor-appointment-update.htm', {'context' : context, 'form':form, 'doc_image':doctor_image})
 
 @login_required

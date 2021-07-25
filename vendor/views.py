@@ -1,6 +1,8 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator
+from django.db.models import Q
 
 from django.db import transaction
 from product.models import Product, ProductImage
@@ -16,6 +18,8 @@ from datetime import date, datetime
 
 def vendorLogin(request):
     if request.user.is_authenticated and request.user.role==1:
+        return redirect('/vendor/dashboard/')
+    elif request.user.is_authenticated and request.user.role==3:
         return redirect('/vendor/dashboard/')
     else:
         form = LoginForm(request.POST or None)
@@ -137,9 +141,7 @@ def dashboard(request):
         print(vendor_img)
 
         expiry = Product.objects.filter(vendor=vendor, expiry_date__lt=datetime.today())
-        print(expiry)
         finishing = Product.objects.filter(vendor=vendor, quantity__lt = 5)
-        print(finishing)
 
         return render(request, 'vendor/dashboard.htm', {'context':context, 'vendor': vendor, 'vendor_img' : vendor_img, 'expiry' : expiry, 'finishing' : finishing})
     except e:
@@ -188,8 +190,22 @@ def order(request):
     'recent_page': 'Order List',
     }
  
-    orders = Order.objects.filter(vendor=Vendor.objects.get(user=request.user), payment=True) 
+    if request.method == "POST" :
+        title = request.POST.get('title')
+        
+        if title:
+            orders_list = Order.objects.filter((Q(customer__full_name__contains = title)| Q(customer__contact_number__contains = title)) & Q(vendor=Vendor.objects.get(user=request.user)) & Q(payment=True)) 
+        else :
+            orders_list = Order.objects.filter(vendor=Vendor.objects.get(user=request.user), payment=True) 
+    
+    else :
+        orders_list = Order.objects.filter(vendor=Vendor.objects.get(user=request.user), payment=True) 
+    
     orders_objects = OrderItem.objects.filter(order__vendor=Vendor.objects.get(user=request.user)) 
+    paginator = Paginator(orders_list, 10)
+
+    page_number = request.GET.get('page')
+    orders = paginator.get_page(page_number)
 
     return render(request, 'vendor/order.htm', {'context' : context, 'orders': orders, 'order_items' : orders_objects})
 
@@ -200,7 +216,6 @@ def address(request):
     'account': 'Home',
     'recent_page': 'My Address',
     }
-
 
     return render(request, 'vendor/address.htm', {'context': context})
 

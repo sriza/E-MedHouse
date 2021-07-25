@@ -100,6 +100,7 @@ def doctorAppointmentList(request):
 
         page_number = request.GET.get('page')
         appointments = paginator.get_page(page_number)
+        
         return render(request, 'customer/doctor-appointment-list.htm',{'context':context, 'appointments': appointments})
     except e:
         return render(request,'medicalapp/index.htm')
@@ -127,8 +128,12 @@ def order(request):
     'recent_page': 'Order List',
     }
 
-    orders = Order.objects.filter(customer=Customer.objects.get(user=request.user)) 
+    orders_list = Order.objects.filter(customer=Customer.objects.get(user=request.user)) 
     orders_objects = OrderItem.objects.filter(order__customer=Customer.objects.get(user=request.user)) 
+    paginator = Paginator(orders_list, 10)
+
+    page_number = request.GET.get('page')
+    orders = paginator.get_page(page_number)
 
     return render(request, 'customer/order.htm', {'context' : context, 'orders': orders, 'order_items' : orders_objects})
 
@@ -155,7 +160,12 @@ def doctor(request):
                     'account': 'Home',
                     'recent_page': 'Doctor Consultation',
                     }
-        doctor_img = DoctorImage.objects.filter()
+        doctor_img_list= DoctorImage.objects.all()
+        paginator = Paginator(doctor_img_list, 10)
+
+        page_number = request.GET.get('page')
+        doctor_img = paginator.get_page(page_number)
+        
         return render(request,'customer/doctor.htm',{'context' : context, 'doctor_img' : doctor_img})
     except:
         return render(request,'product/shop/')
@@ -169,7 +179,11 @@ def vendors(request):
                     'recent_page': 'Vendor List',
                     }
 
-        vendor_img = VendorImage.objects.filter(img_type="profile")
+        vendor_img_list = VendorImage.objects.filter(img_type="profile")
+        paginator = Paginator(vendor_img_list, 10)
+
+        page_number = request.GET.get('page')
+        vendor_img = paginator.get_page(page_number)
 
         return render(request,'customer/vendors.htm',{'context' : context, 'vendor_img' : vendor_img})
     except:
@@ -178,7 +192,6 @@ def vendors(request):
 @login_required
 def vendorDetails(request,id):
     try:
-        print(id)
         vendor = Vendor.objects.get(id=id)
         vendor_img = VendorImage.objects.get(img_type="profile", vendor=id)
         products = ProductImage.objects.filter(vendor=id, main=True)
@@ -227,7 +240,6 @@ def addReview(request,id):
         message =""
 
         if request.method=="POST":
-            print(request.POST)
             if(request.POST.get('review')!=""):
                 customer = Customer.objects.filter(user=request.user).first()
                 customerImage = CustomerImage.objects.get(customer=customer)
