@@ -15,5 +15,6 @@ urlpatterns = [
     path('lab/', views.lab),
     path('lab-detail/<int:id>/', views.labDetails),
     path('appointment/', views.appointment),
+    path('vendor-detail/<int:id>/', views.vendorDetails)
 ]
 

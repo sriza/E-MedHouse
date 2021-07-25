@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import authenticate, get_user_model
 from .models import Doctor, DoctorAppointment, User, DoctorImage
+from django.utils import timezone
 
 user = get_user_model()
 
@@ -91,11 +92,18 @@ class DoctorAppointmentForm(forms.ModelForm):
 class DoctorAppointmentEditForm(forms.ModelForm):
     class Meta:
         model = DoctorAppointment
-        fields = ('fixed_on',)
+        fields = ('patient_name','address','contact_number','email','description','fixed_on',)
 
-    patient_name     = forms.CharField(label='User Name', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your user name'}))
-    address          = forms.CharField(label='Address', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your address'}))
-    contact_number   = forms.IntegerField(label='Contact Number', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your contact number'}))
-    email            = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your email'}))
-    description      = forms.CharField(label='Description', widget=forms.Textarea(attrs={'rows':5, 'cols':20, 'class':'form-control','placeholder': 'Write about your health issue'}))
-    fixed_on         = forms.DateTimeField(label='Description', widget=forms.SplitDateTimeField)
+    patient_name     = forms.CharField(label='User Name', required=False, widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your user name', 'disabled': True}))
+    address          = forms.CharField(label='Address', required=False, widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your address', 'disabled': True}))
+    contact_number   = forms.IntegerField(label='Contact Number', required=False, widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your contact number', 'disabled': True}))
+    email            = forms.EmailField(label='Email', required=False,widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your email', 'disabled': True}))
+    description      = forms.CharField(label='Description',required=False, widget=forms.Textarea(attrs={'rows':5, 'cols':20, 'class':'form-control','placeholder': 'Write about your health issue', 'disabled': True}))
+    fixed_on         = forms.DateTimeField(input_formats=['%Y-%m-%d %H:%M'], widget=forms.TextInput(attrs={'class':'form-control datetimepicker' ,'placeholder': 'Enter the appointment date'}))
+
+    def clean_fixed_on(self):
+            fixed_on = self.cleaned_data.get("fixed_on")
+            print(timezone.now() > fixed_on)
+            if fixed_on and timezone.now() > fixed_on:
+                raise forms.ValidationError("Appointment date can't be set before today.")
+            return fixed_on

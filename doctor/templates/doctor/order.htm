@@ -27,7 +27,7 @@
                             <thead>
                                 <tr>
                                     <th>Appointment ID</th>
-                                    <th>Doctor </th>
+                                    <th>Patient</th>
                                     <th>Booked Date</th>
                                     <th>Appointment Fixed Date</th>
                                     <th>Total Price</th>
@@ -39,19 +39,27 @@
                                 {% for appointment in appointments%}
                                     <tr>
                                         <td>#{{appointment.id}}</td>
-                                        <td>{{appointment.doctor.full_name}}</td>
+                                        <td>{{appointment.patient_name}}</td>
                                         <td>{{appointment.timestamp}}</td>
                                         <td>{{appointment.fixed_on }}</td>
                                         <td>${{appointment.doctor.charge}}</td>
                                         <td id="lol"><span class="label label-info">{{appointment.status}}</span></td>
                                         <td>
-                                            <!-- {{appointment.payment}} -->
                                             {% if appointment.payment != True %}
                                                 <a class="btn btn-default" href="/doctor/appointment/cancel/{{appointment.id}}" > Cancel </a>
                                                 <a class="btn btn-default" href="/doctor/payment/{{appointment.id}}" > Make Payment </a>
                                             {% endif %}
+                                         
                                             <span class="btn btn-default" data-target="#changeStatus_{{ forloop.counter0 }}" data-toggle="modal">Details</span>
-                                            <a class="btn btn-default" href="/doctor/appointment/update/{{appointment.id}}/">Fix Appointment</a>
+
+                                            {% if appointment.status|stringformat:"s" != "completed"%}
+                                                <a class="btn btn-default" href="/doctor/appointment/update/{{appointment.id}}/">Fix Appointment</a>
+                                            {% endif %}
+
+                                            {% if today > appointment.fixed_on and appointment.status|stringformat:"s" != "completed"%}
+                                                <a class="btn btn-default" href="/doctor/status/completed/{{appointment.id}}/">Update status to completed</a>
+                                            {% endif %}
+
 
                                         </td>
                                     </tr>

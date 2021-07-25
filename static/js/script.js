@@ -107,6 +107,14 @@ $(document).ready(function(){
 //upload file
 $('#OpenfileUpload').click(function(){ $('#fileupload').trigger('click'); });
 
+$(function () {
+  $(".datetimepicker").datetimepicker(
+    {
+      format: 'Y-m-d H:i',
+    }
+  );
+});
+
 //for model-box for only one model
 // $(document).ready(function(){
 //   $("#my-circle-btn").click(function() {
@@ -607,7 +615,7 @@ $(document).ready(function(){
 
       if ( !( IE && version < 9 ) ) {
           if ( $cursor.length === 0 ) {
-              $cursor = $('<svg id="custom-cursor"></svg>')// svg - hack for rendering performance
+$cursor = $('<svg id="custom-cursor"></svg>')// svg - hack for rendering performance
                   .css({
                       background: 'url("' + cursorPicUrl + '") no-repeat left top',
                       position:   'fixed',

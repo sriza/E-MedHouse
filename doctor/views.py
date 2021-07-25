@@ -2,16 +2,15 @@ from product.models import Product, ProductImage
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-
+from django.utils import timezone
 from django.db import transaction
-
 from django.shortcuts import render, redirect
+
 from .models import Doctor, DoctorAppointment, DoctorImage
 from customer.models import Customer
 from vendor.models import User,VendorImage, Vendor
-from .forms import LoginForm, doctorForm, DoctorImageForm, DoctorAppointment, DoctorAppointmentEditForm
+from .forms import LoginForm, doctorForm, DoctorImageForm, DoctorAppointmentForm, DoctorAppointmentEditForm
 
-from django.shortcuts import render
 
 # Create your views here.
 
@@ -182,7 +181,7 @@ def appointmentList(request):
  
     appointments = DoctorAppointment.objects.filter(doctor=Doctor.objects.get(user=request.user), payment=True) 
 
-    return render(request, 'doctor/order.htm', {'context' : context, 'appointments': appointments })
+    return render(request, 'doctor/order.htm', {'context' : context, 'appointments': appointments,'today' :timezone.now() })
 
 @login_required
 def updateAppointment(request,id):
@@ -191,18 +190,20 @@ def updateAppointment(request,id):
                 'account': 'Home',
                 'recent_page': 'Appointment Booking Form',
                 }
+    object = DoctorAppointment.objects.get(id=id)   
+    print(object)         
 
-    form = DoctorAppointmentEditForm(request.POST or None)
+    form = DoctorAppointmentEditForm(instance=object, data=request.POST or None)
     doctor_image = DoctorImage.objects.get(doctor__id=id)
 
     if form.is_valid() :
         try :
-            appointment = form.save(commit=False)
-            appointment.customer = Customer.objects.filter(user=request.user).first()
-            appointment.doctor = Doctor.objects.get(id=id)
-            appointment.save()
+            DoctorAppointment.objects.filter(id=id).update(
+                fixed_on = request.POST.get('fixed_on'),
+                status = 'fixed'
+            )
 
-            return redirect('/doctor/payment/{0}/'.format(appointment.id))
+            return redirect('/doctor/appointmentList')
     
         except e:
             return render(request,'customer/index.htm')    
@@ -210,8 +211,17 @@ def updateAppointment(request,id):
     
     return render(request, 'doctor/doctor-appointment-update.htm', {'context' : context, 'form':form, 'doc_image':doctor_image})
 
-
-
+@login_required
+@transaction.atomic
+def statusCompleted(request,id):
+    try:
+        DoctorAppointment.objects.filter(id=id).update(
+            status='completed'
+        )
+        
+        return redirect('/doctor/appointmentList')
+    except:
+        return redirect('/doctor/appointmentList')
 
 
 

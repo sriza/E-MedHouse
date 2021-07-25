@@ -13,6 +13,7 @@ urlpatterns = [
   path('profile-details/',views.profileDetails),
   path('appointment/<int:id>/',views.appointment),
   path('appointment/update/<int:id>/',views.updateAppointment),
+  path('status/completed/<int:id>/',views.statusCompleted),
   path('payment/<int:id>/',views.payment),
   path('paymentMade/<int:id>/',views.paymentMade),
   path('appointment/cancel/<int:id>/',views.cancelAppointment),
