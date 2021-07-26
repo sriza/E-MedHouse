@@ -98,6 +98,3 @@ class CustomerImageEditForm(forms.ModelForm):
         fields = ('image',)
     image = forms.ImageField(required=False)    
 
-class AppointmentForm(forms.Form):
-    class Meta:
-        model = Customer

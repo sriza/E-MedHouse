@@ -29,7 +29,7 @@
 						{% csrf_token %}
 						<h4 class="widget-title">Category</h4>
 							<select class="form-control" name='product_type'>
-								<option key=''> Search by category </option>
+								<option key=''> </option>
 								<option key='medicine'> Medicine</option>
 								<option key='device'>Device</option>
 								<option key='hygenic_product'>Hygenic Product </option>
@@ -50,7 +50,7 @@
 									<div class="preview-meta">
 										<ul>
 											<li>
-												<span  data-toggle="modal" data-target="#product-modal_{{ forloop.counter0 }}">
+												<span  data-toggle="modal" data-target="#product-modal_{{ image.product.id }}">
 													<i class="tf-ion-ios-search-strong"></i>
 												</span>
 											</li>

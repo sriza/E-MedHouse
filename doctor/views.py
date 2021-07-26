@@ -130,10 +130,15 @@ def appointment(request,id):
 @login_required
 @transaction.atomic
 def payment(request,id):
+    context = {
+                'topic':'Payment',
+                'account': 'Home',
+                'recent_page': 'My Payment',
+            }
     appointment = DoctorAppointment.objects.get(id=id)
     doctor_image = DoctorImage.objects.get(doctor__id=appointment.doctor.id)
 
-    return render(request,'doctor/payment.htm', {'doc_image':doctor_image, 'id':id} )
+    return render(request,'doctor/payment.htm', {'context': context, 'doc_image':doctor_image, 'id':id} )
 
 
 @login_required
@@ -216,7 +221,7 @@ def statusCompleted(request,id):
 def updateDoctor(request,id):
     object        = Doctor.objects.get(id=id) 
     form          = UpdateDoctorForm(instance=object, data=request.POST or None)
-    img_form      = DoctorImageEditForm(instance=object, data=request.FILES or None)
+    img_form      = DoctorImageEditForm(request.FILES or None)
     image         = DoctorImage.objects.get(doctor=object)
 
     if form.is_valid():

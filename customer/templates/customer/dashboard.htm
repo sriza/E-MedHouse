@@ -4,7 +4,7 @@
 {% block content %}
 {% include 'snippets/customer-header.htm'%}
 {% include 'snippets/page-header.htm' %}
-<section class="user-dashboard page-wrapper noBig">
+<section class="user-dashboard page-wrapper noBig" role="main">
     <div class="container noBig">
         <div class="row noBig">
             <div class="col-md-12 noBig">
@@ -25,15 +25,15 @@
                         <div>
                             <h2 class="media-heading" style="font-size: 25px;letter-spacing: 0px;line-height: 19px;padding-left: 240px;padding-top: 45px">Welcome {{customer.full_name}}</h2>
                         </div>
-                    
-                        <div class="media-body" >
-                            <ul class="user-profile-list" >
-                                <h3 class="font-weight-bold ">Customer Details</h3>
-                                <li><span>Full Name:</span>{{customer.full_name}}</li>
-                                <li><span>Gender:</span>{{customer.gender}}</li>
-                                <li><span>Email:</span>{{customer.email}}</li>
-                                <li><span>Phone:</span>{{customer.contact_number}}</li>
-                                <li><span>Address:</span>{{customer.address}}</li>
+                    </div>
+                        <div class="media-body">
+                            <ul class="user-profile-list">
+                                <li class="font-weight-bold title-text">Customer Details</li>
+                                <li><span class="noBig">Full Name:</span>{{customer.full_name}}</li>
+                                <li><span class="noBig">Gender:</span>{{customer.gender}}</li>
+                                <li><span class="noBig">Email:</span>{{customer.email}}</li>
+                                <li><span class="noBig">Phone:</span>{{customer.contact_number}}</li>
+                                <li><span class="noBig">Address:</span>{{customer.address}}</li>
                             </ul>
                         </div>
                     </div>    

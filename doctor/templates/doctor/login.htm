@@ -2,15 +2,15 @@
 {% load static %}
 
 {% block content %}
-<section class="signin-page account">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="block text-center">
-                    <a href="/">
+<section class="signin-page account noBig">
+    <div class="container noBig">
+        <div class="row noBig">
+            <div class="col-md-6 col-md-offset-3 noBig">
+                <div class="block text-center noBig">
+                    <a href="/" class="noBig">
                         <img alt="gravater" class="dp" src={% static '/images/favicon.png' %}>
                      </a>
-                      <div class="detail-txt">
+                      <div class="detail-txt noBig">
                         <a href="/">
                           <span class="username">
                              Med-House
@@ -18,7 +18,7 @@
                        </a>
                      </div>
                     <h3 class="text-center">Welcome Back</h3>
-                    <form class="text-left clearfix" method="POST" action="/doctor/login/" >
+                    <form class="text-left clearfix noBig" method="POST" action="/doctor/login/" >
                         {% csrf_token %}
                         <div class="form-group">
                             {{form.email}}
@@ -33,7 +33,7 @@
                             <button type="submit" class="btn btn-main text-center" >Login</button>
                         </div>
                     </form>
-                    <p class="mt-20">New in this site ?<a href="/doctor/signin/"> Create New Account</a></p>
+                    <p class="mt-20 noBig"><span> New in this site ?</span><a href="/doctor/signin/">  Create New Account</a></p>
                 </div>
             </div>
         </div>

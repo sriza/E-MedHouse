@@ -2,22 +2,22 @@
 {% load static %}
 
 {% block content %}
-<section class="signin-page account">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="block text-center">
-                    <a href="/">
-                        <img alt="gravater" class="dp" src={% static '/images/favicon.png' %}>
+<section class="signin-page account noBig">
+    <div class="container noBig">
+        <div class="row noBig">
+            <div class="col-md-6 col-md-offset-3 noBig">
+                <div class="block text-center noBig">
+                    <a aria-label="logo" role="img" href="/" class="noBig">
+                        <img alt="logo" class="dp" src={% static '/images/favicon.png' %}>
                      </a>
-                      <div class="detail-txt">
-                        <a href="/">
+                      <div class="detail-txt noBig">
+                        <a href="/" aria-label="logo name">
                           <span class="username">
                              Med-House
                          </span>
                        </a>
                     <h2 class="text-center">Welcome Back</h2>
-                    <form class="text-left clearfix" method="POST" action="/customer/login/" >
+                    <form role="form" class="text-left clearfix noBig" method="POST" action="/customer/login/" >
                         {% csrf_token %}
                         <div class="form-group">
                             {{form.email}}
@@ -28,11 +28,12 @@
                             {{form.password.errors}}
                         </div>
                         {{ form.non_field_errors }}
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-main text-center" >Login</button>
+                        <div class="text-center noBig">
+                            <button role="button" type="submit" class="btn btn-main text-center" >Login</button>
                         </div>
                     </form>
-                    <p class="mt-20">New in this site ?<a href="/customer/signin/"> Create New Account</a></p>
+                    <br>
+                    <span aria-label="New in this site ?" class="mt-20">New in this site ?</span><a href="/customer/signin/" aria-label="create account"> Create New Account</a>
                 </div>
             </div>
         </div>

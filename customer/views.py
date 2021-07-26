@@ -210,11 +210,16 @@ def vendors(request):
 @login_required
 def vendorDetails(request,id):
     try:
+        context = {
+                'topic':'Vendors',
+                'account': 'Vendor',
+                'recent_page': 'Vendor Details',
+                }
         vendor = Vendor.objects.get(id=id)
         vendor_img = VendorImage.objects.get(img_type="profile", vendor=id)
         products = ProductImage.objects.filter(vendor=id, main=True)
 
-        return render(request,'customer/vendor-details.htm',{'vendor':vendor, 'vendor_img': vendor_img , 'products' : products})
+        return render(request,'customer/vendor-details.htm',{'context' : context, 'vendor':vendor, 'vendor_img': vendor_img , 'products' : products})
     except:
         return render(request,'product/shop/')
 
@@ -227,8 +232,12 @@ def lab(request):
                     'recent_page': 'Lab List',
                     }
         labs = Lab.objects.all()
-        lab_img = LabImage.objects.filter(img_type="profile")
-    
+        lab_img_list = LabImage.objects.filter(img_type="profile")
+
+        paginator = Paginator(lab_img_list, 10)
+
+        page_number = request.GET.get('page')
+        lab_img = paginator.get_page(page_number)
 
         return render(request,'customer/lab.htm',{'context' : context,'labs' : labs, 'lab_img' : lab_img})
     except:
@@ -237,11 +246,13 @@ def lab(request):
 @login_required
 def labDetails(request,id):
     try:
-        print(id)
+        context = {
+                'topic':'Lab',
+                'account': 'lab',
+                'recent_page': 'Lab Details',
+                }
         labs = Lab.objects.get(id=id)
-        print(lab)
         lab_img = LabImage.objects.get(img_type="profile", lab__id=id)
-        # products = ProductImage.objects.filter(lab=id, main=True)
         services = Service.objects.filter(lab=labs)
 
         return render(request,'customer/lab-details.htm',{'labs':labs, 'lab_img': lab_img, 'services' : services})
@@ -298,18 +309,19 @@ def addReview(request,id):
 def updateCustomer(request,id):
     object        = Customer.objects.get(id=id) 
     form          = UpdateCustomerForm(instance=object, data=request.POST or None)
-    img_form      = CustomerImageEditForm(instance=object, data=request.FILES or None)
+    img_form      = CustomerImageEditForm(request.FILES or None)
     image         = CustomerImage.objects.get(customer=object)
 
     if form.is_valid() :
         try : 
-            form.save()
+            customer = form.save()
             image = request.FILES.get('image')
+
             if bool(image) :
                 CustomerImage.objects.filter(customer=object).delete()
 
                 img             = img_form.save(commit=False)
-                img.customer    = object
+                img.customer    = customer
                 img.description = request.POST.get("full_name")
                 img.save()
 

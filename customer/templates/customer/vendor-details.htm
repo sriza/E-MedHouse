@@ -6,20 +6,20 @@
 {% include 'snippets/page-header.htm' %}
 
 {%include 'snippets/prescription.htm' %}
-<section class="user-dashboard page-wrapper">
-    <div class="container">
+<section class="user-dashboard page-wrapper noBig">
+    <div class="container noBig">
 
-        <div class="dashboard-wrapper dashboard-user-profile">
-            <div class="col-xs-12 col-md-4 text-center">
+        <div class="dashboard-wrapper dashboard-user-profile noBig">
+            <div class="col-xs-12 col-md-4 text-center noBig">
                 <img class="img-responsive mt-20" src="/media/{{vendor_img.image}}" alt="{{vendor_img.description}}">
                     <!-- prescription Doctor -->   
-                    <span class="li" ><a href="#!" class="btn btn-main btn-small btn-round-full mt-40" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></button>                 
+                    <span class="li noBig" ><a href="#!" class="btn btn-main btn-small btn-round-full mt-40" data-target="#MySecondmodal" data-toggle="modal" id="float-l"><i class="tf-ion-ios-upload-outline"></i> upload prescription</a></button>                 
             </div>
-                <div class="media-body">
+                <div class="media-body noBig">
                     <h3 class="font-weight-bold text-uppercase">{{vendor.shop_name}}</h3>
                     <p class="text-info mt-10">{{vendor.business_name}}</p>
                     <p class="mt-30">{{vendor.description}}</p>
-                    <ul class="user-profile-list">
+                    <ul class="user-profile-list noBig">
                         <li><span>Full Name:</span>{{vendor.full_name}}</li>
                         <li><span>Gender:</span>{{vendor.gender}}</li>
                         <li><span>Email:</span>{{vendor.email}}</li>
@@ -30,29 +30,29 @@
             </div>
         </div>
             
-        <div class="products">
-            <div class="container">
+        <div class="products noBig">
+            <div class="container noBig">
                 <h3>Products</h3>
                 <div class="row">
                     {% for image in products %}
-                        <div class="col-md-4">
-                            <div class="product-item">
-                                <div class="product-thumb">
+                        <div class="col-md-4 noBig">
+                            <div class="product-item noBig">
+                                <div class="product-thumb noBig">
                                     <img class="img-responsive" src="/media/{{image.image}}" alt={{image.description}} />
-                                    <div class="preview-meta">
-                                        <ul>
-                                            <li>
+                                    <div class="preview-meta noBig">
+                                        <ul class="noBig">
+                                            <li class="noBig">
 												<span  data-toggle="modal" data-target="#product-modal_{{ forloop.counter0 }}">
 													<i class="tf-ion-ios-search-strong"></i>
 												</span>
 											</li>
-                                            <li>
+                                            <li class="noBig">
                                                 <a href="/cart/add/{{image.product.id}}"><i class="tf-ion-android-cart"></i></a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="product-content">
+                                <div class="product-content noBig">
                                     <h4><a href="/product/shop/detail/{{image.product.id}}">{{image.product.title}}</a></h4>
                                     <p class="price">$ {{image.product.price}}</p>
                                 </div>

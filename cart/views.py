@@ -16,9 +16,15 @@ from customer.models import Customer
 @login_required
 def cart(request):
     try:
+        context={
+            'topic':'Cart',
+            'account': 'Home',
+            'recent_page': 'cart',
+            }
+
         cart_items = CartItem.objects.filter(cart__customer__user = request.user).order_by('product__vendor')
 
-        return render(request,'cart/cart.htm', {'cart_items' : cart_items })
+        return render(request,'cart/cart.htm', {'context' : context, 'cart_items' : cart_items })
     except:
         return render(request,'cart/cart.htm')
 

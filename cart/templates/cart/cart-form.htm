@@ -5,17 +5,17 @@
 {% include 'snippets/customer-header.htm'%}
 {% include 'snippets/page-header.htm'%}
 
-<section class="single-product">
-	<div class="container">
-		<div class="row">
+<section class="single-product noBig" role="main">
+	<div class="container noBig">
+		<div class="row noBig">
 		</div>
-		<div class="row mt-20">
-			<div class="col-md-5">
-				<div class="single-product-slider">
-					<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
-						<div class='carousel-outer'>
+		<div class="row mt-20 noBig">
+			<div class="col-md-5 noBig">
+				<div class="single-product-slider noBig">
+					<div id='carousel-custom' class='carousel slide noBig' data-ride='carousel'>
+						<div class='carousel-outer noBig'>
 							<!-- me art lab slider -->
-							<div class='carousel-inner '>
+							<div class='carousel-inner noBig'>
 								{% for img in product_img %}
 									{% if img.main %}
 										<div class='item active'>
@@ -29,16 +29,16 @@
 							</div>
 							
 							<!-- sag sol -->
-							<a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
+							<a class='left carousel-control noBig' role="button" aria-label="previous" href='#carousel-custom' data-slide='prev'>
 								<i class="tf-ion-ios-arrow-left"></i>
 							</a>
-							<a class='right carousel-control' href='#carousel-custom' data-slide='next'>
+							<a class='right carousel-control noBig' role="button" aria-label="next" href='#carousel-custom' data-slide='next'>
 								<i class="tf-ion-ios-arrow-right"></i>
 							</a>
 						</div>
 						
 						<!-- thumb -->
-						<ol class='carousel-indicators mCustomScrollbar meartlab'>
+						<ol class='carousel-indicators mCustomScrollbar meartlab noBig'>
 							{% for img in product_img %}
 								{% if img.main %}
 									<li data-target='#carousel-custom' data-slide-to='{{ forloop.counter0 }}' class='active'>
@@ -53,10 +53,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-7">
+			<div class="col-md-7 noBig">
 				
-				<div class="single-product-details">
-					<form action="/cart/add/{{product.id}}" method="POST">
+				<div class="single-product-details noBig">
+					<form action="/cart/add/{{product.id}}" class="noBig detail-info" method="POST">
 						{% csrf_token %}
 						<h2>{{product.title}}</h2>
 						<p class="product-price">$ {{product.price}}</p>
@@ -64,35 +64,35 @@
 						<p class="product-description mt-20">
 							{{product.meta_title}}
 						</p>
-						<div class="product-category">
+						<div class="product-category mr">
 							<span>Type:</span>
 							{{product.product_type}}
 						</div>
 						{% if product.product_type|stringformat:"s" == "medicine" %}
-							<div class="product-category">
+							<div class="product-category mr">
 								<span>Generic Name:</span>
 								{{product.medical_name}}
 							</div>
 						{% endif %}
-						<div class="product-quantity">
-							<span>Quantity:</span>
-							<div class="product-quantity-slider">
-								<input id="product-quantity" type="text" value={{quantity}} name="product-quantity">
+						<div class="product-quantity mr">
+						<span>Quantity:</span>
+							<div class="product-quantity-slider noBig">
+								<input aria-label=" quantity value" id="product-quantity" type="text" value={{quantity}} name="product-quantity">
 								<p class="help">{{message}} </p>
 							</div>
 						</div>
 						{% if product.product_type|stringformat:"s" != "device" %}
-							<div class="product-category">
+							<div class="product-category mr">
 								<span>Manufactured Date:</span>
 								{{product.manufacture_date}}
 							</div>
-							<div class="product-category">
+							<div class="product-category mr">
 								<span>Expiry Date:</span>
 								{{product.expiry_date}}
 							</div>
 						{% endif %}
 					
-						<div class="product-category">
+						<div class="product-category mr">
 							<span>Manufacturer:</span>
 							{{product.manufacturer}}
 						</div>
@@ -102,21 +102,21 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="tabCommon mt-20">
-					<ul class="nav nav-tabs">
+		<div class="row noBig">
+			<div class="col-xs-12 noBig">
+				<div class="tabCommon mt-20 noBig">
+					<ul class="nav nav-tabs noBig">
 						<li class="active"><a data-toggle="tab" href="#details" aria-expanded="true">Details</a></li>
 						<li class=""><a data-toggle="tab" href="#reviews" aria-expanded="false">Reviews (3)</a></li>
 					</ul>
-					<div class="tab-content patternbg">
-						<div id="details" class="tab-pane fade active in">
-							<h4>Product Description</h4>
+					<div class="tab-content patternbg noBig">
+						<div id="details" class="tab-pane fade active in noBig">
+							<h3>Product Description</h3>
 							<p>{{product.description}}</p>
 						</div>
-						<div id="reviews" class="tab-pane fade">
-							<div class="post-comments">
-						    	<ul class="media-list comments-list m-bot-50 clearlist">
+						<div id="reviews" class="tab-pane fade noBig">
+							<div class="post-comments noBig">
+						    	<ul class="media-list comments-list m-bot-50 clearlist noBig">
 								    <!-- Comment Item start-->
 								    <li class="media">
 
@@ -124,8 +124,8 @@
 								            <img class="media-object comment-avatar" src={% static 'images/blog/avater-1.jpg' %} alt="" width="50" height="50" />
 								        </a>
 
-								        <div class="media-body">
-								            <div class="comment-info">
+								        <div class="media-body noBig">
+								            <div class="comment-info noBig">
 								                <h4 class="comment-author">
 								                    <a href="#!">Jonathon Andrew</a>
 								                	
@@ -143,16 +143,16 @@
 								    <!-- End Comment Item -->
 
 								    <!-- Comment Item start-->
-								    <li class="media">
+								    <li class="media noBig">
 
 								        <a class="pull-left" href="#!">
 								            <img class="media-object comment-avatar" src={% static 'images/blog/avater-4.jpg' %} alt="" width="50" height="50" />
 								        </a>
 
-								        <div class="media-body">
+								        <div class="media-body noBig">
 
-								            <div class="comment-info">
-								                <div class="comment-author">
+								            <div class="comment-info noBig">
+								                <div class="comment-author noBig">
 								                    <a href="#!">Jonathon Andrew</a>
 								                </div>
 								                <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>
@@ -169,16 +169,16 @@
 								    <!-- End Comment Item -->
 
 								    <!-- Comment Item start-->
-								    <li class="media">
+								    <li class="media noBig">
 
 								        <a class="pull-left" href="#!">
 								            <img class="media-object comment-avatar" src={% static 'images/blog/avater-1.jpg' %} alt="" width="50" height="50">
 								        </a>
 
-								        <div class="media-body">
+								        <div class="media-body noBig">
 
-								            <div class="comment-info">
-								                <div class="comment-author">
+								            <div class="comment-info noBig">
+								                <div class="comment-author noBig">
 								                    <a href="#!">Jonathon Andrew</a>
 								                </div>
 								                <time datetime="2013-04-06T13:53">July 02, 2015, at 11:34</time>

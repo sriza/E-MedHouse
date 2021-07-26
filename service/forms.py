@@ -214,7 +214,7 @@ class ReproductiveBiologyForm(forms.ModelForm):
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
-        fields = ('full_name', 'email', 'gender', 'address', 'dob', 'contact_number', 'appointment')
+        fields = ('full_name', 'email', 'gender', 'address', 'dob', 'contact')
 
     MALE = 'male'
     FEMALE = 'female'
@@ -242,29 +242,23 @@ class AppointmentForm(forms.ModelForm):
         (REPRODUCTIVE_BIOLOGY, 'reproductive biology'),
     ]
 
-    full_name        = forms.CharField(label='Full Name', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your full name','disabled': True}))
-    email            = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your email','disabled': True}))
-    address          = forms.CharField(label='Address', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your address','disabled': True}))
-    gender           = forms.CharField(label='Gender', widget=forms.Select(choices=GENDER_TYPES,attrs={'class':'form-control','placeholder': 'Enter your gender','disabled': True}))
-    dob              = forms.DateField(label='Date Of Birth', widget=forms.TextInput(attrs={'class':'form-control datepicker' ,'placeholder': 'Enter your date of birth','disabled': True}))
-    contact_number          = forms.IntegerField(label='Contact Number', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your contact number','disabled': True}))
-    appointment      = forms.DateTimeField(label='Date Appointment',widget=forms.TextInput(attrs={'class':'form-control form_datetime' ,'placeholder': 'Enter your appointment hour'}))
+    full_name        = forms.CharField(label='Full Name', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your full name'}))
+    email            = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your email'}))
+    address          = forms.CharField(label='Address', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your address'}))
+    gender           = forms.CharField(label='Gender', widget=forms.Select(choices=GENDER_TYPES,attrs={'class':'form-control','placeholder': 'Enter your gender'}))
+    dob              = forms.DateField(label='Date Of Birth', widget=forms.TextInput(attrs={'class':'form-control datepicker' ,'placeholder': 'Enter your date of birth'}))
+    contact          = forms.IntegerField(label='Contact Number', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your contact number'}))
 
 class LabReportForm(forms.ModelForm):
     class Meta:
         model = Appointment
-        fields = ('full_name', 'email', 'gender', 'address', 'dob', 'contact', 'appointment')
+        fields = ('appointment',)
 
-    full_name        = forms.CharField(label='Full Name',required=False, widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your full name', 'disabled': True}))
-    email            = forms.EmailField(label='Email',required=False, widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your email', 'disabled': True}))
-    address          = forms.CharField(label='Address', required=False, widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your address', 'disabled': True}))
-    dob              = forms.DateField(label='Date Of Birth',required=False, widget=forms.TextInput(attrs={'class':'form-control datepicker' ,'placeholder': 'Enter your date of birth', 'disabled': True}))
-    contact          = forms.IntegerField(label='Contact Number',required=False, widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your contact number', 'disabled': True}))
-    appointment      = forms.DateTimeField(label='Date Appointment',required=False, widget=forms.TextInput(attrs={'class':'form-control form_datetime' ,'placeholder': 'Enter your appointment hour', 'disabled': True}))
+    appointment      = forms.DateTimeField(label='Date Appointment', widget=forms.TextInput(attrs={'class':'form-control datetimepicker' ,'placeholder': 'Enter your appointment hour'}))
     
     
 class UploadFileForm(forms.ModelForm):
     class Meta:
         model = LabAppointment
         fields = ('file',)
-    file = forms.FileField()
+    file = forms.FileField(required=False)

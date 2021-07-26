@@ -4,28 +4,29 @@
 {% block content %}
 {% include 'snippets/doctor-header.htm'%}
 {% include 'snippets/page-header.htm' %}
-<section class="user-dashboard page-wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="list-inline dashboard-menu text-center">
-                    <li><a href="/doctor/dashboard/">Dashboard</a></li>
-                    <li><a class="active" href="/doctor/appointmentList/">Appointments</a></li>
-                    <!-- <li><a href="/doctor/profile-details/">Profile Details</a></li> -->
+<section class="user-dashboard page-wrapper noBig">
+    <div class="container noBig">
+        <div class="row noBig">
+            <div class="col-md-12 noBig">
+                <ul class="list-inline dashboard-menu text-center noBig">
+                    <li class="noBig"><a href="/doctor/dashboard/">Dashboard</a></li>
+                    <li class="noBig"><a class="active" href="/doctor/appointmentList/">Appointments</a></li>
+                    <!-- <li class="noBig"><a href="/doctor/profile-details/">Profile Details</a></li> -->
                 </ul>
-                <div style="margin-top: 20px;">
-                    <nav class="navbar navbar-light bg-light text-center">
-                        <form class="form-inline">
-                          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <div class="mt-10 noBig">
+                    <nav class="navbar navbar-light bg-light text-center noBig">
+                        <form class="form-inline noBig">
+                            {% csrf_token %}
+                          <input class="form-control mr-sm-2" type="search" name="title" placeholder="Search by patient name or contact number" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                       </nav>
                 </div>
-                <div class="dashboard-wrapper user-dashboard">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
+                <div class="dashboard-wrapper user-dashboard noBig">
+                    <div class="table-responsive noBig">
+                        <table class="table noBig">
+                            <thead class="noBig">
+                                <tr class="noBig">
                                     <th>Appointment ID</th>
                                     <th>Patient</th>
                                     <th>Booked Date</th>
@@ -35,9 +36,9 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="noBig">
                                 {% for appointment in appointments%}
-                                    <tr>
+                                    <tr class="noBig">
                                         <td>#{{appointment.id}}</td>
                                         <td>{{appointment.patient_name}}</td>
                                         <td>{{appointment.timestamp}}</td>
@@ -92,17 +93,17 @@
 </div>
 
 {% for appointment in appointments%}
-<div class="modal fade" id="changeStatus_{{ forloop.counter0 }}">
-    <div class="modal-dialog">
-        <div class="modal-content product-checkout-details">
-            <div class="modal-header block">
+<div class="modal fade noBig" id="changeStatus_{{ forloop.counter0 }}">
+    <div class="modal-dialog noBig">
+        <div class="modal-content product-checkout-details noBig">
+            <div class="modal-header block noBig">
                 <button type="button" class="close" data-dismiss="modal">×</button> 
                 <h4 class="widget-title">Detail of appointment</h4> 
                 <hr>
-                <div class="media product-card">
+                <div class="media product-card noBig">
                     <a class="pull-left" href="product-single.htm">
                     </a>
-                    <div class="media-body">
+                    <div class="media-body noBig">
                         <h4 class="media-heading"><a>Patient's Name :</a></h4>
                        <p class="price">{{appointment.patient_name}}</p>
 
@@ -120,7 +121,7 @@
                     </div>
                  </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer noBig">
                 <button type="button" class="btn-css btn btn-secondory" data-dismiss="modal">close</button>                               
             </div>
         </div> 

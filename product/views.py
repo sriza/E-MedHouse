@@ -280,7 +280,7 @@ def shopProduct(request):
                 'Device'      : 'device'
             }
             
-            if category and title=='':
+            if category!='Search by category' and title=='':
                 images_list = ProductImage.objects.filter(product__product_type__exact = category_arr[category], main=True).order_by('product__expiry_date')
             elif title and category=="Search by category":
                 images_list = ProductImage.objects.filter((Q(product__title__contains = title)| Q(product__meta_title__contains = title)| Q(product__medical_name__contains = title)| Q(product__description__contains = title)) & Q(main=True) ).order_by('product__expiry_date')
@@ -288,6 +288,9 @@ def shopProduct(request):
                 images_list = ProductImage.objects.filter((Q(product__product_type__exact = category_arr[category])| Q(product__title__contains = title)| Q(product__meta_title__contains = title)| Q(product__medical_name__contains = title)| Q(product__description__contains = title)) & Q(main=True) ).order_by('product__expiry_date')
             else :
                 images_list = ProductImage.objects.filter(main= True)
+            
+            if category=='Search by category':
+                category =''
 
         else :
             images_list = ProductImage.objects.filter(main= True)

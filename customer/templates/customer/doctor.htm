@@ -5,7 +5,10 @@
 {% include 'snippets/customer-header.htm'%}
 {% include 'snippets/page-header.htm' %}
 
-{% include 'snippets/doctor-consultation.htm'%}
+<div class="no noBig" role="main">
+    {% include 'snippets/doctor-consultation.htm'%}
+</div>
+
 <div class="flex-pagination mb-3">
     <div class="step-links">
         {% if doctor_img.has_previous %}
@@ -23,6 +26,7 @@
         {% endif %}
     </div>
 </div>
+
+
 {% include 'snippets/copyright-footer.htm'%}
-{% include 'snippets/chatbot.htm'%}
 {% endblock content %}

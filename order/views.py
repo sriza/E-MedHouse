@@ -13,6 +13,11 @@ from .forms import OrderForm
 @login_required
 @transaction.atomic
 def checkout(request,id):
+    context = {
+                'topic':'Checkout',
+                'account': 'Home',
+                'recent_page': 'My checkout',
+            }
     cart_items = CartItem.objects.filter(cart__customer__user = request.user, product__vendor=id).order_by('product__vendor')
     total = 0
     count = 0
@@ -52,7 +57,7 @@ def checkout(request,id):
         except e:
             return render(request,'customer/index.htm')    
 
-    return render(request,'order/checkout.htm', {'items': cart_items, 'total': total, 'form' : form, 'id': id} )
+    return render(request,'order/checkout.htm', {'context':context,'items': cart_items, 'total': total, 'form' : form, 'id': id} )
 
 @login_required
 @transaction.atomic
@@ -73,6 +78,11 @@ def removeFromCart(customer, id):
 @login_required
 @transaction.atomic
 def payment(request,id):
+    context = {
+            'topic':'Checkout',
+            'account': 'Home',
+            'recent_page': 'My checkout',
+        }
     order_items = OrderItem.objects.filter(order__customer__user = request.user, order__id=id).order_by('product__vendor')
 
     total = 0
@@ -81,7 +91,7 @@ def payment(request,id):
     for item in order_items:
         total += item.quantity*item.unit_price
 
-    return render(request,'order/payment.htm', {'items': order_items, 'total': total, 'id':id} )
+    return render(request,'order/payment.htm', {'context':context, 'items': order_items, 'total': total, 'id':id} )
 
 @login_required
 @transaction.atomic

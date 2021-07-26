@@ -1,21 +1,21 @@
 {% load static%}
 
 <!-- Modal -->
-<div class="modal product-modal fade" id="product-modal_{{ image.product.id }}">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<div class="modal product-modal fade noBig" id="product-modal_{{ image.product.id }}" role="complementary" aria-label="product detail">
+    <button type="button" class="close noBig" data-dismiss="modal" aria-label="Close">
         <i class="tf-ion-close"></i>
     </button>
-    <div class="modal-dialog " role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-8 col-sm-6 col-xs-12">
-                        <div class="modal-image">
+    <div class="modal-dialog noBig">
+        <div class="modal-content noBig">
+            <div class="modal-body noBig">
+                <div class="row noBig">
+                    <div class="col-md-8 col-sm-6 col-xs-12 noBig">
+                        <div class="modal-image noBig">
                             <img class="img-responsive" src="/media/{{image.image}}" alt="product-img" />
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="product-short-details">
+                    <div class="col-md-4 col-sm-6 col-xs-12 noBig">
+                        <div class="product-short-details noBig">
                             <h2 class="product-title">{{image.product.title}}</h2>
                             <p class="product-price">$ {{image.product.price}}</p>
                             <p class="product-short-description">

@@ -66,7 +66,7 @@ body {
 
 p {
   font-family: "Poppins", sans-serif;
-  color: #757575;
+  color:#4C4C4C;
   font-size: 15px;
 }
 
@@ -134,11 +134,11 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
   background: #000;
   color: #fff;
   display: inline-block;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 1px;
   padding: 14px 35px;
   text-transform: uppercase;
-  font-weight: 200;
+  font-weight: 400;
   border-radius: 0;
 }
 
@@ -340,7 +340,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 
 .category-box .content h3 {
   margin: 0;
-  color: #333;
+  color: #080808;
   font-size: 20px;
   font-weight: 500;
 }
@@ -353,6 +353,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 
 .category-box .content p {
   margin: 6px 0 0;
+  color: #453b3b;
 }
 
 .page-header {
@@ -689,7 +690,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 
 .top-header .dropdown-menu {
   left: auto;
-  right: 0;
+  right: 20%;
   max-width: 300px;
 }
 
@@ -733,9 +734,10 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 }
 
 .top-header .top-menu > li > a {
-  color: #333;
+  color:black;
   font-size: 15px;
   padding: 0 8px;
+  font-weight: 500;
 }
 
 .top-header .top-menu > li > a:hover, .top-header .top-menu > li > a:focus {
@@ -1103,7 +1105,6 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
   top: 12px;
   right: 12px;
   background: #000;
-  color: #fff;
   font-size: 12px;
   padding: 4px 12px;
   font-weight: 300;
@@ -1611,6 +1612,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 }
 
 .pricing-table .price-title > p {
+  
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
@@ -2318,11 +2320,11 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 
 .checkout-form .form-group label {
   position: absolute;
-  top: 18px;
-  left: 15px;
+  top: 14px;
+  left: 12px;
   right: auto;
   bottom: auto;
-  color: #888;
+  color: #000000;
   font-size: 10px;
   font-weight: 400;
   text-transform: uppercase;
@@ -2886,23 +2888,23 @@ ul.activeRooms li .groupName{
 }
 .chatbox-outgoing {
   position: relative;
-  background: #5773FF;
+  background: #2a00ff;
   float: right;
   clear: both;
 }
 .chatbox-outgoing::after {
   content: "";
   position: absolute;
-  border: 15px solid;
+  border: 20px solid;
   border-top-color: transparent;
   border-bottom-color: transparent;
   border-right-color: transparent;
-  border-left-color: #5773FF;
+  border-left-color: #2a00ff;
   top: 15%;
   right: -30px;
 }
 .chatbox-incoming {
-  background: #78849E;
+  background: #0000b3;
   float: left;
   clear: both;
   left: 0;
@@ -2911,11 +2913,11 @@ ul.activeRooms li .groupName{
   content: "";
   position: absolute;
   width: none;
-  border: 15px solid;
+  border: 20px solid;
   border-top-color: transparent;
   border-bottom-color: transparent;
   border-left-color: transparent;
-  border-right-color: #78849E;
+  border-right-color: #2a00ff;
   top: 15%;
   left: -30px;
 }
