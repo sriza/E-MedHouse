@@ -25,8 +25,18 @@
                             <p>{{lab.description}}</p>
                         </div>
                     </div>
+            
                     <div class="total-order mt-20">
                         <h4>Services Available</h4>
+                            <div style="margin-top: 20px;">
+                                <nav class="navbar navbar-light bg-light text-center">
+                                    <form class="form-inline" method="POST" action="/lab/dashboard/">
+                                        {% csrf_token %}
+                                        <input class="form-control mr-sm-2" type="search" placeholder="Search by service or time" name="title" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                    </form>
+                                </nav>
+                            </div>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -53,11 +63,30 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="flex-pagination mb-3">
+                                <div class="step-links">
+                                    {% if services.has_previous %}
+                                        <span id="first1"><a href="?page=1">&laquo; first</a></span>
+                                       <span id="previous1"><a href="?page={{ services.previous_page_number }}">previous</a></span>
+                                    {% endif %}
+                                
+                                    <span id="current1">
+                                        Page {{ services.number }} of {{ services.paginator.num_pages }}.
+                                    </span>
+                                 
+                                    {% if services.has_next %}
+                                        <a href="?page={{ services.next_page_number }}">next</a>
+                                        <a href="?page={{ services.paginator.num_pages }}">last &raquo;</a>
+                                    {% endif %}
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
 {% include 'snippets/footer3.htm'%}
 {% endblock content %}

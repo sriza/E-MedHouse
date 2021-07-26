@@ -4,8 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.db import transaction
-
-
+from django.core.paginator import Paginator
+from django.db.models import Q
 
 from .models import Lab, LabImage
 from vendor.models import User
@@ -106,15 +106,29 @@ def dashboard(request):
                     'recent_page': 'My Account',
                 }
         lab = Lab.objects.get(user=request.user)
-        print(lab)
         lab_img = LabImage.objects.get(lab=lab, img_type='profile')
-        print(lab_img)
-        services = Service.objects.filter(lab=lab)
+
+        if request.method == "POST" :
+            title = request.POST.get('title')
+            print(title)
+          
+            if title:
+                services_list = Service.objects.filter((Q(title__contains = title)| Q(appointment_date__contains = title)| Q(meta_title__contains = title)| Q(service_type__contains = title))& Q(lab=lab))
+            else :
+                services_list = Service.objects.filter(lab=lab)
+        
+        else :
+                services_list = Service.objects.filter(lab=lab)
+            
+        paginator = Paginator(services_list, 10)
+
+        page_number = request.GET.get('page')
+        services = paginator.get_page(page_number)
 
         return render(request, 'lab/dashboard.htm', {'context':context, 'lab': lab, 'lab_img' : lab_img, 'services' : services})
     except :
-        # print(e)
         return render(request,'medicalapp/index.htm')
+
 
 @login_required
 def profileDetails(request):
@@ -132,16 +146,7 @@ def profileDetails(request):
 
         return render(request, 'lab/profile-details.htm',{'context':context, 'lab': lab, 'lab_img': lab_img})
     except:
-        return render(request,'medicalapp/index.htm')
-
-@login_required
-def serviceDetails(request):
-    context={
-    'topic':'Dashboard',
-    'account': 'Home',
-    'recent_page': 'My Service',
-    }
-    return render(request, 'lab/service-details.htm', context)       
+        return render(request,'medicalapp/index.htm')     
 
 @login_required
 def forgetPassword(request):
@@ -149,22 +154,29 @@ def forgetPassword(request):
 
 @login_required
 def appointment(request):
-    appointments = Appointment.objects.filter(lab=Lab.objects.get(user=request.user))
     context={
     'topic':'Dashboard',
     'account': 'Home',
     'recent_page': 'Appointment List',
-}
-    return render(request, 'lab/appointment.htm', {'context' : context, 'appointments' : appointments })    
+    }
 
-@login_required
-def address(request):
-    context={
-    'topic':'Dashboard',
-    'account': 'Home',
-    'recent_page': 'My Address',
-}
-    return render(request, 'lab/address.htm', {'context': context})
+    if request.method == "POST" :
+        title = request.POST.get('title')
+        
+        if title:
+            appointments_list = Appointment.objects.filter((Q(full_name__contains = title)| Q(contact__contains = title)| Q(service__meta_title__contains = title)| Q(service__service_type__contains = title)) & Q(lab=Lab.objects.get(user=request.user)))
+        else :
+            appointments_list = Appointment.objects.filter(lab=Lab.objects.get(user=request.user))
+            
+    else :
+        appointments_list = Appointment.objects.filter(lab=Lab.objects.get(user=request.user))
+            
+    paginator = Paginator(appointments_list, 10)
+
+    page_number = request.GET.get('page')
+    appointments = paginator.get_page(page_number)
+
+    return render(request, 'lab/appointment.htm', {'context' : context, 'appointments' : appointments })    
 
 @login_required
 def labLogout(request):

@@ -1,11 +1,12 @@
 from doctor.views import appointment
 from customer.models import Customer
 from vendor.models import User
-import service
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db import transaction
+from django.core.paginator import Paginator
+
 
 from django.shortcuts import redirect, render
 from .forms import MicrobiologyForm, ChemistryForm, HematologyForm, BloodBankForm, MolecularDiagnoticsForm, ReproductiveBiologyForm, AppointmentForm, UploadFileForm, LabReportForm
@@ -123,8 +124,11 @@ def listServices(request):
                 'account': 'Home',
                 'recent_page': 'My Service',
                 }
-        services = Service.objects.all()
-        print(services)
+        services_list = Service.objects.all()
+        paginator = Paginator(services_list, 10)
+
+        page_number = request.GET.get('page')
+        services = paginator.get_page(page_number)
         return render(request,'service/list.htm',{'context': context, 'services' : services})
     except e:
         print(e)
@@ -293,17 +297,24 @@ def uploadReport(request,id):
     object = Appointment.objects.get(id=id)
     form = LabReportForm(instance=object, data=request.POST or None)
     report_file = UploadFileForm(request.POST,request.FILES)
-    print(report_file)
+
     if request.method == 'POST':    
-        if report_file.is_valid():
+        if form.is_valid() and report_file.is_valid():
             try:
-                file = report_file.save(commit=False)
-                print(file)
-                file.appointment=object
-                print(file.appointment)
-                file.save()
-                
-                return redirect('/service/reportlist/')
+                Appointment.objects.filter(id=id).update(
+                    appointment = request.POST.get('appointment')
+                )
+
+                if bool(request.FILES.get('file')) :
+                    file = report_file.save(commit=False)
+                    file.appointment=object
+                    file.save()
+
+                    Appointment.objects.filter(id=id).update(
+                        has_file = True
+                    )
+
+                return redirect('/lab/appointment/')
             except e:
                 print(e)
                 return render(request,'service/uploadreport.htm')
@@ -313,8 +324,7 @@ def uploadReport(request,id):
 @transaction.atomic
 def bookAppointment(request,id):
     object = Customer.objects.get(user=request.user)
-    form = AppointmentForm(instance=object, data=request.POST or None)
-    # file = UploadFileForm(request.POST or None, request.FILES or None)
+    form = AppointmentForm(request.POST or None)
 
     if form.is_valid():
         try: 
@@ -333,3 +343,10 @@ def bookAppointment(request,id):
             
     return render(request,'service/appointmentform.htm', {'form' : form, 'id' : id})
 
+
+@login_required
+@transaction.atomic
+def pdfList(request):
+    files = LabAppointment.objects.all()
+
+    return render (request,'service/pdfList.htm',{'files' : files})

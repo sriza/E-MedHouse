@@ -16,7 +16,8 @@
                 <div class="mt-10 noBig">
                     <nav class="navbar navbar-light bg-light text-center noBig">
                         <form class="form-inline noBig">
-                          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            {% csrf_token %}
+                          <input class="form-control mr-sm-2" type="search" name="title" placeholder="Search by patient name or contact number" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                       </nav>

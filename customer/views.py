@@ -232,8 +232,12 @@ def lab(request):
                     'recent_page': 'Lab List',
                     }
         labs = Lab.objects.all()
-        lab_img = LabImage.objects.filter(img_type="profile")
-    
+        lab_img_list = LabImage.objects.filter(img_type="profile")
+
+        paginator = Paginator(lab_img_list, 10)
+
+        page_number = request.GET.get('page')
+        lab_img = paginator.get_page(page_number)
 
         return render(request,'customer/lab.htm',{'context' : context,'labs' : labs, 'lab_img' : lab_img})
     except:
@@ -247,11 +251,8 @@ def labDetails(request,id):
                 'account': 'lab',
                 'recent_page': 'Lab Details',
                 }
-        print(id)
         labs = Lab.objects.get(id=id)
-        print(lab)
         lab_img = LabImage.objects.get(img_type="profile", lab__id=id)
-        # products = ProductImage.objects.filter(lab=id, main=True)
         services = Service.objects.filter(lab=labs)
 
         return render(request,'customer/lab-details.htm',{'labs':labs, 'lab_img': lab_img, 'services' : services})

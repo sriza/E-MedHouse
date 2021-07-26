@@ -16,8 +16,9 @@
                 </ul>
                 <div class="mt-10 noBig">
                     <nav class="navbar navbar-light bg-light text-center noBig">
-                        <form class="form-inline noBig">
-                          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <form class="form-inline noBig" method="POST" action="/lab/appointment/">
+                            {% csrf_token %}
+                          <input class="form-control mr-sm-2" type="search" name="title" placeholder="Search by patient name or contact or service" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                       </nav>
@@ -28,7 +29,7 @@
                             <thead class="noBig">
                                 <tr class="noBig">
                                     <th>Appointments ID</th>  
-                                    <th>Customer Name</th>
+                                    <th>Patient Name</th>
                                     <th>Contact</td>
                                     <th>Test</th>
                                     <th>Service Type</th>
@@ -64,40 +65,24 @@
     </div>
 </section>
 <!-- .modal -->
-<div class="modal fade noBig" id="changeStatus">
-    <div class="modal-dialog noBig">
-        <div class="modal-content noBig">
-            <div class="modal-header noBig">
-                <button type="button" class="close" data-dismiss="modal">×</button> 
-                <h4 class="modal-title">Change Status</h4>   
-                <p class="btn btn-transparent mt-20" id="chooseMe">choose one of the status</p>                                                          
-                <hr>
-                                 <!-- Elements -->
-                                 <div class="dropdown dropdown-slide noBig">
-                                    <button class="dropdown-toggle btn btn-secondary" data-toggle="dropdown" data-hover="dropdown" data-delay="350"
-                                        role="button" aria-haspopup="true" aria-expanded="false">Shop</button>
-                                    <div class="dropdown-menu noBig">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-6 mb-sm-3 noBig">
-                                                <ul>
-                                                    <li class="noBig"><a href="#">Processing</a></li>
-                                                    <li class="noBig"><a href="#">Completed</a></li>
-                                                    <li class="noBig"><a href="#">Canceled</a></li>
-                                                    <li class="noBig"><a href="#">Hold On</a></li>
-                                                    <li class="noBig"><a href="#">Pending</a></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- / Elements -->
-            </div>
-            <div class="modal-footer noBig">
-                <button type="button" class="btn-css btn btn-secondory" data-dismiss="modal">Cancel</button>                               
-            </div>
-        </div> 
-    </div>                                                                      
-</div>  
+  
+<div class="flex-pagination mb-3">
+    <div class="step-links">
+        {% if appointments.has_previous %}
+            <span id="first1"><a href="?page=1">&laquo; first</a></span>
+           <span id="previous1"><a href="?page={{ appointments.previous_page_number }}">previous</a></span>
+        {% endif %}
+    
+        <span id="current1">
+            Page {{ appointments.number }} of {{ appointments.paginator.num_pages }}.
+        </span>
+     
+        {% if appointments.has_next %}
+            <a href="?page={{ appointments.next_page_number }}">next</a>
+            <a href="?page={{ appointments.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </div>
+</div>
 {% include 'snippets/footer3.htm'%}
 
 <!-- 

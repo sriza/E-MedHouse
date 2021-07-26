@@ -35,28 +35,25 @@
                 <p class="help">{{form.address.errors }}</p>
               </div>
               <div class="form-group">
+                <label for="inputAddress">Date of Birth:</label>
+                {{form.dob}}
+                <p class="help">{{form.dob.errors }}</p>
+              </div>
+              <div class="form-group">
                 <label for="inputGender">Gender:</label>
                 {{form.gender}}
                 <p class="help">{{form.gender.errors }}</p>
               </div>
               <div class="form-group">
                 <label for="inputContact">Contact:</label>
-                {{form.contact_number}}
-                <p class="help">{{form.contact_number.errors }}</p>
+                {{form.contact}}
+                <p class="help">{{form.contact.errors }}</p>
               </div>
               <div class="form-group">
                 <label for="inputEmail">Email:</label>
                 {{form.email}}
                 <p class="help">{{form.email.errors }}</p>
               </div>
-              <div class="form-group">
-                <label for="inputAppointmentTime">Appointment Date:</label>
-                {{form.appointment}}
-                <p class="help">{{form.appointment.errors }}</p>
-              </div>
-              
-              
-              
               <hr>
               <div class="text-center">
                 <button type="submit" class="btn btn-main text-center" >Submit</button>

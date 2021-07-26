@@ -28,7 +28,7 @@ class Service(models.Model):
     meta_title = models.CharField(max_length=120,null=True)
     slug = models.SlugField()
     price = models.FloatField()
-    appointment_date = models.CharField(max_length=50)
+    appointment_date = models.CharField(max_length=50,null=True)
     duration = models.IntegerField(null=True)
     quantity = models.IntegerField(null=True)
     expiry_date = models.DateField(null=True)
@@ -64,7 +64,8 @@ class Appointment(models.Model):
     service= models.ForeignKey(Service, on_delete=models.CASCADE)
     status = models.CharField(max_length=20, choices=STATUS, default=BOOKED)
     test_title = models.CharField(max_length=30)
-    appointment = models.DateTimeField()
+    appointment = models.DateTimeField(null=True)
+    has_file = models.BooleanField(default=False)
 
 def get_upload_path(instance, filename):
     return 'labappointment/{0}/{1}'.format(instance.appointment.id, filename)    
