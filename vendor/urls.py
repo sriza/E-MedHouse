@@ -10,5 +10,6 @@ urlpatterns = [
     path('profile-details/', views.profileDetails, name="profile"),
     path('forget-password/', views.forgetPassword, name="forget-password"),
     path('logout/', views.vendorLogout, name="logout"),
+    path('vendorupdate/<int:id>/', views.updateVendor, name="updateVendor")
 ]
 

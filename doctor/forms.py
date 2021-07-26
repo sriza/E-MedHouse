@@ -22,7 +22,7 @@ class LoginForm(forms.Form):
         return data
 
 
-class doctorForm(forms.ModelForm):
+class DoctorForm(forms.ModelForm):
     class Meta:
         model = Doctor
         fields = ('full_name', 'user_name', 'address' , 'email', 'description', 'available_day', 'specialist', 'gender', 'nmc_number', 'charge', 'contact_number', 'degree')
@@ -71,7 +71,39 @@ class doctorForm(forms.ModelForm):
               raise forms.ValidationError("We have a user with this user name. Please try another user name")
           return data
 
+class UpdateDoctorForm(forms.ModelForm):
+    class Meta:
+        model = Doctor
+        fields = ('full_name', 'user_name', 'address', 'description', 'available_day', 'specialist', 'gender', 'charge', 'contact_number', 'degree')
+
+    MALE = 'male'
+    FEMALE = 'female'
+    OTHER = 'other'
+
+    GENDER_TYPES = [
+        (MALE, 'Male'),
+        (FEMALE, 'Female'),
+        (OTHER, 'Other')
+    ]
+
+    full_name        = forms.CharField(label='Full Name', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your full name'}))
+    user_name        = forms.CharField(label='User Name', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your user name'}))
+    address          = forms.CharField(label='Address', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your address'}))
+    description      = forms.CharField(label='Description', widget=forms.Textarea(attrs={'rows':5, 'cols':20, 'class':'form-control','placeholder': 'Write about yourself'}))
+    available_day    = forms.CharField(label='Available Day', widget=forms.Textarea(attrs={'class':'form-control' ,'placeholder': 'Enter your available days separated by commas'}))
+    specialist       = forms.CharField(label='Specialist On', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your specialized on'}))
+    gender           = forms.CharField(label='Gender', widget=forms.Select(choices=GENDER_TYPES,attrs={'class':'form-control','placeholder': 'Enter your gender'}))
+    charge           = forms.FloatField(label='Charge', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your charge fee'}))
+    contact_number   = forms.IntegerField(label='Contact Number', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your contact number'}))
+    degree           = forms.CharField(label='Degree',widget=forms.TextInput({'class':'form-control','placeholder':'Enter your degree'}))
+
 class DoctorImageForm(forms.ModelForm):
+    class Meta:
+        model = DoctorImage
+        fields = ('image',)
+    image = forms.ImageField(required=False)
+
+class DoctorImageEditForm(forms.ModelForm):
     class Meta:
         model = DoctorImage
         fields = ('image',)

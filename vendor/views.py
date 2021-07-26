@@ -8,7 +8,7 @@ from django.db import transaction
 from product.models import Product, ProductImage
 from django.shortcuts import render, redirect
 from .models import User,Vendor, VendorImage
-from .forms import LoginForm, RegisterForm, RegistrationImageForm
+from .forms import LoginForm, RegisterForm, RegistrationImageForm, UpdateRegisterForm, RegistrationImageEditForm
 from product.models import Product
 from order.models import Order,OrderItem
 
@@ -97,35 +97,6 @@ def signin(request):
                 'pancard_form':pancard_form,
                 'license_form':license_form,
                 'profile_form':profile_form})
-# @transaction.atomic
-# def signin(request):
-#     object           = Vendor.objects.get(user=request.user) 
-#     register_form    = RegisterForm(instance=object , data=request.POST or None)
-#     citizenship_form = RegistrationImageForm(request.POST or None, request.FILES or None)
-
-#     if register_form.is_valid() and citizenship_form.is_valid() and pancard_form.is_valid() and license_form.is_valid() and profile_form.is_valid():
-#         try :
-#             e = request.POST.get("email")
-#             p = request.POST.get("password")
-
-#             user = User.objects.create(
-#                 email=e, password=p, role=1
-#             )
-
-#             user.set_password(p)
-#             user.save()
-
-#             vendor = register_form.save(commit=False)
-#             vendor.user = user
-#             vendor.save()    
-#             return HttpResponseRedirect('/vendor/login/')
-    
-#         except e:
-#             print(e)
-#             return render(request,'medicalapp/index.htm')
-
-#     return render(request, 
-#                 'vendor/signin.htm',)
 
 @transaction.atomic
 def dashboard(request):
@@ -224,3 +195,33 @@ def vendorLogout(request):
     logout(request)
     return redirect('/')
     
+
+@login_required
+@transaction.atomic
+def updateVendor(request,id):
+    object        = Vendor.objects.get(id=id) 
+    form          = UpdateRegisterForm(instance=object, data=request.POST or None)
+    profile_form  = RegistrationImageEditForm(instance=object, data=request.FILES or None)
+    image         = VendorImage.objects.get(vendor=object, img_type="profile")
+
+    if form.is_valid() :
+        try : 
+            form.save()
+
+            image = request.FILES.get('image')
+
+            if bool(image) :
+                VendorImage.objects.filter(vendor=object, img_type="profile").delete()
+
+                profile             = profile_form.save(commit=False)
+                profile.vendor      = object
+                profile.description = request.POST.get("business_name")
+                profile.img_type    = 'profile'
+                profile.save()
+
+            return redirect('/vendor/profile-details/')
+        except:
+            return redirect('/vendor/dashboard/')
+
+    return render(request,'vendor/updatevendor.htm', {'form' : form, 'vendor':object, 'profile_form' : profile_form, 'image':image})
+

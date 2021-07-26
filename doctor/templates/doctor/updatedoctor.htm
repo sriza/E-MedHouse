@@ -1,0 +1,94 @@
+{% extends 'base.htm' %}
+{% load static %}
+
+{% block content %}
+<section class="signin-page account">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="block text-center">
+            <a href="/">
+              <img alt="gravater" class="dp" src={% static '/images/favicon.png' %}>
+           </a>
+            <div class="detail-txt">
+              <a href="/">
+                <span class="username">
+                   Med-House
+               </span>
+             </a>
+           </div>
+            <h3 class="text-center">Create Your Account</h3>
+          
+            <form enctype="multipart/form-data" class="text-left clearfix" method="POST" action="/doctor/doctorupdate/{{doctor.id}}/">
+              {% csrf_token %}
+              
+              <div class="form-group">
+                <label for="exampleInputFullName">Full Name</label>
+                {{ form.full_name}}
+                <p class="help">{{ form.full_name.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputUserName">User Name</label>
+                {{ form.user_name}}
+                <p class="help">{{ form.user_name.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputGender">Gender</label>
+                {{ form.gender}}
+                <p class="help">{{ form.gender.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputDegree">Degree</label>
+                {{ form.degree}}
+                <p class="help">{{ form.degree.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputSpecialist">Specialist On</label>
+                {{ form.specialist}}
+                <p class="help">{{ form.specialist.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputAvailableDate">Available Date</label>
+                {{ form.available_day}}
+                <p class="help">{{ form.available_day.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputDescription">Description</label>
+                {{ form.description}}
+                <p class="help">{{ form.description.errors }}</p>
+              </div>
+              <div class="form-row clear-both">
+                <div class="form-group col-md-6 leftside">
+                  <label for="exampleInputContactNumber">Contact Number</label>
+                  {{ form.contact_number}}
+                  <p class="help">{{ form.contact_number.errors }}</p>
+                </div>
+              </div>
+              <div class="form-row clear-both">
+                <div class="form-group col-md-6 leftside">
+                  <label for="exampleInputAddress">Address</label>
+                  {{ form.address}}
+                  <p class="help">{{ form.address.errors }}</p>
+                </div>
+                <div class="form-group col-md-6 rightside">
+                  <label for="inputCharge">Charge</label>
+                  {{ form.charge}}
+                  <p class="help">{{ form.charge.errors }}</p>
+                </div>
+              </div>
+              <div class="form-group clear-both">
+                <label for="imageUploadField">Upload a profile picture</label>
+                {{ img_form.image }}
+                <p class="help">{{ img_form.image.errors }}</p>
+              </div>
+              <hr>
+              <div class="text-center">
+                <button type="submit" class="btn btn-main text-center">Update</button>
+              </div>
+            </form>
+          </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+

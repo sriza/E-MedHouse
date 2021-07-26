@@ -19,6 +19,7 @@ urlpatterns = [
     path('vendor-detail/<int:id>/', views.vendorDetails),
     path('add/comment/<int:id>/',views.addReview),
     path('completeappointment/', views.completedAppointment),
-    path('book/appointment', views.bookAppointment)
+    path('book/appointment', views.bookAppointment),
+    path('customerupdate/<int:id>/', views.updateCustomer, name="updateLab"),
 ]
 

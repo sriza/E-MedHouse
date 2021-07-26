@@ -13,7 +13,7 @@ from vendor.models import User,VendorImage, Vendor
 from lab.models import Lab, LabImage
 from doctor.models import DoctorImage, Doctor, DoctorAppointment
 from service.models import Appointment, LabAppointment, Service
-from .forms import LoginForm, CustomerForm, CustomerImageForm
+from .forms import LoginForm, CustomerForm, CustomerImageForm, UpdateCustomerForm, CustomerImageEditForm
 from order.models import Order,OrderItem
 
 from django.shortcuts import render
@@ -291,6 +291,34 @@ def addReview(request,id):
     except e:
         print(e)
         return redirect('/product/shop/')
+
+
+@login_required
+@transaction.atomic
+def updateCustomer(request,id):
+    object        = Customer.objects.get(id=id) 
+    form          = UpdateCustomerForm(instance=object, data=request.POST or None)
+    img_form      = CustomerImageEditForm(instance=object, data=request.FILES or None)
+    image         = CustomerImage.objects.get(customer=object)
+
+    if form.is_valid() :
+        try : 
+            form.save()
+            image = request.FILES.get('image')
+            if bool(image) :
+                CustomerImage.objects.filter(customer=object).delete()
+
+                img             = img_form.save(commit=False)
+                img.customer    = object
+                img.description = request.POST.get("full_name")
+                img.save()
+
+            return redirect('/customer/dashboard/')
+        except e:
+            print(e)
+            return redirect('/customer/dashboard/')
+
+    return render(request,'customer/updatecustomer.htm', {'form' : form, 'customer':object, 'img_form' : img_form, 'image':image})
 
 
    

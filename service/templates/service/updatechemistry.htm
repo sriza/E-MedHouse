@@ -20,9 +20,9 @@
             <h3 class="text-center"><i class="tf-ion-android-add"></i> Update Service</h3>
             <h4 class="mt-10">Clinical Chemistry</h4>
             <!-- Clinical Chemistry form -->
-            <form enctype="multipart/form-data" class="text-left clearfix" action="/service/update/chemistry/{{service.id}}" method="POST" id="chemistry" style="display: block;">
+            <form enctype="multipart/form-data" class="text-left clearfix" action="/service/update/clinicalchemistry/{{service.id}}/" method="POST" id="chemistry" style="display: block;">
               {% csrf_token %}
-              <input type="hidden" name="service_type" value="chemistry">
+              <input type="hidden" name="service_type" value="clinicalchemistry">
               <div class="form-group">
                 <label for="inputName">Name of test:</label>
                 {{form.title}}

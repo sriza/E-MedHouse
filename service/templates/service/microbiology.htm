@@ -23,7 +23,7 @@
             <!-- microbiology form -->
             <form enctype="multipart/form-data" class="text-left clearfix" action="/service/add/microbiology/" method="POST" id="microbiology" style="display: block;">
               {% csrf_token %}
-              
+              <input type="hidden" name="service_type" value="microbiology">
               <div class="form-group">
                 <label for="inputName">Name of test:</label>
                 {{form.title}}

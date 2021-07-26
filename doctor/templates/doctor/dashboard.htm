@@ -17,7 +17,7 @@
                     <div class="media">
                         <div class="pull-left text-center" href="#!">
                             <img class="media-object user-img" src="/media/{{doctor_img.image}}" alt="Profile image of {{doctor.shop_name}}">
-                            <!-- <a class="btn btn-main mt-20" data-target="#MyProfileModal" data-toggle="modal">Edit <i class="tf-ion-edit"></i></a> -->
+                            <a href="/doctor/doctorupdate/{{doctor.id}}/" class="btn btn-main mt-20" > Edit <i class="tf-ion-edit"></i></a>
                         </div>
                         <div class="media-body">
                             <ul class="user-profile-list">
@@ -36,41 +36,5 @@
         </div>
     </div>
 </section>
-
-<!-- .modal -->
-<div class="modal fade" id="MyProfileModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">×</button> 
-                <h4 class="modal-title">
-                    Edit your profile
-                </h4>                                                             
-                <hr>
-                <div class="media dashboard-wrapper">
-                    <div class="text-center" href="#!">
-                        <img class="media-object user-img" id="profile" src="/media/{{doctor_img.image}}"  alt="Profile image of {{doctor.shop_name}}">
-                        <a href="#x" class="btn btn-transparent mt-20">Change Image</a>
-                    </div>
-                <dl class="dl-horizontal details-list">
-                    <dt class="mt-10">Full Name:</dt>
-                    <dd><input type="text" class="form-control"  placeholder="hari lal yadhab"></dd>
-                    <dt class="mt-10">user Name:</dt>
-                    <dd><input type="text" class="form-control"  placeholder="epharmacy"></dd>
-                    <dt class="mt-10">Email:</dt>
-                    <dd><input type="email" class="form-control"  placeholder="hari.yadhab1234@gmail.com"></dd>
-                    <dt class="mt-10">Address:</dt>
-                    <dd><input type="text" class="form-control"  placeholder="balkumari"></dd>
-                    <dt class="mt-10">Contact No:</dt>
-                    <dd><input type="text" class="form-control"  placeholder="9803678422"></dd>
-                </dl>
-            </div>                         
-            <div class="modal-footer">
-                <button class="btn-css btn btn-primary">Update</button>
-                <button type="button" class="btn-css btn btn-default" data-dismiss="modal">Close</button>                               
-            </div>
-        </div> 
-    </div>                                                                      
-</div>  
 {% include 'snippets/copyright-footer.htm'%}
 {% endblock content %}

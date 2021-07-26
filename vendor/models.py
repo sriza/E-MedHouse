@@ -63,7 +63,6 @@ class VendorImage(models.Model):
     PROFILE = 'profile'
     PAN = 'pan'
     VAT = 'vat'
-
     CITIZENSHIP = 'citizenship'
     LICENSE = 'license'
 

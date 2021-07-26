@@ -333,10 +333,3 @@ def bookAppointment(request,id):
             
     return render(request,'service/appointmentform.htm', {'form' : form, 'id' : id})
 
-
-@login_required
-@transaction.atomic
-def pdfList(request):
-    files = LabAppointment.objects.all()
-    print(files)
-    return render (request,'service/pdfList.htm',{'files' : files})
