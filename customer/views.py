@@ -309,18 +309,19 @@ def addReview(request,id):
 def updateCustomer(request,id):
     object        = Customer.objects.get(id=id) 
     form          = UpdateCustomerForm(instance=object, data=request.POST or None)
-    img_form      = CustomerImageEditForm(instance=object, data=request.FILES or None)
+    img_form      = CustomerImageEditForm(request.FILES or None)
     image         = CustomerImage.objects.get(customer=object)
 
     if form.is_valid() :
         try : 
-            form.save()
+            customer = form.save()
             image = request.FILES.get('image')
+
             if bool(image) :
                 CustomerImage.objects.filter(customer=object).delete()
 
                 img             = img_form.save(commit=False)
-                img.customer    = object
+                img.customer    = customer
                 img.description = request.POST.get("full_name")
                 img.save()
 

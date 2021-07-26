@@ -211,13 +211,13 @@ def updateVendor(request,id):
             image = request.FILES.get('image')
 
             if bool(image) :
-                VendorImage.objects.filter(vendor=object, img_type="profile").delete()
+                # VendorImage.objects.filter(vendor=object, img_type="profile").delete()
 
-                profile             = profile_form.save(commit=False)
-                profile.vendor      = object
-                profile.description = request.POST.get("business_name")
-                profile.img_type    = 'profile'
-                profile.save()
+                # profile             = profile_form.save(commit=False)
+                # profile.vendor      = object
+                # profile.description = request.POST.get("business_name")
+                # profile.img_type    = 'profile'
+                profile_form.save()
 
             return redirect('/vendor/profile-details/')
         except:

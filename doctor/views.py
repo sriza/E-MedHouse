@@ -221,7 +221,7 @@ def statusCompleted(request,id):
 def updateDoctor(request,id):
     object        = Doctor.objects.get(id=id) 
     form          = UpdateDoctorForm(instance=object, data=request.POST or None)
-    img_form      = DoctorImageEditForm(instance=object, data=request.FILES or None)
+    img_form      = DoctorImageEditForm(request.FILES or None)
     image         = DoctorImage.objects.get(doctor=object)
 
     if form.is_valid():
