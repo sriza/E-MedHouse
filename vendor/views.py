@@ -144,8 +144,8 @@ def dashboard(request):
         finishing = Product.objects.filter(vendor=vendor, quantity__lt = 5)
 
         return render(request, 'vendor/dashboard.htm', {'context':context, 'vendor': vendor, 'vendor_img' : vendor_img, 'expiry' : expiry, 'finishing' : finishing})
-    except e:
-        print(e)
+    except :
+        # print(e)
         return render(request,'medicalapp/index.htm')
 
 

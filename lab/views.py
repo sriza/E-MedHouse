@@ -1,14 +1,18 @@
+from service.models import Appointment, LabAppointment, Service
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.db import transaction
 
+
+
 from .models import Lab, LabImage
 from vendor.models import User
-from .forms import LoginForm, RegisterForm, RegistrationImageForm
+from .forms import LoginForm, RegisterForm, RegistrationImageForm, UpdateRegisterForm, RegistrationImageEditForm
 from product.models import Product
 from datetime import date, datetime
+
 
 # Create your views here.
 
@@ -101,17 +105,15 @@ def dashboard(request):
                     'account': 'Home',
                     'recent_page': 'My Account',
                 }
-        lab     = Lab.objects.get(user=request.user)
+        lab = Lab.objects.get(user=request.user)
         print(lab)
         lab_img = LabImage.objects.get(lab=lab, img_type='profile')
         print(lab_img)
+        services = Service.objects.filter(lab=lab)
 
-        # expiry = Product.objects.filter(lab=lab, expiry_date__lt=datetime.today())
-        # finishing = Product.objects.filter(lab=lab, quantity__lt = 5)
-
-        return render(request, 'lab/dashboard.htm', {'context':context, 'lab': lab, 'lab_img' : lab_img})
-    except e:
-        print(e)
+        return render(request, 'lab/dashboard.htm', {'context':context, 'lab': lab, 'lab_img' : lab_img, 'services' : services})
+    except :
+        # print(e)
         return render(request,'medicalapp/index.htm')
 
 @login_required
@@ -147,12 +149,13 @@ def forgetPassword(request):
 
 @login_required
 def appointment(request):
+    appointments = Appointment.objects.filter(lab=Lab.objects.get(user=request.user))
     context={
     'topic':'Dashboard',
     'account': 'Home',
     'recent_page': 'Appointment List',
 }
-    return render(request, 'lab/appointment.htm', {'context' : context})    
+    return render(request, 'lab/appointment.htm', {'context' : context, 'appointments' : appointments })    
 
 @login_required
 def address(request):
@@ -167,3 +170,34 @@ def address(request):
 def labLogout(request):
     logout(request)
     return redirect('/')    
+
+
+@login_required
+@transaction.atomic
+def updateLab(request,id):
+    object        = Lab.objects.get(id=id) 
+    form          = UpdateRegisterForm(instance=object, data=request.POST or None)
+    profile_form  = RegistrationImageEditForm(instance=object, data=request.FILES or None)
+    image         = LabImage.objects.get(lab=object, img_type="profile")
+
+    if form.is_valid() :
+        try : 
+            form.save()
+
+            image = request.FILES.get('image')
+
+            if bool(image) :
+                LabImage.objects.filter(lab=object, img_type="profile").delete()
+
+                profile             = profile_form.save(commit=False)
+                profile.lab         = object
+                profile.description = request.POST.get("business_name")
+                profile.img_type    = 'profile'
+                profile.save()
+
+            return redirect('/lab/profile-details/')
+        except:
+            return redirect('/lab/dashboard/')
+
+    return render(request,'lab/updatelab.htm', {'form' : form, 'lab':object, 'profile_form' : profile_form, 'image':image})
+

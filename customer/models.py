@@ -1,3 +1,4 @@
+
 from django.db import models
 from vendor.models import User
 from product.models import Product

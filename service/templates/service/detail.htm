@@ -2,111 +2,83 @@
 {% load static %}
 
 {% block content %}
-{% include 'snippets/vendor-dashboard-header.htm'%}
+{% include 'snippets/lab-dashboard-header.htm'%}
 {% include 'snippets/page-header.htm'%}
 
-<section class="single-product">
+<section class="single-service">
 	<div class="container">
 		<div class="row">
 		</div>
 		<div class="row mt-20">
-			<div class="col-md-5">
-				<div class="single-product-slider">
-					<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
-						<div class='carousel-outer'>
-							<!-- me art lab slider -->
-							<div class='carousel-inner '>
-								{% for img in product_img %}
-									{% if img.main %}
-										<div class='item active'>
-									{% else %}
-										<div class='item'>
-									{% endif %}
-										<img src="/media/{{img.image}}"  alt="{{img.description}}" data-zoom-image="/media/{(img.image}}"  />
-									</div>
-								{% endfor %}							
-								
-							</div>
-							
-							<!-- sag sol -->
-							<a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
-								<i class="tf-ion-ios-arrow-left"></i>
-							</a>
-							<a class='right carousel-control' href='#carousel-custom' data-slide='next'>
-								<i class="tf-ion-ios-arrow-right"></i>
-							</a>
+			<div class="col-xs-2" style="width: 35%; padding-left: 150px;">
+				<div class="single-service-details">
+					<h2>{{service.title}}</h2>
+					
+					<p class="service-description mt-20">
+						{{service.meta_title}}
+					</p>
+					<div class="service-category">
+						<span>Type:</span>
+						{{service.service_type}}
+					</div>
+					<div class="service-price">
+						<span>Price:</span>
+						${{service.price}}
+					</div>
+					{% if service.service_type|stringformat:"s" != "bloodbank" %}
+						<div class="service-category">
+							<span>Appointment Time:</span>
+							{{service.appointment}}
+						</div>
+						<div class="service-category">
+							<span>Result Duration:</span>
+							Within {{service.duration}} days
 						</div>
 						
-						<!-- thumb -->
-						<ol class='carousel-indicators mCustomScrollbar meartlab'>
-							{% for img in product_img %}
-								{% if img.main %}
-									<li data-target='#carousel-custom' data-slide-to='{{ forloop.counter0 }}' class='active'>
-								{% else %}
-									<li data-target='#carousel-custom' data-slide-to='{{ forloop.counter0 }}' >
-								{% endif %}
-									<img src="/media/{{img.image}}" alt="{{img.description}}" />
-								</li>
-							{% endfor %}
+					{% endif %}
+					
+					{% if service.service_type|stringformat:"s" == "bloodbank" %}
 
-						</ol>
-					</div>
+						<div class="service-category">
+							<span>Quantity:</span>
+							{{service.quantity}}
+						</div>
+						<div class="service-category">
+							<span>Packed Date:</span>
+							{{service.packed_date}}
+						</div>
+						<div class="service-category">
+							<span>Expiry Date:</span>
+							{{service.expiry_date}}
+						</div>
+					{% endif %}
+					<a href="/service/update/{{service.service_type}}/{{service.id}}" class="btn btn-main mt-20">update</a>
+					<a href="/service/delete/{{service.service_type}}/{{service.id}}" class="btn btn-main mt-20">delete</a>
+				
+				
 				</div>
 			</div>
-			<div class="col-md-7">
-				<div class="single-product-details">
-					<h2>{{product.title}}</h2>
-					<p class="product-price">$ {{product.price}}</p>
-					
-					<p class="product-description mt-20">
-						{{product.meta_title}}
-					</p>
-					<div class="product-category">
-						<span>Type:</span>
-						{{product.product_type}}
-					</div>
-					{% if product.product_type|stringformat:"s" == "medicine" %}
-						<div class="product-category">
-							<span>Generic Name:</span>
-							{{product.medical_name}}
-						</div>
-					{% endif %}
-					<div class="product-category">
-						<span>Quantity:</span>
-						{{product.quantity}}
-					</div>
-					{% if product.product_type|stringformat:"s" != "device" %}
-						<div class="product-category">
-							<span>Manufactured Date:</span>
-							{{product.manufacture_date}}
-						</div>
-						<div class="product-category">
-							<span>Expiry Date:</span>
-							{{product.expiry_date}}
-						</div>
-					{% endif %}
-				
-					<div class="product-category">
-						<span>Manufacturer:</span>
-						{{product.manufacturer}}
-					</div>
-					<a href="#" class="btn btn-main mt-20">update</a>
+			<div class="col-xs-6" style="padding-top: 15px; margin-left: 75px;">
+				<div id="details" class="tab-pane fade active in">
+					<h4>Service Description</h4>
+					<p>{{service.description}}</p>
 				</div>
 			</div>
 		</div>
+		
+		
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="tabCommon mt-20">
 					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#details" aria-expanded="true">Details</a></li>
 						<li class=""><a data-toggle="tab" href="#reviews" aria-expanded="false">Reviews (3)</a></li>
 					</ul>
 					<div class="tab-content patternbg">
-						<div id="details" class="tab-pane fade active in">
-							<h4>Product Description</h4>
-							<p>{{product.description}}</p>
-						</div>
-						<div id="reviews" class="tab-pane fade">
+						<!-- <div id="details" class="tab-pane fade active in">
+							<h4>Service Description</h4>
+							<p>{{service.description}}</p>
+						</div> -->
+						<div id="reviews" class="tab-pane fade active in">
 							<div class="post-comments">
 						    	<ul class="media-list comments-list m-bot-50 clearlist">
 								    <!-- Comment Item start-->
@@ -194,6 +166,6 @@
 	</div>
 </section>
 
-{% include 'snippets/vender-product-model.htm'%}
-{% include 'snippets/footer2.htm'%}
+{% include 'snippets/lab-service-model.htm'%}
+{% include 'snippets/footer3.htm'%}
 {% endblock content %}

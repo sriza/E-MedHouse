@@ -1,4 +1,4 @@
-{% extends 'base.htm' %}
+ {% extends 'base.htm' %}
 {% load static %}
 
 {% block content %}
@@ -10,9 +10,9 @@
         <div class="row">
             <ul class="list-inline dashboard-menu text-center">
                 <li><a  href="/lab/dashboard/">Dashboard</a></li>
-                <li><a href="/lab/order/">Appointments</a></li>
+                <li><a href="/lab/appointment/">Appointments</a></li>
                 <li><a href="/lab/profile-details/">Profile Details</a></li>
-                <li><a class="active" href="/lab/service-details/">Service Details</a></li>
+                <li><a class="active" href="/service/list">Service Details</a></li>
             </ul>
             <div style="margin-top: 20px;">
                 <nav class="navbar navbar-light bg-light text-center">
@@ -22,30 +22,30 @@
                     </form>
                   </nav>
                 </div>
-            {% for image in images%}
+            {% for service in services%}
                 <div class="col-md-4">
                     <div class="product-item">
                         <div class="product-thumb">
-                            <img class="img-responsive" src="/media/{{image.image}}" alt={{image.description}} />
+                            <!-- <img class="img-responsive" src="/media/{{image.image}}" alt={{image.description}} /> -->
                             <div class="preview-meta">
                                 <ul>
                                     <li>
-                                        <a href="/service/detail/{{image.service.id}}">
+                                        <a href="/service/detail/{{service.id}}">
                                             <i class="tf-ion-ios-search-strong"></i>
                                         </a>
                                     </li>
-                                    <!-- <li>
-                                        <a href="#!" ><i class="tf-ion-edit"></i></a>
-                                    </li> -->
-                                    <!-- <li>
-                                        <a href="#!"><i class="tf-ion-android-delete"></i></a>
-                                    </li> -->
+                                    <li>
+                                        <a href="/service/update/{{service.service.service_type}}/{{service.service.id}}"><i class="tf-ion-edit"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="/service/delete/{{service.service.id}}"><i class="tf-ion-android-delete"></i></a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="product-content">
-                            <h4><a href="service-single.htm">{{image.service.title}}</a></h4>
-                            <p class="price">$ {{image.service.price}}</p>
+                        <div class="service-content">
+                            <h4><a href="service-single.htm">{{service.title}}</a></h4>
+                            <p class="price">Rs.{{service.price}}</p>
                         </div>
                     </div>
                 </div>
@@ -53,5 +53,5 @@
         </div>
     </div>
 </section>
-{% include 'snippets/footer2.htm'%}
+{% include 'snippets/footer3.htm'%}
 {% endblock content %}

@@ -23,7 +23,7 @@
             <!-- microbiology form -->
             <form enctype="multipart/form-data" class="text-left clearfix" action="/service/add/microbiology/" method="POST" id="microbiology" style="display: block;">
               {% csrf_token %}
-              <input type="hidden" name="service_type" value="microbiology">
+              
               <div class="form-group">
                 <label for="inputName">Name of test:</label>
                 {{form.title}}
@@ -31,13 +31,13 @@
               </div>
               <div class="form-group">
                 <label for="inputMetaTitle">Meta Title</label>
-                {{form.meta_title}}
+                {{form.meta_title}}<input type="hidden" name="service_type" value="microbiology">
                 <p class="help">{{form.meta_title.errors }}</p>
               </div>
               <div class="form-group">
                 <label for="inputAppointmentTime">Appointment Time</label>
-                {{form.appointment}}
-                <p class="help">{{form.appointment.errors }}</p>
+                {{form.appointment_date}}
+                <p class="help">{{form.appointment_date.errors }}</p>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6 leftside">

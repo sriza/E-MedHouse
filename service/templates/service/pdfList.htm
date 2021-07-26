@@ -1,0 +1,7 @@
+<h4>Uploaded files </h4>
+{% for file in files %}
+<p>
+    <a href="{{file.file.url}}" class="btn btn-primary">Download</a>
+    
+</p>
+{% endfor %}

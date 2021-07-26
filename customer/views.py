@@ -1,3 +1,4 @@
+import customer
 from product.models import Product, ProductImage
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -11,6 +12,7 @@ from .models import Customer, CustomerImage, Review
 from vendor.models import User,VendorImage, Vendor
 from lab.models import Lab, LabImage
 from doctor.models import DoctorImage, Doctor, DoctorAppointment
+from service.models import Appointment, LabAppointment, Service
 from .forms import LoginForm, CustomerForm, CustomerImageForm
 from order.models import Order,OrderItem
 
@@ -139,12 +141,28 @@ def order(request):
 
 @login_required
 def appointment(request):
+    customer=Customer.objects.get(user=request.user)
+    appointments = Appointment.objects.filter(customer=customer)
+    files = LabAppointment.objects.all()
     context={
                 'topic':'Dashboard',
                 'account': 'Home',
                 'recent_page': 'Lab appointment List',
                 }
-    return render(request, 'customer/appointment.htm', {'context' : context})    
+    return render(request, 'customer/appointment.htm', {'context' : context, 'appointments' : appointments, 'files' : files})    
+
+@login_required
+def completedAppointment(request):
+    customer=Customer.objects.get(user=request.user)
+    appointments = Appointment.objects.filter(customer=customer)
+    files = LabAppointment.objects.all()
+    context={
+                'topic':'Dashboard',
+                'account': 'Home',
+                'recent_page': 'Complete Lab appointment List',
+                }
+    return render(request, 'customer/completeappointment.htm', {'context' : context, 'appointments' : appointments, 'files' : files})    
+
 
 @login_required
 def customerLogout(request):
@@ -208,24 +226,31 @@ def lab(request):
                     'account': 'lab',
                     'recent_page': 'Lab List',
                     }
-
+        labs = Lab.objects.all()
         lab_img = LabImage.objects.filter(img_type="profile")
+    
 
-        return render(request,'customer/lab.htm',{'context' : context, 'lab_img' : lab_img})
+        return render(request,'customer/lab.htm',{'context' : context,'labs' : labs, 'lab_img' : lab_img})
     except:
-        return render(request,'service/shop/')
+        return render(request,'customer/dashboard/')
 
 @login_required
 def labDetails(request,id):
     try:
         print(id)
-        lab = Lab.objects.get(id=id)
-        lab_img = LabImage.objects.get(img_type="profile", lab=id)
+        labs = Lab.objects.get(id=id)
+        print(lab)
+        lab_img = LabImage.objects.get(img_type="profile", lab__id=id)
         # products = ProductImage.objects.filter(lab=id, main=True)
+        services = Service.objects.filter(lab=labs)
 
-        return render(request,'customer/lab-details.htm',{'lab':lab, 'lab_img': lab_img})
-    except:
-        return render(request,'service/shop/') 
+        return render(request,'customer/lab-details.htm',{'labs':labs, 'lab_img': lab_img, 'services' : services})
+    except e:
+        print(e)
+        return render(request,'customer/lab/')        
+
+def bookAppointment(request):
+    return render(request,'customer/book/appointment/')
 
 @login_required
 @transaction.atomic
