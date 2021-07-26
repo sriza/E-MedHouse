@@ -9,7 +9,7 @@ from django.db import transaction
 
 from .models import Lab, LabImage
 from vendor.models import User
-from .forms import LoginForm, RegisterForm, RegistrationImageForm, UpdateRegisterForm
+from .forms import LoginForm, RegisterForm, RegistrationImageForm, UpdateRegisterForm, RegistrationImageEditForm
 from product.models import Product
 from datetime import date, datetime
 
@@ -175,21 +175,29 @@ def labLogout(request):
 @login_required
 @transaction.atomic
 def updateLab(request,id):
-    print(id)
     object        = Lab.objects.get(id=id) 
-    form          = RegisterForm(instance=object, data=request.POST or None)
-    profile_form  = RegistrationImageForm(request.POST or None, request.FILES or None)
+    form          = UpdateRegisterForm(instance=object, data=request.POST or None)
+    profile_form  = RegistrationImageEditForm(instance=object, data=request.FILES or None)
+    image         = LabImage.objects.get(lab=object, img_type="profile")
 
-    if form.is_valid():
-        print("inside form")
+    if form.is_valid() :
         try : 
-            print("hi")
             form.save()
-            profile_form.save()
+
+            image = request.FILES.get('image')
+
+            if bool(image) :
+                LabImage.objects.filter(lab=object, img_type="profile").delete()
+
+                profile             = profile_form.save(commit=False)
+                profile.lab         = object
+                profile.description = request.POST.get("business_name")
+                profile.img_type    = 'profile'
+                profile.save()
+
             return redirect('/lab/profile-details/')
-        except e:
-            print(e)
+        except:
             return redirect('/lab/dashboard/')
 
-    return render(request,'lab/updatelab.htm', {'form' : form, 'lab':object, 'profile_form' : profile_form})
+    return render(request,'lab/updatelab.htm', {'form' : form, 'lab':object, 'profile_form' : profile_form, 'image':image})
 

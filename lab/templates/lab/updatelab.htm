@@ -21,6 +21,7 @@
           
             <form enctype="multipart/form-data" class="text-left clearfix" method="POST" action="/lab/labupdate/{{lab.id}}/">
               {% csrf_token %} 
+              <!-- {{form}} -->
               <div class="form-group">
                 <label for="exampleInputLabName">Laboratory Name</label>
                 {{ form.lab_name}}
@@ -66,32 +67,29 @@
                 {{ form.branches}}
                 <p class="help">{{ form.branches.errors }}</p>
               </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                {{ form.password}}
-                <p class="help">{{ form.password.errors }}</p>
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                {{ form.confirm_password}}
-                <p class="help">{{ form.confirm_password.errors }}</p>
-              </div>
               <hr>
               <h3 class="text-center">Valid Documents</h3>
               <hr>
-              <br>
               <div class="form-row">
-                <div class="form-group col-md-6 rightuploadside">
                   <label for="OpenfileUpload">Upload your Profile Picture</label>
                   {{profile_form.image}}
                   {{profile_form.image.errors}}
-                </div>
               </div>
-              <hr>
+              <div class="form-group">
+                <label for="CurrentImages">Current Images</label>
+                <br>
+                  <div class="col-md-10">
+                    <div class="product-item">
+                      <div class="product-thumb">
+                        <img class="img-responsive" src="/media/{{image.image}}" alt={{image.description}} />
+                      </div>
+                    </div>
+                  </div>	                  
+              </div>
               <div class="text-center">
-                <button type="submit" class="btn btn-main text-center">Update</button>
+                <button type="submit" class="btn btn-main text-center" >Update</button>
               </div>
-            </form>
+            </form>            
           </div>
         </div>
     </div>
