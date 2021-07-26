@@ -1,0 +1,91 @@
+{% extends 'base.htm' %}
+{% load static %}
+
+{% block content %}
+<section class="signin-page account">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="block text-center">
+            <a href="/">
+              <img alt="gravater" class="dp" src={% static '/images/favicon.png' %}>
+           </a>
+            <div class="detail-txt">
+              <a href="/">
+                <span class="username">
+                   Med-House
+               </span>
+             </a>
+           </div>
+            <h3 class="text-center">Update Your business Account</h3>
+          
+            <form enctype="multipart/form-data" class="text-left clearfix" method="POST" action="/vendor/vendorupdate/{{vendor.id}}/">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="exampleInputFullName">Full Name</label>
+                {{form.full_name}}
+                <p class="help">{{form.full_name.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail">Address</label>
+                {{form.address}}
+                <p class="help">{{form.address.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputContactNumber">Contact Number</label>
+                {{form.contact_number}}
+                <p class="help">{{form.contact_number.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputGender">Gender</label>
+               {{form.gender}}
+               <p class="help">{{form.gender.errors }}</p>
+              </div>
+              
+              <div class="form-group">
+                <label for="inputBirthOfDate">Date of Birth</label>
+                {{form.dob}}
+                <p class="help">{{form.dob.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPharmacyName">Pharmacy Name</label>
+                {{form.shop_name}}
+                <p class="help">{{form.shop_name.errors }}</p>
+              </div>
+              <div class="form-group">
+                <label for="inputDescription">Description</label>
+                {{form.description}}
+                <p class="help">{{form.description.errors }}</p>
+              </div>
+              <hr>
+              <h3 class="text-center">Valid Documents</h3>
+              <hr>
+              <div class="form-row">
+                  <label for="OpenfileUpload">Upload your Profile Picture</label>
+                  {{profile_form.image}}
+                  {{profile_form.image.errors}}
+              </div>
+              <div class="form-group">
+                <label for="CurrentImages">Current Images</label>
+                <br>
+                  <div class="col-md-10">
+                    <div class="product-item">
+                      <div class="product-thumb">
+                        <img class="img-responsive" src="/media/{{image.image}}" alt={{image.description}} />
+                      </div>
+                    </div>
+                  </div>	                  
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-main text-center">Update</button>
+              </div>
+            
+            </form>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+{% endblock content %}
+

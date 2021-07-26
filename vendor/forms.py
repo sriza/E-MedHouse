@@ -63,10 +63,38 @@ class RegisterForm(forms.ModelForm):
               raise forms.ValidationError("We have a user with this user email-id")
           return data
 
+class UpdateRegisterForm(forms.ModelForm):
+    class Meta:
+        model = Vendor
+        fields = ('full_name', 'gender', 'address', 'dob', 'description','contact_number', 'shop_name')
+
+    MALE = 'male'
+    FEMALE = 'female'
+    OTHER = 'other'
+
+    GENDER_TYPES = [
+        (MALE, 'Male'),
+        (FEMALE, 'Female'),
+        (OTHER, 'Other')
+    ]
+
+    full_name        = forms.CharField(label='Full Name', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your full name'}))
+    address          = forms.CharField(label='Address', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your address'}))
+    description      = forms.CharField(label='Description', widget=forms.Textarea(attrs={'rows':5, 'cols':20, 'class':'form-control','placeholder': 'Write about your pharmacy'}))
+    gender           = forms.CharField(label='Gender', widget=forms.Select(choices=GENDER_TYPES,attrs={'class':'form-control','placeholder': 'Enter your gender'}))
+    dob              = forms.DateField(label='Date Of Birth', widget=forms.TextInput(attrs={'class':'form-control datepicker' ,'placeholder': 'Enter your date of birth'}))
+    contact_number   = forms.IntegerField(label='Contact Number', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your contact number'}))
+    shop_name        = forms.CharField(label='Pharmacy Name', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your pharmacy name'}))
+    
 
 class RegistrationImageForm(forms.ModelForm):
     class Meta:
         model = VendorImage
-        
         fields = ('image',)
     image = forms.ImageField(required=True)
+
+class RegistrationImageEditForm(forms.ModelForm):
+    class Meta:
+        model = VendorImage
+        fields = ('image',)
+    image = forms.ImageField(required=False)

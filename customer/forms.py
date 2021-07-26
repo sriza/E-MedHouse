@@ -64,11 +64,39 @@ class CustomerForm(forms.ModelForm):
               raise forms.ValidationError("We have a user with this user name. Please try another user name")
           return data
 
+class UpdateCustomerForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = ('full_name', 'user_name', 'address', 'gender', 'contact_number')
+
+    MALE = 'male'
+    FEMALE = 'female'
+    OTHER = 'other'
+
+    GENDER_TYPES = [
+        (MALE, 'Male'),
+        (FEMALE, 'Female'),
+        (OTHER, 'Other')
+    ]
+
+    full_name        = forms.CharField(label='Full Name', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your full name'}))
+    user_name        = forms.CharField(label='User Name', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your user name'}))
+    address          = forms.CharField(label='Address', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your address'}))
+    gender           = forms.CharField(label='Gender', widget=forms.Select(choices=GENDER_TYPES,attrs={'class':'form-control','placeholder': 'Enter your gender'}))
+    contact_number   = forms.IntegerField(label='Contact Number', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your contact number'}))
+
+
 class CustomerImageForm(forms.ModelForm):
     class Meta:
         model = CustomerImage
         fields = ('image',)
     image = forms.ImageField(required=False)
+
+class CustomerImageEditForm(forms.ModelForm):
+    class Meta:
+        model = CustomerImage
+        fields = ('image',)
+    image = forms.ImageField(required=False)    
 
 class AppointmentForm(forms.Form):
     class Meta:

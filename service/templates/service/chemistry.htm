@@ -23,7 +23,7 @@
             <!-- chemistry form -->
             <form enctype="multipart/form-data" class="text-left clearfix" action="/service/add/chemistry/" method="POST" id="chemistry" >
               {% csrf_token %}
-              <input type="hidden" name="service_type" value="clinicalchemistry'">
+              <input type="hidden" name="service_type" value="clinicalchemistry">
               <div class="form-group">
                 <label for="inputName">Name of test:</label>
                 {{form.title}}

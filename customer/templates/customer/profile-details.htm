@@ -14,13 +14,13 @@
                     <li class="noBig"><a href="/customer/order/">Orders</a></li>
                     <li class="noBig"><a class="active" href="/customer/profile-details/">Profile Details</a></li>
                     <li class="noBig"><a href="/customer/appointment/">Lab Appointments</a></li>
-                    <li class="noBig "><a class="active" href="/customer/completeappointment/">Completed Lab Appointments</a></li>
+                    <li class="noBig "><a href="/customer/completeappointment/">Completed Lab Appointments</a></li>
                 </ul>
                 <div class="dashboard-wrapper dashboard-user-profile noBig">
                     <div class="media noBig">
                         <div class="pull-left text-center noBig" href="#!">
                             <img class="media-object user-img" src="/media/{{customer_img.image}}" alt="Profile image of {{customer.shop_name}}">
-                            <!-- <a class="btn btn-main mt-20" data-target="#MyProfileModal" data-toggle="modal">Edit <i class="tf-ion-edit"></i></a> -->
+                            <a href="/customer/customerupdate/{{customer.id}}" class="btn btn-main mt-20">Edit <i class="tf-ion-edit"></i></a>
                         </div>
                         <div class="media-body noBig">
                             <ul class="user-profile-list noBig">
@@ -39,50 +39,6 @@
         </div>
     </div>
 </section>
-{% include 'snippets/copyright-footer.htm'%}
-
-<!-- .modal -->
-<div class="modal fade noBig" id="MyProfileModal">
-    <div class="modal-dialog noBig">
-        <div class="modal-content noBig">
-            <div class="modal-header noBig">
-                <button type="button" class="close" data-dismiss="modal">×</button> 
-                <h4 class="modal-title">
-                    Edit your profile
-                </h4>                                                             
-                <hr>
-                <div class="media dashboard-wrapper noBig">
-                    <div class="text-center noBig" href="#!">
-                        <img class="media-object user-img" id="profile" src="/media/{{customer_img.image}}"  alt="Profile image of {{customer.shop_name}}">
-                        <a href="#x" class="btn btn-transparent mt-20">Change Image</a>
-                    </div>
-                <dl class="dl-horizontal details-list noBig">
-                    <dt class="mt-10">Full Name:</dt>
-                    <dd><input type="text" class="form-control"  placeholder="hari lal yadhab"></dd>
-                    <dt class="mt-10">Pharmacy Name:</dt>
-                    <dd><input type="text" class="form-control"  placeholder="epharmacy"></dd>
-                    <dt class="mt-10">Email:</dt>
-                    <dd><input type="email" class="form-control"  placeholder="hari.yadhab1234@gmail.com"></dd>
-                    <dt class="mt-10">Address:</dt>
-                    <dd><input type="text" class="form-control"  placeholder="balkumari"></dd>
-                    <dt class="mt-10">Contact No:</dt>
-                    <dd><input type="text" class="form-control"  placeholder="9803678422"></dd>
-                    <dt class="mt-10">Birth of date:</dt>
-                    <dd><input type="text" class="form-control datepicker-test"  placeholder="07/18/1988"></dd>
-                    <dt>Registered Name:</dt>
-                    <dd>{{customer.business_name}}</dd>
-                    <dt>PAN NO</dt>
-                    <dd>{{customer.pan_number}}</dd>
-                    <dt>VAT NO</dt>
-                    <dd>{{customer.vat_number}}</dd> 
-                </dl>
-            </div>                         
-            <div class="modal-footer noBig">
-                <button class="btn-css btn btn-primary">Update</button>
-                <button type="button" class="btn-css btn btn-default" data-dismiss="modal">Close</button>                               
-            </div>
-        </div> 
-    </div>                                                                      
-</div>  
+{% include 'snippets/copyright-footer.htm'%} 
 {% endblock content %}
 

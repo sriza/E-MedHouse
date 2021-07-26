@@ -10,8 +10,7 @@ from django.core.paginator import Paginator
 from .models import Doctor, DoctorAppointment, DoctorImage
 from customer.models import Customer
 from vendor.models import User,VendorImage, Vendor
-from .forms import LoginForm, doctorForm, DoctorImageForm, DoctorAppointmentForm, DoctorAppointmentEditForm
-
+from .forms import LoginForm, DoctorForm, DoctorImageForm, DoctorAppointmentForm, DoctorAppointmentEditForm, UpdateDoctorForm, DoctorImageEditForm
 
 def doctorLogin(request):
     if request.user.is_authenticated and request.user.role==3:
@@ -33,7 +32,7 @@ def doctorLogin(request):
 
 @transaction.atomic
 def signin(request):
-    form    = doctorForm(request.POST or None, request.FILES or None)
+    form    = DoctorForm(request.POST or None, request.FILES or None)
     img_form = DoctorImageForm(request.POST or None, request.FILES or None)
 
     if form.is_valid() and img_form.is_valid():
@@ -197,6 +196,7 @@ def updateAppointment(request,id):
             return redirect('/doctor/appointmentList')
     
         except e:
+            print(e)
             return render(request,'customer/index.htm')    
 
     return render(request, 'doctor/doctor-appointment-update.htm', {'context' : context, 'form':form, 'doc_image':doctor_image})
@@ -212,6 +212,34 @@ def statusCompleted(request,id):
         return redirect('/doctor/appointmentList')
     except:
         return redirect('/doctor/appointmentList')
+
+def updateDoctor(request,id):
+    object        = Doctor.objects.get(id=id) 
+    form          = UpdateDoctorForm(instance=object, data=request.POST or None)
+    img_form      = DoctorImageEditForm(instance=object, data=request.FILES or None)
+    image         = DoctorImage.objects.get(doctor=object)
+
+    if form.is_valid():
+        print("inside forms")
+        try : 
+            form.save()
+            image = request.FILES.get('image')
+
+            if bool(image) :
+                DoctorImage.objects.filter(doctor=object).delete()
+
+                img             = img_form.save(commit=False)
+                img.doctor      = object
+                img.description = request.POST.get("full_name")
+                img.save()
+
+            return redirect('/doctor/dashboard/')
+        except e:
+            print(e)
+            return redirect('/doctor/dashboard/')
+
+    return render(request,'doctor/updatedoctor.htm', {'form' : form, 'doctor':object, 'img_form' : img_form, 'image':image})
+
 
 
 

@@ -183,7 +183,6 @@ def updateLab(request,id):
     if form.is_valid() :
         try : 
             form.save()
-
             image = request.FILES.get('image')
 
             if bool(image) :
