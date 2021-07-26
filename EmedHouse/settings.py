@@ -154,3 +154,4 @@ AUTH_USER_MODEL = 'vendor.User'
 PAYPAL_RECEIVER_EMAIL = 'sriza054@gmail.com'
 
 PAYPAL_TEST = True
+# APPEND_SLASH=False

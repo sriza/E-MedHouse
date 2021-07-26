@@ -26,7 +26,7 @@
     path('detail/<int:id>', views.detailProduct), 
     
     path('shop/', views.shopProduct), 
-    path('shop/detail/<int:id>', views.shopProductDetail),
+    path('shop/detail/<int:id>/', views.shopProductDetail),
 
     title            = forms.CharField(label='Title', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter the name of the service/test type'}))
     meta_title       = forms.CharField(label='Meta Title', widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter the meta title of the service'}))

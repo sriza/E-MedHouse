@@ -105,7 +105,7 @@ $(document).ready(function(){
 });
 
 //upload file
-$('#OpenfileUpload').click(function(){ $('#fileupload').trigger('click'); });
+// $('#OpenfileUpload').click(function(){ $('#fileupload').trigger('click'); });
 
 $(function () {
   $(".datetimepicker").datetimepicker(

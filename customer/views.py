@@ -2,11 +2,12 @@ from product.models import Product, ProductImage
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator
 
 from django.db import transaction
 
 from django.shortcuts import render, redirect
-from .models import Customer, CustomerImage
+from .models import Customer, CustomerImage, Review
 from vendor.models import User,VendorImage, Vendor
 from lab.models import Lab, LabImage
 from doctor.models import DoctorImage, Doctor, DoctorAppointment
@@ -67,6 +68,7 @@ def signin(request):
     return render(request,'customer/signin.htm',{'form':form, 'img_form':img_form })
 
 @transaction.atomic
+@login_required
 def dashboard(request):
     try :
         context = {
@@ -93,9 +95,13 @@ def doctorAppointmentList(request):
                     'recent_page': 'Appointment List',
                     }
 
-        appointment = DoctorAppointment.objects.filter(customer=Customer.objects.get(user=request.user)) 
+        appointment_list = DoctorAppointment.objects.filter(customer=Customer.objects.get(user=request.user)) 
+        paginator = Paginator(appointment_list, 1)
 
-        return render(request, 'customer/doctor-appointment-list.htm',{'context':context, 'appointments': appointment})
+        page_number = request.GET.get('page')
+        appointments = paginator.get_page(page_number)
+        
+        return render(request, 'customer/doctor-appointment-list.htm',{'context':context, 'appointments': appointments})
     except e:
         return render(request,'medicalapp/index.htm')
 
@@ -122,8 +128,12 @@ def order(request):
     'recent_page': 'Order List',
     }
 
-    orders = Order.objects.filter(customer=Customer.objects.get(user=request.user)) 
+    orders_list = Order.objects.filter(customer=Customer.objects.get(user=request.user)) 
     orders_objects = OrderItem.objects.filter(order__customer=Customer.objects.get(user=request.user)) 
+    paginator = Paginator(orders_list, 10)
+
+    page_number = request.GET.get('page')
+    orders = paginator.get_page(page_number)
 
     return render(request, 'customer/order.htm', {'context' : context, 'orders': orders, 'order_items' : orders_objects})
 
@@ -141,6 +151,7 @@ def customerLogout(request):
     logout(request)
     return redirect('/')
 
+@login_required
 def doctor(request):
     try:
         context = {
@@ -149,11 +160,17 @@ def doctor(request):
                     'account': 'Home',
                     'recent_page': 'Doctor Consultation',
                     }
-        doctor_img = DoctorImage.objects.filter()
+        doctor_img_list= DoctorImage.objects.all()
+        paginator = Paginator(doctor_img_list, 10)
+
+        page_number = request.GET.get('page')
+        doctor_img = paginator.get_page(page_number)
+        
         return render(request,'customer/doctor.htm',{'context' : context, 'doctor_img' : doctor_img})
     except:
         return render(request,'product/shop/')
 
+@login_required
 def vendors(request):
     try:
         context = {
@@ -162,15 +179,19 @@ def vendors(request):
                     'recent_page': 'Vendor List',
                     }
 
-        vendor_img = VendorImage.objects.filter(img_type="profile")
+        vendor_img_list = VendorImage.objects.filter(img_type="profile")
+        paginator = Paginator(vendor_img_list, 10)
+
+        page_number = request.GET.get('page')
+        vendor_img = paginator.get_page(page_number)
 
         return render(request,'customer/vendors.htm',{'context' : context, 'vendor_img' : vendor_img})
     except:
         return render(request,'product/shop/')
 
+@login_required
 def vendorDetails(request,id):
     try:
-        print(id)
         vendor = Vendor.objects.get(id=id)
         vendor_img = VendorImage.objects.get(img_type="profile", vendor=id)
         products = ProductImage.objects.filter(vendor=id, main=True)
@@ -179,6 +200,7 @@ def vendorDetails(request,id):
     except:
         return render(request,'product/shop/')
 
+@login_required
 def lab(request):
     try:
         context = {
@@ -193,6 +215,7 @@ def lab(request):
     except:
         return render(request,'service/shop/')
 
+@login_required
 def labDetails(request,id):
     try:
         print(id)
@@ -203,5 +226,46 @@ def labDetails(request,id):
         return render(request,'customer/lab-details.htm',{'lab':lab, 'lab_img': lab_img})
     except:
         return render(request,'service/shop/') 
+
+@login_required
+@transaction.atomic
+def addReview(request,id):
+    try:
+        context={
+                'topic':'Dashboard',
+                'account': 'Home',
+                'recent_page': 'My Product',
+                }
+
+        message =""
+
+        if request.method=="POST":
+            if(request.POST.get('review')!=""):
+                customer = Customer.objects.filter(user=request.user).first()
+                customerImage = CustomerImage.objects.get(customer=customer)
+                product = Product.objects.get(id=id)
+               
+                Review.objects.create(
+                    customer = customer,
+                    image = customerImage,
+                    product = product,
+                    description = request.POST.get('review'),
+                )
+
+                return redirect('/product/shop/detail/{0}'.format(id))
+                
+            else:
+                message = "Review cannot be empty."
+
+
+        product = Product.objects.get(id=id)
+        product_img = ProductImage.objects.filter(product=product)
+        reviews = Review.objects.filter(product=product)
+
+        return render(request,'product/customer_detail.htm', {'context' : context,'product': product, 'product_img' : product_img, 'message':message, 'reviews':reviews})
+    except e:
+        print(e)
+        return redirect('/product/shop/')
+
 
    

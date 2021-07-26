@@ -6,7 +6,23 @@
 {% include 'snippets/page-header.htm' %}
 
 {% include 'snippets/vendors.htm'%}
-
+<div class="flex-pagination mb-3">
+    <div class="step-links">
+        {% if vendor_img.has_previous %}
+            <span id="first1"><a href="?page=1">&laquo; first</a></span>
+           <span id="previous1"><a href="?page={{ vendor_img.previous_page_number }}">previous</a></span>
+        {% endif %}
+    
+        <span id="current1">
+            Page {{ vendor_img.number }} of {{ vendor_img.paginator.num_pages }}.
+        </span>
+     
+        {% if vendor_img.has_next %}
+            <a href="?page={{ vendor_img.next_page_number }}">next</a>
+            <a href="?page={{ vendor_img.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </div>
+</div>
 {% include 'snippets/copyright-footer.htm'%}
 {% include 'snippets/chatbot.htm'%}
 

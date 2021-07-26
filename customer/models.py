@@ -1,5 +1,6 @@
 from django.db import models
 from vendor.models import User
+from product.models import Product
 
 # Create your models here.
 def get_upload_path(instance, filename):
@@ -19,4 +20,11 @@ class CustomerImage(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     description = models.CharField(max_length=256)
     image = models.ImageField(upload_to= get_upload_path ,blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+class Review(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    image = models.ForeignKey(CustomerImage,on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    description = models.CharField(max_length=256)
     timestamp = models.DateTimeField(auto_now_add=True)

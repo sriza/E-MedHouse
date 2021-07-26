@@ -145,3 +145,8 @@ class ProductImageForm(forms.ModelForm):
     image = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
 
 
+class ProductImageEditForm(forms.ModelForm):
+    class Meta:
+        model = ProductImage
+        fields = ('image',)
+    image = forms.FileField(required=False, widget=forms.ClearableFileInput(attrs={'multiple': True}))

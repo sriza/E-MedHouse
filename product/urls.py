@@ -13,5 +13,5 @@ urlpatterns = [
     path('detail/<int:id>', views.detailProduct), 
     path('shop/', views.shopProduct), 
     path('shop/detail/<int:id>', views.shopProductDetail), 
-    path('delete/<int:id>',views.deleteProduct)
+    path('delete/<int:id>',views.deleteProduct),
 ]

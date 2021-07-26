@@ -145,10 +145,6 @@ def serviceDetails(request):
 def forgetPassword(request):
     return render(request, 'lab/forget-password.htm')
 
-# @login_required
-# def order(request):
-#     return render(request, 'lab/order.htm')
-
 @login_required
 def appointment(request):
     context={
