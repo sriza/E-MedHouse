@@ -201,8 +201,8 @@ def vendorLogout(request):
 def updateVendor(request,id):
     object        = Vendor.objects.get(id=id) 
     form          = UpdateRegisterForm(instance=object, data=request.POST or None)
-    profile_form  = RegistrationImageEditForm(instance=object, data=request.FILES or None)
     image         = VendorImage.objects.get(vendor=object, img_type="profile")
+    profile_form  = RegistrationImageEditForm(instance=image, data=request.FILES or None)
 
     if form.is_valid() :
         try : 

@@ -189,7 +189,7 @@ def labLogout(request):
 def updateLab(request,id):
     object        = Lab.objects.get(id=id) 
     form          = UpdateRegisterForm(instance=object, data=request.POST or None)
-    profile_form  = RegistrationImageEditForm(instance=object, data=request.FILES or None)
+    profile_form  = RegistrationImageEditForm(request.FILES or None)
     image         = LabImage.objects.get(lab=object, img_type="profile")
 
     if form.is_valid() :

@@ -221,8 +221,8 @@ def statusCompleted(request,id):
 def updateDoctor(request,id):
     object        = Doctor.objects.get(id=id) 
     form          = UpdateDoctorForm(instance=object, data=request.POST or None)
-    img_form      = DoctorImageEditForm(request.FILES or None)
     image         = DoctorImage.objects.get(doctor=object)
+    img_form      = DoctorImageEditForm(request.FILES or None)
 
     if form.is_valid():
         print("inside forms")
@@ -236,7 +236,7 @@ def updateDoctor(request,id):
                 img             = img_form.save(commit=False)
                 img.doctor      = object
                 img.description = request.POST.get("full_name")
-                img.save()
+                img_form.save()
 
             return redirect('/doctor/dashboard/')
         except e:

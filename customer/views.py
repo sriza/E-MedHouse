@@ -255,7 +255,7 @@ def labDetails(request,id):
         lab_img = LabImage.objects.get(img_type="profile", lab__id=id)
         services = Service.objects.filter(lab=labs)
 
-        return render(request,'customer/lab-details.htm',{'labs':labs, 'lab_img': lab_img, 'services' : services})
+        return render(request,'customer/lab-details.htm',{'lab':labs, 'lab_img': lab_img, 'services' : services})
     except e:
         print(e)
         return render(request,'customer/lab/')        
@@ -309,21 +309,21 @@ def addReview(request,id):
 def updateCustomer(request,id):
     object        = Customer.objects.get(id=id) 
     form          = UpdateCustomerForm(instance=object, data=request.POST or None)
-    img_form      = CustomerImageEditForm(request.FILES or None)
     image         = CustomerImage.objects.get(customer=object)
+    img_form      = CustomerImageEditForm(instance=image, data=request.FILES or None)
 
     if form.is_valid() :
         try : 
             customer = form.save()
             image = request.FILES.get('image')
 
-            if bool(image) :
-                CustomerImage.objects.filter(customer=object).delete()
+            # if bool(image) :
+                # CustomerImage.objects.filter(customer=object).delete()
 
-                img             = img_form.save(commit=False)
-                img.customer    = customer
-                img.description = request.POST.get("full_name")
-                img.save()
+                # img             = img_form.save(commit=False)
+                # img.customer    = customer
+                # img.description = request.POST.get("full_name")
+                # img_form.save()
 
             return redirect('/customer/dashboard/')
         except e:

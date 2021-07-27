@@ -88,8 +88,24 @@
         <div class="modal-content product-checkout-details noBig">
             <div class="modal-header block noBig">
                 <button type="button" class="close" data-dismiss="modal">×</button> 
-                <h2 class="widget-title">Detail of order</h2>   
+                <h2 class="widget-title">Detail of order</h2>  
                 {% for item in items.list%}
+                <div class="media-body noBig">
+                    <h4 class="media-heading"><a> Name :</a></h4>
+                   <p class="price">{{item.order.full_name}}</p>
+
+                   <h4 class="media-heading"><a> Number :</a></h4>
+                   <p class="price">{{item.order.contact_number}}</p>
+
+                   <h4 class="media-heading"> <a> Email :</a></h4>
+                   <p class="price">{{item.order.email}}</p>
+
+                   <h4 class="media-heading"> <a> Address :</a></h4>
+                   <p class="price">{{item.order.shipping_location}}</p>
+
+                   <h4 class="media-heading"> <a> Description :</a></h4>
+                   <p class="price">{{item.order.map_url}}</p>
+                </div>
                 <hr>
                 <div class="media product-card noBig">
                     <a class="pull-left" href="product-single.htm">
